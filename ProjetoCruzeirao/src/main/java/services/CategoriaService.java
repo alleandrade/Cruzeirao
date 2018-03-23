@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.Categoria;
 
 public class CategoriaService {
-	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+	private ArrayList<Categoria> categorias = Dados.categorias;
 	
 	public CategoriaService() {
 		
