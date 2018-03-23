@@ -5,12 +5,16 @@ import java.util.*;
 //Fim Import's
 //Atributos
 public class Fase {
-	Date dataInicio,
-		 dataFim;
-	Enum formato;
-	Categoria categoria;
-	ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-	int numero;
+//	private enum formato {
+//		FASE_DE_GRUPOS,MATA_MATA;
+//	}
+//	
+	private Date dataInicio,
+		 		 dataFim;
+	private Enum formato;
+	private Categoria categoria;
+	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
+	private int numero;
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]

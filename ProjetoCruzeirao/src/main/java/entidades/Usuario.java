@@ -1,24 +1,28 @@
-//Obs: Mudei o tipo da lista de equipes para ArrayList pois o List não estava funcionando.
 //Import's
 package entidades;
 
 import java.util.*;
 //Fim Import's
 //Atributos
+
 public class Usuario {
-	String email,
-		   nome,
-		   telefoneFixo,
-		   telefoneMovel,
-		   endereco,
-		   rg,
-		   cpf,
-		   cref,
-		   foto;
-	Date dataNascimento;
-	ArrayList<Equipe> equipes = new ArrayList<Equipe>();
-	Enum tipo,
-		 sexo;		//Obs: Procurar o porque de usar um tipo Enum nesta variavel
+//	public enum tipo {
+//		ADMINISTRADOR,JUIZ,ORGANIZADOR,JOGADOR,TECNICO,TORCEDOR,DIRETOR;
+//	}
+
+	private String email,
+		   		   nome,
+		   		   telefoneFixo,
+		   		   telefoneMovel,
+		   		   endereco,
+		   		   rg,
+		   		   cpf,
+		   		   cref,
+		   		   foto;
+	private Date dataNascimento;
+	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
+	private Enum tipo,
+		 		 sexo;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]

@@ -3,6 +3,10 @@ package entidades;
 //Fim Import's
 //Atributos
 public class Cartao {
+//	public enum tipo {
+//		AMARELO,VERMELHO;
+//	}
+
 	private Inscrito inscrito;
 	private Enum tipo;
 	private int tempo;

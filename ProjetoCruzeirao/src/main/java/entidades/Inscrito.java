@@ -3,12 +3,16 @@ package entidades;
 //Fim Import's
 //Atributos
 public class Inscrito {
-	Enum tipo;
-	Usuario usuario;
-	Inscricao inscricao;
-	boolean aceiteUsuario,
-			suspensoJogos,
-			inscricaoValidada;
+//	public enum tipo {
+//		JOGADOR,TECNICO;
+//	}
+
+	private Enum tipo;
+	private Usuario usuario;
+	private Inscricao inscricao;
+	private boolean aceiteUsuario,
+					suspensoJogos,
+					inscricaoValidada;
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]

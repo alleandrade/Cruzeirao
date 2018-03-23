@@ -5,14 +5,19 @@ import java.util.*;
 //Fim Import's
 //Atributos
 public class Categoria {
-	String nome;
-	int nascidosApartirDe,
-		minJogadores,
-		maxJogadores;
-	ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
-	Campeonato campeonato;
-	ArrayList<Fase> fases = new ArrayList<Fase>();
-	Enum sexo;
+//	public enum sexo {
+//		MASCULINO,FEMININO;
+//	}
+
+	
+	private String nome;
+	private int nascidosApartirDe,
+				minJogadores,
+				maxJogadores;
+	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
+	private Campeonato campeonato;
+	private ArrayList<Fase> fases = new ArrayList<Fase>();
+	private Enum sexo;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]

@@ -3,8 +3,12 @@ package entidades;
 //Fim Import's
 //Atributos
 public class Juiz {
-	Enum tipo;
-	Usuario usuario;
+//	public enum tipo {
+//		ARBITRO,QUARTO_ARBITRO,ASSISTENTE;
+//	}
+
+	private Enum tipo;
+	private Usuario usuario;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]

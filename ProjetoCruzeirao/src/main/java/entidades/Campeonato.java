@@ -5,15 +5,15 @@ import java.util.*;
 //Fim Import's
 //Atributos
 public class Campeonato {
-	String nome;
-	ArrayList<Local> locais = new ArrayList<Local>();
-	ArrayList<Juiz> juizes = new ArrayList<Juiz>();
-	ArrayList<Categoria> categorias = new ArrayList<Categoria>();
-	Date dataInicioInscricao,
-		 dataFimInscricao,
-		 dataIncioCampeonato,
-		 dataFimCampeonato;
-	double valorTaxa;
+	private String nome;
+	private ArrayList<Local> locais = new ArrayList<Local>();
+	private ArrayList<Juiz> juizes = new ArrayList<Juiz>();
+	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+	private Date dataInicioInscricao,
+		 		 dataFimInscricao,
+		 		 dataIncioCampeonato,
+		 		 dataFimCampeonato;
+	private double valorTaxa;
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]

@@ -3,7 +3,7 @@ package entidades;
 //Fim Import's
 //Atributos
 public class Local {
-	String endereco;
+	private String endereco;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]

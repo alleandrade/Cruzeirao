@@ -7,10 +7,10 @@ import java.util.*;
 //Atributos
 public class Equipe {
 	
-	String nome,
-		   cidade;
-	Date dataFundacao;
-	ArrayList<Usuario> diretores = new ArrayList<Usuario>();
+	private String nome,
+		   		   cidade;
+	private Date dataFundacao;
+	private ArrayList<Usuario> diretores = new ArrayList<Usuario>();
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]
