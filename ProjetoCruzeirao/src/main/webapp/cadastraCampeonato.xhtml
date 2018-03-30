@@ -1,0 +1,70 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+<ui:define name="principal">
+
+<h:form id="formCampeonato">
+<p:growl id="mensagem"/>
+
+
+
+	<p:panelGrid columns="6">
+	
+	<f:facet name="header">
+            Campeonato
+    </f:facet>
+	 	 	
+		 
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{campeonatoMB.campeonato.nome}" required="true"/>
+	 
+	 <p:outputLabel for="valor" value="Valor taxa: "/>
+	 <p:inputNumber id="valor" value = "#{campeonatoMB.campeonato.valorTaxa}" symbol="R$ " required="true">
+	  <f:validateDoubleRange minimum="0.01"/>
+	 	 <p:message for="valor" style = "margin: 4px 0px; padding: 0px 0px"/>
+	 </p:inputNumber>	 
+	 
+	 <p:outputLabel value="Data inicial das inscrições: "/>
+	 <p:calendar id="popup1" value="#{campeonatoMB.campeonato.dataInicioInscricao}"/>
+	 
+	 <p:outputLabel value="Data final das inscrições: "/>
+	 <p:calendar id="popup2" value="#{campeonatoMB.campeonato.dataFimInscricao}"/>
+	 
+	 <p:outputLabel value="Data inicial do campeonato: "/>
+	 <p:calendar id="popup3" value="#{campeonatoMB.campeonato.dataInicioCampeonato}"/>
+	 
+	 <p:outputLabel value="Data final do campeonato: "/>
+	 <p:calendar id="popup4" value="#{campeonatoMB.campeonato.dataFimCampeonato}"/>
+	 	 
+	 
+	 
+	 
+	</p:panelGrid>
+	<p:commandButton value="Cadastrar"
+					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
+					 action="#{campeonatoMB.salvar}"
+	                 update=":formCampeonato"  
+	            
+	/>
+	
+	<!--  
+	<p:button style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 4px" outcome="dadosCampeonatos.xhtml" value="Dados" >
+    <f:param name="categoriaButton" value="10" />
+ 	</p:button>
+ 	-->
+ 	
+ 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+	
+
+
+
+</h:form>
+
+	</ui:define>
+</ui:composition>
+

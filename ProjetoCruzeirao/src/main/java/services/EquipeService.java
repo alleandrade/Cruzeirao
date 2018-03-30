@@ -1,6 +1,8 @@
 package services;
 
 import java.util.*;
+
+
 import entidades.Equipe;
 
 public class EquipeService {
@@ -17,4 +19,5 @@ public class EquipeService {
 	public ArrayList<Equipe> getEquipes() {
 		return equipes;
 	}
+	
 }

@@ -6,7 +6,7 @@ import java.util.*;
 //Atributos
 public class Categoria {
 	String nome;
-	int nascidosApartirDe,
+	int nascidosAPartirDe,
 		minJogadores,
 		maxJogadores;
 	ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
@@ -26,11 +26,11 @@ public class Categoria {
 		super();
 	}
 
-	public Categoria(String nome, int nascidosApartirDe, int minJogadores, int maxJogadores,
+	public Categoria(String nome, int nascidosAPartirDe, int minJogadores, int maxJogadores,
 			ArrayList<Inscricao> inscricoes, Campeonato campeonato, ArrayList<Fase> fases, Enum sexo) {
 		super();
 		this.nome = nome;
-		this.nascidosApartirDe = nascidosApartirDe;
+		this.nascidosAPartirDe = nascidosAPartirDe;
 		this.minJogadores = minJogadores;
 		this.maxJogadores = maxJogadores;
 		this.inscricoes = inscricoes;
@@ -47,14 +47,16 @@ public class Categoria {
 		this.nome = nome;
 	}
 	
-	public int getNascidosApartirDe() {
-		return nascidosApartirDe;
-	}
+
 	
-	public void setNascidosApartirDe(int nascidosApartirDe) {
-		this.nascidosApartirDe = nascidosApartirDe;
+	public int getNascidosAPartirDe() {
+		return nascidosAPartirDe;
 	}
-	
+
+	public void setNascidosAPartirDe(int nascidosAPartirDe) {
+		this.nascidosAPartirDe = nascidosAPartirDe;
+	}
+
 	public int getMinJogadores() {
 		return minJogadores;
 	}
@@ -105,7 +107,7 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [nome=" + nome + ", nascidosApartirDe=" + nascidosApartirDe + ", minJogadores=" + minJogadores
+		return "Categoria [nome=" + nome + ", nascidosAPartirDe=" + nascidosAPartirDe + ", minJogadores=" + minJogadores
 				+ ", maxJogadores=" + maxJogadores + ", campeonato=" + campeonato + ", sexo=" + sexo + "]";
 	}	
 //Fim Métodos

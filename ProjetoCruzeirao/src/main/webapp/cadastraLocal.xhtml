@@ -1,0 +1,48 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formLocal">
+<p:growl id="mensagem"/>
+
+
+
+	<p:panelGrid columns="2">
+	
+	<f:facet name="header">
+            Local
+    </f:facet>
+	 	 
+	
+		 
+	 <p:outputLabel for="endereco" value="Endereço: "/>
+	 <p:inputText id="endereco" value = "#{localMB.local.endereco}" required="true"/>
+
+	 
+	 
+	</p:panelGrid>
+	<p:commandButton value="Cadastrar"
+					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
+					 action="#{localMB.salvar}"
+	                 update=":formLocal"  
+	            
+	/>
+	
+ 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" onclick="window.history.back();" />
+	
+
+
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>

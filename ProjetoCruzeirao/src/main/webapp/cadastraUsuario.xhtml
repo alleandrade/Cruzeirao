@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	style="background-color: #F5F5F5"
-	>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
 	
-<h:head>
-<meta charset="UTF-8" />
-</h:head>
-<h:body>
-
-<h4>
+	
+<ui:define name="principal">
 
 <h:form id="formUsuario">
 <p:growl id="mensagem"/>
 
 
 
-	<p:panelGrid columns="2">
+	<p:panelGrid columns="8">
 	
 	<f:facet name="header">
             Usuário
@@ -32,20 +29,27 @@
 	 <p:outputLabel for="sexo" value="Sexo: "/>
 	 <p:inputText id="sexo" value = "#{usuarioMB.usuario.sexo}" required="true"/>
 	 
+	 <p:outputLabel for="tipo" value="Tipo: "/>
+	 <p:inputText id="tipo" value = "#{usuarioMB.usuario.tipo}" required="true"/>
+	 
+	 <p:outputLabel for="foto" value="Foto: "/>
+	 <p:inputText id="foto" placeholder = "Insira a URL da foto" value = "#{usuarioMB.usuario.foto}" required="true"/>
+	 
 	 <p:outputLabel for="email" value="E-mail: "/>
 	 <p:inputText id="email" value = "#{usuarioMB.usuario.email}" required="true"/>
 	 
-	 <p:outputLabel for="dataNascimento" value="Data de nascimento: "/>
-	 <p:inputText id="dataNascimento" value = "#{usuarioMB.usuario.dataNascimento}" required="true"/>
-	 
+	 <p:outputLabel value="Data de nascimento: "/>
+	 <p:calendar id="popup" value="#{usuarioMB.usuario.dataNascimento}"/>
+	 	 
 	 <p:outputLabel for="rg" value="RG: "/>
-	 <p:inputText id="rg" value = "#{usuarioMB.usuario.rg}" required="true"/>
+	 <p:inputMask id="rg" value="#{usuarioMB.usuario.rg}"
+						mask="99.999.999-9" required="true">
+	 </p:inputMask>
 	 
 	 <p:outputLabel for="cpf" value="CPF: "/>
-	 <p:inputText id="cpf" value = "#{usuarioMB.usuario.cpf}" required="true"/>
-	 
-	 <p:outputLabel for="cref" value="CREF: "/>
-	 <p:inputText id="cref" value = "#{usuarioMB.usuario.cref}" required="true"/>
+	 <p:inputMask id="cpf" value="#{usuarioMB.usuario.cpf}"
+						mask="999.999.999-99" required="true">
+	 </p:inputMask>
 	 
 	 <p:outputLabel for="endereco" value="Endereço: "/>
 	 <p:inputText id="endereco" value = "#{usuarioMB.usuario.endereco}" required="true"/>
@@ -56,26 +60,75 @@
 	 </p:inputMask>
 	 
 	 <p:outputLabel for="telefoneMovel" value="Telefone móvel: "/>
-	  <p:inputMask id="telefoneMovel" value="#{usuarioMB.usuario.telefoneMovel}"
+	 <p:inputMask id="telefoneMovel" value="#{usuarioMB.usuario.telefoneMovel}"
 						mask="(99) 99999999" required="true">
 	 </p:inputMask>
 	 
+	</p:panelGrid>	
+	
+ 	
+	<p:panelGrid columns="2" style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px">
+	
+	  	
 	 
-	 
-	</p:panelGrid>
-	<p:commandButton value="Cadastrar"
-					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
-					 action="#{usuarioMB.salvar}"
+	 <!--  
+	 <p:outputLabel  value="Equipe"/>
+ 	 <h:selectOneMenu id="equipe" converter ="ConverterEquipe"  value="#{usuarioMB.usuario.equipes}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{equipeMB.equipes}" />
+     </h:selectOneMenu>
+	 -->
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{usuarioMB.adicionaEquipe}"
 	                 update=":formUsuario"  
-	            
 	/>
 	
-	<!--  
-	<p:button style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 4px" outcome="dadosCategoria.xhtml" value="Dados" >
-    <f:param name="categoriaButton" value="10" />
- 	</p:button>
- 	-->
- 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+	
+	</p:panelGrid>
+	
+ 	
+ 	
+ 	<p:dataTable
+			var = "e"
+			value = "#{usuarioMB.usuario.equipes}"
+			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar alguma equipe, adicione uma equipe ao usuário."
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Equipe (es) do usuário
+    </f:facet>
+			
+	    
+	     <p:column headerText="Equipe" style="text-align: center" sortBy="#{e.nome}">
+                  <p:outputLabel value="#{e.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="Cidade" style="text-align: center" sortBy="#{e.cidade}">
+                  <p:outputLabel value="#{e.cidade}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removeEquipe(e)}" update=":formUsuario"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>		
+ 	
+ 	<p:commandButton value="Cadastrar"
+					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
+					 action="#{usuarioMB.salvar}"
+	                 update=":formUsuario"  	            
+	/>
+
+ 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" onclick="window.history.back();" />
 	
 
 
@@ -83,7 +136,5 @@
 </h:form>
 
 
-</h4>
-
-</h:body>
-</html>
+	</ui:define>
+</ui:composition>

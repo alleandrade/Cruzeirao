@@ -11,7 +11,7 @@ public class Campeonato {
 	ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 	Date dataInicioInscricao,
 		 dataFimInscricao,
-		 dataIncioCampeonato,
+		 dataInicioCampeonato,
 		 dataFimCampeonato;
 	double valorTaxa;
 //Fim Atributos	
@@ -28,7 +28,7 @@ public class Campeonato {
 	}
 
 	public Campeonato(String nome, ArrayList<Local> locais, ArrayList<Juiz> juizes, ArrayList<Categoria> categorias,
-			Date dataInicioInscricao, Date dataFimInscricao, Date dataIncioCampeonato, Date dataFimCampeonato,
+			Date dataInicioInscricao, Date dataFimInscricao, Date dataInicioCampeonato, Date dataFimCampeonato,
 			double valorTaxa) {
 		super();
 		this.nome = nome;
@@ -37,7 +37,7 @@ public class Campeonato {
 		this.categorias = categorias;
 		this.dataInicioInscricao = dataInicioInscricao;
 		this.dataFimInscricao = dataFimInscricao;
-		this.dataIncioCampeonato = dataIncioCampeonato;
+		this.dataInicioCampeonato = dataInicioCampeonato;
 		this.dataFimCampeonato = dataFimCampeonato;
 		this.valorTaxa = valorTaxa;
 	}
@@ -90,14 +90,14 @@ public class Campeonato {
 		this.dataFimInscricao = dataFimInscricao;
 	}
 	
-	public Date getDataIncioCampeonato() {
-		return dataIncioCampeonato;
+	public Date getDataInicioCampeonato() {
+		return dataInicioCampeonato;
 	}
-	
-	public void setDataIncioCampeonato(Date dataIncioCampeonato) {
-		this.dataIncioCampeonato = dataIncioCampeonato;
+
+	public void setDataInicioCampeonato(Date dataInicioCampeonato) {
+		this.dataInicioCampeonato = dataInicioCampeonato;
 	}
-	
+
 	public Date getDataFimCampeonato() {
 		return dataFimCampeonato;
 	}
@@ -118,7 +118,7 @@ public class Campeonato {
 	public String toString() {
 		return "Campeonato [nome=" + nome + ", locais=" + locais + ", juizes=" + juizes + ", categorias=" + categorias
 				+ ", dataInicioInscricao=" + dataInicioInscricao + ", dataFimInscricao=" + dataFimInscricao
-				+ ", dataIncioCampeonato=" + dataIncioCampeonato + ", dataFimCampeonato=" + dataFimCampeonato
+				+ ", dataInicioCampeonato=" + dataInicioCampeonato + ", dataFimCampeonato=" + dataFimCampeonato
 				+ ", valorTaxa=" + valorTaxa + "]";
 	}
 //Fim Métodos	
