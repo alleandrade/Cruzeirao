@@ -20,4 +20,11 @@ public class Dados {
 	public static ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
 	public static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
+	// ArrayList's auxiliares de usuário
+	
+	public static ArrayList<Usuario> usuarioJuizes = new ArrayList<Usuario>();
+	public static ArrayList<Usuario> usuarioDiretores = new ArrayList<Usuario>();
+	public static ArrayList<Usuario> usuarioComissao = new ArrayList<Usuario>();
+	public static ArrayList<Usuario> usuarioJogadores = new ArrayList<Usuario>();
+	
 }

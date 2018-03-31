@@ -1,15 +1,11 @@
 //Import's
 package entidades;
 
+import enums.*;
 import java.util.*;
 //Fim Import's
 //Atributos
 public class Categoria {
-//	public enum sexo {
-//		MASCULINO,FEMININO;
-//	}
-
-	
 	private String nome;
 	private int nascidosApartirDe,
 				minJogadores,
@@ -17,7 +13,7 @@ public class Categoria {
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
 	private Campeonato campeonato;
 	private ArrayList<Fase> fases = new ArrayList<Fase>();
-	private Enum sexo;
+	private Sexo categoria;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -30,9 +26,9 @@ public class Categoria {
 	public Categoria() {
 		super();
 	}
-
+	
 	public Categoria(String nome, int nascidosApartirDe, int minJogadores, int maxJogadores,
-			ArrayList<Inscricao> inscricoes, Campeonato campeonato, ArrayList<Fase> fases, Enum sexo) {
+		ArrayList<Inscricao> inscricoes, Campeonato campeonato, ArrayList<Fase> fases, Sexo categoria) {
 		super();
 		this.nome = nome;
 		this.nascidosApartirDe = nascidosApartirDe;
@@ -41,7 +37,7 @@ public class Categoria {
 		this.inscricoes = inscricoes;
 		this.campeonato = campeonato;
 		this.fases = fases;
-		this.sexo = sexo;
+		this.categoria = categoria;
 	}
 
 	public String getNome() {
@@ -52,6 +48,14 @@ public class Categoria {
 		this.nome = nome;
 	}
 	
+	public Sexo getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Sexo categoria) {
+		this.categoria = categoria;
+	}
+
 	public int getNascidosApartirDe() {
 		return nascidosApartirDe;
 	}
@@ -99,19 +103,11 @@ public class Categoria {
 	public void setFases(ArrayList<Fase> fases) {
 		this.fases = fases;
 	}
-	
-	public Enum getSexo() {
-		return sexo;
-	}
-	
-	public void setSexo(Enum sexo) {
-		this.sexo = sexo;
-	}
 
 	@Override
 	public String toString() {
 		return "Categoria [nome=" + nome + ", nascidosApartirDe=" + nascidosApartirDe + ", minJogadores=" + minJogadores
-				+ ", maxJogadores=" + maxJogadores + ", campeonato=" + campeonato + ", sexo=" + sexo + "]";
+				+ ", maxJogadores=" + maxJogadores + ", campeonato=" + campeonato + ", sexo=" + categoria + "]";
 	}	
 //Fim Métodos
 }

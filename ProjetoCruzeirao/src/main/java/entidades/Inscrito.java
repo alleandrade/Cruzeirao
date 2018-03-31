@@ -1,13 +1,12 @@
 //Import's
 package entidades;
+
+import enums.TipoUsuario;
+
 //Fim Import's
 //Atributos
 public class Inscrito {
-//	public enum tipo {
-//		JOGADOR,TECNICO;
-//	}
-
-	private Enum tipo;
+	private TipoUsuario tipo;
 	private Usuario usuario;
 	private Inscricao inscricao;
 	private boolean aceiteUsuario,
@@ -26,8 +25,10 @@ public class Inscrito {
 		super();
 	}
 
-	public Inscrito(Enum tipo, Usuario usuario, Inscricao inscricao, boolean aceiteUsuario, boolean suspensoJogos,
-			boolean inscricaoValidada) {
+	
+	
+	public Inscrito(TipoUsuario tipo, Usuario usuario, Inscricao inscricao, boolean aceiteUsuario, boolean suspensoJogos,
+		boolean inscricaoValidada) {
 		super();
 		this.tipo = tipo;
 		this.usuario = usuario;
@@ -37,14 +38,8 @@ public class Inscrito {
 		this.inscricaoValidada = inscricaoValidada;
 	}
 
-	public Enum getTipo() {
-		return tipo;
-	}
-	
-	public void setTipo(Enum tipo) {
-		this.tipo = tipo;
-	}
-	
+
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -53,6 +48,16 @@ public class Inscrito {
 		this.usuario = usuario;
 	}
 	
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
+	}
+
+
 	public Inscricao getInscricao() {
 		return inscricao;
 	}
@@ -87,7 +92,7 @@ public class Inscrito {
 
 	@Override
 	public String toString() {
-		return "Inscrito [tipo=" + tipo + ", usuario=" + usuario + ", inscricao=" + inscricao + ", aceiteUsuario="
+		return "Inscrito [tipo=" + getTipo() + ", usuario=" + usuario + ", inscricao=" + inscricao + ", aceiteUsuario="
 				+ aceiteUsuario + ", suspensoJogos=" + suspensoJogos + ", inscricaoValidada=" + inscricaoValidada + "]";
 	}
 //Fim Métodos

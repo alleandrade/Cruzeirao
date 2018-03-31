@@ -1,14 +1,14 @@
 //Import's
 package entidades;
 
+import enums.*;
+
 import java.util.*;
 //Fim Import's
 //Atributos
 
+
 public class Usuario {
-//	public enum tipo {
-//		ADMINISTRADOR,JUIZ,ORGANIZADOR,JOGADOR,TECNICO,TORCEDOR,DIRETOR;
-//	}
 
 	private String email,
 		   		   nome,
@@ -21,8 +21,9 @@ public class Usuario {
 		   		   foto;
 	private Date dataNascimento;
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
-	private Enum tipo,
-		 		 sexo;
+	private TipoUsuario tipo;
+	private Sexo sexo;
+	
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -35,10 +36,9 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
-
+	
 	public Usuario(String email, String nome, String telefoneFixo, String telefoneMovel, String endereco, String rg,
-			String cpf, String cref, String foto, Date dataNascimento, ArrayList<Equipe> equipes, Enum tipo,
-			Enum sexo) {
+		String cpf, String cref, String foto, Date dataNascimento, ArrayList<Equipe> equipes, TipoUsuario tipo, Sexo sexo) {
 		super();
 		this.email = email;
 		this.nome = nome;
@@ -54,6 +54,7 @@ public class Usuario {
 		this.tipo = tipo;
 		this.sexo = sexo;
 	}
+	
 
 	public String getEmail() {
 		return email;
@@ -63,6 +64,22 @@ public class Usuario {
 		this.email = email;
 	}
 	
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -142,29 +159,14 @@ public class Usuario {
 	public void setEquipes(ArrayList<Equipe> equipes) {
 		this.equipes = equipes;
 	}
-	
-	public Enum getTipo() {
-		return tipo;
-	}
-	
-	public void setTipo(Enum tipo) {
-		this.tipo = tipo;
-	}
-	
-	public Enum getSexo() {
-		return sexo;
-	}
-	
-	public void setSexo(Enum sexo) {
-		this.sexo = sexo;
-	}
 
 	@Override
 	public String toString() {
 		return "Usuario [email=" + email + ", nome=" + nome + ", telefoneFixo=" + telefoneFixo + ", telefoneMovel="
 				+ telefoneMovel + ", endereco=" + endereco + ", rg=" + rg + ", cpf=" + cpf + ", cref=" + cref
-				+ ", foto=" + foto + ", dataNascimento=" + dataNascimento + ", equipes=" + equipes + ", tipo=" + tipo
-				+ ", sexo=" + sexo + "]";
+				+ ", foto=" + foto + ", dataNascimento=" + dataNascimento + ", equipes=" + equipes + ", tipo=" + getTipo()
+				+ ", sexo=" + getSexo() + "]";
 	}
 //Fim Métodos	
+
 }
