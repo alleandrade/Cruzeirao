@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.Cartao;
 
 public class CartaoService {
-	private ArrayList<Cartao> cartoes = new ArrayList<Cartao>();
+	private ArrayList<Cartao> cartoes = Dados.cartoes;
 	
 	public CartaoService() {
 		

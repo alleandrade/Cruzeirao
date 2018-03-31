@@ -1,25 +1,32 @@
-//Obs: Mudei o tipo da lista de equipes para ArrayList pois o List não estava funcionando.
 //Import's
 package entidades;
 
+
 import java.io.Serializable;
+import enums.*;
+
 import java.util.*;
 //Fim Import's
 //Atributos
-public class Usuario implements Serializable {
-	String email,
-		   nome,
-		   telefoneFixo,
-		   telefoneMovel,
-		   endereco,
-		   rg,
-		   cpf,
-		   cref,
-		   foto;
-	Date dataNascimento;
-	ArrayList<Equipe> equipes = new ArrayList<Equipe>();
-	Enum tipo,
-		 sexo;		//Obs: Procurar o porque de usar um tipo Enum nesta variavel
+
+
+public class Usuario implements Serializable{
+
+	private String email,
+		   		   nome,
+		   		   telefoneFixo,
+		   		   telefoneMovel,
+		   		   endereco,
+		   		   rg,
+		   		   cpf,
+		   		   cref,
+		   		   foto;
+	private Date dataNascimento;
+	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
+	private TipoUsuario tipo;
+	private Sexo sexo;
+	
+
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -32,10 +39,9 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		super();
 	}
-
+	
 	public Usuario(String email, String nome, String telefoneFixo, String telefoneMovel, String endereco, String rg,
-			String cpf, String cref, String foto, Date dataNascimento, ArrayList<Equipe> equipes, Enum tipo,
-			Enum sexo) {
+		String cpf, String cref, String foto, Date dataNascimento, ArrayList<Equipe> equipes, TipoUsuario tipo, Sexo sexo) {
 		super();
 		this.email = email;
 		this.nome = nome;
@@ -51,6 +57,7 @@ public class Usuario implements Serializable {
 		this.tipo = tipo;
 		this.sexo = sexo;
 	}
+	
 
 	public String getEmail() {
 		return email;
@@ -60,6 +67,22 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 	
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -139,26 +162,14 @@ public class Usuario implements Serializable {
 	public void setEquipes(ArrayList<Equipe> equipes) {
 		this.equipes = equipes;
 	}
-	
-	public Enum getTipo() {
-		return tipo;
-	}
-	
-	public void setTipo(Enum tipo) {
-		this.tipo = tipo;
-	}
-	
-	public Enum getSexo() {
-		return sexo;
-	}
-	
-	public void setSexo(Enum sexo) {
-		this.sexo = sexo;
-	}
 
 	@Override
 	public String toString() {
+
 		return nome;
+
+
 	}
 //Fim Métodos	
+
 }

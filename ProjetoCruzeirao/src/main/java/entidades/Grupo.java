@@ -18,15 +18,15 @@ public class Grupo {
 	*/
 
 	public Grupo() {
-	super();
+		super();
 	}
 
 	public Grupo(String nome, Fase fase, ArrayList<Rodada> rodadas, int numero) {
-	super();
-	this.nome = nome;
-	this.fase = fase;
-	this.rodadas = rodadas;
-	this.numero = numero;
+		super();
+		this.nome = nome;
+		this.fase = fase;
+		this.rodadas = rodadas;
+		this.numero = numero;
 	}
 	
 	public String getNome() {

@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.Fase;
 
 public class FaseService {
-	private ArrayList<Fase> fases = new ArrayList<Fase>();
+	private ArrayList<Fase> fases = Dados.fases;
 	
 	public FaseService() {
 		

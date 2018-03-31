@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.Inscrito;
 
 public class InscritoService {
-	private ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
+	private ArrayList<Inscrito> inscritos = Dados.inscritos;
 	
 	public InscritoService() {
 		

@@ -6,13 +6,13 @@ import java.util.*;
 
 //Atributos
 public class Inscricao {
-	long numero;
-	boolean pagamento,
-			validada;
-	ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
-	ArrayList<Partida> partidas = new ArrayList<Partida>();
-	Categoria categoria;
-	Equipe equipe;
+	private long numero;
+	private boolean pagamento,
+					validada;
+	private ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
+	private ArrayList<Partida> partidas = new ArrayList<Partida>();
+	private Categoria categoria;
+	private Equipe equipe;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]

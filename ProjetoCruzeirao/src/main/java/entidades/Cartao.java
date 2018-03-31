@@ -1,10 +1,13 @@
 //Import's
 package entidades;
+
+import enums.TipoCartao;
+
 //Fim Import's
 //Atributos
 public class Cartao {
 	private Inscrito inscrito;
-	private Enum tipo;
+	private TipoCartao tipo;
 	private int tempo;
 //Fim Atributos
 	/*	Métodos:
@@ -18,13 +21,13 @@ public class Cartao {
 		super();
 	}
 	
-	public Cartao(Inscrito inscrito, Enum tipo, int tempo) {
+	public Cartao(Inscrito inscrito, TipoCartao tipo, int tempo) {
 		super();
 		this.inscrito = inscrito;
 		this.tipo = tipo;
 		this.tempo = tempo;
 	}
-	
+
 	public Inscrito getInscrito() {
 		return inscrito;
 	}
@@ -33,14 +36,14 @@ public class Cartao {
 		this.inscrito = inscrito;
 	}
 	
-	public Enum getTipo() {
+	public TipoCartao getTipo() {
 		return tipo;
 	}
-	
-	public void setTipo(Enum tipo) {
+
+	public void setTipo(TipoCartao tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public int getTempo() {
 		return tempo;
 	}

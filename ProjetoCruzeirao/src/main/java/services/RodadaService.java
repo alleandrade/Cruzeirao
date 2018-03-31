@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.Rodada;
 
 public class RodadaService {
-	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
+	private ArrayList<Rodada> rodadas = Dados.rodadas;
 	
 	public RodadaService() {
 		

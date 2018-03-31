@@ -1,10 +1,14 @@
 //Import's
 package entidades;
+
+import enums.TipoJuiz;
+
 //Fim Import's
 //Atributos
 public class Juiz {
-	Enum tipo;
-	Usuario usuario;
+
+	private TipoJuiz tipo;
+	private Usuario usuario;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -18,20 +22,12 @@ public class Juiz {
 		super();
 	}
 
-	public Juiz(Enum tipo, Usuario usuario) {
+	public Juiz(TipoJuiz tipo, Usuario usuario) {
 		super();
 		this.tipo = tipo;
 		this.usuario = usuario;
 	}
 
-	public Enum getTipo() {
-		return tipo;
-	}
-	
-	public void setTipo(Enum tipo) {
-		this.tipo = tipo;
-	}
-	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -40,9 +36,17 @@ public class Juiz {
 		this.usuario = usuario;
 	}
 
+	public TipoJuiz getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoJuiz tipo) {
+		this.tipo = tipo;
+	}
+
 	@Override
 	public String toString() {
-		return "Juiz [tipo=" + tipo + ", usuario=" + usuario + "]";
+		return "Juiz [tipo=" + getTipo() + ", usuario=" + usuario + "]";
 	}
 //Fim Métodos
 }
