@@ -2,10 +2,11 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class Usuario {
+public class Usuario implements Serializable {
 	String email,
 		   nome,
 		   telefoneFixo,
@@ -157,10 +158,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", nome=" + nome + ", telefoneFixo=" + telefoneFixo + ", telefoneMovel="
-				+ telefoneMovel + ", endereco=" + endereco + ", rg=" + rg + ", cpf=" + cpf + ", cref=" + cref
-				+ ", foto=" + foto + ", dataNascimento=" + dataNascimento + ", equipes=" + equipes + ", tipo=" + tipo
-				+ ", sexo=" + sexo + "]";
+		return nome;
 	}
 //Fim Métodos	
 }

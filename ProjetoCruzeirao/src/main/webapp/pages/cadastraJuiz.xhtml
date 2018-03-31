@@ -23,16 +23,19 @@
 	 	 
 	
 		 
-	 <p:outputLabel for="juiz" value="Tipo: "/>
-	 <p:inputText id="juiz" value = "#{juizMB.juiz.tipo}" required="true"/>
-	 
-	 <!--  
+	 <p:outputLabel value="Tipo: "/>
+	 <h:selectOneMenu value="#{juizMB.juiz.tipo}" style="width:205px">
+            <f:selectItem itemLabel="Árbitro" itemValue="Arbitro" />
+            <f:selectItem itemLabel="Quarto árbitro" itemValue="Quarto Arbitro" />
+            <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />            
+     </h:selectOneMenu>
+	  
 	 <p:outputLabel for="usuario" value="Usuário: "/>
 	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario"  value="#{juizMB.juiz.usuario}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o usuário" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{usuarioMB.usuarios}" />
      </h:selectOneMenu>
-     -->
+     
 
 	 
 	 

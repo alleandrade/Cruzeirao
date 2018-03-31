@@ -25,6 +25,12 @@
 		 
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{categoriaMB.categoria.nome}" required="true"/>
+	 
+	 <p:outputLabel value="Sexo: "/>
+	 <h:selectOneMenu value="#{categoriaMB.categoria.sexo}" style="width:205px">
+            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+            <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+     </h:selectOneMenu>
 	  
 	 <p:outputLabel for="nascidos" value="Nascidos a partir de: "/>
 	 <p:inputText id="nascidos" value = "#{categoriaMB.categoria.nascidosAPartirDe}" required="true"/>

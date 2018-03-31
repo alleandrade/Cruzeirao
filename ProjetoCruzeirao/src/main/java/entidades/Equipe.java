@@ -2,10 +2,11 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class Equipe {
+public class Equipe implements Serializable {
 	
 	String nome,
 		   cidade;
@@ -65,8 +66,7 @@ public class Equipe {
 
 	@Override
 	public String toString() {
-		return "Equipe [nome=" + nome + ", cidade=" + cidade + ", dataFundacao=" + dataFundacao + ", diretores="
-				+ diretores + "]";
+		return nome;
 	}
 //Fim Métodos
 }

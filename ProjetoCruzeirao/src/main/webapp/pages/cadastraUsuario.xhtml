@@ -26,13 +26,23 @@
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{usuarioMB.usuario.nome}" required="true"/>
 	 
-	 <p:outputLabel for="sexo" value="Sexo: "/>
-	 <p:inputText id="sexo" value = "#{usuarioMB.usuario.sexo}" required="true"/>
+	 <p:outputLabel value="Sexo: "/>
+	 <h:selectOneMenu value="#{usuarioMB.usuario.sexo}" style="width:205px">
+            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+            <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+     </h:selectOneMenu>
 	 
-	 <p:outputLabel for="tipo" value="Tipo: "/>
-	 <p:inputText id="tipo" value = "#{usuarioMB.usuario.tipo}" required="true"/>
+	 <p:outputLabel value="Tipo: "/>
+	 <h:selectOneMenu value="#{usuarioMB.usuario.tipo}" style="width:205px">
+            <f:selectItem itemLabel="Organizador" itemValue="Organizador" />
+            <f:selectItem itemLabel="Jogador" itemValue="Jogador" />
+            <f:selectItem itemLabel="Diretor" itemValue="Diretor" />
+            <f:selectItem itemLabel="Preparador físico" itemValue="Preparador Fisico" />
+            <f:selectItem itemLabel="Massagista" itemValue="Massagista" />
+            <f:selectItem itemLabel="Técnico" itemValue="Técnico" />
+     </h:selectOneMenu>
 	 
-	 <p:outputLabel for="foto" value="Foto: "/>
+	 <p:outputLabel value="Foto: "/>
 	 <p:inputText id="foto" placeholder = "Insira a URL da foto" value = "#{usuarioMB.usuario.foto}" required="true"/>
 	 
 	 <p:outputLabel for="email" value="E-mail: "/>
@@ -67,17 +77,17 @@
 	</p:panelGrid>	
 	
  	
-	<p:panelGrid columns="2" style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px">
+	<p:panelGrid columns="3" style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px">
 	
 	  	
 	 
-	 <!--  
+	   
 	 <p:outputLabel  value="Equipe"/>
  	 <h:selectOneMenu id="equipe" converter ="ConverterEquipe"  value="#{usuarioMB.usuario.equipes}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{equipeMB.equipes}" />
      </h:selectOneMenu>
-	 -->
+	 
 
 	
 	<p:commandButton value="Adicionar"
