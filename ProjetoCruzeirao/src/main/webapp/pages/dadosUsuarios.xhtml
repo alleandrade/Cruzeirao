@@ -16,7 +16,8 @@
 			var = "usu"
 			value = "#{usuarioMB.usuarios}"
 			editable = "true" editMode = "cell"
-			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum usuário, selecione o submenu 'Cadastrar' do menu 'Usuário'."
+			
+			
 			
 			                        
 	>
@@ -26,13 +27,23 @@
     </f:facet>
 	
 		
-		<p:column headerText="Nome" style="text-align: center" sortBy="#{usu.nome}">
-		
+		<p:column headerText="Nome" style="text-align: center" sortBy="#{usu.nome}">	
+			
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.nome}"/></f:facet>
                   		<f:facet name="input"><p:inputText    value="#{usu.nome}" style="width:96%"/></f:facet>
            		</p:cellEditor>	   
-           		
+           		           		
+	    </p:column>
+	    
+	    
+		<p:column headerText="Senha" style="text-align: center" sortBy="#{usu.senha}">		
+		   		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{usu.senha}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.senha}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	      
+           		        		
 	    </p:column>
 	    
 	    <p:column headerText="Tipo" style="text-align: center">
@@ -47,6 +58,7 @@
 	   
 	    
 	    <p:column headerText="Data nascimento" style="text-align: center" sortBy="#{usu.dataNascimento}">
+		   
 		   <p:cellEditor>            
                   <f:facet name = "output"><p:outputLabel value="#{usu.dataNascimento}">                
                   <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
@@ -57,16 +69,17 @@
                   <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
                   </p:inputText>
                   </f:facet>          
+           
            </p:cellEditor>	         
 	    </p:column>
 	    
-	 	<p:column headerText="E-mail" style="text-align: center" sortBy="#{usu.email}">
-		
+	 	<p:column headerText="E-mail" style="text-align: center" sortBy="#{usu.email}">		
+		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.email}"/></f:facet>
                   		<f:facet name="input"><p:inputText    value="#{usu.email}" style="width:96%"/></f:facet>
-           		</p:cellEditor>	   
            		
+           		</p:cellEditor>	              		
 	    </p:column>
 	    
 	    <p:column headerText="Foto" style="text-align: center">
@@ -74,23 +87,33 @@
         	<f:facet name="input"><p:inputText    value="#{usu.foto}" style="width:96%"/></f:facet>           		
 	    </p:column>
 	    
-	    <p:column headerText="RG" style="text-align: center" sortBy="#{usu.rg}">
-		
+	    <p:column headerText="RG" style="text-align: center" sortBy="#{usu.rg}">		
+		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.rg}"/></f:facet>
                   		<f:facet name="input"><p:inputText    value="#{usu.rg}" style="width:96%"/></f:facet>
-           		</p:cellEditor>	   
            		
+           		</p:cellEditor>	              		
 	    </p:column>
 	    
-	    <p:column headerText="CPF" style="text-align: center" sortBy="#{usu.cpf}">
-		
+	    <p:column headerText="CPF" style="text-align: center" sortBy="#{usu.cpf}">		
+		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.cpf}"/></f:facet>
                   		<f:facet name="input"><p:inputText    value="#{usu.cpf}" style="width:96%"/></f:facet>
-           		</p:cellEditor>	   
            		
+           		</p:cellEditor>	  
 	    </p:column>
+	    
+	     <p:column headerText="CREF" style="text-align: center" sortBy="#{usu.cref}">		
+		   		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{usu.cref}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.cref}" style="width:96%"/></f:facet>
+           		
+           		</p:cellEditor>	  
+	    </p:column>
+	    
 	    
 	    
 	    <p:column headerText="Endereço" style="text-align: center" sortBy="#{usu.endereco}">
@@ -118,22 +141,17 @@
                   		<f:facet name="input"><p:inputText    value="#{usu.telefoneMovel}" style="width:96%"/></f:facet>
            		</p:cellEditor>	   
            		
-	    </p:column>
-	    
-		<p:column headerText="Equipes" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{usu.equipes}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{usu.equipes}" style="width:96%"/></f:facet>           		
-	    </p:column>
+	    </p:column>	    
 	    
 	    
 	    <p:column  headerText="Equipes" style="text-align: center">
-	    <p:commandButton value="Equipes" update=":formUsuario" oncomplete="PF('equipesDialog').show()" closable="true" title="View">
-                <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.auxUsuario}" />
+	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('equipesDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
         </p:commandButton>            
-    	<p:dialog header="Equipe (es) do usuário" widgetVar="equipesDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="equipesUsuario" style=" width:600px" columnClasses="label,value">
+    	<p:dialog header="Equipe (es) do usuário" widgetVar="equipesDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="equipesUsuario" style=" width:600px" columnClasses="label,value" >
             
-            <p:dataTable var="equipe" value="#{usuarioMB.auxUsuario.equipes}">
+            <p:dataTable var="equipe" value="#{usuarioMB.usuario.equipes}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{equipe.nome}"/>
 	   	    		</p:column>	
@@ -143,12 +161,18 @@
 	   	    		</p:column>
 	   	    		
 	   	    		<p:column headerText="Data de fundação">
-	   					<p:outputLabel value="#{equipe.dataFundacao}"/>
-	   	    		</p:column>			
+	   					<p:outputLabel value="#{equipe.dataFundacao}">
+	   					 <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+	   					</p:outputLabel>	   					
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerEquipe(equipe)}" update="formUsuario"></p:commandLink> 	     	
+					</p:column>			
  			</p:dataTable>            
-       </p:outputPanel>
-       </p:dialog>      
-       </p:column>
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
 	    
 	    
 
@@ -159,7 +183,6 @@
 			
 	</p:dataTable>		
 	
-	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
 
 </h:form>
 

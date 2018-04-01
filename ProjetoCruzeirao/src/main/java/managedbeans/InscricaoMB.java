@@ -18,6 +18,10 @@ public class InscricaoMB {
 		inscricao = new Inscricao();
 	}
 
+	public void remover(Inscricao inscricao) {
+		inscricaoservice.remover(inscricao);
+	}
+	
 	public Inscricao getInscricao() {
 		return inscricao;
 	}

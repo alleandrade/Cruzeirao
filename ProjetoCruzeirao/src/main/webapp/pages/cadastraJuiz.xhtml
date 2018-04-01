@@ -15,7 +15,7 @@
 
 
 
-	<p:panelGrid columns="4">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 	
 	<f:facet name="header">
             Juiz
@@ -24,15 +24,16 @@
 	
 		 
 	 <p:outputLabel value="Tipo: "/>
-	 <h:selectOneMenu value="#{juizMB.juiz.tipo}" style="width:205px">
-            <f:selectItem itemLabel="Árbitro" itemValue="Arbitro" />
-            <f:selectItem itemLabel="Quarto árbitro" itemValue="Quarto Arbitro" />
-            <f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />            
+	 <h:selectOneMenu value="#{juizMB.juiz.tipo}" style="width:205px" required="true">
+	 		<f:selectItem itemLabel= "Selecione o tipo de juiz"  noSelectionOption="true"/>
+            <f:selectItem itemLabel="Árbitro" itemValue="ARBITRO" />
+            <f:selectItem itemLabel="Quarto árbitro" itemValue="QUARTO_ARBITRO" />
+            <f:selectItem itemLabel="Auxiliar" itemValue="AUXILIAR" />            
      </h:selectOneMenu>
 	  
 	 <p:outputLabel for="usuario" value="Usuário: "/>
-	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario"  value="#{juizMB.juiz.usuario}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione o usuário" itemValue="" noSelectionOption="true"/>
+	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario"  value="#{juizMB.juiz.usuario}"  style="width:205px" required="true">
+     		<f:selectItem itemLabel= "Selecione o usuário" noSelectionOption="true"/>
      		<f:selectItems value="#{usuarioMB.usuarios}" />
      </h:selectOneMenu>
      
@@ -41,13 +42,12 @@
 	 
 	</p:panelGrid>
 	<p:commandButton value="Cadastrar"
-					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
 					 action="#{juizMB.salvar}"
 	                 update=":formJuiz"  
 	            
 	/>
 	
- 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" onclick="window.history.back();" />
 	
 
 

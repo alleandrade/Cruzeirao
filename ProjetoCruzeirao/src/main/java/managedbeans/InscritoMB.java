@@ -17,6 +17,10 @@ public class InscritoMB {
 		inscritoservice.salvar(inscrito);
 		inscrito = new Inscrito();
 	}
+	
+	public void remover(Inscrito inscrito) {
+		inscritoservice.remover(inscrito);
+	}
 
 	public Inscrito getInscrito() {
 		return inscrito;

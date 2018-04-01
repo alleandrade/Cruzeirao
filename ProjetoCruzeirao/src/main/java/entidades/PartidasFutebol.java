@@ -4,7 +4,7 @@ package entidades;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class PartidasFutebol {
+public class PartidasFutebol extends Partida{
 	private ArrayList<Gol> golsMandantes = new ArrayList<Gol>();
 	private ArrayList<Gol> golsVisitantes = new ArrayList<Gol>();
 	private ArrayList<Gol> golsPenaltisMandantes = new ArrayList<Gol>();

@@ -16,7 +16,7 @@
 			var = "loc"
 			value = "#{localMB.locais}"
 			editable = "true" editMode = "cell"
-			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum local, selecione o submenu 'Cadastrar' do menu 'Local'."
+			
 			
 			                        
 	>
@@ -24,9 +24,18 @@
 	<f:facet name="header">
             Locais
     </f:facet>
+    
+    	<p:column headerText="Nome" style="text-align: center" sortBy="#{loc.nome}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{loc.nome}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{loc.nome}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
 	
 		
-		<p:column headerText="Nome" style="text-align: center" sortBy="#{loc.endereco}">
+		<p:column headerText="Endereço" style="text-align: center" sortBy="#{loc.endereco}">
 		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{loc.endereco}"/></f:facet>

@@ -11,6 +11,8 @@ public class Equipe implements Serializable {
 	private String nome,
 		   		   cidade;
 	private Date dataFundacao;
+	private ArrayList<Usuario> jogadores = new ArrayList<Usuario>();
+	private ArrayList<Usuario> comissaoTecnica = new ArrayList<Usuario>();
 	private ArrayList<Usuario> diretores = new ArrayList<Usuario>();
 //Fim Atributos	
 	/*	Métodos:
@@ -30,6 +32,24 @@ public class Equipe implements Serializable {
 		this.cidade = cidade;
 		this.dataFundacao = dataFundacao;
 		this.diretores = diretores;
+	}
+	
+	
+
+	public ArrayList<Usuario> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(ArrayList<Usuario> jogadores) {
+		this.jogadores = jogadores;
+	}
+
+	public ArrayList<Usuario> getComissaoTecnica() {
+		return comissaoTecnica;
+	}
+
+	public void setComissaoTecnica(ArrayList<Usuario> comissaoTecnica) {
+		this.comissaoTecnica = comissaoTecnica;
 	}
 
 	public String getNome() {

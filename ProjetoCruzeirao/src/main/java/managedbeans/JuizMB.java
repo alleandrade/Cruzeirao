@@ -17,6 +17,10 @@ public class JuizMB {
 		juizservice.salvar(juiz);
 		juiz = new Juiz();
 	}
+	
+	public void remover(Juiz juiz) {
+		juizservice.remove(juiz);
+	}
 
 	public Juiz getJuiz() {
 		return juiz;

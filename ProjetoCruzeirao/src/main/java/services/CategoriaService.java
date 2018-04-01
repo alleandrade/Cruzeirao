@@ -15,6 +15,10 @@ public class CategoriaService {
 	public void salvar(Categoria categoria) {
 		categorias.add(categoria);
 	}
+	
+	public void remover(Categoria categoria) {
+		categorias.remove(categoria);
+	}
 
 	public ArrayList<Categoria> getCategorias() {
 		return categorias;

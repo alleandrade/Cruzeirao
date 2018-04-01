@@ -15,14 +15,17 @@
 
 
 
-	<p:panelGrid columns="2">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 	
 	<f:facet name="header">
             Local
     </f:facet>
 	 	 
+	 	 
 	
-		 
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{localMB.local.nome}" required="true"/>
+				 
 	 <p:outputLabel for="endereco" value="Endereço: "/>
 	 <p:inputText id="endereco" value = "#{localMB.local.endereco}" required="true"/>
 
@@ -30,13 +33,12 @@
 	 
 	</p:panelGrid>
 	<p:commandButton value="Cadastrar"
-					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
 					 action="#{localMB.salvar}"
 	                 update=":formLocal"  
 	            
 	/>
 	
- 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" onclick="window.history.back();" />
 	
 
 

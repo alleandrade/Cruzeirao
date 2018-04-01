@@ -2,12 +2,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	style="background-color: #F5F5F5"
+	>
 	
 <h:form>  
    
     
     <p:panelMenu>
+        
         <p:submenu label="Usuários" face="verdana" style = "background-color:Silver">
             <p:menuitem value="Cadastrar" outcome="cadastraUsuario.xhtml" style = "background-color:White "/>
             <p:separator />
@@ -43,6 +46,12 @@
             <p:menuitem value="Cadastrar" outcome="cadastraJuiz.xhtml" style = "background-color:White "/>
             <p:separator />
             <p:menuitem value="Dados juízes" outcome="dadosJuizes.xhtml" style = "background-color:White "/>
+        </p:submenu>
+        
+         <p:submenu label="Fases" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraFase.xhtml" style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados fases" outcome="dadosFases.xhtml" style = "background-color:White "/>
         </p:submenu>
 		    
 		    

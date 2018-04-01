@@ -1,12 +1,13 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 
 import enums.TipoFase;
 //Fim Import's
 //Atributos
-public class Fase {
+public class Fase implements Serializable{
 	private Date dataInicio,
 		 		 dataFim;
 	private TipoFase formato;
@@ -86,8 +87,7 @@ public class Fase {
 
 	@Override
 	public String toString() {
-		return "Fase [dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", formato=" + getFormato() + ", categoria="
-				+ categoria + ", numero=" + numero + "]";
+		return Integer.toString((int)numero);
 	}
 //Fim Métodos
 }

@@ -20,7 +20,10 @@ public class Usuario implements Serializable{
 		   		   rg,
 		   		   cpf,
 		   		   cref,
+		   		   senha,
 		   		   foto;
+
+
 	private Date dataNascimento;
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	private TipoUsuario tipo;
@@ -35,6 +38,14 @@ public class Usuario implements Serializable{
 	 *  - Construtores		[X]
 	*/
 	
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 	public Usuario() {
 		super();

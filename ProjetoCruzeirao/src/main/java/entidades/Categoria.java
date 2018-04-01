@@ -1,10 +1,13 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
+
+import enums.Sexo;
 //Fim Import's
 //Atributos
-public class Categoria {
+public class Categoria implements Serializable{
 	private String nome;
 	private int nascidosAPartirDe,
 		minJogadores,
@@ -12,7 +15,7 @@ public class Categoria {
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
 	private Campeonato campeonato;
 	private ArrayList<Fase> fases = new ArrayList<Fase>();
-	private Enum sexo;
+	private Sexo sexo;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -27,7 +30,7 @@ public class Categoria {
 	}
 
 	public Categoria(String nome, int nascidosAPartirDe, int minJogadores, int maxJogadores,
-			ArrayList<Inscricao> inscricoes, Campeonato campeonato, ArrayList<Fase> fases, Enum sexo) {
+			ArrayList<Inscricao> inscricoes, Campeonato campeonato, ArrayList<Fase> fases, Sexo sexo) {
 		super();
 		this.nome = nome;
 		this.nascidosAPartirDe = nascidosAPartirDe;
@@ -97,18 +100,17 @@ public class Categoria {
 		this.fases = fases;
 	}
 	
-	public Enum getSexo() {
+	public Sexo getSexo() {
 		return sexo;
 	}
 	
-	public void setSexo(Enum sexo) {
+	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
 
 	@Override
 	public String toString() {
-		return "Categoria [nome=" + nome + ", nascidosAPartirDe=" + nascidosAPartirDe + ", minJogadores=" + minJogadores
-				+ ", maxJogadores=" + maxJogadores + ", campeonato=" + campeonato + ", sexo=" + sexo + "]";
+		return nome;
 	}	
 //Fim Métodos
 }

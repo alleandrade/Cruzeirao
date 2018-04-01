@@ -15,7 +15,7 @@
 
 
 
-	<p:panelGrid columns="6">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
 	
 	<f:facet name="header">
             Equipe
@@ -30,26 +30,27 @@
 	 <p:inputText id="cidade" value = "#{equipeMB.equipe.cidade}" required="true"/>
 
 	 <p:outputLabel value="Data de fundação: "/>
-	 <p:calendar id="popup" value="#{equipeMB.equipe.dataFundacao}" required="true" />	
+	 <p:calendar id="mask" value="#{equipeMB.equipe.dataFundacao}" required = "true" pattern="dd/MM/yyyy" mask="true" />
 	 
 	 </p:panelGrid>
 
+	<!-- Diretor -->
  	
-	<p:panelGrid columns="3" style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px">
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
 		  	
 	 
-	 <!--  
+	 
 	 <p:outputLabel  value="Diretor"/>
- 	 <h:selectOneMenu id="diretor" converter ="ConverterDiretor"  value="#{equipeMB.equipe.diretores}"  style="width:205px">
+ 	 <h:selectOneMenu id="diretor" converter ="ConverterUsuario"  value="#{equipeMB.auxDiretor}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o diretor" itemValue="" noSelectionOption="true"/>
-     		<f:selectItems value="#{usuarioMB.usuarios}" />
+     		<f:selectItems value="#{usuarioMB.diretores}" />
      </h:selectOneMenu>
-	 -->
+	
 
 	
 	<p:commandButton value="Adicionar"
 					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{equipeMB.adicionaDiretor}"
+					 action="#{equipeMB.adicionarDiretor}"
 	                 update=":formEquipe"  
 	/>
 	
@@ -60,8 +61,8 @@
  	<p:dataTable
 			var = "dir"
 			value = "#{equipeMB.equipe.diretores}"
-			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum diretor, adicione um diretor à equipe."
-			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+		
 	>
 	
 	<f:facet name="header">
@@ -75,28 +76,137 @@
 	    
 			
 		
-		<p:column headerText="RG" style="text-align: center" sortBy="#{dir.RG}">
-                  <p:outputLabel value="#{dir.RG}"/>
+		<p:column headerText="RG" style="text-align: center" sortBy="#{dir.rg}">
+                  <p:outputLabel value="#{dir.rg}"/>
 	    </p:column>
 	    
 	    
 	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removeDiretor(dir)}" update=":formEquipe"></p:commandLink>	     	
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerDiretor(dir)}" update=":formEquipe"></p:commandLink>	     	
 		</p:column>
  
 			
 			
-	</p:dataTable>			 
+	</p:dataTable>
+	
+	<!-- Jogadores -->
+	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Jogador"/>
+ 	 <h:selectOneMenu id="jogador" converter ="ConverterUsuario"  value="#{equipeMB.auxJogador}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.jogadores}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{equipeMB.adicionarJogador}"
+	                 update=":formEquipe"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "jog"
+			value = "#{equipeMB.equipe.jogadores}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Jogador (es) da equipe
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{jog.nome}">
+                  <p:outputLabel value="#{jog.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="RG" style="text-align: center" sortBy="#{jog.rg}">
+                  <p:outputLabel value="#{jog.rg}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>	
+	
+	<!--  Comissão -->	 
+	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Comissão"/>
+ 	 <h:selectOneMenu id="comissao" converter ="ConverterUsuario"  value="#{equipeMB.auxComissao}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o funcionário" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.comissaoTecnica}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{equipeMB.adicionarMembroComissao}"
+	                 update=":formEquipe"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "com"
+			value = "#{equipeMB.equipe.comissaoTecnica}"
+			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum funcionário à comissão equipe, adicione um funcionário à equipe."
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Funcionário (os) da comissão da equipe
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{com.nome}">
+                  <p:outputLabel value="#{com.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="RG" style="text-align: center" sortBy="#{com.rg}">
+                  <p:outputLabel value="#{com.rg}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerMembroComissao(com)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>	
+				 
 
 	<p:commandButton value="Cadastrar"
-					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
 					 action="#{equipeMB.salvar}"
 	                 update=":formEquipe"  
 	            
 	/>
 	
 
- 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" onclick="window.history.back();" />
 	
 
 

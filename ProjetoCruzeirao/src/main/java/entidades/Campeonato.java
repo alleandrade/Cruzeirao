@@ -1,10 +1,11 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class Campeonato {
+public class Campeonato implements Serializable{
 
 	private String nome;
 	private ArrayList<Local> locais = new ArrayList<Local>();

@@ -16,7 +16,7 @@
 			var = "j"
 			value = "#{juizMB.juizes}"
 			editable = "true" editMode = "cell"
-			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum juiz, selecione o submenu 'Cadastrar' do menu 'Juízes'."
+			
 			
 			                        
 	>
@@ -40,7 +40,7 @@
 
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{juizMB.remover(usu)}" update="formJuiz"></p:commandLink> 	     	
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{juizMB.remover(j)}" update="formJuiz"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		

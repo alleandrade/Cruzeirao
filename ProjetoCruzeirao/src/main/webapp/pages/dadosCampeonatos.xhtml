@@ -17,7 +17,6 @@
 			var = "camp"
 			value = "#{campeonatoMB.campeonatos}"
 			editable = "true" editMode = "cell"
-			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum campeonato, selecione o submenu 'Cadastrar' do menu 'Campeonato'."
 			
 			                        
 	>
@@ -35,13 +34,7 @@
            		</p:cellEditor>	   
            		
 	    </p:column>
-	    
-	    <p:column headerText="Locais" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{camp.locais}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{camp.locais}" style="width:96%"/></f:facet>           		
-	    </p:column>
-	    
-	     <!-- 
+	            
 	    <p:column  headerText="Locais" style="text-align: center">
 	    <p:commandButton value="Locais" update=":formCampeonato" oncomplete="PF('locaisDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.auxLocal}" />
@@ -49,22 +42,23 @@
     	<p:dialog header="Local (is) do campeonato" widgetVar="locaisDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="locaisCampeonato" style=" width:600px" columnClasses="label,value">
             
-            <p:dataTable var="local" value="#{campeonatoMB.auxLocal.locais}">
+            <p:dataTable var="local" value="#{campeonatoMB.campeonato.locais}">
+            		<p:column headerText="Nome">
+	   					<p:outputLabel value="#{local.nome}"/>
+	   	    		</p:column>		
+	   	    		
  					<p:column headerText="Endereço">
 	   					<p:outputLabel value="#{local.endereco}"/>
-	   	    		</p:column>		
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerLocal(local)}" update="formCampeonato"></p:commandLink> 	     	
+					</p:column>		
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      
        </p:column>
-	    -->
-	    
-	    <p:column headerText="Juízes" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{camp.juizes}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{camp.juizes}" style="width:96%"/></f:facet>           		
-	    </p:column>
-	    
-	    <!-- 
+
 	    <p:column  headerText="Juízes" style="text-align: center">
 	    <p:commandButton value="Juízes" update=":formCampeonato" oncomplete="PF('juizesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.auxJuiz}" />
@@ -72,7 +66,7 @@
     	<p:dialog header="Juiz (ízes) do campeonato" widgetVar="juizesDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="juizesCampeonato" style=" width:600px" columnClasses="label,value">
             
-            <p:dataTable var="juiz" value="#{campeonatoMB.auxJuiz.juizes}">
+            <p:dataTable var="juiz" value="#{campeonatoMB.campeonato.juizes}">
  					<p:column headerText="Tipo">
 	   					<p:outputLabel value="#{juiz.tipo}"/>
 	   	    		</p:column>
@@ -87,20 +81,16 @@
 	   	    		
 	   	    		<p:column headerText="CREF">
 	   					<p:outputLabel value="#{juiz.usuario.cref}"/>
-	   	    		</p:column>								
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerJuiz(juiz)}" update="formCampeonato"></p:commandLink> 	     	
+					</p:column>								
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      
        </p:column>
-	    -->
 	    
-	    
-	    <p:column headerText="Categorias" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{camp.juizes}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{camp.juizes}" style="width:96%"/></f:facet>           		
-	    </p:column>
-	    
-	    <!-- 
 	    <p:column  headerText="Categorias" style="text-align: center">
 	    <p:commandButton value="Categorias" update=":formCampeonato" oncomplete="PF('categoriasDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.auxCategoria}" />
@@ -108,7 +98,7 @@
     	<p:dialog header="Categoria (as) do campeonato" widgetVar="categoriasDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="categoriasCampeonato" style=" width:600px" columnClasses="label,value">
             
-            <p:dataTable var="categoria" value="#{campeonatoMB.auxCategoria.categorias}">
+            <p:dataTable var="categoria" value="#{campeonatoMB.campeonato.categorias}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{categoria.nome}"/>
 	   	    		</p:column>	
@@ -127,12 +117,16 @@
 	   	    		
 	   	    		<p:column headerText="Sexo">
 	   					<p:outputLabel value="#{categoria.sexo}"/>
-	   	    		</p:column>					
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerCategoria(categoria)}" update="formCampeonato"></p:commandLink> 	     	
+					</p:column>				
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      
        </p:column>
-	    -->
+	    
 	    
 	    <p:column headerText="Data inicio inscrições" style="text-align: center" sortBy="#{camp.dataInicioInscricao}">
 		   <p:cellEditor>            
@@ -194,8 +188,8 @@
 	  	<p:column headerText="Valor taxa" style="text-align: center" sortBy="#{camp.valorTaxa}">
 		
 		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{camp.valorTaxa}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{camp.valorTaxa}" style="width:96%"/></f:facet>
+                  		<f:facet name="output"><p:outputLabel value="R$ #{camp.valorTaxa}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="R$ #{camp.valorTaxa}" style="width:96%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>
@@ -209,7 +203,6 @@
 			
 	</p:dataTable>		
 	
-	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
 
 </h:form>
 

@@ -15,41 +15,55 @@
 
 
 
-	<p:panelGrid columns="8">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 	
 	<f:facet name="header">
             Usuário
     </f:facet>
 	 	 
 	
-		 
-	 <p:outputLabel for="nome" value="Nome: "/>
-	 <p:inputText id="nome" value = "#{usuarioMB.usuario.nome}" required="true"/>
-	 
-	 <p:outputLabel value="Sexo: "/>
-	 <h:selectOneMenu value="#{usuarioMB.usuario.sexo}" style="width:205px">
-            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
-            <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
-     </h:selectOneMenu>
-	 
-	 <p:outputLabel value="Tipo: "/>
-	 <h:selectOneMenu value="#{usuarioMB.usuario.tipo}" style="width:205px">
-            <f:selectItem itemLabel="Organizador" itemValue="Organizador" />
-            <f:selectItem itemLabel="Jogador" itemValue="Jogador" />
-            <f:selectItem itemLabel="Diretor" itemValue="Diretor" />
-            <f:selectItem itemLabel="Preparador físico" itemValue="Preparador Fisico" />
-            <f:selectItem itemLabel="Massagista" itemValue="Massagista" />
-            <f:selectItem itemLabel="Técnico" itemValue="Técnico" />
-     </h:selectOneMenu>
-	 
-	 <p:outputLabel value="Foto: "/>
-	 <p:inputText id="foto" placeholder = "Insira a URL da foto" value = "#{usuarioMB.usuario.foto}" required="true"/>
-	 
+		 	 
 	 <p:outputLabel for="email" value="E-mail: "/>
 	 <p:inputText id="email" value = "#{usuarioMB.usuario.email}" required="true"/>
 	 
+	 <h:outputLabel for="senha" value="Senha: " />
+	 <p:password id="senha" value="#{usuarioMB.usuario.senha}" />
+	 
+	 </p:panelGrid>
+	 
+	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="10">
+	
+	<f:facet name="header">
+            Dados pessoais
+    </f:facet>
+	 	 
+	  
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{usuarioMB.usuario.nome}" required="true"/>
+	  
+	 <p:outputLabel value="Sexo: "/>
+	 <h:selectOneMenu value="#{usuarioMB.usuario.sexo}" style="width:205px">
+            <f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />
+            <f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
+     </h:selectOneMenu>
+	 
+	 
+	 <p:outputLabel value="Tipo: "/>
+	 <h:selectOneMenu value="#{usuarioMB.usuario.tipo}" style="width:205px">
+            <f:selectItem itemLabel="Organizador" itemValue="ORGANIZADOR" />
+            <f:selectItem itemLabel="Jogador" itemValue="JOGADOR" />
+            <f:selectItem itemLabel="Diretor" itemValue="DIRETOR" />
+            <f:selectItem itemLabel="Juiz" itemValue="JUIZ" />
+            <f:selectItem itemLabel="Preparador físico" itemValue="PREPARADOR_FISICO" />
+            <f:selectItem itemLabel="Massagista" itemValue="MASSAGISTA" />
+            <f:selectItem itemLabel="Técnico" itemValue="TECNICO" />
+     </h:selectOneMenu>
+	
+	 <p:outputLabel value="Foto: "/>
+	 <p:inputText id="foto" placeholder = "Insira a URL da foto" value = "#{usuarioMB.usuario.foto}" required="true"/>
+	 
 	 <p:outputLabel value="Data de nascimento: "/>
-	 <p:calendar id="popup" value="#{usuarioMB.usuario.dataNascimento}"/>
+	 <p:calendar id="mask" value="#{usuarioMB.usuario.dataNascimento}" required = "true" pattern="dd/MM/yyyy" mask="true" />
 	 	 
 	 <p:outputLabel for="rg" value="RG: "/>
 	 <p:inputMask id="rg" value="#{usuarioMB.usuario.rg}"
@@ -61,84 +75,31 @@
 						mask="999.999.999-99" required="true">
 	 </p:inputMask>
 	 
+	 <p:outputLabel value="CREF: "/>
+	 <p:inputText id="cref" placeholder = "Preencha caso seja um preparador físico" value = "#{usuarioMB.usuario.cref}"/>
+	 
 	 <p:outputLabel for="endereco" value="Endereço: "/>
 	 <p:inputText id="endereco" value = "#{usuarioMB.usuario.endereco}" required="true"/>
 	 
 	 <p:outputLabel for="telefoneFixo" value="Telefone fixo: "/>
 	 <p:inputMask id="telefoneFixo" value="#{usuarioMB.usuario.telefoneFixo}"
-						mask="(99) 99999999" required="true">
+						mask="(99) 9999-9999" required="true">
 	 </p:inputMask>
 	 
 	 <p:outputLabel for="telefoneMovel" value="Telefone móvel: "/>
 	 <p:inputMask id="telefoneMovel" value="#{usuarioMB.usuario.telefoneMovel}"
-						mask="(99) 99999999" required="true">
+						mask="(99) 99999-9999" required="true">
 	 </p:inputMask>
 	 
 	</p:panelGrid>	
 	
  	
-	<p:panelGrid columns="3" style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px">
-	
-	  	
-	 
-	   
-	 <p:outputLabel  value="Equipe"/>
- 	 <h:selectOneMenu id="equipe" converter ="ConverterEquipe"  value="#{usuarioMB.usuario.equipes}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="true"/>
-     		<f:selectItems value="#{equipeMB.equipes}" />
-     </h:selectOneMenu>
-	 
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{usuarioMB.adicionaEquipe}"
-	                 update=":formUsuario"  
-	/>
-	
-	
-	</p:panelGrid>
-	
- 	
- 	
- 	<p:dataTable
-			var = "e"
-			value = "#{usuarioMB.usuario.equipes}"
-			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar alguma equipe, adicione uma equipe ao usuário."
-			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Equipe (es) do usuário
-    </f:facet>
-			
-	    
-	     <p:column headerText="Equipe" style="text-align: center" sortBy="#{e.nome}">
-                  <p:outputLabel value="#{e.nome}"/>  
-	    </p:column>
-	    
-			
-		
-		<p:column headerText="Cidade" style="text-align: center" sortBy="#{e.cidade}">
-                  <p:outputLabel value="#{e.cidade}"/>
-	    </p:column>
-	    
-	    
-	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removeEquipe(e)}" update=":formUsuario"></p:commandLink>	     	
-		</p:column>
- 
-			
-			
-	</p:dataTable>		
- 	
  	<p:commandButton value="Cadastrar"
-					 style = "margin: 4px 0px; padding: 4px 12px; font-size: 16px;"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
 					 action="#{usuarioMB.salvar}"
 	                 update=":formUsuario"  	            
 	/>
 
- 	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" onclick="window.history.back();" />
 	
 
 
