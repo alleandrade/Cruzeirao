@@ -118,10 +118,7 @@ public class Campeonato implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Campeonato [nome=" + nome + ", locais=" + locais + ", juizes=" + juizes + ", categorias=" + categorias
-				+ ", dataInicioInscricao=" + dataInicioInscricao + ", dataFimInscricao=" + dataFimInscricao
-				+ ", dataInicioCampeonato=" + dataInicioCampeonato + ", dataFimCampeonato=" + dataFimCampeonato
-				+ ", valorTaxa=" + valorTaxa + "]";
+		return nome;
 	}
 //Fim Métodos	
 }

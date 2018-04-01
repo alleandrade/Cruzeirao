@@ -36,10 +36,10 @@
 	    </p:column>
 	            
 	    <p:column  headerText="Locais" style="text-align: center">
-	    <p:commandButton value="Locais" update=":formCampeonato" oncomplete="PF('locaisDialog').show()" closable="true" title="View">
-                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.auxLocal}" />
+	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('locaisDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
         </p:commandButton>            
-    	<p:dialog header="Local (is) do campeonato" widgetVar="locaisDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    	<p:dialog header="Local (is) do campeonato" widgetVar="locaisDialog" modal="true"  closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="locaisCampeonato" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="local" value="#{campeonatoMB.campeonato.locais}">
@@ -60,10 +60,10 @@
        </p:column>
 
 	    <p:column  headerText="Juízes" style="text-align: center">
-	    <p:commandButton value="Juízes" update=":formCampeonato" oncomplete="PF('juizesDialog').show()" closable="true" title="View">
-                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.auxJuiz}" />
+	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('juizesDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
         </p:commandButton>            
-    	<p:dialog header="Juiz (ízes) do campeonato" widgetVar="juizesDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    	<p:dialog header="Juiz (ízes) do campeonato" widgetVar="juizesDialog" modal="true" showEffect="fade"  closeOnEscape="true" hideEffect="fade" resizable="false">
         <p:outputPanel id="juizesCampeonato" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="juiz" value="#{campeonatoMB.campeonato.juizes}">
@@ -92,10 +92,10 @@
        </p:column>
 	    
 	    <p:column  headerText="Categorias" style="text-align: center">
-	    <p:commandButton value="Categorias" update=":formCampeonato" oncomplete="PF('categoriasDialog').show()" closable="true" title="View">
-                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.auxCategoria}" />
+	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('categoriasDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
         </p:commandButton>            
-    	<p:dialog header="Categoria (as) do campeonato" widgetVar="categoriasDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    	<p:dialog header="Categoria (as) do campeonato" widgetVar="categoriasDialog" modal="true"  closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="categoriasCampeonato" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="categoria" value="#{campeonatoMB.campeonato.categorias}">
