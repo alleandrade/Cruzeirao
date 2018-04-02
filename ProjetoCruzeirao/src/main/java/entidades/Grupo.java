@@ -1,10 +1,11 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class Grupo {
+public class Grupo implements Serializable{
 	private String nome;
 	private Fase fase;
 	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();

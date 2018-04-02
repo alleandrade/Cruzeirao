@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	style="background-color: #F5F5F5"
+	>
+	
+<h:form>  
+   
+    
+    <p:panelMenu>
+        
+        <p:submenu label="Usuários" face="verdana" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraUsuario.xhtml" style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados usuários" outcome="dadosUsuarios.xhtml" style = "background-color:White "/>
+        </p:submenu>
+ 
+        <p:submenu label="Equipes" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraEquipe.xhtml"  style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados equipes" outcome="dadosEquipes.xhtml" style = "background-color:White "/>
+        </p:submenu>    
+        
+        
+        <p:submenu label="Campeonatos" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraCampeonato.xhtml" style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados campeonatos" outcome="dadosCampeonatos.xhtml" style = "background-color:White "/>
+        </p:submenu>           
+        
+        <p:submenu label="Categorias" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraCategoria.xhtml" style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados categorias" outcome="dadosCategorias.xhtml" style = "background-color:White "/>
+        </p:submenu>
+        
+        <p:submenu label="Locais" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraLocal.xhtml" style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados locais" outcome="dadosLocais.xhtml" style = "background-color:White "/>
+        </p:submenu>
+        
+        <p:submenu label="Juízes" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraJuiz.xhtml" style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados juízes" outcome="dadosJuizes.xhtml" style = "background-color:White "/>
+        </p:submenu>
+        
+         <p:submenu label="Fases" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraFase.xhtml" style = "background-color:White "/>
+            <p:separator />
+            <p:menuitem value="Dados fases" outcome="dadosFases.xhtml" style = "background-color:White "/>
+        </p:submenu>
+		    
+		    
+    </p:panelMenu>
+ 
+</h:form>
+	
+</ui:composition>

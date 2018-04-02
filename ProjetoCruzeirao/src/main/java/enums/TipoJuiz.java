@@ -1,7 +1,7 @@
 package enums;
 
 public enum TipoJuiz {
-	ARBITRO("Arbitro"),QUARTO_ARBITRO("Quarto Arbitro"),AUXILIAR("Auxiliar");
+	ARBITRO("Árbitro"),QUARTO_ARBITRO("Quarto árbitro"),AUXILIAR("Auxiliar");
 	
 	private String juiz;
 

@@ -15,6 +15,10 @@ public class LocalService {
 	public void salvar(Local local) {
 		locais.add(local);
 	}
+	
+	public void remover(Local local) {
+		locais.remove(local);
+	}
 
 	public ArrayList<Local> getLocais() {
 		return locais;

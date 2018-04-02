@@ -1,0 +1,115 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formFase">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "fas"
+			value = "#{faseMB.fases}"
+			editable = "true" editMode = "cell"
+			
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Fases
+    </f:facet>
+	
+		
+	    <p:column headerText="Número" style="text-align: center" sortBy="#{fas.numero}">
+	    	<p:cellEditor>
+				<f:facet name="output"><p:outputLabel value="#{fas.numero}"/></f:facet>
+        		<f:facet name="input"><p:inputText    value="#{fas.numero}" style="width:96%"/></f:facet>  
+        	</p:cellEditor>	         		
+	    </p:column>
+	    
+	    <p:column headerText="Data inicial" style="text-align: center" sortBy="#{fas.dataInicio}">
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{fas.dataInicio}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{fas.dataInicio}" style="width:96%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           </p:cellEditor>	         
+	    </p:column>
+	    
+	    <p:column headerText="Data final" style="text-align: center" sortBy="#{fas.dataFim}">
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{fas.dataFim}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{fas.dataFim}" style="width:96%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           </p:cellEditor>	         
+	    </p:column>
+	    
+	    <p:column headerText="Formato" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{fas.formato}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{fas.formato}" style="width:96%"/></f:facet>          		
+	    </p:column>
+	    
+	    <p:column headerText="Categoria" style="text-align: center">
+	    	<p:cellEditor>
+				<f:facet name="output"><p:outputLabel value="#{fas.categoria}"/></f:facet>
+        		<f:facet name="input"><p:inputText    value="#{fas.categoria}" style="width:96%"/></f:facet>  
+        	</p:cellEditor>	         		
+	    </p:column>
+	    
+	    <p:column  headerText="Grupos" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formFase" oncomplete="PF('gruposDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas}" target="#{faseMB.fase}" />
+        </p:commandButton>            
+    	<p:dialog header="Grupo (os) da fase" widgetVar="gruposDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="grupos" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="grupo" value="#{faseMB.fase.grupos}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{grupo.nome}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Número">
+	   					<p:outputLabel value="#{grupo.numero}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{faseMB.removerGrupo(grupo)}" update="formFase"></p:commandLink> 	     	
+					</p:column>		
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+	   
+	    
+
+
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{faseMB.remover(fas)}" update="formFase"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>

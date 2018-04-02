@@ -15,6 +15,10 @@ public class FaseService {
 	public void salvar(Fase fase) {
 		fases.add(fase);
 	}
+	
+	public void remover(Fase fase) {
+		fases.remove(fase);
+	}
 
 	public ArrayList<Fase> getFases() {
 		return fases;

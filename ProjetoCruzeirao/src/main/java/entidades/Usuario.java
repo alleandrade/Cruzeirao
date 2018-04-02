@@ -1,6 +1,8 @@
 //Import's
 package entidades;
 
+
+import java.io.Serializable;
 import enums.*;
 
 import java.util.*;
@@ -8,7 +10,7 @@ import java.util.*;
 //Atributos
 
 
-public class Usuario {
+public class Usuario implements Serializable{
 
 	private String email,
 		   		   nome,
@@ -18,12 +20,16 @@ public class Usuario {
 		   		   rg,
 		   		   cpf,
 		   		   cref,
+		   		   senha,
 		   		   foto;
+
+
 	private Date dataNascimento;
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	private TipoUsuario tipo;
 	private Sexo sexo;
 	
+
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -32,6 +38,14 @@ public class Usuario {
 	 *  - Construtores		[X]
 	*/
 	
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 	public Usuario() {
 		super();
@@ -162,10 +176,10 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", nome=" + nome + ", telefoneFixo=" + telefoneFixo + ", telefoneMovel="
-				+ telefoneMovel + ", endereco=" + endereco + ", rg=" + rg + ", cpf=" + cpf + ", cref=" + cref
-				+ ", foto=" + foto + ", dataNascimento=" + dataNascimento + ", equipes=" + equipes + ", tipo=" + getTipo()
-				+ ", sexo=" + getSexo() + "]";
+
+		return nome;
+
+
 	}
 //Fim Métodos	
 

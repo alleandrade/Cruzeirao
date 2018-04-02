@@ -15,6 +15,10 @@ public class CampeonatoService {
 	public void salvar(Campeonato campeonato) {
 		campeonatos.add(campeonato);
 	}
+	
+	public void remover(Campeonato campeonato) {
+		campeonatos.remove(campeonato);
+	}
 
 	public ArrayList<Campeonato> getCampeonatos() {
 		return campeonatos;
