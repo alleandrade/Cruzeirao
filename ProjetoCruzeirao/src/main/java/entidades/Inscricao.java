@@ -1,11 +1,12 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 
 //Atributos
-public class Inscricao {
+public class Inscricao implements Serializable{
 	private long numero;
 	private boolean pagamento,
 					validada;
@@ -96,8 +97,7 @@ public class Inscricao {
 
 	@Override
 	public String toString() {
-		return "Inscricao [numero=" + numero + ", pagamento=" + pagamento + ", validada=" + validada + ", inscritos="
-				+ inscritos + ", categoria=" + categoria + ", equipe=" + equipe + "]";
+		return Integer.toString((int)numero);
 	}
 //Fim Métodos
 }

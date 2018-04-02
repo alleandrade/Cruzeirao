@@ -1,0 +1,220 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formEquipe">
+<p:growl id="mensagem"/>
+
+
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	
+	<f:facet name="header">
+            Equipe
+    </f:facet>
+	 	 
+	
+		 
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{equipeMB.equipe.nome}" required="true"/>
+	 
+	 <p:outputLabel for="cidade" value="Cidade: "/>
+	 <p:inputText id="cidade" value = "#{equipeMB.equipe.cidade}" required="true"/>
+
+	 <p:outputLabel value="Data de fundação: "/>
+	 <p:calendar id="mask" value="#{equipeMB.equipe.dataFundacao}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	 
+	 </p:panelGrid>
+
+	<!-- Diretor -->
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Diretor"/>
+ 	 <h:selectOneMenu id="diretor" converter ="ConverterUsuario"  value="#{equipeMB.auxDiretor}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o diretor" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.diretores}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{equipeMB.adicionarDiretor}"
+	                 update=":formEquipe"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "dir"
+			value = "#{equipeMB.equipe.diretores}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+		
+	>
+	
+	<f:facet name="header">
+            Diretor (es) da equipe
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{dir.nome}">
+                  <p:outputLabel value="#{dir.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="RG" style="text-align: center" sortBy="#{dir.rg}">
+                  <p:outputLabel value="#{dir.rg}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerDiretor(dir)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>
+	
+	<!-- Jogadores -->
+	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Jogador"/>
+ 	 <h:selectOneMenu id="jogador" converter ="ConverterUsuario"  value="#{equipeMB.auxJogador}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.jogadores}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{equipeMB.adicionarJogador}"
+	                 update=":formEquipe"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "jog"
+			value = "#{equipeMB.equipe.jogadores}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Jogador (es) da equipe
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{jog.nome}">
+                  <p:outputLabel value="#{jog.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="RG" style="text-align: center" sortBy="#{jog.rg}">
+                  <p:outputLabel value="#{jog.rg}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>	
+	
+	<!--  Comissão -->	 
+	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Comissão"/>
+ 	 <h:selectOneMenu id="comissao" converter ="ConverterUsuario"  value="#{equipeMB.auxComissao}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o funcionário" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.comissaoTecnica}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{equipeMB.adicionarMembroComissao}"
+	                 update=":formEquipe"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "com"
+			value = "#{equipeMB.equipe.comissaoTecnica}"
+			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum funcionário à comissão equipe, adicione um funcionário à equipe."
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Funcionário (os) da comissão da equipe
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{com.nome}">
+                  <p:outputLabel value="#{com.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="RG" style="text-align: center" sortBy="#{com.rg}">
+                  <p:outputLabel value="#{com.rg}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerMembroComissao(com)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>	
+				 
+
+	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 action="#{equipeMB.salvar}"
+	                 update=":formEquipe"  
+	            
+	/>
+	
+
+	
+
+
+
+</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>

@@ -15,6 +15,10 @@ public class InscricaoService {
 	public void salvar(Inscricao inscricao) {
 		inscricoes.add(inscricao);
 	}
+	
+	public void remover(Inscricao inscricao) {
+		inscricoes.remove(inscricao);
+	}
 
 	public ArrayList<Inscricao> getInscricoes() {
 		return inscricoes;

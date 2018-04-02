@@ -46,7 +46,7 @@ public class Juiz {
 
 	@Override
 	public String toString() {
-		return "Juiz [tipo=" + getTipo() + ", usuario=" + usuario + "]";
+		return usuario.getNome();
 	}
 //Fim Métodos
 }

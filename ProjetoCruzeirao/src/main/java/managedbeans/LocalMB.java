@@ -17,6 +17,10 @@ public class LocalMB {
 		localservice.salvar(local);
 		local = new Local();
 	}
+	
+	public void remover(Local local) {
+		localservice.remover(local);
+	}
 
 	public Local getLocal() {
 		return local;
