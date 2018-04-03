@@ -1,18 +1,21 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
+
+import enums.Sexo;
 //Fim Import's
 //Atributos
-public class Categoria {
-	String nome;
-	int nascidosApartirDe,
+public class Categoria implements Serializable{
+	private String nome;
+	private int nascidosAPartirDe,
 		minJogadores,
 		maxJogadores;
-	ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
-	Campeonato campeonato;
-	ArrayList<Fase> fases = new ArrayList<Fase>();
-	Enum sexo;
+	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
+	private Campeonato campeonato;
+	private ArrayList<Fase> fases = new ArrayList<Fase>();
+	private Sexo sexo;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -26,11 +29,11 @@ public class Categoria {
 		super();
 	}
 
-	public Categoria(String nome, int nascidosApartirDe, int minJogadores, int maxJogadores,
-			ArrayList<Inscricao> inscricoes, Campeonato campeonato, ArrayList<Fase> fases, Enum sexo) {
+	public Categoria(String nome, int nascidosAPartirDe, int minJogadores, int maxJogadores,
+			ArrayList<Inscricao> inscricoes, Campeonato campeonato, ArrayList<Fase> fases, Sexo sexo) {
 		super();
 		this.nome = nome;
-		this.nascidosApartirDe = nascidosApartirDe;
+		this.nascidosAPartirDe = nascidosAPartirDe;
 		this.minJogadores = minJogadores;
 		this.maxJogadores = maxJogadores;
 		this.inscricoes = inscricoes;
@@ -47,14 +50,16 @@ public class Categoria {
 		this.nome = nome;
 	}
 	
-	public int getNascidosApartirDe() {
-		return nascidosApartirDe;
-	}
+
 	
-	public void setNascidosApartirDe(int nascidosApartirDe) {
-		this.nascidosApartirDe = nascidosApartirDe;
+	public int getNascidosAPartirDe() {
+		return nascidosAPartirDe;
 	}
-	
+
+	public void setNascidosAPartirDe(int nascidosAPartirDe) {
+		this.nascidosAPartirDe = nascidosAPartirDe;
+	}
+
 	public int getMinJogadores() {
 		return minJogadores;
 	}
@@ -95,18 +100,17 @@ public class Categoria {
 		this.fases = fases;
 	}
 	
-	public Enum getSexo() {
+	public Sexo getSexo() {
 		return sexo;
 	}
 	
-	public void setSexo(Enum sexo) {
+	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
 
 	@Override
 	public String toString() {
-		return "Categoria [nome=" + nome + ", nascidosApartirDe=" + nascidosApartirDe + ", minJogadores=" + minJogadores
-				+ ", maxJogadores=" + maxJogadores + ", campeonato=" + campeonato + ", sexo=" + sexo + "]";
+		return nome;
 	}	
 //Fim Métodos
 }

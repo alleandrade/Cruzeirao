@@ -1,9 +1,13 @@
 //Import's
 package entidades;
+
+import java.io.Serializable;
+
 //Fim Import's
 //Atributos
-public class Local {
-	String endereco;
+public class Local implements Serializable{
+	private String endereco;
+	private String nome;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -12,6 +16,14 @@ public class Local {
 	 *  - Construtores		[X]
 	*/
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public Local() {
 		super();
 	}
@@ -31,7 +43,7 @@ public class Local {
 
 	@Override
 	public String toString() {
-		return "Local [endereco=" + endereco + "]";
+		return nome;
 	}
 //Fim Métodos
 }

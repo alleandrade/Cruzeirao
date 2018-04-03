@@ -1,16 +1,19 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
+
+import enums.TipoFase;
 //Fim Import's
 //Atributos
-public class Fase {
-	Date dataInicio,
-		 dataFim;
-	Enum formato;
-	Categoria categoria;
-	ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-	int numero;
+public class Fase implements Serializable{
+	private Date dataInicio,
+		 		 dataFim;
+	private TipoFase formato;
+	private Categoria categoria;
+	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
+	private int numero;
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -24,7 +27,7 @@ public class Fase {
 		super();
 	}
 
-	public Fase(Date dataInicio, Date dataFim, Enum formato, Categoria categoria, ArrayList<Grupo> grupos, int numero) {
+	public Fase(Date dataInicio, Date dataFim, TipoFase formato, Categoria categoria, ArrayList<Grupo> grupos, int numero) {
 		super();
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
@@ -42,20 +45,20 @@ public class Fase {
 		this.dataInicio = dataInicio;
 	}
 	
+	public TipoFase getFormato() {
+		return formato;
+	}
+
+	public void setFormato(TipoFase formato) {
+		this.formato = formato;
+	}
+
 	public Date getDataFim() {
 		return dataFim;
 	}
 	
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
-	}
-	
-	public Enum getFormato() {
-		return formato;
-	}
-	
-	public void setFormato(Enum formato) {
-		this.formato = formato;
 	}
 	
 	public Categoria getCategoria() {
@@ -84,8 +87,7 @@ public class Fase {
 
 	@Override
 	public String toString() {
-		return "Fase [dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", formato=" + formato + ", categoria="
-				+ categoria + ", numero=" + numero + "]";
+		return Integer.toString((int)numero);
 	}
 //Fim Métodos
 }

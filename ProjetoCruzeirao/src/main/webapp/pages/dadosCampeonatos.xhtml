@@ -1,0 +1,211 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+
+<ui:define name="principal">
+
+<h:form id="formCampeonato">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "camp"
+			value = "#{campeonatoMB.campeonatos}"
+			editable = "true" editMode = "cell"
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Campeonatos
+    </f:facet>
+	
+		
+		<p:column headerText="Nome" style="text-align: center" sortBy="#{camp.nome}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{camp.nome}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{camp.nome}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+	            
+	    <p:column  headerText="Locais" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('locaisDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
+        </p:commandButton>            
+    	<p:dialog header="Local (is) do campeonato" widgetVar="locaisDialog" modal="true"  closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="locaisCampeonato" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="local" value="#{campeonatoMB.campeonato.locais}">
+            		<p:column headerText="Nome">
+	   					<p:outputLabel value="#{local.nome}"/>
+	   	    		</p:column>		
+	   	    		
+ 					<p:column headerText="Endereço">
+	   					<p:outputLabel value="#{local.endereco}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerLocal(local)}" update="formCampeonato"></p:commandLink> 	     	
+					</p:column>		
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+
+	    <p:column  headerText="Juízes" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('juizesDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
+        </p:commandButton>            
+    	<p:dialog header="Juiz (ízes) do campeonato" widgetVar="juizesDialog" modal="true" showEffect="fade"  closeOnEscape="true" hideEffect="fade" resizable="false">
+        <p:outputPanel id="juizesCampeonato" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="juiz" value="#{campeonatoMB.campeonato.juizes}">
+ 					<p:column headerText="Tipo">
+	   					<p:outputLabel value="#{juiz.tipo}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Nome">
+	   					<p:outputLabel value="#{juiz.usuario.nome}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="RG">
+	   					<p:outputLabel value="#{juiz.usuario.rg}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="CREF">
+	   					<p:outputLabel value="#{juiz.usuario.cref}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerJuiz(juiz)}" update="formCampeonato"></p:commandLink> 	     	
+					</p:column>								
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+	    
+	    <p:column  headerText="Categorias" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('categoriasDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
+        </p:commandButton>            
+    	<p:dialog header="Categoria (as) do campeonato" widgetVar="categoriasDialog" modal="true"  closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="categoriasCampeonato" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="categoria" value="#{campeonatoMB.campeonato.categorias}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{categoria.nome}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Nascidos a partir de">
+	   					<p:outputLabel value="#{categoria.nascidosAPartirDe}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Mínimo jogadores">
+	   					<p:outputLabel value="#{categoria.minJogadores}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Máximo jogadores">
+	   					<p:outputLabel value="#{categoria.maxJogadores}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Sexo">
+	   					<p:outputLabel value="#{categoria.sexo}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerCategoria(categoria)}" update="formCampeonato"></p:commandLink> 	     	
+					</p:column>				
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+	    
+	    
+	    <p:column headerText="Data inicio inscrições" style="text-align: center" sortBy="#{camp.dataInicioInscricao}">
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{camp.dataInicioInscricao}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{camp.dataInicioInscricao}" style="width:96%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           </p:cellEditor>	         
+	    </p:column>	
+	    
+	    <p:column headerText="Data fim inscrições" style="text-align: center" sortBy="#{camp.dataFimInscricao}">
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{camp.dataFimInscricao}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{camp.dataFimInscricao}" style="width:96%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           </p:cellEditor>	         
+	    </p:column>	
+	    
+	    <p:column headerText="Data início campeonato" style="text-align: center" sortBy="#{camp.dataInicioCampeonato}">
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{camp.dataInicioCampeonato}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{camp.dataInicioCampeonato}" style="width:96%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           </p:cellEditor>	         
+	    </p:column>	
+	    
+	    <p:column headerText="Data fim campeonato" style="text-align: center" sortBy="#{camp.dataFimCampeonato}">
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{camp.dataFimCampeonato}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{camp.dataFimCampeonato}" style="width:96%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           </p:cellEditor>	         
+	    </p:column>	
+	    
+	    	    
+	  	<p:column headerText="Valor taxa" style="text-align: center" sortBy="#{camp.valorTaxa}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="R$ #{camp.valorTaxa}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="R$ #{camp.valorTaxa}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+	    
+	
+				
+
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.remover(camp)}" update="formCampeonato"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>

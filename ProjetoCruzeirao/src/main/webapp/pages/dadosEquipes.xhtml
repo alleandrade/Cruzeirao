@@ -1,0 +1,153 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formEquipe">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "equi"
+			value = "#{equipeMB.equipes}"
+			editable = "true" editMode = "cell"
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Equipes
+    </f:facet>
+	
+		
+		<p:column headerText="Nome" style="text-align: center" sortBy="#{equi.nome}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{equi.nome}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{equi.nome}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+	    
+
+	    <p:column headerText="Cidade" style="text-align: center" sortBy="#{equi.cidade}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{equi.cidade}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{equi.cidade}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+	    
+	    <p:column headerText="Data de fundação" style="text-align: center" sortBy="#{equi.dataFundacao}">
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{equi.dataFundacao}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{equi.dataFundacao}" style="width:96%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           </p:cellEditor>	         
+	    </p:column>
+	    
+	    <p:column  headerText="Jogadores" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
+        </p:commandButton>            
+    	<p:dialog header="Jogadores da equipe" widgetVar="jogadoresDialog" closeOnEscape="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="jogadoresEquipe" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="jogador" value="#{equipeMB.equipe.jogadores}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{jogador.nome}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="RG">
+						<p:outputLabel value="#{jogador.rg}" />
+					</p:column>	
+					
+					<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jogador)}" update="formEquipe"></p:commandLink> 	     	
+					</p:column>							
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+	  
+	    	    
+	   
+	    <p:column  headerText="Diretores" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('diretoresDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
+        </p:commandButton>            
+    	<p:dialog header="Diretor (es) da equipe" widgetVar="diretoresDialog" closeOnEscape="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="diretoresEquipe" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="diretor" value="#{equipeMB.equipe.diretores}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{diretor.nome}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="RG">
+						<p:outputLabel value="#{diretor.rg}" />
+					</p:column>	
+					
+					<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerDiretor(diretor)}" update="formEquipe"></p:commandLink> 	     	
+					</p:column>
+				
+							
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+       
+        <p:column  headerText="Comissão técnica" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('comissaoDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
+        </p:commandButton>            
+    	<p:dialog header="Funcionários da comissão técnica da equipe" widgetVar="comissaoDialog" closeOnEscape="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="funcionariosEquipe" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="func" value="#{equipeMB.equipe.comissaoTecnica}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{func.nome}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="RG">
+						<p:outputLabel value="#{func.rg}" />
+					</p:column>	
+					
+					<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerMembroComissao(func)}" update="formEquipe"></p:commandLink> 	     	
+					</p:column>
+				
+							
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+	  
+
+
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.remover(equi)}" update="formEquipe"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>
