@@ -91,7 +91,7 @@ public class Usuario implements Serializable{
 	}
 
 	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
+		this.sexo = sexo;	
 	}
 
 	public String getNome() {

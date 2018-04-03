@@ -25,7 +25,6 @@ public class UsuarioService {
 	}
 	
 	public void salvar(Usuario usuario) {
-		
 		if(usuario.getTipo().equals("DIRETOR"));		
 			diretores.add(usuario);
 			
