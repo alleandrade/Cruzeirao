@@ -62,7 +62,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
-    	<p:dialog header="Jogadores da equipe" widgetVar="jogadoresDialog" closeOnEscape="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    	<p:dialog header="Jogadores da equipe" widgetVar="jogadoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="jogadoresEquipe" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="jogador" value="#{equipeMB.equipe.jogadores}">
@@ -88,7 +88,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('diretoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
-    	<p:dialog header="Diretor (es) da equipe" widgetVar="diretoresDialog" closeOnEscape="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    	<p:dialog header="Diretor (es) da equipe" widgetVar="diretoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="diretoresEquipe" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="diretor" value="#{equipeMB.equipe.diretores}">
@@ -114,7 +114,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('comissaoDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
-    	<p:dialog header="Funcionários da comissão técnica da equipe" widgetVar="comissaoDialog" closeOnEscape="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+    	<p:dialog header="Funcionários da comissão técnica da equipe" widgetVar="comissaoDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="funcionariosEquipe" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="func" value="#{equipeMB.equipe.comissaoTecnica}">

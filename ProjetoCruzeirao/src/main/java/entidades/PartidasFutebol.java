@@ -1,10 +1,11 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class PartidasFutebol extends Partida{
+public class PartidasFutebol extends Partida implements Serializable{
 	private ArrayList<Gol> golsMandantes = new ArrayList<Gol>();
 	private ArrayList<Gol> golsVisitantes = new ArrayList<Gol>();
 	private ArrayList<Gol> golsPenaltisMandantes = new ArrayList<Gol>();
@@ -61,5 +62,12 @@ public class PartidasFutebol extends Partida{
 	public void setGolsPenaltisVisitantes(ArrayList<Gol> golsPenaltisVisitantes) {
 		this.golsPenaltisVisitantes = golsPenaltisVisitantes;
 	}
+
+	@Override
+	public String toString() {
+		return Integer.toString(this.getNumero());
+	}
+	
+	
 //Fim Métodos	
 }

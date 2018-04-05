@@ -26,14 +26,12 @@
     </f:facet>
 	
 		
-	    <p:column headerText="Tipo" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{j.tipo}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{j.tipo}" style="width:96%"/></f:facet>           		
+	    <p:column headerText="Tipo" style="text-align: center" sortBy="#{j.tipo.juiz}">
+        	<p:outputLabel value="#{j.tipo.juiz}" />           		
 	    </p:column>
 	    
 	    <p:column headerText="Usuário" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{j.usuario}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{j.usuario}" style="width:96%"/></f:facet>           		
+        	<p:outputLabel value="#{j.usuario}" />          		
 	    </p:column>
 	   
 	    

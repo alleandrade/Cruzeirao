@@ -35,9 +35,8 @@
            		
 	    </p:column>
 	    
-	    <p:column headerText="Sexo" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{cat.sexo}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{cat.sexo}" style="width:96%"/></f:facet>           		
+	    <p:column headerText="Sexo" style="text-align: center" sortBy="#{cat.sexo.sexo}">
+        	<p:outputLabel value="#{cat.sexo.sexo}" />          		
 	    </p:column>
 	    
 	    <p:column headerText="Nascidos a partir de" style="text-align: center" sortBy="#{cat.nascidosAPartirDe}">
@@ -71,7 +70,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formCategoria" oncomplete="PF('inscricoesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{cat}" target="#{categoriaMB.categoria}" />
         </p:commandButton>            
-    	<p:dialog header="Inscrições (os) da categoria" widgetVar="inscricoesDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Inscrições (os) da categoria" widgetVar="inscricoesDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="inscricoes" style=" width:600px" columnClasses="label,value" >
             
             <p:dataTable var="inscricao" value="#{categoriaMB.categoria.inscricoes}">	   	    		
@@ -92,15 +91,14 @@
         </p:column>
 	    
 	    <p:column headerText="Campeonato" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{cat.campeonato}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{cat.campeonato}" style="width:96%"/></f:facet>           		
+			<p:outputLabel value="#{cat.campeonato}" />       		
 	    </p:column>
 	    
 	    <p:column  headerText="Fases" style="text-align: center">
 	    <p:commandButton icon ="ui-icon-search" update=":formCategoria" oncomplete="PF('fasesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{cat}" target="#{categoriaMB.categoria}" />
         </p:commandButton>            
-    	<p:dialog header="Fase (es) da categoria" widgetVar="fasesDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Fase (es) da categoria" widgetVar="fasesDialog" modal="true" showEffect="fade" closeOnEscape="true" closable="true"   hideEffect="fade" resizable="false">
         <p:outputPanel id="fases" style=" width:600px" columnClasses="label,value" >
             
             <p:dataTable var="fase" value="#{categoriaMB.categoria.fases}">	   	    		

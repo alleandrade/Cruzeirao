@@ -18,6 +18,7 @@ public class UsuarioMB {
 	private ArrayList<Usuario> diretores = Dados.usuarioDiretores;
 	private ArrayList<Usuario> jogadores = Dados.usuarioJogadores;
 	private ArrayList<Usuario> comissaoTecnica = Dados.usuarioComissao;
+	private ArrayList<Usuario> juizes = Dados.usuarioJuizes;
 	private Equipe auxEquipe;
 	
 	
@@ -25,8 +26,9 @@ public class UsuarioMB {
 		usuario.getEquipes().add(auxEquipe);
 	}
 	
-	public void removeEquipe(Equipe equipe) {
+	public void removerEquipe(Equipe equipe) {
 		usuario.getEquipes().remove(equipe);
+		equipe.getJogadores().remove(usuario);
 	}
 	
 	public void salvar() {
@@ -82,6 +84,16 @@ public class UsuarioMB {
 	public void setAuxEquipe(Equipe auxEquipe) {
 		this.auxEquipe = auxEquipe;
 	}
+
+	public ArrayList<Usuario> getJuizes() {
+		return juizes;
+	}
+
+	public void setJuizes(ArrayList<Usuario> juizes) {
+		this.juizes = juizes;
+	}
+	
+	
 	
 	
 }

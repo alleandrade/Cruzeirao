@@ -62,22 +62,18 @@
 	    </p:column>
 	    
 	    <p:column headerText="Formato" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{fas.formato}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{fas.formato}" style="width:96%"/></f:facet>          		
+        	<p:outputLabel value="#{fas.formata.tipo}" />          		
 	    </p:column>
 	    
 	    <p:column headerText="Categoria" style="text-align: center">
-	    	<p:cellEditor>
-				<f:facet name="output"><p:outputLabel value="#{fas.categoria}"/></f:facet>
-        		<f:facet name="input"><p:inputText    value="#{fas.categoria}" style="width:96%"/></f:facet>  
-        	</p:cellEditor>	         		
+        	<p:outputLabel value="#{fas.categoria}" />          		
 	    </p:column>
 	    
 	    <p:column  headerText="Grupos" style="text-align: center">
 	    <p:commandButton icon ="ui-icon-search" update=":formFase" oncomplete="PF('gruposDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas}" target="#{faseMB.fase}" />
         </p:commandButton>            
-    	<p:dialog header="Grupo (os) da fase" widgetVar="gruposDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Grupo (os) da fase" widgetVar="gruposDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="grupos" style=" width:600px" columnClasses="label,value" >
             
             <p:dataTable var="grupo" value="#{faseMB.fase.grupos}">

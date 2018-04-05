@@ -34,7 +34,7 @@
 	 <p:outputLabel for="usuario" value="Usuário: "/>
 	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario"  value="#{juizMB.juiz.usuario}"  style="width:205px" required="true">
      		<f:selectItem itemLabel= "Selecione o usuário" noSelectionOption="true"/>
-     		<f:selectItems value="#{usuarioMB.usuarios}" />
+     		<f:selectItems value="#{usuarioMB.juizes}" />
      </h:selectOneMenu>
      
 

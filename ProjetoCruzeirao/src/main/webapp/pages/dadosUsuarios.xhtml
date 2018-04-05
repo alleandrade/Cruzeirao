@@ -46,14 +46,12 @@
            		        		
 	    </p:column>
 	    
-	    <p:column headerText="Tipo" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{usu.tipo}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{usu.tipo}" style="width:96%"/></f:facet>           		
+	    <p:column headerText="Tipo" style="text-align: center" sortBy="#{usu.tipo.tipo}">
+			<p:outputLabel value="#{usu.tipo.tipo}" />         		
 	    </p:column>
 	    
-	    <p:column headerText="Sexo" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{usu.sexo}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{usu.sexo}" style="width:96%"/></f:facet>           		
+	    <p:column headerText="Sexo" style="text-align: center" sortBy="#{usu.sexo.sexo}">
+			<p:outputLabel value="#{usu.sexo.sexo}" />   		
 	    </p:column>
 	   
 	    
@@ -83,8 +81,7 @@
 	    </p:column>
 	    
 	    <p:column headerText="Foto" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{usu.foto}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{usu.foto}" style="width:96%"/></f:facet>           		
+			<p:outputLabel value="#{usu.foto}" />       		
 	    </p:column>
 	    
 	    <p:column headerText="RG" style="text-align: center" sortBy="#{usu.rg}">		
@@ -148,7 +145,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('equipesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
         </p:commandButton>            
-    	<p:dialog header="Equipe (es) do usuário" widgetVar="equipesDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Equipe (es) do usuário" widgetVar="equipesDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="equipesUsuario" style=" width:600px" columnClasses="label,value" >
             
             <p:dataTable var="equipe" value="#{usuarioMB.usuario.equipes}">

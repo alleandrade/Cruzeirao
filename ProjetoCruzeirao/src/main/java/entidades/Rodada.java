@@ -50,5 +50,12 @@ public class Rodada {
 	public void setPartidas(ArrayList<Partida> partidas) {
 		this.partidas = partidas;
 	}
+
+	@Override
+	public String toString() {
+		return Integer.toString(numero);
+	}
+	
+	
 //Fim Métodos
 }

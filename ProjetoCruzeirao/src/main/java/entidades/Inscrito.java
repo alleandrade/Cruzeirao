@@ -1,11 +1,13 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
+
 import enums.TipoUsuario;
 
 //Fim Import's
 //Atributos
-public class Inscrito {
+public class Inscrito implements Serializable {
 	private TipoUsuario tipo;
 	private Usuario usuario;
 	private Inscricao inscricao;
@@ -92,8 +94,7 @@ public class Inscrito {
 
 	@Override
 	public String toString() {
-		return "Inscrito [tipo=" + getTipo() + ", usuario=" + usuario + ", inscricao=" + inscricao + ", aceiteUsuario="
-				+ aceiteUsuario + ", suspensoJogos=" + suspensoJogos + ", inscricaoValidada=" + inscricaoValidada + "]";
+		return usuario.getNome();
 	}
 //Fim Métodos
 }

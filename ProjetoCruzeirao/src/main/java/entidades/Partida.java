@@ -110,5 +110,12 @@ public class Partida {
 	public void setRelatoJuiz(String relatoJuiz) {
 		this.relatoJuiz = relatoJuiz;
 	}
+
+	@Override
+	public String toString() {
+		return Integer.toString(numero);
+	}
+	
+	
 	
 }

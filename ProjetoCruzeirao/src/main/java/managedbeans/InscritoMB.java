@@ -33,4 +33,5 @@ public class InscritoMB {
 	public ArrayList<Inscrito> getInscritos() {
 		return inscritoservice.getInscritos();
 	}
+	
 }
