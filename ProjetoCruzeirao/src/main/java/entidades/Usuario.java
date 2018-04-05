@@ -77,7 +77,7 @@ public class Usuario implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public TipoUsuario getTipo() {
 		return tipo;
 	}
@@ -91,7 +91,7 @@ public class Usuario implements Serializable{
 	}
 
 	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;	
+		this.sexo = sexo;
 	}
 
 	public String getNome() {
@@ -176,11 +176,7 @@ public class Usuario implements Serializable{
 
 	@Override
 	public String toString() {
-
 		return nome;
-
-
 	}
 //Fim Métodos	
-
 }

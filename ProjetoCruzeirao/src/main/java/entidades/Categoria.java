@@ -103,7 +103,7 @@ public class Categoria implements Serializable{
 	public Sexo getSexo() {
 		return sexo;
 	}
-	
+
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}

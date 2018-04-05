@@ -1,0 +1,265 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formPartida">
+<p:growl id="mensagem"/>
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="3">
+	
+	<f:facet name="header">
+            Partida
+    </f:facet>
+	
+	 <p:outputLabel  value="Partida"/>
+ 	 <h:selectOneMenu id="partida" converter ="ConverterUsuario"  value="#{partidaFutebolMB.partidasfutebol}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a partida" itemValue="" noSelectionOption="false"/>
+     		<f:selectItems value="#{partidaFutebolMB.partidasFutebol}" />
+     </h:selectOneMenu>
+     
+     <p:commandButton value="Atualizar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.atualizar()}"
+	                 update=":formPartida"  
+	/>
+	
+	 </p:panelGrid>
+	 
+	 <!-- Adicionar Gols Mandantes -->
+	 
+	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 <p:outputLabel  value="Inscrito"/>
+ 	 <h:selectOneMenu id="inscritto" converter ="ConverterInscrito"  value="#{partidaFutebolMB.gol.inscrito}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{partidaFutebolMB.jogadoresMandantes}" />
+     </h:selectOneMenu>
+	
+	<p:outputLabel for="tempo" value="Tempo: "/>
+	<p:inputText id="tempo" value = "#{partidaFutebolMB.gol.tempo}" required="true"/>
+	
+	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <h:outputText value="Penaltis " />
+        <p:selectBooleanButton id="value3" value="#{partidaFutebolMB.gol.penalti}" onLabel="Yes" offLabel="No" style="width:60px" />
+    </h:panelGrid>
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addGol()}"
+	                 update="formPartida"  
+	/>
+	
+	</p:panelGrid>
+	
+	<p:dataTable
+			var = "gols"
+			value = "#{partidaFutebolMB.partidafutebolaux.golsMandantes}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Gol(s) Mandantes
+    </f:facet>
+				    
+	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{gols.inscrito.usuario}">
+                  <p:outputLabel value="#{gols.inscrito.usuario}"/>  
+	    </p:column>
+		
+		<p:column headerText="Tempo" style="text-align: center" sortBy="#{gols.tempo}">
+                  <p:outputLabel value="#{gols.tempo}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Penalty" style="text-align: center" sortBy="#{gols.penalty}">
+                  <p:outputLabel value="#{gols.penalty}"/>
+	    </p:column>
+	    
+	    
+	    <!-- <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>-->
+ 		
+	</p:dataTable>
+
+	<!-- Adicionar Gols Visitantes -->
+	 
+	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 <p:outputLabel  value="Inscrito"/>
+ 	 <h:selectOneMenu id="inscrito" converter ="ConverterInscrito"  value="#{partidaFutebolMB.gol.inscrito}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{partidaFutebolMB.jogadoresVisitantes}" />
+     </h:selectOneMenu>
+	
+	<p:outputLabel for="tempo2" value="Tempo: "/>
+	<p:inputText id="tempo2" value = "#{partidaFutebolMB.gol.tempo}" required="true"/>
+	
+	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <h:outputText value="Penaltis " />
+        <p:selectBooleanButton id="value4" value="#{partidaFutebolMB.gol.penalti}" onLabel="Yes" offLabel="No" style="width:60px" />
+    </h:panelGrid>
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addGol()}"
+	                 update="formPartida"  
+	/>
+	
+	</p:panelGrid>
+	
+	<p:dataTable
+			var = "goll"
+			value = "#{partidaFutebolMB.partidafutebolaux.golsVisitantes}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Gol(s) Visitantes
+    </f:facet>
+			 
+	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{goll.inscrito.usuario}">
+                  <p:outputLabel value="#{goll.inscrito.usuario}"/>  
+	    </p:column>
+		
+		<p:column headerText="Tempo" style="text-align: center" sortBy="#{goll.tempo}">
+                  <p:outputLabel value="#{goll.tempo}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Penalty" style="text-align: center" sortBy="#{goll.penalty}">
+                  <p:outputLabel value="#{goll.penalty}"/>
+	    </p:column>
+	    
+	    
+	    <!-- <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>-->
+ 	
+	</p:dataTable>
+
+	
+	<!-- Adicionar Cartoes Mandantes -->
+	 
+	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 <p:outputLabel  value="Cartao"/>
+ 	 <h:selectOneMenu id="cartao" converter ="ConverterInscrito"  value="#{partidaFutebolMB.cartao.inscrito}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{partidaFutebolMB.jogadoresMandantes}" />
+     </h:selectOneMenu>
+	
+	<p:outputLabel value="Tipo: "/>
+	 <h:selectOneMenu value="#{partidaFutebolMB.cartao.tipo}" style="width:205px">
+            <f:selectItem itemLabel="Amarelo" itemValue="AMARELO" />
+            <f:selectItem itemLabel="Vermelho" itemValue="VERMELHO" />
+     </h:selectOneMenu>
+	
+	<p:outputLabel for="tempo3" value="Tempo: "/>
+	<p:inputText id="tempo3" value = "#{partidaFutebolMB.cartao.tempo}" required="true"/>
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addCartao()}"
+	                 update="formPartida"  
+	/>
+	
+	</p:panelGrid>
+	
+	<p:dataTable
+			var = "cartoes"
+			value = "#{partidaFutebolMB.partidafutebolaux.cartoesMandantes}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Cartao(oes) Mandantes
+    </f:facet>
+			 
+	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{cartoes.inscrito.usuario}">
+                  <p:outputLabel value="#{cartoes.inscrito.usuario}"/>  
+	    </p:column>
+		
+		<p:column headerText="Tipo" style="text-align: center" sortBy="#{cartoes.tipo.tipo}">
+                  <p:outputLabel value="#{cartoes.tipo.tipo}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Tempo" style="text-align: center" sortBy="#{cartoes.tempo}">
+                  <p:outputLabel value="#{cartoes.tempo}"/>
+	    </p:column>
+	    
+	    
+	    <!--  <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>-->
+ 	
+	</p:dataTable>
+	
+	<!-- Adicionar Cartoes Visitantes -->
+	 
+	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 <p:outputLabel  value="Cartao"/>
+ 	 <h:selectOneMenu id="cartao2" converter ="ConverterInscrito"  value="#{partidaFutebolMB.cartao.inscrito}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{partidaFutebolMB.jogadoresMandantes}" />
+     </h:selectOneMenu>
+	
+	<p:outputLabel value="Tipo: "/>
+	 <h:selectOneMenu value="#{partidaFutebolMB.cartao.tipo}" style="width:205px">
+            <f:selectItem itemLabel="Amarelo" itemValue="AMARELO" />
+            <f:selectItem itemLabel="Vermelho" itemValue="VERMELHO" />
+     </h:selectOneMenu>
+	
+	<p:outputLabel for="tempo4" value="Tempo: "/>
+	<p:inputText id="tempo4" value = "#{partidaFutebolMB.cartao.tempo}" required="true"/>
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addCartao()}"
+	                 update="formPartida"  
+	/>
+	
+	</p:panelGrid>
+
+	<p:dataTable
+			var = "cartao"
+			value = "#{partidaFutebolMB.partidafutebolaux.cartoesVisitantes}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Cartao(oes) Visitantes
+    </f:facet>
+			 
+	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{cartao.inscrito.usuario}">
+                  <p:outputLabel value="#{cartao.inscrito.usuario}"/>  
+	    </p:column>
+		
+		<p:column headerText="Tipo" style="text-align: center" sortBy="#{cartao.tipo.tipo}">
+                  <p:outputLabel value="#{cartao.tipo.tipo}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Tempo" style="text-align: center" sortBy="#{cartao.tempo}">
+                  <p:outputLabel value="#{cartao.tempo}"/>
+	    </p:column>
+	    
+	    
+	    <!--  <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
+		</p:column>-->
+ 	
+	</p:dataTable>
+
+</h:form>
+</ui:define>
+</ui:composition>

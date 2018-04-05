@@ -47,13 +47,15 @@
 	    </p:column>
 	    
 	    <p:column headerText="Tipo" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{usu.tipo}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{usu.tipo}" style="width:96%"/></f:facet>           		
+			<!-- <f:facet name="output"><p:outputLabel value="#{usu.tipo}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{usu.tipo}" style="width:96%"/></f:facet>-->
+        	<p:outputLabel value = "#{usu.tipo.tipo}"/>           		
 	    </p:column>
 	    
 	    <p:column headerText="Sexo" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{usu.sexo.sexo}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{usu.sexo.getSexo()}" style="width:96%"/></f:facet>           		
+			<!-- <f:facet name="output"><p:outputLabel value="#{usu.sexo}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{usu.sexo}" style="width:96%"/></f:facet>-->
+        	<p:outputLabel value = "#{usu.sexo.sexo}"/>           		
 	    </p:column>
 	   
 	    

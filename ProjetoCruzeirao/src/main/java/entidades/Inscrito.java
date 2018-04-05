@@ -47,16 +47,14 @@ public class Inscrito {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public TipoUsuario getTipo() {
 		return tipo;
 	}
 
-
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
-
 
 	public Inscricao getInscricao() {
 		return inscricao;
@@ -92,8 +90,7 @@ public class Inscrito {
 
 	@Override
 	public String toString() {
-		return "Inscrito [tipo=" + getTipo() + ", usuario=" + usuario + ", inscricao=" + inscricao + ", aceiteUsuario="
-				+ aceiteUsuario + ", suspensoJogos=" + suspensoJogos + ", inscricaoValidada=" + inscricaoValidada + "]";
+		return usuario.getNome();
 	}
 //Fim Métodos
 }

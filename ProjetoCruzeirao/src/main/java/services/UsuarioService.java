@@ -25,17 +25,18 @@ public class UsuarioService {
 	}
 	
 	public void salvar(Usuario usuario) {
-		if(usuario.getTipo().equals("DIRETOR"));		
+		if(usuario.getTipo().getTipo().equals("Diretor"))		
 			diretores.add(usuario);
 			
-		if(usuario.getTipo().equals("JOGADOR"));
+		if(usuario.getTipo().getTipo().equals("Jogador"))
+			
 			jogadores.add(usuario);
 		
-		if(usuario.getTipo().equals("JUIZ"));
+		if(usuario.getTipo().getTipo().equals("Juiz"))
 			juizes.add(usuario);	
 			
-		if(usuario.getTipo().equals("PREPARADOR_FISICO") || usuario.getTipo().equals("MASSAGISTA") || usuario.getTipo().equals("TECNICO"));
-			comissaoTecnica.add(usuario);			
+		if(usuario.getTipo().getTipo().equals("Preparador Fisico") || usuario.getTipo().getTipo().equals("Massagista") || usuario.getTipo().getTipo().equals("Tecnico"))
+			comissaoTecnica.add(usuario);		
 
 		usuarios.add(usuario);
 	}

@@ -9,6 +9,8 @@ public class PartidasFutebol extends Partida{
 	private ArrayList<Gol> golsVisitantes = new ArrayList<Gol>();
 	private ArrayList<Gol> golsPenaltisMandantes = new ArrayList<Gol>();
 	private ArrayList<Gol> golsPenaltisVisitantes = new ArrayList<Gol>();
+	private ArrayList<Cartao> cartoesMandantes = new ArrayList<Cartao>();
+	private ArrayList<Cartao> cartoesVisitantes = new ArrayList<Cartao>();
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -21,15 +23,19 @@ public class PartidasFutebol extends Partida{
 		super();
 	}
 	
-	public PartidasFutebol(ArrayList<Gol> golsMandantes, ArrayList<Gol> golsVisitantes,
-			ArrayList<Gol> golsPenaltisMandantes, ArrayList<Gol> golsPenaltisVisitantes) {
-		super();
+	public PartidasFutebol(int numero, Inscricao equipeMandante, Inscricao equipeVisitante, Date data, Local local,
+		Partida proxPartida, ArrayList<Juiz> juizes, Grupo grupo, String relatoJuiz, ArrayList<Gol> golsMandantes,
+		ArrayList<Gol> golsVisitantes, ArrayList<Gol> golsPenaltisMandantes, ArrayList<Gol> golsPenaltisVisitantes,
+		ArrayList<Cartao> cartoesMandantes, ArrayList<Cartao> cartoesVisitantes) {
+		super(numero, equipeMandante, equipeVisitante, data, local, proxPartida, juizes, grupo, relatoJuiz);
 		this.golsMandantes = golsMandantes;
 		this.golsVisitantes = golsVisitantes;
 		this.golsPenaltisMandantes = golsPenaltisMandantes;
 		this.golsPenaltisVisitantes = golsPenaltisVisitantes;
+		this.cartoesMandantes = cartoesMandantes;
+		this.cartoesVisitantes = cartoesVisitantes;
 	}
-	
+
 	public ArrayList<Gol> getGolsMandantes() {
 		return golsMandantes;
 	}
@@ -62,4 +68,28 @@ public class PartidasFutebol extends Partida{
 		this.golsPenaltisVisitantes = golsPenaltisVisitantes;
 	}
 //Fim Métodos	
+
+
+
+	public ArrayList<Cartao> getCartoesMandantes() {
+		return cartoesMandantes;
+	}
+
+
+
+	public void setCartoesMandantes(ArrayList<Cartao> cartoesMandantes) {
+		this.cartoesMandantes = cartoesMandantes;
+	}
+
+
+
+	public ArrayList<Cartao> getCartoesVisitantes() {
+		return cartoesVisitantes;
+	}
+
+
+
+	public void setCartoesVisitantes(ArrayList<Cartao> cartoesVisitantes) {
+		this.cartoesVisitantes = cartoesVisitantes;
+	}
 }
