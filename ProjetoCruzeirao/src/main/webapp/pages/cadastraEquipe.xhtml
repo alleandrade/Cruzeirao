@@ -41,7 +41,7 @@
 	 
 	 
 	 <p:outputLabel  value="Diretor"/>
- 	 <h:selectOneMenu id="diretor" converter ="ConverterUsuario"  value="#{equipeMB.auxDiretor}"  style="width:205px">
+ 	 <h:selectOneMenu id="diretor" converter ="ConverterEquipe"  value="#{equipeMB.auxDiretor}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o diretor" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{usuarioMB.diretores}" />
      </h:selectOneMenu>
@@ -96,7 +96,7 @@
 	 
 	 
 	 <p:outputLabel  value="Jogador"/>
- 	 <h:selectOneMenu id="jogador" converter ="ConverterUsuario"  value="#{equipeMB.auxJogador}"  style="width:205px">
+ 	 <h:selectOneMenu id="jogador" converter ="ConverterEquipe"  value="#{equipeMB.auxJogador}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{usuarioMB.jogadores}" />
      </h:selectOneMenu>
@@ -150,7 +150,7 @@
 	 
 	 
 	 <p:outputLabel  value="Comissão"/>
- 	 <h:selectOneMenu id="comissao" converter ="ConverterUsuario"  value="#{equipeMB.auxComissao}"  style="width:205px">
+ 	 <h:selectOneMenu id="comissao" converter ="ConverterEquipe"  value="#{equipeMB.auxComissao}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o funcionário" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{usuarioMB.comissaoTecnica}" />
      </h:selectOneMenu>
