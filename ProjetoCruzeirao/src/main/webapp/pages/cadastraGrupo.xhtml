@@ -1,0 +1,107 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formGrupo">
+<p:growl id="mensagem"/>
+
+
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	
+	<f:facet name="header">
+            Grupo
+    </f:facet>
+	 	 
+	
+	
+	 <p:outputLabel value="Número: "/>
+	 <p:inputText id="numero" value = "#{grupoMB.grupo.numero}" required="true"/>
+		 
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{grupoMB.grupo.nome}" required="true"/>
+     
+     <p:outputLabel for="fase" value="Fase: "/>
+	 <h:selectOneMenu id="fase" converter ="ConverterFase"  value="#{grupoMB.grupo.fase}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a fase" noSelectionOption="false"/>
+     		<f:selectItems value="#{faseMB.fases}" />
+     </h:selectOneMenu>
+     
+	 
+	</p:panelGrid>
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Rodada"/>
+ 	 <h:selectOneMenu id="rodada" converter ="ConverterRodada"  value="#{grupoMB.auxRodada}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a rodada" noSelectionOption="false"/>
+     		<f:selectItems value="#{rodadaMB.rodadas}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{grupoMB.adicionarRodada}"
+	                 update=":formGrupo"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "rod"
+			value = "#{grupoMB.grupo.rodadas}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Rodada (as) do grupo
+    </f:facet>
+			
+	    
+	     <p:column headerText="Numero" style="text-align: center" sortBy="#{rod.numero}">
+                  <p:outputLabel value="#{rod.numero}"/>  
+	    </p:column>
+	    
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{grupoMB.removerRodada(rod)}" update=":formGrupo"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>
+	
+				 
+
+	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 action="#{grupoMB.salvar}"
+	                 update=":formGrupo"  
+	            
+	/>
+	
+	
+
+
+
+</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>

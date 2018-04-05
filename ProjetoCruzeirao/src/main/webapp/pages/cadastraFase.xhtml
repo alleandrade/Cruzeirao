@@ -1,0 +1,124 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formFase">
+<p:growl id="mensagem"/>
+
+
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	
+	<f:facet name="header">
+            Fase
+    </f:facet>
+	 	 
+	
+		 
+	 <p:outputLabel for="numero" value="Número: "/>
+	 <p:inputText id="numero" value = "#{faseMB.fase.numero}" required="true"/>
+
+	 <p:outputLabel value="Data inicial: "/>
+	 <p:calendar id="mask" value="#{faseMB.fase.dataInicio}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	 
+	 <p:outputLabel value="Data final: "/>
+	 <p:calendar id="mask2" value="#{faseMB.fase.dataFim}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	 
+	 <p:outputLabel value="Formato: "/>
+	 <h:selectOneMenu value="#{faseMB.fase.formato}" style="width:205px" required="true">
+	 		<f:selectItem itemLabel= "Selecione o formato"  noSelectionOption="true"/>
+            <f:selectItem itemLabel="Fases iniciais" itemValue="FASES_INICIAIS" />
+            <f:selectItem itemLabel="Oitavas de final" itemValue="OITAVAS" />
+            <f:selectItem itemLabel="Quartas de final" itemValue="QUARTAS" />   
+            <f:selectItem itemLabel="Semifinais" itemValue="SEMIS" />  
+            <f:selectItem itemLabel="Finais" itemValue="FINAL" />           
+     </h:selectOneMenu>
+     
+     <p:outputLabel for="categoria" value="Categoria: "/>
+	 <h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{faseMB.fase.categoria}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="true"/>
+     		<f:selectItems value="#{categoriaMB.categorias}" />
+     </h:selectOneMenu>
+	 
+	</p:panelGrid>
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Grupo"/>
+ 	 <h:selectOneMenu id="grupo" converter ="ConverterGrupo"  value="#{faseMB.auxGrupo}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o grupo" noSelectionOption="true"/>
+     		<f:selectItems value="#{grupoMB.grupos}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{faseMB.adicionarGrupo}"
+	                 update=":formFase"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "gru"
+			value = "#{faseMB.fase.grupos}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Grupo (os) da fase
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{gru.nome}">
+                  <p:outputLabel value="#{gru.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="Número" style="text-align: center" sortBy="#{gru.numero}">
+                  <p:outputLabel value="#{gru.numero}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{faseMB.removerGrupo(gru)}" update=":formFase"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>
+	
+				 
+
+	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 action="#{faseMB.salvar}"
+	                 update=":formFase"  
+	            
+	/>
+	
+	
+
+
+
+</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>

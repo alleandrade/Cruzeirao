@@ -1,0 +1,173 @@
+<ui:composition template="templateMenu.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+ 
+ 
+<ui:define name="principal">
+
+<h:form id="formInscricao">
+<p:growl id="mensagem"/>
+
+
+
+ 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+ 	
+ 	<f:facet name="header">
+            Inscrição
+    </f:facet>
+    
+ 
+   
+ 	 <p:outputLabel for="numero" value="Número: "/>
+     <p:inputText id="numero" value = "#{inscricaoMB.inscricao.numero}" required="true"/>
+
+ 	
+     <h:outputLabel value="Pagamento: " />
+     <p:selectBooleanButton id="value1" value="#{inscricaoMB.inscricao.pagamento}" onLabel="Yes" offLabel="No" style="width:60px" />
+
+
+     <h:outputLabel value="Validada: " />
+     <p:selectBooleanButton id="value2" value="#{inscricaoMB.inscricao.validada}" onLabel="Yes" offLabel="No" style="width:60px" />
+
+   
+     <p:outputLabel for="categoria" value="Categoria: "/>
+     <h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{inscricaoMB.inscricao.categoria}"  style="width:205px">
+       <f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="false"/>
+       <f:selectItems value="#{categoriaMB.categorias}" />
+     </h:selectOneMenu>
+     
+     <p:outputLabel for="equipe" value="Equipe: "/>
+     <h:selectOneMenu id="equipe" converter ="ConverterEquipe"  value="#{inscricaoMB.inscricao.equipe}"  style="width:205px">
+       <f:selectItem itemLabel= "Selecione a equipe" noSelectionOption="false"/>
+       <f:selectItems value="#{equipeMB.equipes}" />
+     </h:selectOneMenu>
+     
+     </p:panelGrid>  
+     
+	<!--  Inscritos -->
+	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Inscrito"/>
+ 	 <h:selectOneMenu id="inscrito" converter ="ConverterInscrito"  value="#{inscricaoMB.auxInscrito}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o inscrito" noSelectionOption="false"/>
+     		<f:selectItems value="#{inscritoMB.inscritos}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{inscricaoMB.adicionarInscrito}"
+	                 update=":formInscricao"  
+	/>
+	
+	
+	</p:panelGrid>
+	
+	<p:dataTable
+			var = "insc"
+			value = "#{inscricaoMB.inscricao.inscritos}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Inscrito (os) da inscrição
+    </f:facet>
+			
+	    
+	   <p:column headerText="Usuário">
+	   					<p:outputLabel value="#{insc.usuario}"/>
+	   </p:column>
+	   	    		
+	   <p:column headerText="Tipo">
+						<p:outputLabel value="#{insc.tipo}" />
+	   </p:column>	
+					
+	   <p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.removerInscrito(insc)}" update="formInscricao"></p:commandLink> 	     	
+	   </p:column>			
+	    
+			
+	</p:dataTable>
+	
+	
+	<!-- Partidas  -->
+		
+	 <p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+		  	
+	 
+	 
+	 <p:outputLabel  value="Partida"/>
+ 	 <h:selectOneMenu id="partida" converter ="ConverterPartidaFutebol"  value="#{inscricaoMB.auxPartidaFutebol}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a partida" noSelectionOption="false"/>
+     		<f:selectItems value="#{partidaFutebolMB.partidasFutebol}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{inscricaoMB.adicionarPartidaFutebol}"
+	                 update=":formInscricao"  
+	/>
+	
+	
+	</p:panelGrid>
+	
+	
+	<p:dataTable
+			var = "part"
+			value = "#{inscricaoMB.inscricao.partidas}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+	>
+	
+	<f:facet name="header">
+            Partida (as) da rodada
+    </f:facet>
+			
+	    
+	   <p:column headerText="Número" sortBy="#{part.numero}">
+	   			<p:outputLabel value="#{part.numero}"/>
+	   </p:column>	
+	   	    		
+	   <p:column headerText="Data" sortBy="#{part.data}">
+	   			<p:outputLabel value="#{part.data}"/>
+	   </p:column>
+	   	    		
+	   <p:column headerText="Local">
+	   			<p:outputLabel value="#{part.local}"/>
+	   </p:column>
+					
+		<p:column style = "text-align: center">
+	    		<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.removerPartidaFutebol(part)}" update="formInscricao"></p:commandLink> 	     	
+		</p:column>	
+
+			
+			
+	</p:dataTable>
+
+
+ <p:commandButton value="Cadastrar"
+      style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+      action="#{inscricaoMB.salvar}"
+                  update=":formInscricao"  
+             
+ />
+ 
+ 
+
+
+
+</h:form>
+
+
+ </ui:define>
+</ui:composition>

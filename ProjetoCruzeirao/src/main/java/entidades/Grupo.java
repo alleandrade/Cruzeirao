@@ -1,10 +1,11 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class Grupo {
+public class Grupo implements Serializable{
 	private String nome;
 	private Fase fase;
 	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
@@ -18,15 +19,15 @@ public class Grupo {
 	*/
 
 	public Grupo() {
-	super();
+		super();
 	}
 
 	public Grupo(String nome, Fase fase, ArrayList<Rodada> rodadas, int numero) {
-	super();
-	this.nome = nome;
-	this.fase = fase;
-	this.rodadas = rodadas;
-	this.numero = numero;
+		super();
+		this.nome = nome;
+		this.fase = fase;
+		this.rodadas = rodadas;
+		this.numero = numero;
 	}
 	
 	public String getNome() {
@@ -60,5 +61,12 @@ public class Grupo {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
+	
 //Fim Métodos
 }

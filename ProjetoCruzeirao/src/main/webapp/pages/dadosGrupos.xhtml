@@ -1,0 +1,86 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formGrupo">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "gru"
+			value = "#{grupoMB.grupos}"
+			editable = "true" editMode = "cell"
+			
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Grupos
+    </f:facet>
+	
+	
+		<p:column headerText="Número" style="text-align: center" sortBy="#{gru.numero}">
+	    	<p:cellEditor>
+				<f:facet name="output"><p:outputLabel value="#{gru.numero}"/></f:facet>
+        		<f:facet name="input"><p:inputText    value="#{gru.numero}" style="width:96%"/></f:facet>  
+        	</p:cellEditor>	         		
+	    </p:column>
+		
+	    <p:column headerText="Nome" style="text-align: center" sortBy="#{gru.nome}">
+	    	<p:cellEditor>
+				<f:facet name="output"><p:outputLabel value="#{gru.nome}"/></f:facet>
+        		<f:facet name="input"><p:inputText    value="#{gru.nome}" style="width:96%"/></f:facet>  
+        	</p:cellEditor>	         		
+	    </p:column>
+	    
+  
+	    <p:column headerText="Fase" style="text-align: center">	    	
+				<p:outputLabel value="#{gru.fase}" />            	         		
+	    </p:column>
+	   
+	    <p:column  headerText="Rodadas" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formGrupo" oncomplete="PF('rodadasDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{gru}" target="#{grupoMB.grupo}" />
+        </p:commandButton>              
+    	<p:dialog header="Rodada (as) do grupo" widgetVar="rodadasDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="rodadas" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="rodada" value="#{grupoMB.grupo.rodadas}">
+ 					<p:column headerText="Número">
+	   					<p:outputLabel value="#{rodada.nome}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Grupo">
+	   					<p:outputLabel value="#{rodada.grupo}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{grupoMB.removerRodada(rodada)}" update="formGrupo"></p:commandLink> 	     	
+					</p:column>		
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+ 		</p:column>
+	    
+
+
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{grupoMB.remover(gru)}" update="formGrupo"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>

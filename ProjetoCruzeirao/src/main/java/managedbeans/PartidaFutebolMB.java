@@ -1,5 +1,6 @@
 package managedbeans;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.faces.bean.ManagedBean;
@@ -9,7 +10,7 @@ import services.PartidaFutebolService;
 
 @SessionScoped
 @ManagedBean
-public class PartidaFutebolMB {
+public class PartidaFutebolMB implements Serializable {
 	private PartidasFutebol partidasfutebol = new PartidasFutebol();
 	private PartidaFutebolService partidasfutebolservice = new PartidaFutebolService();
 	

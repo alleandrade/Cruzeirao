@@ -1,0 +1,52 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formJuiz">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "j"
+			value = "#{juizMB.juizes}"
+			editable = "true" editMode = "cell"
+			
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Juízes
+    </f:facet>
+	
+		
+	    <p:column headerText="Tipo" style="text-align: center" sortBy="#{j.tipo.juiz}">
+        	<p:outputLabel value="#{j.tipo.juiz}" />           		
+	    </p:column>
+	    
+	    <p:column headerText="Usuário" style="text-align: center">
+        	<p:outputLabel value="#{j.usuario}" />          		
+	    </p:column>
+	   
+	    
+
+
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{juizMB.remover(j)}" update="formJuiz"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>

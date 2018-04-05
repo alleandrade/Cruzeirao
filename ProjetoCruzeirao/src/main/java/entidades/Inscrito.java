@@ -1,14 +1,19 @@
 //Import's
 package entidades;
+
+import java.io.Serializable;
+
+import enums.TipoUsuario;
+
 //Fim Import's
 //Atributos
-public class Inscrito {
-	Enum tipo;
-	Usuario usuario;
-	Inscricao inscricao;
-	boolean aceiteUsuario,
-			suspensoJogos,
-			inscricaoValidada;
+public class Inscrito implements Serializable {
+	private TipoUsuario tipo;
+	private Usuario usuario;
+	private Inscricao inscricao;
+	private boolean aceiteUsuario,
+					suspensoJogos,
+					inscricaoValidada;
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -22,8 +27,10 @@ public class Inscrito {
 		super();
 	}
 
-	public Inscrito(Enum tipo, Usuario usuario, Inscricao inscricao, boolean aceiteUsuario, boolean suspensoJogos,
-			boolean inscricaoValidada) {
+	
+	
+	public Inscrito(TipoUsuario tipo, Usuario usuario, Inscricao inscricao, boolean aceiteUsuario, boolean suspensoJogos,
+		boolean inscricaoValidada) {
 		super();
 		this.tipo = tipo;
 		this.usuario = usuario;
@@ -33,14 +40,8 @@ public class Inscrito {
 		this.inscricaoValidada = inscricaoValidada;
 	}
 
-	public Enum getTipo() {
-		return tipo;
-	}
-	
-	public void setTipo(Enum tipo) {
-		this.tipo = tipo;
-	}
-	
+
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -49,6 +50,16 @@ public class Inscrito {
 		this.usuario = usuario;
 	}
 	
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
+	}
+
+
 	public Inscricao getInscricao() {
 		return inscricao;
 	}
@@ -83,8 +94,7 @@ public class Inscrito {
 
 	@Override
 	public String toString() {
-		return "Inscrito [tipo=" + tipo + ", usuario=" + usuario + ", inscricao=" + inscricao + ", aceiteUsuario="
-				+ aceiteUsuario + ", suspensoJogos=" + suspensoJogos + ", inscricaoValidada=" + inscricaoValidada + "]";
+		return usuario.getNome();
 	}
 //Fim Métodos
 }

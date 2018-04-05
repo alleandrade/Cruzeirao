@@ -15,6 +15,10 @@ public class RodadaService {
 	public void salvar(Rodada rodada) {
 		rodadas.add(rodada);
 	}
+	
+	public void remover(Rodada rodada) {
+		rodadas.remove(rodada);
+	}
 
 	public ArrayList<Rodada> getRodadas() {
 		return rodadas;

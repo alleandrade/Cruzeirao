@@ -2,15 +2,18 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
 //Fim Import's
 //Atributos
-public class Equipe {
+public class Equipe implements Serializable {
 	
-	String nome,
-		   cidade;
-	Date dataFundacao;
-	ArrayList<Usuario> diretores = new ArrayList<Usuario>();
+	private String nome,
+		   		   cidade;
+	private Date dataFundacao;
+	private ArrayList<Usuario> jogadores = new ArrayList<Usuario>();
+	private ArrayList<Usuario> comissaoTecnica = new ArrayList<Usuario>();
+	private ArrayList<Usuario> diretores = new ArrayList<Usuario>();
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -29,6 +32,24 @@ public class Equipe {
 		this.cidade = cidade;
 		this.dataFundacao = dataFundacao;
 		this.diretores = diretores;
+	}
+	
+	
+
+	public ArrayList<Usuario> getJogadores() {
+		return jogadores;
+	}
+
+	public void setJogadores(ArrayList<Usuario> jogadores) {
+		this.jogadores = jogadores;
+	}
+
+	public ArrayList<Usuario> getComissaoTecnica() {
+		return comissaoTecnica;
+	}
+
+	public void setComissaoTecnica(ArrayList<Usuario> comissaoTecnica) {
+		this.comissaoTecnica = comissaoTecnica;
 	}
 
 	public String getNome() {
@@ -65,8 +86,7 @@ public class Equipe {
 
 	@Override
 	public String toString() {
-		return "Equipe [nome=" + nome + ", cidade=" + cidade + ", dataFundacao=" + dataFundacao + ", diretores="
-				+ diretores + "]";
+		return nome;
 	}
 //Fim Métodos
 }

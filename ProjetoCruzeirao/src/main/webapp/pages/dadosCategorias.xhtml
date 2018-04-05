@@ -1,0 +1,147 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formCategoria">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "cat"
+			value = "#{categoriaMB.categorias}"
+			editable = "true" editMode = "cell"
+			
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Categorias
+    </f:facet>
+	
+		
+		<p:column headerText="Nome" style="text-align: center" sortBy="#{cat.nome}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{cat.nome}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{cat.nome}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+	    
+	    <p:column headerText="Sexo" style="text-align: center" sortBy="#{cat.sexo.sexo}">
+        	<p:outputLabel value="#{cat.sexo.sexo}" />          		
+	    </p:column>
+	    
+	    <p:column headerText="Nascidos a partir de" style="text-align: center" sortBy="#{cat.nascidosAPartirDe}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{cat.nascidosAPartirDe}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{cat.nascidosAPartirDe}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+	    
+	    <p:column headerText="Mínimo jogadores" style="text-align: center" sortBy="#{cat.minJogadores}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{cat.minJogadores}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{cat.minJogadores}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+			
+		 <p:column headerText="Máximo jogadores" style="text-align: center" sortBy="#{cat.maxJogadores}">
+		
+		   		<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{cat.maxJogadores}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{cat.maxJogadores}" style="width:96%"/></f:facet>
+           		</p:cellEditor>	   
+           		
+	    </p:column>
+	    
+	    <p:column  headerText="Inscrições" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formCategoria" oncomplete="PF('inscricoesDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{cat}" target="#{categoriaMB.categoria}" />
+        </p:commandButton>            
+    	<p:dialog header="Inscrições (os) da categoria" widgetVar="inscricoesDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="inscricoes" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="inscricao" value="#{categoriaMB.categoria.inscricoes}">	   	    		
+	   	    		<p:column headerText="Número">
+	   					<p:outputLabel value="#{inscricao.numero}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Validada">
+	   					<p:outputLabel value="#{inscricao.validade}"/>
+	   	    		</p:column>		
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{categoriaMB.removerInscricao(inscricao)}" update="formCategoria"></p:commandLink> 	     	
+					</p:column>
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+	    
+	    <p:column headerText="Campeonato" style="text-align: center">
+			<p:outputLabel value="#{cat.campeonato}" />       		
+	    </p:column>
+	    
+	    <p:column  headerText="Fases" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formCategoria" oncomplete="PF('fasesDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{cat}" target="#{categoriaMB.categoria}" />
+        </p:commandButton>            
+    	<p:dialog header="Fase (es) da categoria" widgetVar="fasesDialog" modal="true" showEffect="fade" closeOnEscape="true" closable="true"   hideEffect="fade" resizable="false">
+        <p:outputPanel id="fases" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="fase" value="#{categoriaMB.categoria.fases}">	   	    		
+	   	    		<p:column headerText="Número">
+	   					<p:outputLabel value="#{fase.numero}"/>
+	   	    		</p:column>	  	    		
+	   	    		    
+	   	    		<p:column headerText="Data inicial" style="text-align: center" sortBy="#{fase.dataInicio}">		           
+						<p:outputLabel value="#{fase.dataInicio}">                
+                 			<f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  		</p:outputLabel>  
+	    			</p:column>
+	    
+					<p:column headerText="Data final" style="text-align: center" sortBy="#{fase.dataFim}">		           
+                  		<p:outputLabel value="#{fase.dataFim}">                
+                 			<f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  		</p:outputLabel>
+	    			</p:column>
+	    			
+	    			<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{categoriaMB.removerFase(fase)}" update="formCategoria"></p:commandLink> 	     	
+					</p:column>
+				
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+	    
+	    <p:column headerText="Fases" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{cat.fases}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{cat.fases}" style="width:96%"/></f:facet>           		
+	    </p:column>
+				
+
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{categoriaMB.remover(cat)}" update="formCategoria"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>

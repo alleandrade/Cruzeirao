@@ -1,0 +1,220 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+<ui:define name="principal">
+
+<h:form id="formCampeonato">
+<p:growl id="mensagem"/>
+
+
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	
+	<f:facet name="header">
+            Campeonato
+    </f:facet>
+	 	 	
+		 
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{campeonatoMB.campeonato.nome}" required="true"/>
+	 
+	 <p:outputLabel for="valor" value="Valor taxa: "/>
+	 <p:inputNumber id="valor" value = "#{campeonatoMB.campeonato.valorTaxa}" symbol="R$ " required="true">
+	  <f:validateDoubleRange minimum="0.01"/>
+	 	 <p:message for="valor" style = "margin: 4px 0px; padding: 0px 0px"/>
+	 </p:inputNumber>	 
+	 
+	 <p:outputLabel value="Data inicial das inscrições: "/>
+	 <p:calendar id="mask" value="#{campeonatoMB.campeonato.dataInicioInscricao}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	
+	 <p:outputLabel value="Data final das inscrições: "/>
+	 <p:calendar id="mask1" value="#{campeonatoMB.campeonato.dataFimInscricao}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	 
+	 <p:outputLabel value="Data inicial do campeonato: "/>
+	 <p:calendar id="mask2" value="#{campeonatoMB.campeonato.dataInicioCampeonato}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	 
+	 <p:outputLabel value="Data final do campeonato: "/>
+	 <p:calendar id="mask3" value="#{campeonatoMB.campeonato.dataFimCampeonato}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	 	 
+	 </p:panelGrid>
+	 
+	 <!-- Locais -->
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
+	 
+	 <p:outputLabel  value="Local"/>
+ 	 <h:selectOneMenu id="local" converter ="ConverterLocal"  value="#{campeonatoMB.auxLocal}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o local" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{localMB.locais}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{campeonatoMB.adicionarLocal}"
+	                 update=":formCampeonato"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "loc"
+			value = "#{campeonatoMB.campeonato.locais}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+		
+	>
+	
+	<f:facet name="header">
+            Local (is) do campeonato
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{loc.nome}">
+                  <p:outputLabel value="#{loc.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="Endereço" style="text-align: center" sortBy="#{loc.endereco}">
+                  <p:outputLabel value="#{loc.endereco}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerLocal(loc)}" update=":formCampeonato"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>
+	
+	<!-- Juízes -->
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
+	 
+	 <p:outputLabel  value="Juiz"/>
+ 	 <h:selectOneMenu id="juiz" converter ="ConverterJuiz"  value="#{campeonatoMB.auxJuiz}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o juiz" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{juizMB.juizes}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{campeonatoMB.adicionarJuiz}"
+	                 update=":formCampeonato"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "juiz"
+			value = "#{campeonatoMB.campeonato.juizes}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+		
+	>
+	
+	<f:facet name="header">
+            Juiz (es) do campeonato
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{juiz.usuario.nome}">
+                  <p:outputLabel value="#{juiz.usuario.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="Tipo" style="text-align: center">
+                  <p:outputLabel value="#{juiz.tipo}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerJuiz(juiz)}" update=":formCampeonato"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>
+	
+	<!-- Categorias -->
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
+	 
+	 <p:outputLabel  value="Categoria"/>
+ 	 <h:selectOneMenu id="cat" converter ="ConverterCategoria"  value="#{campeonatoMB.auxCategoria}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a categoria" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{categoriaMB.categorias}" />
+     </h:selectOneMenu>
+	
+
+	
+	<p:commandButton value="Adicionar"
+					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 action="#{campeonatoMB.adicionarCategoria}"
+	                 update=":formCampeonato"  
+	/>
+	
+	
+	</p:panelGrid>
+	 	
+ 	
+ 	<p:dataTable
+			var = "cat"
+			value = "#{campeonatoMB.campeonato.categorias}"
+			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+		
+	>
+	
+	<f:facet name="header">
+            Categoria (as) do campeonato
+    </f:facet>
+			
+	    
+	     <p:column headerText="Nome" style="text-align: center" sortBy="#{cat.nome}">
+                  <p:outputLabel value="#{cat.nome}"/>  
+	    </p:column>
+	    
+			
+		
+		<p:column headerText="Nascidos a partir de" style="text-align: center" sortBy="#{cat.nascidosAPartirDe}">
+                  <p:outputLabel value="#{cat.nascidosAPartirDe}"/>
+	    </p:column>
+	    
+	    
+	    <p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerCategoria(cat)}" update=":formCampeonato"></p:commandLink>	     	
+		</p:column>
+ 
+			
+			
+	</p:dataTable>
+
+	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 action="#{campeonatoMB.salvar}"
+	                 update=":formCampeonato"  
+	            
+	/>
+	
+	
+
+
+
+</h:form>
+
+	</ui:define>
+</ui:composition>
+
