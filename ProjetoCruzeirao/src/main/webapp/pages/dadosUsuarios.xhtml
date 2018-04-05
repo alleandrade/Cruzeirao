@@ -148,7 +148,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('equipesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
         </p:commandButton>            
-    	<p:dialog header="Equipe (es) do usuário" widgetVar="equipesDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Equipe (es) do usuário" widgetVar="equipesDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="true">
         <p:outputPanel id="equipesUsuario" style=" width:600px" columnClasses="label,value" >
             
             <p:dataTable var="equipe" value="#{usuarioMB.usuario.equipes}">

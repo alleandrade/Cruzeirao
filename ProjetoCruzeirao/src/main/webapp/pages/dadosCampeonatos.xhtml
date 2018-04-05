@@ -63,7 +63,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('juizesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
         </p:commandButton>            
-    	<p:dialog header="Juiz (ízes) do campeonato" widgetVar="juizesDialog" modal="true" showEffect="fade"  closeOnEscape="true" hideEffect="fade" resizable="false">
+    	<p:dialog header="Juiz (ízes) do campeonato" widgetVar="juizesDialog" showEffect="fade"  closeOnEscape="true" hideEffect="fade" resizable="false">
         <p:outputPanel id="juizesCampeonato" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="juiz" value="#{campeonatoMB.campeonato.juizes}">
@@ -95,7 +95,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formCampeonato" oncomplete="PF('categoriasDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{camp}" target="#{campeonatoMB.campeonato}" />
         </p:commandButton>            
-    	<p:dialog header="Categoria (as) do campeonato" widgetVar="categoriasDialog" modal="true"  closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
+    	<p:dialog header="Categoria (as) do campeonato" widgetVar="categoriasDialog"  closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="categoriasCampeonato" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="categoria" value="#{campeonatoMB.campeonato.categorias}">

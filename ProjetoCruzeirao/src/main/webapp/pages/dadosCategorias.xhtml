@@ -71,7 +71,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formCategoria" oncomplete="PF('inscricoesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{cat}" target="#{categoriaMB.categoria}" />
         </p:commandButton>            
-    	<p:dialog header="Inscrições (os) da categoria" widgetVar="inscricoesDialog" modal="true" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Inscrições (os) da categoria" widgetVar="inscricoesDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="inscricoes" style=" width:600px" columnClasses="label,value" >
             
             <p:dataTable var="inscricao" value="#{categoriaMB.categoria.inscricoes}">	   	    		
