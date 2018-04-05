@@ -62,6 +62,16 @@
 	 <p:outputLabel value="Foto: "/>
 	 <p:inputText id="foto" placeholder = "Insira a URL da foto" value = "#{usuarioMB.usuario.foto}" required="true"/>
 	 
+	 <h:form>        
+    <h:panelGrid columns="3" cellpadding="5">
+        <p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}" update="photo" />
+        <p:commandButton type="button" value="Capture" onclick="PF('pc').capture()"/>
+        <p:outputPanel id="photo">
+            <p:graphicImage name="demo/images/photocam/imagens.jpeg" rendered="#{imagens}"/>
+        </p:outputPanel>
+    </h:panelGrid>
+	</h:form>
+	 
 	 <p:outputLabel value="Data de nascimento: "/>
 	 <p:calendar id="mask" value="#{usuarioMB.usuario.dataNascimento}" required = "true" pattern="dd/MM/yyyy" mask="true" />
 	 	 

@@ -4,7 +4,10 @@ import java.util.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import entidades.Inscricao;
 import entidades.Inscrito;
+import entidades.Usuario;
 import services.InscritoService;
 
 @SessionScoped
@@ -12,6 +15,9 @@ import services.InscritoService;
 public class InscritoMB {
 	private Inscrito inscrito = new Inscrito();
 	private InscritoService inscritoservice = new InscritoService();
+	private Inscricao auxInscricao;
+
+
 	
 	public void salvar() {
 		inscritoservice.salvar(inscrito);
@@ -33,4 +39,14 @@ public class InscritoMB {
 	public ArrayList<Inscrito> getInscritos() {
 		return inscritoservice.getInscritos();
 	}
+
+	public Inscricao getAuxInscricao() {
+		return auxInscricao;
+	}
+
+	public void setAuxInscricao(Inscricao auxInscricao) {
+		this.auxInscricao = auxInscricao;
+	}
+
+	
 }

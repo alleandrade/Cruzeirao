@@ -92,8 +92,7 @@ public class Inscrito {
 
 	@Override
 	public String toString() {
-		return "Inscrito [tipo=" + getTipo() + ", usuario=" + usuario + ", inscricao=" + inscricao + ", aceiteUsuario="
-				+ aceiteUsuario + ", suspensoJogos=" + suspensoJogos + ", inscricaoValidada=" + inscricaoValidada + "]";
+		return usuario.getNome();
 	}
 //Fim Métodos
 }
