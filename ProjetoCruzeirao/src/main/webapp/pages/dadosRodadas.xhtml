@@ -1,0 +1,80 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formRodada">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "rod"
+			value = "#{rodadaMB.rodadas}"
+			editable = "true" editMode = "cell"
+			
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Rodadas
+    </f:facet>
+	
+		
+	    <p:column headerText="Numero" style="text-align: center" sortBy="#{rod.numero}">
+        	<p:cellEditor>
+                  		<f:facet name="output"><p:outputLabel value="#{rod.numero}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{rod.numero}" style="width:96%"/></f:facet>
+           	</p:cellEditor>	             		   		
+	    </p:column>
+	    
+	    <p:column headerText="Grupo" style="text-align: center">
+        	<p:outputLabel value="#{rod.grupo}" />          		
+	    </p:column>
+	   
+	    <p:column  headerText="Partidas" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formRodada" oncomplete="PF('rodadasDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{rod}" target="#{rodadaMB.rodada}" />
+        </p:commandButton>            
+    	<p:dialog header="Partida (as) do campeonato" widgetVar="rodadasDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="partidasRodada" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="part" value="#{rodadaMB.rodada.partidas}">
+ 					<p:column headerText="Número">
+	   					<p:outputLabel value="#{part.numero}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Data">
+	   					<p:outputLabel value="#{part.data}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Local">
+	   					<p:outputLabel value="#{part.local}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{rodadaMB.removerPartidaFutebol(part)}" update="formRodada"></p:commandLink> 	     	
+					</p:column>				
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+	    
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{rodadaMB.remover(rod)}" update="formRodada"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>
