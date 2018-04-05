@@ -37,6 +37,13 @@
      		<f:selectItems value="#{usuarioMB.usuarios}" />
      </h:selectOneMenu>
      
+      	
+	 <p:outputLabel  value="Inscrição"/>
+ 	 <h:selectOneMenu id="inscricao" converter ="ConverterInscricao" value="#{inscriroMB.auxInscricao}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a inscrição" noSelectionOption="true"/>
+     		<f:selectItems value="#{inscricaoMB.inscricoes}" />
+     </h:selectOneMenu>
+     
 
 	 
 	 

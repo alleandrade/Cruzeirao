@@ -1,0 +1,68 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formInscrito">
+<p:growl id="mensagem"/>
+	
+	<p:dataTable
+			var = "i"
+			value = "#{inscritoMB.inscritos}"
+			editable = "true" editMode = "cell">
+	
+	<f:facet name="header">
+            Dados Inscritos
+    </f:facet>
+	
+		
+	    <p:column headerText="Tipo" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{i.tipo}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{i.tipo}" style="width:96%"/></f:facet>           		
+	    </p:column>
+	    
+	    <p:column headerText="Usuário" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{i.usuario}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{i.usuario}" style="width:96%"/></f:facet>           		
+	    </p:column>
+	   
+	     <p:column headerText="Inscrição" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{i.inscricao}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{i.inscricao}" style="width:96%"/></f:facet>           		
+	    </p:column>
+	    
+	      <p:column headerText="Usuário Aceito" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{i.aceiteUsuario}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{i.aceiteUsuario}" style="width:96%"/></f:facet>           		
+	    </p:column>
+	    
+	     <p:column headerText="Jogo Suspenso" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{i.suspensoJogos}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{i.suspensoJogos}" style="width:96%"/></f:facet>           		
+	    </p:column>
+	    
+	     <p:column headerText="Inscrição Validada" style="text-align: center">
+			<f:facet name="output"><p:outputLabel value="#{i.inscricaoValidada}"/></f:facet>
+        	<f:facet name="input"><p:inputText    value="#{i.inscricaoValidada}" style="width:96%"/></f:facet>           		
+	    </p:column>
+
+
+		<p:column style = "text-align: center">
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscritoMB.remover(i)}" update="formInscrito"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>
