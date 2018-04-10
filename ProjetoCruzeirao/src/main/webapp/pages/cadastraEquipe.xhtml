@@ -15,7 +15,7 @@
 
 
 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 5px 0px" columns="6">
 	
 	<f:facet name="header">
             Equipe
@@ -35,28 +35,33 @@
 	 </p:panelGrid>
 
 	<!-- Diretor -->
- 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
-	 
+	
+	<p:column  headerText="Diretores" style="text-align: center" >
+	    <p:commandButton value="Diretor" icon ="ui-icon-plus" update=":formEquipe" oncomplete="PF('gruposDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas}" target="#{usuarioMB.diretores}" />
+        </p:commandButton>            
+    	<p:dialog header="Diretores" widgetVar="gruposDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="grupos" style=" width:300px" columnClasses="label,value" >
+            
+          <p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 5px 0px">
 	 <p:outputLabel  value="Diretor"/>
  	 <h:selectOneMenu id="diretor" converter ="ConverterUsuario"  value="#{equipeMB.auxDiretor}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o diretor" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{usuarioMB.diretores}" />
      </h:selectOneMenu>
+	</p:panelGrid>
 	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
 					 action="#{equipeMB.adicionarDiretor}"
 	                 update=":formEquipe"  
 	/>
 	
-	
-	</p:panelGrid>
 	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+	
  	
  	<p:dataTable
 			var = "dir"
@@ -91,7 +96,14 @@
 	
 	<!-- Jogadores -->
 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+	<p:column  headerText="Jogadores" style="text-align: center" >
+	    <p:commandButton value="Jogador" icon ="ui-icon-plus" update=":formEquipe" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas1}" target="#{usuarioMB.jogadores}" />
+        </p:commandButton>            
+    	<p:dialog header="Jogadores" widgetVar="jogadoresDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="jogadores" style=" width:300px" columnClasses="label,value" >
+            
+           	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 5px 0px">
 		  	
 	 
 	 
@@ -101,17 +113,16 @@
      		<f:selectItems value="#{usuarioMB.jogadores}" />
      </h:selectOneMenu>
 	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	</p:panelGrid>
+	<p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
 					 action="#{equipeMB.adicionarJogador}"
 	                 update=":formEquipe"  
 	/>
-	
-	
-	</p:panelGrid>
 	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
  	
  	<p:dataTable
 			var = "jog"
@@ -145,9 +156,14 @@
 	
 	<!--  Comissão -->	 
 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
+	<p:column  headerText="Comissão Técnica" style="text-align: center" >
+	    <p:commandButton value="Comissão Técnica" icon ="ui-icon-plus" update=":formEquipe" oncomplete="PF('comissaoTecnicaDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas2}" target="#{usuarioMB.comissaoTecnica}" />
+        </p:commandButton>            
+    	<p:dialog header="Comissão Técnica" widgetVar="comissaoTecnicaDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="comissaoTecnica" style=" width:300px" columnClasses="label,value" >
+        
+       <p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 5px 0px">
 	 
 	 <p:outputLabel  value="Comissão"/>
  	 <h:selectOneMenu id="comissao" converter ="ConverterUsuario"  value="#{equipeMB.auxComissao}"  style="width:205px">
@@ -155,17 +171,22 @@
      		<f:selectItems value="#{usuarioMB.comissaoTecnica}" />
      </h:selectOneMenu>
 	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	</p:panelGrid>
+	 	
+          
+          <p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
 					 action="#{equipeMB.adicionarMembroComissao}"
 	                 update=":formEquipe"  
 	/>
-	
-	
-	</p:panelGrid>
 	 	
+	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+ 	
+
+	
  	
  	<p:dataTable
 			var = "com"
@@ -199,8 +220,8 @@
 	</p:dataTable>	
 				 
 
-	<p:commandButton value="Cadastrar"
-					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+	<p:commandButton value="Cadastrar Equipe"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 5px 0px"
 					 action="#{equipeMB.salvar}"
 	                 update=":formEquipe"  
 	            
