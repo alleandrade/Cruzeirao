@@ -15,7 +15,7 @@
 
 
 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
 	
 	<f:facet name="header">
             Fase
@@ -23,16 +23,10 @@
 	 	 
 	
 		 
-	 <p:outputLabel for="numero" value="Número: "/>
+	 <p:outputLabel for="numero" value="Número:"/>
 	 <p:inputText id="numero" value = "#{faseMB.fase.numero}" required="true"/>
-
-	 <p:outputLabel value="Data inicial: "/>
-	 <p:calendar id="mask" value="#{faseMB.fase.dataInicio}" required = "true" pattern="dd/MM/yyyy" mask="true" />
 	 
-	 <p:outputLabel value="Data final: "/>
-	 <p:calendar id="mask2" value="#{faseMB.fase.dataFim}" required = "true" pattern="dd/MM/yyyy" mask="true" />
-	 
-	 <p:outputLabel value="Formato: "/>
+	 <p:outputLabel value="Formato:"/>
 	 <h:selectOneMenu value="#{faseMB.fase.formato}" style="width:205px" required="true">
 	 		<f:selectItem itemLabel= "Selecione o formato"  noSelectionOption="true"/>
             <f:selectItem itemLabel="Fases iniciais" itemValue="FASES_INICIAIS" />
@@ -42,40 +36,53 @@
             <f:selectItem itemLabel="Finais" itemValue="FINAL" />           
      </h:selectOneMenu>
      
-     <p:outputLabel for="categoria" value="Categoria: "/>
+     <p:outputLabel for="categoria" value="Categoria:"/>
 	 <h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{faseMB.fase.categoria}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="true"/>
      		<f:selectItems value="#{categoriaMB.categorias}" />
      </h:selectOneMenu>
+
+	 <p:outputLabel value="Data inicial:"/>
+	 <p:calendar id="mask" value="#{faseMB.fase.dataInicio}" required = "true" pattern="dd/MM/yyyy" mask="true" />
 	 
+	 <p:outputLabel value="Data final:"/>
+	 <p:calendar id="mask2" value="#{faseMB.fase.dataFim}" required = "true" pattern="dd/MM/yyyy" mask="true" />
 	</p:panelGrid>
  	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
-	 
-	 <p:outputLabel  value="Grupo"/>
+ 	<!-- Adicionar Grupo -->
+ 	
+ 	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+	<p:column  headerText="Grupo" style="text-align: center" >
+	    <p:commandButton value="Grupo" icon ="ui-icon-plus" update=":formFase" oncomplete="PF('grupo1Dialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas10}" target="#{grupoMB.grupos}" />
+        </p:commandButton>            
+    	<p:dialog header="Grupo" widgetVar="grupo1Dialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="grupo1" style=" width:300px" columnClasses="label,value" >
+            
+          <p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 5px 0px">
+	<p:outputLabel  value="Grupo"/>
  	 <h:selectOneMenu id="grupo" converter ="ConverterGrupo"  value="#{faseMB.auxGrupo}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o grupo" noSelectionOption="true"/>
      		<f:selectItems value="#{grupoMB.grupos}" />
      </h:selectOneMenu>
+	</p:panelGrid>
 	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
 					 action="#{faseMB.adicionarGrupo}"
 	                 update=":formFase"  
 	/>
 	
-	
-	</p:panelGrid>
 	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+	
  	
  	<p:dataTable
 			var = "gru"
 			value = "#{faseMB.fase.grupos}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
 	<f:facet name="header">
@@ -102,23 +109,16 @@
 			
 	</p:dataTable>
 	
-				 
+	</p:panel>
+	 
 
 	<p:commandButton value="Cadastrar"
 					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
 					 action="#{faseMB.salvar}"
 	                 update=":formFase"  
-	            
-	/>
-	
-	
-
-
+	 />
 
 </h:form>
-
-
-
 
 	</ui:define>
 </ui:composition>

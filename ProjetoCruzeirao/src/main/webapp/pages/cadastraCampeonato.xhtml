@@ -13,7 +13,7 @@
 
 
 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	<f:facet name="header">
             Campeonato
@@ -42,8 +42,11 @@
 	 <p:calendar id="mask3" value="#{campeonatoMB.campeonato.dataFimCampeonato}" required = "true" pattern="dd/MM/yyyy" mask="true" />
 	 	 
 	 </p:panelGrid>
-	 
+	
+	
+	
 	 <!-- Locais -->
+ 	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
  	
 	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
 	 
@@ -53,18 +56,12 @@
      		<f:selectItems value="#{localMB.locais}" />
      </h:selectOneMenu>
 	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
 					 action="#{campeonatoMB.adicionarLocal}"
 	                 update=":formCampeonato"  
 	/>
-	
-	
 	</p:panelGrid>
-	 	
- 	
+	
  	<p:dataTable
 			var = "loc"
 			value = "#{campeonatoMB.campeonato.locais}"
@@ -95,30 +92,33 @@
 			
 			
 	</p:dataTable>
+	</p:panel>
 	
-	<!-- Juízes -->
- 	
+	
+	
+	<!-- Juizes -->
+	
+	
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+	
 	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
 	 
-	 <p:outputLabel  value="Juiz"/>
+	<p:outputLabel  value="Juiz"/>
  	 <h:selectOneMenu id="juiz" converter ="ConverterJuiz"  value="#{campeonatoMB.auxJuiz}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o juiz" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{juizMB.juizes}" />
      </h:selectOneMenu>
 	
-
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
 					 action="#{campeonatoMB.adicionarJuiz}"
 	                 update=":formCampeonato"  
 	/>
 	
-	
 	</p:panelGrid>
-	 	
- 	
- 	<p:dataTable
+	
+	
+	 	<p:dataTable
 			var = "juiz"
 			value = "#{campeonatoMB.campeonato.juizes}"
 			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
@@ -146,13 +146,13 @@
 		</p:column>
  
 			
-			
 	</p:dataTable>
+	</p:panel>
 	
 	<!-- Categorias -->
- 	
+ 	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+	
 	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
-	 
 	 <p:outputLabel  value="Categoria"/>
  	 <h:selectOneMenu id="cat" converter ="ConverterCategoria"  value="#{campeonatoMB.auxCategoria}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a categoria" itemValue="" noSelectionOption="true"/>
@@ -161,16 +161,13 @@
 	
 
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
 					 action="#{campeonatoMB.adicionarCategoria}"
 	                 update=":formCampeonato"  
 	/>
 	
-	
-	</p:panelGrid>
 	 	
- 	
+ 	</p:panelGrid>
  	<p:dataTable
 			var = "cat"
 			value = "#{campeonatoMB.campeonato.categorias}"
@@ -201,13 +198,19 @@
 			
 			
 	</p:dataTable>
-
-	<p:commandButton value="Cadastrar"
+	
+	
+	</p:panel>
+	
+	
+	<p:commandButton value="Cadastrar Campeonato"
 					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
 					 action="#{campeonatoMB.salvar}"
 	                 update=":formCampeonato"  
 	            
 	/>
+
+
 	
 	
 

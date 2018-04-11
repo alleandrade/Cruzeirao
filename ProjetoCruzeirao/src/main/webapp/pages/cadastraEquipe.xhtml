@@ -15,7 +15,7 @@
 
 
 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 5px 0px" columns="6">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	<f:facet name="header">
             Equipe
@@ -34,8 +34,10 @@
 	 
 	 </p:panelGrid>
 
-	<!-- Diretor -->
+
 	
+	<!-- Diretor -->
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	<p:column  headerText="Diretores" style="text-align: center" >
 	    <p:commandButton value="Diretor" icon ="ui-icon-plus" update=":formEquipe" oncomplete="PF('gruposDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas}" target="#{usuarioMB.diretores}" />
@@ -66,7 +68,7 @@
  	<p:dataTable
 			var = "dir"
 			value = "#{equipeMB.equipe.diretores}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 		
 	>
 	
@@ -94,8 +96,13 @@
 			
 	</p:dataTable>
 	
-	<!-- Jogadores -->
+	</p:panel>
 	
+	
+	
+	
+	<!-- Jogadores -->
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	<p:column  headerText="Jogadores" style="text-align: center" >
 	    <p:commandButton value="Jogador" icon ="ui-icon-plus" update=":formEquipe" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas1}" target="#{usuarioMB.jogadores}" />
@@ -127,7 +134,7 @@
  	<p:dataTable
 			var = "jog"
 			value = "#{equipeMB.equipe.jogadores}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
 	<f:facet name="header">
@@ -150,12 +157,13 @@
 	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
 		</p:column>
  
-			
-			
 	</p:dataTable>	
+	</p:panel>
+	
+	
 	
 	<!--  Comissão -->	 
-	
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	<p:column  headerText="Comissão Técnica" style="text-align: center" >
 	    <p:commandButton value="Comissão Técnica" icon ="ui-icon-plus" update=":formEquipe" oncomplete="PF('comissaoTecnicaDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas2}" target="#{usuarioMB.comissaoTecnica}" />
@@ -192,7 +200,7 @@
 			var = "com"
 			value = "#{equipeMB.equipe.comissaoTecnica}"
 			emptyMessage="Nenhum registro foi encontrado. Caso deseje cadastrar algum funcionário à comissão equipe, adicione um funcionário à equipe."
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
 	<f:facet name="header">
@@ -218,6 +226,7 @@
 			
 			
 	</p:dataTable>	
+	</p:panel>
 				 
 
 	<p:commandButton value="Cadastrar Equipe"
