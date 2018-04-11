@@ -14,14 +14,12 @@
 <p:growl id="mensagem"/>
 
 
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+	 <f:facet name="header">
+           Cadastra Local
+    </f:facet>
 
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
-	
-	<f:facet name="header">
-            Local
-    </f:facet>
-	 	 
-	 	 
 	
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{localMB.local.nome}" required="true"/>
@@ -39,9 +37,7 @@
 	            
 	/>
 	
-	
-
-
+	</p:panel>
 
 </h:form>
 

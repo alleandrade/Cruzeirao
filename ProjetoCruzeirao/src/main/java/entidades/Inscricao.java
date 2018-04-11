@@ -8,8 +8,8 @@ import java.util.*;
 //Atributos
 public class Inscricao implements Serializable{
 	private long numero;
-	private boolean pagamento,
-					validada;
+	private boolean pagamento;
+	private boolean validada;
 	private ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
 	private ArrayList<Partida> partidas = new ArrayList<Partida>();
 	private Categoria categoria;

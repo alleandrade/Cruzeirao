@@ -6,11 +6,13 @@
 	xmlns:p="http://primefaces.org/ui"
 	lang="#{localeBean.language}"
 	style="background-color: #F5F5F5"
+	
 	>
+	
 
 <f:view locale="#{localeBean.locale}">
 	<h:head>
-
+	
 		<style> .ui-datagrid-no-border .ui-datagrid-content { border: none; } </style>
 
 		<title>
@@ -27,7 +29,7 @@
 		<p:layout id="globalLayout" fullPage="true">
 
 
-			<p:layoutUnit position="north" size="160" >
+			<p:layoutUnit position="north" size="180">
 				<ui:include src="comuns/cabecalho.xhtml" />
 			</p:layoutUnit>
 
@@ -36,7 +38,6 @@
 				<ui:include src="comuns/rodape.xhtml" />
 			</p:layoutUnit>
 
-
 			<!-- Menu lateral -->
 			<p:layoutUnit position="west"
 				header="Menu"
@@ -44,9 +45,10 @@
 				<ui:include src="comuns/acessaMenu.xhtml" />
 			</p:layoutUnit>
 
+			
 
-			<p:layoutUnit position="center">
-				<ui:insert name="principal" />
+			<p:layoutUnit position="center" >
+				<ui:insert name="principal"  />
 			</p:layoutUnit>
 		</p:layout>
 

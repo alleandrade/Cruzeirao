@@ -13,13 +13,13 @@
 <h:form id="formPartida">
 <p:growl id="mensagem"/>
 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="3">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	<f:facet name="header">
             Partida
     </f:facet>
 	
-	 <p:outputLabel  value="Partida"/>
+	 <p:outputLabel  value="Partida:"/>
  	 <h:selectOneMenu id="partida" converter ="ConverterUsuario"  value="#{partidaFutebolMB.partidasfutebol}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a partida" itemValue="" noSelectionOption="false"/>
      		<f:selectItems value="#{partidaFutebolMB.partidasFutebol}" />
@@ -27,47 +27,63 @@
      
      <p:commandButton value="Atualizar"
 					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{partidaFutebolMB.atualizar}"
+					 action="#{partidaFutebolMB.atualizar()}"
 	                 update=":formPartida"  
 	/>
 	
 	 </p:panelGrid>
 	 
-	 <!-- Adicionar Gols Mandantes -->
+	 <!-- Adicionar Gol Mandante -->
 	 
-	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
+	 <p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	 <p:outputLabel  value="Inscrito"/>
+	<p:column  headerText="Gol Mandante" style="text-align: center" >
+	    <p:commandButton value="Gol Mandante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('golmandanteDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas5}" target="#{partidaFutebolMB.gol}" />
+        </p:commandButton>            
+    	<p:dialog header="Gol Mandante" widgetVar="golmandanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="golmandante" style=" width:400px" columnClasses="label,value" >
+ 
+        <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+	 
+	 <p:outputLabel  value="Jogador:"/>
  	 <h:selectOneMenu id="inscritto" converter ="ConverterInscrito"  value="#{partidaFutebolMB.gol.inscrito}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{partidaFutebolMB.jogadoresMandantes}" />
      </h:selectOneMenu>
 	
-	<p:outputLabel for="tempo" value="Tempo: "/>
+	<p:outputLabel for="tempo" value="Tempo:"/>
 	<p:inputText id="tempo" value = "#{partidaFutebolMB.gol.tempo}" required="true"/>
 	
-	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-        <h:outputText value="Penaltis " />
+	<h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+        <h:outputText value="Pênalti" />
         <p:selectBooleanButton id="value3" value="#{partidaFutebolMB.gol.penalti}" onLabel="Yes" offLabel="No" style="width:60px" />
     </h:panelGrid>
+    
+    </p:panelGrid>
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{partidaFutebolMB.addGol}"
-	                 update="formPartida"  
+	
+	<p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addGol()}"
+	                 update=":formPartida"  
 	/>
 	
-	</p:panelGrid>
-	
+	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+        
+        
+        
 	<p:dataTable
 			var = "gols"
 			value = "#{partidaFutebolMB.partidafutebolaux.golsMandantes}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
 	<f:facet name="header">
-            Gol(s) Mandantes
+            Gol(s) Mandante
     </f:facet>
 				    
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{gols.inscrito.usuario}">
@@ -78,7 +94,7 @@
                   <p:outputLabel value="#{gols.tempo}"/>
 	    </p:column>
 	    
-	    <p:column headerText="Penalty" style="text-align: center" sortBy="#{gols.penalty}">
+	    <p:column headerText="Pênalti" style="text-align: center" sortBy="#{gols.penalty}">
                   <p:outputLabel value="#{gols.penalty}"/>
 	    </p:column>
 	    
@@ -88,42 +104,60 @@
 		</p:column>-->
  		
 	</p:dataTable>
+	
+	</p:panel>
+	
 
-	<!-- Adicionar Gols Visitantes -->
+	<!-- Adicionar Gols Visitante -->
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
+	<p:column  headerText="Gol Visitante" style="text-align: center" >
+	    <p:commandButton value="Gol Visitante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('golvisitanteDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas6}" target="#{partidaFutebolMB.gol}" />
+        </p:commandButton>            
+    	<p:dialog header="Gol Visitante" widgetVar="golvisitanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="golvisitante" style=" width:400px" columnClasses="label,value" >
+ 
+        <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
 	 
-	 <p:outputLabel  value="Inscrito"/>
+	 <p:outputLabel  value="Jogador:"/>
  	 <h:selectOneMenu id="inscrito" converter ="ConverterInscrito"  value="#{partidaFutebolMB.gol.inscrito}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{partidaFutebolMB.jogadoresVisitantes}" />
      </h:selectOneMenu>
 	
-	<p:outputLabel for="tempo2" value="Tempo: "/>
+	<p:outputLabel for="tempo2" value="Tempo:"/>
 	<p:inputText id="tempo2" value = "#{partidaFutebolMB.gol.tempo}" required="true"/>
 	
-	<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-        <h:outputText value="Penaltis " />
+	<h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+        <h:outputText value="Pênalti" />
         <p:selectBooleanButton id="value4" value="#{partidaFutebolMB.gol.penalti}" onLabel="Yes" offLabel="No" style="width:60px" />
     </h:panelGrid>
+    
+    </p:panelGrid>
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{partidaFutebolMB.addGol}"
-	                 update="formPartida"  
+	
+	<p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addGol()}"
+	                 update=":formPartida"  
 	/>
 	
-	</p:panelGrid>
-	
+	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+        
+        
+        
 	<p:dataTable
 			var = "goll"
 			value = "#{partidaFutebolMB.partidafutebolaux.golsVisitantes}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
 	<f:facet name="header">
-            Gol(s) Visitantes
+            Gol(s) Visitante
     </f:facet>
 			 
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{goll.inscrito.usuario}">
@@ -134,7 +168,7 @@
                   <p:outputLabel value="#{goll.tempo}"/>
 	    </p:column>
 	    
-	    <p:column headerText="Penalty" style="text-align: center" sortBy="#{goll.penalty}">
+	    <p:column headerText="Pênalti" style="text-align: center" sortBy="#{goll.penalty}">
                   <p:outputLabel value="#{goll.penalty}"/>
 	    </p:column>
 	    
@@ -144,44 +178,60 @@
 		</p:column>-->
  	
 	</p:dataTable>
-
+	</p:panel>
+	
+	 
 	
 	<!-- Adicionar Cartoes Mandantes -->
+	
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
+	<p:column  headerText="Cartão Mandante" style="text-align: center" >
+	    <p:commandButton value="Cartão Mandante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('cartaomandanteDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas7}" target="#{partidaFutebolMB.cartao}" />
+        </p:commandButton>            
+    	<p:dialog header="Cartão Mandante" widgetVar="cartaomandanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="cartaomandante" style=" width:400px" columnClasses="label,value" >
+ 
+        <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
 	 
-	 <p:outputLabel  value="Cartao"/>
+	 <p:outputLabel  value="Jogador:"/>
  	 <h:selectOneMenu id="cartao" converter ="ConverterInscrito"  value="#{partidaFutebolMB.cartao.inscrito}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{partidaFutebolMB.jogadoresMandantes}" />
      </h:selectOneMenu>
 	
-	<p:outputLabel value="Tipo: "/>
+	<p:outputLabel value="Tipo:"/>
 	 <h:selectOneMenu value="#{partidaFutebolMB.cartao.tipo}" style="width:205px">
             <f:selectItem itemLabel="Amarelo" itemValue="AMARELO" />
             <f:selectItem itemLabel="Vermelho" itemValue="VERMELHO" />
      </h:selectOneMenu>
 	
-	<p:outputLabel for="tempo3" value="Tempo: "/>
+	<p:outputLabel for="tempo3" value="Tempo:"/>
 	<p:inputText id="tempo3" value = "#{partidaFutebolMB.cartao.tempo}" required="true"/>
+    
+    </p:panelGrid>
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{partidaFutebolMB.addCartao}"
-	                 update="formPartida"  
+	
+	<p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addCartao()}"
+	                 update=":formPartida"  
 	/>
 	
-	</p:panelGrid>
-	
+	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+        
 	<p:dataTable
 			var = "cartoes"
 			value = "#{partidaFutebolMB.partidafutebolaux.cartoesMandantes}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
 	<f:facet name="header">
-            Cartao(oes) Mandantes
+            Cartao(oes) Mandante
     </f:facet>
 			 
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{cartoes.inscrito.usuario}">
@@ -203,42 +253,60 @@
  	
 	</p:dataTable>
 	
+	</p:panel>
+	
+	
+	
 	<!-- Adicionar Cartoes Visitantes -->
+	
+		<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	 <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
+	<p:column  headerText="Cartão Visitante" style="text-align: center" >
+	    <p:commandButton value="Cartão Visitante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('cartaovisitanteDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{fas8}" target="#{partidaFutebolMB.cartao}" />
+        </p:commandButton>            
+    	<p:dialog header="Cartão Visitante" widgetVar="cartaovisitanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="cartaovisitante" style=" width:400px" columnClasses="label,value" >
+ 
+        <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
 	 
-	 <p:outputLabel  value="Cartao"/>
+	 <p:outputLabel  value="Jogador:"/>
  	 <h:selectOneMenu id="cartao2" converter ="ConverterInscrito"  value="#{partidaFutebolMB.cartao.inscrito}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{partidaFutebolMB.jogadoresMandantes}" />
      </h:selectOneMenu>
 	
-	<p:outputLabel value="Tipo: "/>
+	<p:outputLabel value="Tipo:"/>
 	 <h:selectOneMenu value="#{partidaFutebolMB.cartao.tipo}" style="width:205px">
             <f:selectItem itemLabel="Amarelo" itemValue="AMARELO" />
             <f:selectItem itemLabel="Vermelho" itemValue="VERMELHO" />
      </h:selectOneMenu>
 	
-	<p:outputLabel for="tempo4" value="Tempo: "/>
+	<p:outputLabel for="tempo4" value="Tempo:"/>
 	<p:inputText id="tempo4" value = "#{partidaFutebolMB.cartao.tempo}" required="true"/>
+    
+    </p:panelGrid>
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{partidaFutebolMB.addCartao}"
-	                 update="formPartida"  
+	
+	<p:commandButton icon ="ui-icon-check"
+					 style = "margin: 4px 5px; padding: 2px 2px; font-size: 16px"
+					 action="#{partidaFutebolMB.addCartao()}"
+	                 update=":formPartida"  
 	/>
 	
-	</p:panelGrid>
-
+	 	
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+        
 	<p:dataTable
 			var = "cartao"
 			value = "#{partidaFutebolMB.partidafutebolaux.cartoesVisitantes}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
+			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
 	<f:facet name="header">
-            Cartao(oes) Visitantes
+            Cartao(oes) Visitante
     </f:facet>
 			 
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{cartao.inscrito.usuario}">
@@ -259,7 +327,11 @@
 		</p:column>-->
  	
 	</p:dataTable>
+	
+	</p:panel>
+
 
 </h:form>
 </ui:define>
 </ui:composition>
+
