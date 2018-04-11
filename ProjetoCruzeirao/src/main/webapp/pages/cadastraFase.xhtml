@@ -43,66 +43,14 @@
      </h:selectOneMenu>
      
      <p:outputLabel for="categoria" value="Categoria: "/>
-	 <h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{faseMB.fase.categoria}"  style="width:205px">
+	 <h:selectOneMenu id="categoria" converter ="ConverterCategoria" required="true" value="#{faseMB.fase.categoria}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="true"/>
      		<f:selectItems value="#{categoriaMB.categorias}" />
      </h:selectOneMenu>
 	 
 	</p:panelGrid>
- 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
-	 
-	 <p:outputLabel  value="Grupo"/>
- 	 <h:selectOneMenu id="grupo" converter ="ConverterGrupo"  value="#{faseMB.auxGrupo}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione o grupo" noSelectionOption="true"/>
-     		<f:selectItems value="#{grupoMB.grupos}" />
-     </h:selectOneMenu>
-	
 
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{faseMB.adicionarGrupo}"
-	                 update=":formFase"  
-	/>
-	
-	
-	</p:panelGrid>
-	 	
- 	
- 	<p:dataTable
-			var = "gru"
-			value = "#{faseMB.fase.grupos}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Grupo (os) da fase
-    </f:facet>
-			
-	    
-	     <p:column headerText="Nome" style="text-align: center" sortBy="#{gru.nome}">
-                  <p:outputLabel value="#{gru.nome}"/>  
-	    </p:column>
-	    
-			
-		
-		<p:column headerText="Número" style="text-align: center" sortBy="#{gru.numero}">
-                  <p:outputLabel value="#{gru.numero}"/>
-	    </p:column>
-	    
-	    
-	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{faseMB.removerGrupo(gru)}" update=":formFase"></p:commandLink>	     	
-		</p:column>
- 
-			
-			
-	</p:dataTable>
-	
-				 
+		  			 
 
 	<p:commandButton value="Cadastrar"
 					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"

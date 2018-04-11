@@ -19,6 +19,7 @@ public class FaseMB {
 	
 	public void salvar() {
 		faseservice.salvar(fase);
+		fase.getCategoria().getFases().add(fase);
 		fase = new Fase();
 	}
 	

@@ -18,6 +18,7 @@ public class RodadaMB {
 	
 	public void salvar() {
 		rodadaservice.salvar(rodada);
+		rodada.getGrupo().getRodadas().add(rodada);
 		rodada = new Rodada();
 	}
 	

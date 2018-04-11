@@ -36,13 +36,13 @@
 
    
      <p:outputLabel for="categoria" value="Categoria: "/>
-     <h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{inscricaoMB.inscricao.categoria}"  style="width:205px">
+     <h:selectOneMenu id="categoria" converter ="ConverterCategoria" required="true" value="#{inscricaoMB.inscricao.categoria}"  style="width:205px">
        <f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="false"/>
        <f:selectItems value="#{categoriaMB.categorias}" />
      </h:selectOneMenu>
      
      <p:outputLabel for="equipe" value="Equipe: "/>
-     <h:selectOneMenu id="equipe" converter ="ConverterEquipe"  value="#{inscricaoMB.inscricao.equipe}"  style="width:205px">
+     <h:selectOneMenu id="equipe" converter ="ConverterEquipe"  required="true" value="#{inscricaoMB.inscricao.equipe}"  style="width:205px">
        <f:selectItem itemLabel= "Selecione a equipe" noSelectionOption="false"/>
        <f:selectItems value="#{equipeMB.equipes}" />
      </h:selectOneMenu>
@@ -95,62 +95,6 @@
 	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.removerInscrito(insc)}" update="formInscricao"></p:commandLink> 	     	
 	   </p:column>			
 	    
-			
-	</p:dataTable>
-	
-	
-	<!-- Partidas  -->
-		
-	 <p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
-	 
-	 <p:outputLabel  value="Partida"/>
- 	 <h:selectOneMenu id="partida" converter ="ConverterPartidaFutebol"  value="#{inscricaoMB.auxPartidaFutebol}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione a partida" noSelectionOption="false"/>
-     		<f:selectItems value="#{partidaFutebolMB.partidasFutebol}" />
-     </h:selectOneMenu>
-	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{inscricaoMB.adicionarPartidaFutebol}"
-	                 update=":formInscricao"  
-	/>
-	
-	
-	</p:panelGrid>
-	
-	
-	<p:dataTable
-			var = "part"
-			value = "#{inscricaoMB.inscricao.partidas}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Partida (as) da rodada
-    </f:facet>
-			
-	    
-	   <p:column headerText="Número" sortBy="#{part.numero}">
-	   			<p:outputLabel value="#{part.numero}"/>
-	   </p:column>	
-	   	    		
-	   <p:column headerText="Data" sortBy="#{part.data}">
-	   			<p:outputLabel value="#{part.data}"/>
-	   </p:column>
-	   	    		
-	   <p:column headerText="Local">
-	   			<p:outputLabel value="#{part.local}"/>
-	   </p:column>
-					
-		<p:column style = "text-align: center">
-	    		<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.removerPartidaFutebol(part)}" update="formInscricao"></p:commandLink> 	     	
-		</p:column>	
-
-			
 			
 	</p:dataTable>
 

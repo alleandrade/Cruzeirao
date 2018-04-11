@@ -39,7 +39,7 @@
 	 </p:inputText>	
 	 
 	 <p:outputLabel for="campeonato" value="Campeonato: "/>
-	 <h:selectOneMenu id="campeonato" converter ="ConverterCampeonato"  value="#{categoriaMB.categoria.campeonato}"  style="width:205px">
+	 <h:selectOneMenu id="campeonato" converter ="ConverterCampeonato"  required="true" value="#{categoriaMB.categoria.campeonato}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="true"/>
      		<f:selectItems value="#{campeonatoMB.campeonatos}" />
      </h:selectOneMenu>	 
@@ -56,117 +56,7 @@
 	 	<p:message for="maximo" style = "margin: 4px 0px; padding: 0px 0px"/>
 	 </p:inputText>
 	 
-	 </p:panelGrid>
-	 
-	  <!-- Inscrições -->
-	 
-	 <p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">  	
-	 <p:outputLabel  value="Inscrição"/>
- 	 <h:selectOneMenu id="inscricao" converter ="ConverterInscricao" value="#{categoriaMB.auxInscricao}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione a inscrição" noSelectionOption="true"/>
-     		<f:selectItems value="#{inscricaoMB.inscricoes}" />
-     </h:selectOneMenu>
-	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{categoriaMB.adicionarInscricao}"
-	                 update=":formCategoria"  
-	/>
-	
-	
-	</p:panelGrid>
-	 	
- 	
- 	
- 	<p:dataTable
-			var = "ins"
-			value = "#{categoriaMB.categoria.inscricoes}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Inscrição (ões) da categoria
-    </f:facet>
-			
-	    
-	     <p:column headerText="Número" style="text-align: center" sortBy="#{ins.numero}">
-                  <p:outputLabel value="#{ins.numero}"/>  
-	    </p:column>
-	    
-			
-		
-		<p:column headerText="Equipe" style="text-align: center">
-                  <p:outputLabel value="#{ins.equipe}"/>
-	    </p:column>
-	    
-	    
-	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{categoriaMB.removerInscricao(ins)}" update=":formCategoria"></p:commandLink>	     	
-		</p:column>
- 
-			
-			
-	</p:dataTable>
-	
-		 <!--  Fases -->
-		 
-	 <p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">  	
-	 <p:outputLabel  value="Fases"/>
- 	 <h:selectOneMenu id="fase" converter ="ConverterFase" value="#{categoriaMB.auxFase}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione a fase" noSelectionOption="true"/>
-     		<f:selectItems value="#{faseMB.fases}" />
-     </h:selectOneMenu>
-	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{categoriaMB.adicionarFase}"
-	                 update=":formCategoria"  
-	/>
-	
-	
-	</p:panelGrid>
-	 	
- 	
- 	
- 	<p:dataTable
-			var = "fas"
-			value = "#{categoriaMB.categoria.fases}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Fase (es) da categoria
-    </f:facet>
-			
-	    
-	     <p:column headerText="Número" style="text-align: center" sortBy="#{fas.numero}">
-                  <p:outputLabel value="#{fas.numero}"/>  
-	     </p:column>			
-		
-		 <p:column headerText="Data inicial" style="text-align: center" sortBy="#{fas.dataInicio}">		           
-						<p:outputLabel value="#{fas.dataInicio}">                
-                 			<f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
-                  		</p:outputLabel>  
-	    			</p:column>
-	    
-					<p:column headerText="Data final" style="text-align: center" sortBy="#{fas.dataFim}">		           
-                  		<p:outputLabel value="#{fas.dataFim}">                
-                 			<f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
-                  		</p:outputLabel>
-	    			</p:column>
-	    
-	    
-	     <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{categoriaMB.removerFase(fas)}" update=":formCategoria"></p:commandLink>	     	
-		 </p:column>
- 
-			
-			
-	</p:dataTable>
+	 </p:panelGrid>	 
 	
 	 
 	<p:commandButton value="Cadastrar"

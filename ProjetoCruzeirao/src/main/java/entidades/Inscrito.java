@@ -49,16 +49,14 @@ public class Inscrito implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public TipoUsuario getTipo() {
 		return tipo;
 	}
 
-
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
-
 
 	public Inscricao getInscricao() {
 		return inscricao;

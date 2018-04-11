@@ -68,7 +68,7 @@
             
             <p:dataTable var="juiz" value="#{campeonatoMB.campeonato.juizes}">
  					<p:column headerText="Tipo">
-	   					<p:outputLabel value="#{juiz.tipo}"/>
+	   					<p:outputLabel value="#{juiz.tipo.juiz}"/>
 	   	    		</p:column>
 	   	    		
 	   	    		<p:column headerText="Nome">
@@ -116,7 +116,7 @@
 	   	    		</p:column>
 	   	    		
 	   	    		<p:column headerText="Sexo">
-	   					<p:outputLabel value="#{categoria.sexo}"/>
+	   					<p:outputLabel value="#{categoria.sexo.sexo}"/>
 	   	    		</p:column>	
 	   	    		
 	   	    		<p:column style = "text-align: center">

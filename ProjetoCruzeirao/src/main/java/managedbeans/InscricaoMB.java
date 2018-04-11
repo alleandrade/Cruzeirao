@@ -19,6 +19,7 @@ public class InscricaoMB {
 	
 	public void salvar() {
 		inscricaoservice.salvar(inscricao);
+		inscricao.getCategoria().getInscricoes().add(inscricao);
 		inscricao = new Inscricao();
 	}
 	

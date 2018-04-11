@@ -98,7 +98,7 @@
 	    <p:commandButton icon ="ui-icon-search" update=":formCategoria" oncomplete="PF('fasesDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{cat}" target="#{categoriaMB.categoria}" />
         </p:commandButton>            
-    	<p:dialog header="Fase (es) da categoria" widgetVar="fasesDialog" modal="true" showEffect="fade" closeOnEscape="true" closable="true"   hideEffect="fade" resizable="false">
+    	<p:dialog header="Fase (es) da categoria" widgetVar="fasesDialog" showEffect="fade" closeOnEscape="true" closable="true"   hideEffect="fade" resizable="false">
         <p:outputPanel id="fases" style=" width:600px" columnClasses="label,value" >
             
             <p:dataTable var="fase" value="#{categoriaMB.categoria.fases}">	   	    		

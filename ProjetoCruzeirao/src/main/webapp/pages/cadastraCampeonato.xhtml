@@ -48,7 +48,7 @@
 	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
 	 
 	 <p:outputLabel  value="Local"/>
- 	 <h:selectOneMenu id="local" converter ="ConverterLocal"  value="#{campeonatoMB.auxLocal}"  style="width:205px">
+ 	 <h:selectOneMenu id="local" converter ="ConverterLocal"  value="#{campeonatoMB.auxLocal}" required="true" style="width:205px">
      		<f:selectItem itemLabel= "Selecione o local" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{localMB.locais}" />
      </h:selectOneMenu>
@@ -101,7 +101,7 @@
 	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
 	 
 	 <p:outputLabel  value="Juiz"/>
- 	 <h:selectOneMenu id="juiz" converter ="ConverterJuiz"  value="#{campeonatoMB.auxJuiz}"  style="width:205px">
+ 	 <h:selectOneMenu id="juiz" converter ="ConverterJuiz"  value="#{campeonatoMB.auxJuiz}" required="true" style="width:205px">
      		<f:selectItem itemLabel= "Selecione o juiz" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{juizMB.juizes}" />
      </h:selectOneMenu>
@@ -143,59 +143,6 @@
 	    
 	    <p:column style = "text-align: center">
 	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerJuiz(juiz)}" update=":formCampeonato"></p:commandLink>	     	
-		</p:column>
- 
-			
-			
-	</p:dataTable>
-	
-	<!-- Categorias -->
- 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
-	 
-	 <p:outputLabel  value="Categoria"/>
- 	 <h:selectOneMenu id="cat" converter ="ConverterCategoria"  value="#{campeonatoMB.auxCategoria}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione a categoria" itemValue="" noSelectionOption="true"/>
-     		<f:selectItems value="#{categoriaMB.categorias}" />
-     </h:selectOneMenu>
-	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{campeonatoMB.adicionarCategoria}"
-	                 update=":formCampeonato"  
-	/>
-	
-	
-	</p:panelGrid>
-	 	
- 	
- 	<p:dataTable
-			var = "cat"
-			value = "#{campeonatoMB.campeonato.categorias}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-		
-	>
-	
-	<f:facet name="header">
-            Categoria (as) do campeonato
-    </f:facet>
-			
-	    
-	     <p:column headerText="Nome" style="text-align: center" sortBy="#{cat.nome}">
-                  <p:outputLabel value="#{cat.nome}"/>  
-	    </p:column>
-	    
-			
-		
-		<p:column headerText="Nascidos a partir de" style="text-align: center" sortBy="#{cat.nascidosAPartirDe}">
-                  <p:outputLabel value="#{cat.nascidosAPartirDe}"/>
-	    </p:column>
-	    
-	    
-	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerCategoria(cat)}" update=":formCampeonato"></p:commandLink>	     	
 		</p:column>
  
 			

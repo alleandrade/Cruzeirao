@@ -50,6 +50,9 @@ public class CampeonatoMB {
 	
 	public void remover(Campeonato campeonato) {
 		campeonatoservice.remover(campeonato);
+		for (Categoria aux : campeonato.getCategorias()) {
+			aux.setCampeonato(null);
+		}
 	}	
 
 	public Local getAuxLocal() {

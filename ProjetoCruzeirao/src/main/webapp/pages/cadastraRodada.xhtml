@@ -28,7 +28,7 @@
 		 
      
      <p:outputLabel for="grupo" value="Grupo: "/>
-	 <h:selectOneMenu id="grupo" converter ="ConverterGrupo"  value="#{rodadaMB.rodada.grupo}"  style="width:205px">
+	 <h:selectOneMenu id="grupo" converter ="ConverterGrupo"  required="true" value="#{rodadaMB.rodada.grupo}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o grupo" noSelectionOption="false"/>
      		<f:selectItems value="#{grupoMB.grupos}" />
      </h:selectOneMenu>
@@ -36,64 +36,7 @@
 	 
 	</p:panelGrid>
  	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
 		  	
-	 
-	 
-	 <p:outputLabel  value="Partida"/>
- 	 <h:selectOneMenu id="partida" converter ="ConverterPartidaFutebol"  value="#{rodadaMB.auxPartidaFutebol}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione a partida" noSelectionOption="false"/>
-     		<f:selectItems value="#{partidaFutebolMB.partidasFutebol}" />
-     </h:selectOneMenu>
-	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{rodadaMB.adicionarPartidaFutebol}"
-	                 update=":formRodada"  
-	/>
-	
-	
-	</p:panelGrid>
-	 	
-
- 	<p:dataTable
-			var = "part"
-			value = "#{rodadaMB.rodada.partidas}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Partida (as) da rodada
-    </f:facet>
-			
-	    
-	    <p:column headerText="Numero" style="text-align: center" sortBy="#{part.numero}">
-                  <p:outputLabel value="#{part.numero}"/>  
-	    </p:column>
-	    
-	    
-	    <p:column headerText="Data" style="text-align: center" sortBy="#{part.data}">
-                  <p:outputLabel value="#{part.data}"/>  
-	    </p:column>
-	    
-	     <p:column headerText="Local" style="text-align: center" sortBy="#{part.local}">
-                  <p:outputLabel value="#{part.local}"/>  
-	    </p:column>
-	    
-	    
-	    
-	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{rodadaMB.removerPartidaFutebol(part)}" update=":formRodada"></p:commandLink>	     	
-		</p:column>
- 
-			
-			
-	</p:dataTable>
-	
-
-				 
 
 	<p:commandButton value="Cadastrar"
 					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"

@@ -138,7 +138,39 @@
                   		<f:facet name="input"><p:inputText    value="#{usu.telefoneMovel}" style="width:96%"/></f:facet>
            		</p:cellEditor>	   
            		
-	    </p:column>	    
+	    </p:column>
+	    
+	    <p:column  headerText="Inscritos" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('inscritosDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
+        </p:commandButton>            
+    	<p:dialog header="Inscrição (ões) do usuário" widgetVar="inscritosDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="inscritosUsuario" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="inscrito" value="#{usuarioMB.usuario.inscricoes}">
+ 					<p:column headerText="Número">
+	   					<p:outputLabel value="#{inscrito.inscricao.nome}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Validada">
+	   					<p:outputLabel value="#{inscrito.inscricao.validada}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Pagamento">
+	   					<p:outputLabel value="#{inscrito.inscricao.pagamento}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Equipe">
+	   					<p:outputLabel value="#{inscrito.inscricao.equipe}"/>  					
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerInscricao(inscrito)}" update="formUsuario"></p:commandLink> 	     	
+					</p:column>			
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>	    
 	    
 	    
 	    <p:column  headerText="Equipes" style="text-align: center">
@@ -165,6 +197,39 @@
 	   	    		
 	   	    		<p:column style = "text-align: center">
 	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerEquipe(equipe)}" update="formUsuario"></p:commandLink> 	     	
+					</p:column>			
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+        
+        
+        <p:column  headerText="Campeonatos" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('campeonatosDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
+        </p:commandButton>            
+    	<p:dialog header="Campeonatos (os) do usuário" widgetVar="campeonatosDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="campeonatosUsuario" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="campeonato" value="#{usuarioMB.usuario.campeonatos}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{campeonato.nome}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Data início">
+	   					<p:outputLabel value="#{campeonato.dataInicioCampeonato}">
+	   					 <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+	   					</p:outputLabel>	   					
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Data fim">
+	   					<p:outputLabel value="#{campeonato.dataFimCampeonato}">
+	   					 <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+	   					</p:outputLabel>	   					
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerCampeonato(campeonato)}" update="formUsuario"></p:commandLink> 	     	
 					</p:column>			
  			</p:dataTable>            
         </p:outputPanel>

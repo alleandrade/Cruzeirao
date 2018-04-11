@@ -7,6 +7,7 @@ import javax.faces.bean.SessionScoped;
 import entidades.Categoria;
 import entidades.Fase;
 import entidades.Inscricao;
+import entidades.Inscrito;
 import services.CategoriaService;
 
 @SessionScoped
@@ -21,6 +22,12 @@ public class CategoriaMB {
 
 	public void salvar() {
 		categoriaservice.salvar(categoria);
+		categoria.getCampeonato().getCategorias().add(categoria);
+		
+		for (Inscricao aux : categoria.getInscricoes())		
+			for(Inscrito aux2 : aux.getInscritos())
+				aux2.getUsuario().getCampeonatos().add(categoria.getCampeonato());
+
 		categoria = new Categoria();
 	}
 	
@@ -58,6 +65,7 @@ public class CategoriaMB {
 
 	public void remover(Categoria categoria) {
 		categoriaservice.remover(categoria);
+		categoria.getCampeonato().getCategorias().remove(categoria);
 	}
 
 	public Categoria getCategoria() {

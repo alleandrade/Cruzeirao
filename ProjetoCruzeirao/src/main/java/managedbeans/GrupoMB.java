@@ -17,6 +17,7 @@ public class GrupoMB {
 	
 	public void salvar() {
 		gruposervice.salvar(grupo);
+		grupo.getFase().getGrupos().add(grupo);
 		grupo = new Grupo();
 	}
 	

@@ -7,7 +7,9 @@ import dados.Dados;
 
 import java.util.*;
 import services.UsuarioService;
+import entidades.Campeonato;
 import entidades.Equipe;
+import entidades.Inscrito;
 import entidades.Usuario;
 
 @SessionScoped
@@ -27,8 +29,33 @@ public class UsuarioMB {
 	}
 	
 	public void removerEquipe(Equipe equipe) {
-		usuario.getEquipes().remove(equipe);
-		equipe.getJogadores().remove(usuario);
+		
+		if(usuario.getTipo().getTipo() == "Jogador") {
+			equipe.getJogadores().remove(usuario);
+			usuario.getEquipes().remove(equipe);
+		}			
+		
+		else if(usuario.getTipo().getTipo() == "Diretor") {
+			equipe.getDiretores().remove(usuario);
+			usuario.getEquipes().remove(equipe);
+		}	
+		
+		else if(usuario.getTipo().getTipo() == "Massagista" || usuario.getTipo().getTipo() == "Preparador físico" || usuario.getTipo().getTipo() == "Técnico") {
+			equipe.getComissaoTecnica().remove(usuario);
+			usuario.getEquipes().remove(equipe);
+		}
+		
+		else
+			usuario.getEquipes().remove(equipe);
+		
+	}
+	
+	public void removerInscricao(Inscrito inscrito) {
+		usuario.getInscricoes().remove(inscrito);
+	}
+	
+	public void removerCampeonato(Campeonato campeonato) {
+		usuario.getCampeonatos().remove(campeonato);
 	}
 	
 	public void salvar() {

@@ -24,6 +24,8 @@ public class Usuario implements Serializable{
 		   		   foto;
 
 
+	private ArrayList<Inscrito> inscricoes = new ArrayList<Inscrito>();
+	private ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>();
 	private Date dataNascimento;
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	private TipoUsuario tipo;
@@ -77,7 +79,7 @@ public class Usuario implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public TipoUsuario getTipo() {
 		return tipo;
 	}
@@ -173,14 +175,26 @@ public class Usuario implements Serializable{
 	public void setEquipes(ArrayList<Equipe> equipes) {
 		this.equipes = equipes;
 	}
+	
+	public ArrayList<Inscrito> getInscricoes() {
+		return inscricoes;
+	}
+
+	public void setInscricoes(ArrayList<Inscrito> inscricoes) {
+		this.inscricoes = inscricoes;
+	}
+
+	public ArrayList<Campeonato> getCampeonatos() {
+		return campeonatos;
+	}
+
+	public void setCampeonatos(ArrayList<Campeonato> campeonatos) {
+		this.campeonatos = campeonatos;
+	}
 
 	@Override
 	public String toString() {
-
 		return nome;
-
-
 	}
 //Fim Métodos	
-
 }
