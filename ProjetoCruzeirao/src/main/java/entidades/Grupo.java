@@ -10,6 +10,7 @@ public class Grupo implements Serializable{
 	private Fase fase;
 	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
 	private int numero;
+	private List<Inscricao> equipes = new ArrayList<Inscricao>(); 
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -60,6 +61,14 @@ public class Grupo implements Serializable{
 	
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public List<Inscricao> getEquipes() {
+		return equipes;
+	}
+
+	public void setEquipes(List<Inscricao> equipes) {
+		this.equipes = equipes;
 	}
 //Fim Métodos
 }

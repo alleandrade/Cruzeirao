@@ -1,7 +1,7 @@
 package enums;
 
 public enum TipoFase {
-	FASES_INICIAIS("Fases iniciais"),OITAVAS("Oitavas de final"),QUARTAS("Quartas de final"),SEMI("Semifinais"),FINAL("Finais");
+	PRIMEIRA_FASE("Primeira Fase"),SEGUNDA_FASE("Segunda Fase");
 	
 	private String tipo;
 

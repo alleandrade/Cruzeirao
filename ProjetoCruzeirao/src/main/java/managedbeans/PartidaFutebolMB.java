@@ -33,13 +33,13 @@ public class PartidaFutebolMB {
 
 	public void atualizar() {
 		for (Inscrito jog : partidafutebolaux.getEquipeMandante().getInscritos()) {
-			jogadoresMandantes.add(jog);
-			
+			if (jog.getTipo().getTipo().equals("Jogador"))
+				jogadoresMandantes.add(jog);	
 		}
 		
 		for (Inscrito jog : partidafutebolaux.getEquipeVisitante().getInscritos()) {
-			jogadoresVisitantes.add(jog);
-			
+			if (jog.getTipo().getTipo().equals("Jogador"))
+				jogadoresVisitantes.add(jog);
 		}	
 	}
 	
