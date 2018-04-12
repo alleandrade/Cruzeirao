@@ -2,8 +2,8 @@ package enums;
 
 public enum TipoUsuario {
 	ORGANIZADOR("Organizador"),JOGADOR("Jogador"),DIRETOR("Diretor"),
-	PREPARADOR_FISICO("Preparador Fisico"),MASSAGISTA("Massagista"),
-	TECNICO("Tecnico"),JUIZ("Juiz");
+	PREPARADOR_FISICO("Preparador físico"),MASSAGISTA("Massagista"),
+	TECNICO("Técnico"),JUIZ("Juiz");
 	
 	private String tipo;
 	private TipoUsuario(String tipo) {

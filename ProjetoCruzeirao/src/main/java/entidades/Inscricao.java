@@ -3,16 +3,38 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 //Fim Import's
 
 //Atributos
+@Entity
 public class Inscricao implements Serializable{
-	private long numero;
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long idInscricao;	
+	
 	private boolean pagamento;
 	private boolean validada;
+	
+	@OneToMany
 	private ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
+	
+	@OneToMany
 	private ArrayList<Partida> partidas = new ArrayList<Partida>();
+	
+	@ManyToOne
 	private Categoria categoria;
+	
+	@ManyToOne
 	private Equipe equipe;
 //Fim Atributos
 	/*	Métodos:
@@ -27,10 +49,10 @@ public class Inscricao implements Serializable{
 		super();
 	}
 
-	public Inscricao(long numero, boolean pagamento, boolean validada, ArrayList<Inscrito> inscritos,
+	public Inscricao(long idInscricao, boolean pagamento, boolean validada, ArrayList<Inscrito> inscritos,
 			ArrayList<Partida> partidas, Categoria categoria, Equipe equipe) {
 		super();
-		this.numero = numero;
+		this.idInscricao = idInscricao;
 		this.pagamento = pagamento;
 		this.validada = validada;
 		this.inscritos = inscritos;
@@ -39,12 +61,12 @@ public class Inscricao implements Serializable{
 		this.equipe = equipe;
 	}
 
-	public long getNumero() {
-		return numero;
+	public long getIdInscricao() {
+		return idInscricao;
 	}
-	
-	public void setNumero(long numero) {
-		this.numero = numero;
+
+	public void setIdInscricao(long idInscricao) {
+		this.idInscricao = idInscricao;
 	}
 	
 	public boolean isPagamento() {
@@ -95,9 +117,13 @@ public class Inscricao implements Serializable{
 		this.equipe = equipe;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return Integer.toString((int)numero);
+		return Integer.toString((int)idInscricao);
 	}
 //Fim Métodos
 }

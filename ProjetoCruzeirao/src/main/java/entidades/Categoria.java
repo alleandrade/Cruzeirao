@@ -2,19 +2,44 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import enums.Sexo;
 //Fim Import's
 //Atributos
+
+@Entity
 public class Categoria implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idCategoria;
+	
 	private String nome;
 	private int nascidosAPartirDe,
 		minJogadores,
 		maxJogadores;
+	
+	@OneToMany
+	@JoinColumn(name = "idInscricao")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
-	private Campeonato campeonato;
+	
+	@ManyToOne
+	private Campeonato campeonato;	
+	
+	@OneToMany
 	private ArrayList<Fase> fases = new ArrayList<Fase>();
+	
 	private Sexo sexo;
 //Fim Atributos
 	/*	Métodos:
@@ -106,6 +131,18 @@ public class Categoria implements Serializable{
 
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
+	}
+
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

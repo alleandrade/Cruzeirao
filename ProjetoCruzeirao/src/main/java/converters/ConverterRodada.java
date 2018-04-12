@@ -25,10 +25,10 @@ public class ConverterRodada implements Converter {
 		if(value instanceof Rodada) {			
 			Rodada rodada = (Rodada) value;
 			
-			if(rodada != null && rodada instanceof Rodada && Integer.toString((int) rodada.getNumero()) != null) {
+			if(rodada != null && rodada instanceof Rodada && Integer.toString((int) rodada.getIdRodada()) != null) {
 				
-				uiComponent.getAttributes().put(Integer.toString((int) rodada.getNumero()), rodada);
-				return Integer.toString((int) rodada.getNumero());
+				uiComponent.getAttributes().put(Integer.toString((int) rodada.getIdRodada()), rodada);
+				return Integer.toString((int) rodada.getIdRodada());
 			}	
 			
 		}

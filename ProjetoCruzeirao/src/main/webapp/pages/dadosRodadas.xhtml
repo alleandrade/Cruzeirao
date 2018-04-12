@@ -26,10 +26,10 @@
     </f:facet>
 	
 		
-	    <p:column headerText="Numero" style="text-align: center" sortBy="#{rod.numero}">
+	    <p:column headerText="idRodada" style="text-align: center" sortBy="#{rod.idRodada}">
         	<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{rod.numero}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{rod.numero}" style="width:96%"/></f:facet>
+                  		<f:facet name="output"><p:outputLabel value="#{rod.idRodada}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{rod.idRodada}" style="width:96%"/></f:facet>
            	</p:cellEditor>	             		   		
 	    </p:column>
 	    
@@ -45,8 +45,8 @@
         <p:outputPanel id="partidasRodada" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="part" value="#{rodadaMB.rodada.partidas}">
- 					<p:column headerText="Número">
-	   					<p:outputLabel value="#{part.numero}"/>
+ 					<p:column headerText="idPartida">
+	   					<p:outputLabel value="#{part.idPartida}"/>
 	   	    		</p:column>	
 	   	    		
 	   	    		<p:column headerText="Data">

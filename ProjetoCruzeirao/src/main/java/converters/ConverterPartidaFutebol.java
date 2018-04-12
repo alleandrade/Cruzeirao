@@ -25,10 +25,10 @@ public class ConverterPartidaFutebol implements Converter {
 		if(value instanceof PartidasFutebol) {			
 			PartidasFutebol partidafutebol = (PartidasFutebol) value;
 			
-			if(partidafutebol != null && partidafutebol instanceof PartidasFutebol && Integer.toString((int) partidafutebol.getNumero()) != null) {
+			if(partidafutebol != null && partidafutebol instanceof PartidasFutebol && Integer.toString((int) partidafutebol.getIdPartida()) != null) {
 				
-				uiComponent.getAttributes().put(Integer.toString((int) partidafutebol.getNumero()), partidafutebol);
-				return Integer.toString((int) partidafutebol.getNumero());
+				uiComponent.getAttributes().put(Integer.toString((int) partidafutebol.getIdPartida()), partidafutebol);
+				return Integer.toString((int) partidafutebol.getIdPartida());
 			}	
 			
 		}

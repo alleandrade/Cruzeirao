@@ -81,7 +81,7 @@
 	    </p:column>
 	    
 	    <p:column headerText="Foto" style="text-align: center">
-			<p:outputLabel value="#{usu.foto}" />       		
+			<p:outputLabel value="#{usu.foto}" /> 		  		
 	    </p:column>
 	    
 	    <p:column headerText="RG" style="text-align: center" sortBy="#{usu.rg}">		
@@ -145,11 +145,19 @@
                 <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
         </p:commandButton>            
     	<p:dialog header="Inscrição (ões) do usuário" widgetVar="inscritosDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
-        <p:outputPanel id="inscritosUsuario" style=" width:600px" columnClasses="label,value" >
+        <p:outputPanel id="inscritosUsuario" style=" width:800px" columnClasses="label,value" >
             
             <p:dataTable var="inscrito" value="#{usuarioMB.usuario.inscricoes}">
- 					<p:column headerText="Número">
-	   					<p:outputLabel value="#{inscrito.inscricao.nome}"/>
+ 					<p:column headerText="idInscrição">
+	   					<p:outputLabel value="#{inscrito.inscricao.idInscricao}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Campeonato">
+	   					<p:outputLabel value="#{inscrito.inscricao.categoria.campeonato}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Equipe">
+	   					<p:outputLabel value="#{inscrito.inscricao.equipe}"/>  					
 	   	    		</p:column>	
 	   	    		
 	   	    		<p:column headerText="Validada">
@@ -159,10 +167,6 @@
 	   	    		<p:column headerText="Pagamento">
 	   					<p:outputLabel value="#{inscrito.inscricao.pagamento}"/>
 	   	    		</p:column>
-	   	    		
-	   	    		<p:column headerText="Equipe">
-	   					<p:outputLabel value="#{inscrito.inscricao.equipe}"/>  					
-	   	    		</p:column>	
 	   	    		
 	   	    		<p:column style = "text-align: center">
 	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerInscricao(inscrito)}" update="formUsuario"></p:commandLink> 	     	

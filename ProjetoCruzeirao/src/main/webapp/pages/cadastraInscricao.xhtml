@@ -14,27 +14,14 @@
 <p:growl id="mensagem"/>
 
 
-
- 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
  	
  	<f:facet name="header">
             Inscrição
     </f:facet>
     
- 
-   
- 	 <p:outputLabel for="numero" value="Número: "/>
-     <p:inputText id="numero" value = "#{inscricaoMB.inscricao.numero}" required="true"/>
+ 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 
- 	
-     <h:outputLabel value="Pagamento: " />
-     <p:selectBooleanButton id="value1" value="#{inscricaoMB.inscricao.pagamento}" onLabel="Yes" offLabel="No" style="width:60px" />
-
-
-     <h:outputLabel value="Validada: " />
-     <p:selectBooleanButton id="value2" value="#{inscricaoMB.inscricao.validada}" onLabel="Yes" offLabel="No" style="width:60px" />
-
-   
      <p:outputLabel for="categoria" value="Categoria: "/>
      <h:selectOneMenu id="categoria" converter ="ConverterCategoria" required="true" value="#{inscricaoMB.inscricao.categoria}"  style="width:205px">
        <f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="false"/>
@@ -49,65 +36,29 @@
      
      </p:panelGrid>  
      
-	<!--  Inscritos -->
-	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
-	 
-	 <p:outputLabel  value="Inscrito"/>
- 	 <h:selectOneMenu id="inscrito" converter ="ConverterInscrito"  value="#{inscricaoMB.auxInscrito}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione o inscrito" noSelectionOption="false"/>
-     		<f:selectItems value="#{inscritoMB.inscritos}" />
-     </h:selectOneMenu>
-	
-
-	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
-					 action="#{inscricaoMB.adicionarInscrito}"
-	                 update=":formInscricao"  
-	/>
-	
-	
-	</p:panelGrid>
-	
-	<p:dataTable
-			var = "insc"
-			value = "#{inscricaoMB.inscricao.inscritos}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Inscrito (os) da inscrição
-    </f:facet>
-			
-	    
-	   <p:column headerText="Usuário">
-	   					<p:outputLabel value="#{insc.usuario}"/>
-	   </p:column>
-	   	    		
-	   <p:column headerText="Tipo">
-						<p:outputLabel value="#{insc.tipo}" />
-	   </p:column>	
-					
-	   <p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.removerInscrito(insc)}" update="formInscricao"></p:commandLink> 	     	
-	   </p:column>			
-	    
-			
-	</p:dataTable>
-
-
- <p:commandButton value="Cadastrar"
-      style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+     <p:panelGrid style="margin-bottom:0px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="2">
+     
+     <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+        <h:outputText value="Pagamento" />
+        <p:selectBooleanButton id="value1" value="#{inscricaoMB.inscricao.pagamento}" onLabel="Sim" offLabel="Não" style="width:60px" />
+     </h:panelGrid>
+     
+     <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+        <h:outputText value="Validada" />
+        <p:selectBooleanButton id="value2" value="#{inscricaoMB.inscricao.validada}" onLabel="Sim" offLabel="Não" style="width:60px" />
+     </h:panelGrid>
+     
+     </p:panelGrid>    
+     
+ 	<p:commandButton value="Cadastrar"
+      style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
       action="#{inscricaoMB.salvar}"
-                  update=":formInscricao"  
+      update=":formInscricao"  
              
- />
+ 	/>
  
  
-
+	</p:panel>
 
 
 </h:form>

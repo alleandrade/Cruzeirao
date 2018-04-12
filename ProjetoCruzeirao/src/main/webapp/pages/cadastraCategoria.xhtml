@@ -13,15 +13,13 @@
 <h:form id="formCategoria">
 <p:growl id="mensagem"/>
 
-
-
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
 	
 	<f:facet name="header">
             Categoria
     </f:facet>
 	 	 
-	
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 		 
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{categoriaMB.categoria.nome}" required="true"/>
@@ -60,13 +58,13 @@
 	
 	 
 	<p:commandButton value="Cadastrar"
-					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{categoriaMB.salvar}"
 	                 update=":formCategoria"  
 	            
 	/>
 
-
+	</p:panel>
 
 
 </h:form>

@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="ProjetoCruzeirao">
+		<class>entidades.Campeonato</class>
+		<class>entidades.Cartao</class>
+		<class>entidades.Categoria</class>
+		<class>entidades.Equipe</class>
+		<class>entidades.Fase</class>
+		<class>entidades.Gol</class>
+		<class>entidades.Grupo</class>
+		<class>entidades.Inscricao</class>
+		<class>entidades.Inscrito</class>
+		<class>entidades.Juiz</class>
+		<class>entidades.Local</class>
+		<class>entidades.Partida</class>
+		<class>entidades.PartidasFutebol</class>
+		<class>entidades.Rodada</class>
+		<class>entidades.Usuario</class>
 	</persistence-unit>
 </persistence>

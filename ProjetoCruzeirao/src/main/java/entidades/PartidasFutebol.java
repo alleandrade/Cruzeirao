@@ -3,14 +3,32 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 //Fim Import's
 //Atributos
+@Entity
 public class PartidasFutebol extends Partida implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@OneToMany
 	private ArrayList<Gol> golsMandantes = new ArrayList<Gol>();
+	
+	@OneToMany
 	private ArrayList<Gol> golsVisitantes = new ArrayList<Gol>();
+	
+	@OneToMany
 	private ArrayList<Gol> golsPenaltisMandantes = new ArrayList<Gol>();
+	
+	@OneToMany
 	private ArrayList<Gol> golsPenaltisVisitantes = new ArrayList<Gol>();
+	
+	@OneToMany
 	private ArrayList<Cartao> cartoesMandantes = new ArrayList<Cartao>();
+	
+	@OneToMany
 	private ArrayList<Cartao> cartoesVisitantes = new ArrayList<Cartao>();
 //Fim Atributos
 	/*	Métodos:
@@ -71,33 +89,30 @@ public class PartidasFutebol extends Partida implements Serializable{
 
 	@Override
 	public String toString() {
-		return Integer.toString(this.getNumero());
+		return Integer.toString(this.getIdPartida());
 	}
-	
-	
-//Fim Métodos	
-
-
 
 	public ArrayList<Cartao> getCartoesMandantes() {
 		return cartoesMandantes;
 	}
 
-
-
 	public void setCartoesMandantes(ArrayList<Cartao> cartoesMandantes) {
 		this.cartoesMandantes = cartoesMandantes;
 	}
-
-
 
 	public ArrayList<Cartao> getCartoesVisitantes() {
 		return cartoesVisitantes;
 	}
 
-
-
 	public void setCartoesVisitantes(ArrayList<Cartao> cartoesVisitantes) {
 		this.cartoesVisitantes = cartoesVisitantes;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+	//Fim Métodos	
 }

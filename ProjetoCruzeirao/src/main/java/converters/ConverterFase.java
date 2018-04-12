@@ -25,10 +25,10 @@ public class ConverterFase implements Converter {
 		if(value instanceof Fase) {			
 			Fase fase = (Fase) value;
 			
-			if(fase != null && fase instanceof Fase && Integer.toString((int) fase.getNumero()) != null) {
+			if(fase != null && fase instanceof Fase && Integer.toString((int) fase.getIdFase()) != null) {
 				
-				uiComponent.getAttributes().put(Integer.toString((int) fase.getNumero()), fase);
-				return Integer.toString((int) fase.getNumero());
+				uiComponent.getAttributes().put(Integer.toString((int) fase.getIdFase()), fase);
+				return Integer.toString((int) fase.getIdFase());
 			}	
 			
 		}

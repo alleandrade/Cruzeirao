@@ -18,38 +18,32 @@
 			editable = "true" editMode = "cell">
 	
 	<f:facet name="header">
-            Dados Inscritos
+            Dados inscritos
     </f:facet>
 	
 		
 	    <p:column headerText="Tipo" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{i.tipo}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{i.tipo}" style="width:96%"/></f:facet>           		
+			<p:outputLabel value="#{i.tipo.tipo}" />           		
 	    </p:column>
 	    
 	    <p:column headerText="Usuário" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{i.usuario}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{i.usuario}" style="width:96%"/></f:facet>           		
+			<p:outputLabel value="#{i.usuario}" />          		
 	    </p:column>
 	   
 	     <p:column headerText="Inscrição" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{i.inscricao}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{i.inscricao}" style="width:96%"/></f:facet>           		
+			<p:outputLabel value="#{i.inscricao}" />          		
 	    </p:column>
 	    
-	      <p:column headerText="Usuário Aceito" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{i.aceiteUsuario}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{i.aceiteUsuario}" style="width:96%"/></f:facet>           		
+	      <p:column headerText="Usuário aceito" style="text-align: center"> 
+        	<p:outputLabel value="#{i.aceiteUsuario}" />            		
 	    </p:column>
 	    
-	     <p:column headerText="Jogo Suspenso" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{i.suspensoJogos}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{i.suspensoJogos}" style="width:96%"/></f:facet>           		
+	     <p:column headerText="Jogo suspenso" style="text-align: center">
+			<p:outputLabel value="#{i.suspensoJogos}" />         		
 	    </p:column>
 	    
-	     <p:column headerText="Inscrição Validada" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{i.inscricaoValidada}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{i.inscricaoValidada}" style="width:96%"/></f:facet>           		
+	     <p:column headerText="Inscrição validada" style="text-align: center">
+			<p:outputLabel value="#{i.inscricaoValidada}" />           		
 	    </p:column>
 
 

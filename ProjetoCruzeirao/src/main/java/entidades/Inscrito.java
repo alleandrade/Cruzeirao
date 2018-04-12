@@ -3,13 +3,31 @@ package entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import enums.TipoUsuario;
 
 //Fim Import's
 //Atributos
+@Entity
 public class Inscrito implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private TipoUsuario tipo;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idInscrito;
+	
+	@ManyToOne
 	private Usuario usuario;
+	
+	@ManyToOne
 	private Inscricao inscricao;
 	private boolean aceiteUsuario,
 					suspensoJogos,
@@ -89,6 +107,22 @@ public class Inscrito implements Serializable {
 	public void setInscricaoValidada(boolean inscricaoValidada) {
 		this.inscricaoValidada = inscricaoValidada;
 	}
+
+	public int getIdInscrito() {
+		return idInscrito;
+	}
+
+	public void setIdInscrito(int idInscrito) {
+		this.idInscrito = idInscrito;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 	@Override
 	public String toString() {

@@ -1,17 +1,44 @@
 //Import's
 package entidades;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 //Fim Import's
 //Atributos
+@Entity
 public class Partida {
-	private int numero;
-	private Inscricao equipeMandante,
-					  equipeVisitante;
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idPartida;
+	
+	@ManyToOne
+	private Inscricao equipeMandante;
+	
+	@ManyToOne
+	private Inscricao equipeVisitante;
+	
+	@Temporal(TemporalType.DATE)
 	private Date data;
+	
 	private Local local;
 	private Partida proxPartida;
+	
+	@OneToMany
 	private ArrayList<Juiz> juizes = new ArrayList<Juiz>();
+	
+	@ManyToOne
 	private Grupo grupo;
 	private String relatoJuiz;
 //Fim Atributos
@@ -22,10 +49,10 @@ public class Partida {
 	 *  - Construtores		[X]
 	*/
 	
-	public Partida(int numero, Inscricao equipeMandante, Inscricao equipeVisitante, Date data, Local local,
+	public Partida(int idPartida, Inscricao equipeMandante, Inscricao equipeVisitante, Date data, Local local,
 			Partida proxPartida, ArrayList<Juiz> juizes, Grupo grupo, String relatoJuiz) {
 		super();
-		this.numero = numero;
+		this.idPartida = idPartida;
 		this.equipeMandante = equipeMandante;
 		this.equipeVisitante = equipeVisitante;
 		this.data = data;
@@ -40,14 +67,16 @@ public class Partida {
 	super();
 	}
 
-	public int getNumero() {
-		return numero;
-	}
 	
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
 	
+	public int getIdPartida() {
+		return idPartida;
+	}
+
+	public void setIdPartida(int idPartida) {
+		this.idPartida = idPartida;
+	}
+
 	public Inscricao getEquipeMandante() {
 		return equipeMandante;
 	}
@@ -111,9 +140,13 @@ public class Partida {
 		this.relatoJuiz = relatoJuiz;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return Integer.toString(numero);
+		return Integer.toString(idPartida);
 	}
 	
 	

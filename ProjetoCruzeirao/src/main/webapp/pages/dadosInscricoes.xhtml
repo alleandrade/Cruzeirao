@@ -25,11 +25,11 @@
             Inscrições
     </f:facet>
     
-    	<p:column headerText="Numero" style="text-align: center" sortBy="#{ins.numero}">
+    	<p:column headerText="idInscrição" style="text-align: center" sortBy="#{ins.idInscricao}">
 		
 		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{ins.numero}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{ins.numero}" style="width:96%"/></f:facet>
+                  		<f:facet name="output"><p:outputLabel value="#{ins.idInscricao}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{ins.idInscricao}" style="width:96%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>
@@ -64,7 +64,7 @@
 	   	    		</p:column>
 	   	    		
 	   	    		<p:column headerText="Tipo">
-						<p:outputLabel value="#{insc.tipo}" />
+						<p:outputLabel value="#{insc.tipo.tipo}" />
 					</p:column>	
 					
 					<p:column style = "text-align: center">
@@ -83,8 +83,8 @@
         <p:outputPanel id="partidasInscrição" style=" width:600px" columnClasses="label,value">
             
             <p:dataTable var="part" value="#{inscricaoMB.inscricao.partidas}">
- 					<p:column headerText="Número" sortBy="#{part.numero}">
-	   					<p:outputLabel value="#{part.numero}"/>
+ 					<p:column headerText="idPartida" sortBy="#{part.idPartida}">
+	   					<p:outputLabel value="#{part.idPartida}"/>
 	   	    		</p:column>	
 	   	    		
 	   	    		<p:column headerText="Data" sortBy="#{part.data}">

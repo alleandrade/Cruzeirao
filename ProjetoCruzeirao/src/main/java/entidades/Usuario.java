@@ -3,15 +3,32 @@ package entidades;
 
 
 import java.io.Serializable;
-import enums.*;
+import java.util.ArrayList;
+import java.util.Date;
 
-import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 //Fim Import's
 //Atributos
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import enums.Sexo;
+import enums.TipoUsuario;
 
+@Entity
 public class Usuario implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idUsuario;
+	
 	private String email,
 		   		   nome,
 		   		   telefoneFixo,
@@ -20,13 +37,21 @@ public class Usuario implements Serializable{
 		   		   rg,
 		   		   cpf,
 		   		   cref,
-		   		   senha,
-		   		   foto;
+		   		   senha;
+    
+	@Lob
+	private byte [] foto;
 
-
+	@OneToMany
 	private ArrayList<Inscrito> inscricoes = new ArrayList<Inscrito>();
+	
+	@OneToMany
 	private ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>();
+	
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
+	
+	@OneToMany
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	private TipoUsuario tipo;
 	private Sexo sexo;
@@ -54,7 +79,7 @@ public class Usuario implements Serializable{
 	}
 	
 	public Usuario(String email, String nome, String telefoneFixo, String telefoneMovel, String endereco, String rg,
-		String cpf, String cref, String foto, Date dataNascimento, ArrayList<Equipe> equipes, TipoUsuario tipo, Sexo sexo) {
+		String cpf, String cref, byte [] foto, Date dataNascimento, ArrayList<Equipe> equipes, TipoUsuario tipo, Sexo sexo) {
 		super();
 		this.email = email;
 		this.nome = nome;
@@ -152,14 +177,6 @@ public class Usuario implements Serializable{
 		this.cref = cref;
 	}
 	
-	public String getFoto() {
-		return foto;
-	}
-	
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-	
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -190,6 +207,26 @@ public class Usuario implements Serializable{
 
 	public void setCampeonatos(ArrayList<Campeonato> campeonatos) {
 		this.campeonatos = campeonatos;
+	}	
+	
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

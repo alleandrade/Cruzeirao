@@ -3,16 +3,40 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 //Fim Import's
 //Atributos
+@Entity
 public class Equipe implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idEquipe;
 	
 	private String nome,
 		   		   cidade;
+	
+	@Temporal(TemporalType.DATE)
 	private Date dataFundacao;
+	
+	@ManyToMany
 	private ArrayList<Usuario> jogadores = new ArrayList<Usuario>();
+	
+	@ManyToMany
 	private ArrayList<Usuario> comissaoTecnica = new ArrayList<Usuario>();
+	
+	@ManyToMany
 	private ArrayList<Usuario> diretores = new ArrayList<Usuario>();
 //Fim Atributos	
 	/*	Métodos:
@@ -82,6 +106,18 @@ public class Equipe implements Serializable {
 	
 	public void setDiretores(ArrayList<Usuario> diretores) {
 		this.diretores = diretores;
+	}
+	
+	public int getIdEquipe() {
+		return idEquipe;
+	}
+
+	public void setIdEquipe(int idEquipe) {
+		this.idEquipe = idEquipe;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

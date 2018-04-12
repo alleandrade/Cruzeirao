@@ -15,13 +15,13 @@
 
 
 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
 	
 	<f:facet name="header">
             Juiz
     </f:facet>
 	 	 
-	
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 		 
 	 <p:outputLabel value="Tipo: "/>
 	 <h:selectOneMenu value="#{juizMB.juiz.tipo}" style="width:205px" required="true">
@@ -32,7 +32,7 @@
      </h:selectOneMenu>
 	  
 	 <p:outputLabel for="usuario" value="Usuário: "/>
-	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario" required="true" value="#{juizMB.juiz.usuario}"  style="width:205px" required="true">
+	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario" required="true" value="#{juizMB.juiz.usuario}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o usuário" noSelectionOption="true"/>
      		<f:selectItems value="#{usuarioMB.juizes}" />
      </h:selectOneMenu>
@@ -42,14 +42,14 @@
 	 
 	</p:panelGrid>
 	<p:commandButton value="Cadastrar"
-					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{juizMB.salvar}"
 	                 update=":formJuiz"  
 	            
 	/>
 	
 	
-
+	</p:panel>
 
 
 </h:form>

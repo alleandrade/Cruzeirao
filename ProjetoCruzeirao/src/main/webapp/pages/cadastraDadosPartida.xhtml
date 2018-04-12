@@ -13,11 +13,13 @@
 <h:form id="formPartida">
 <p:growl id="mensagem"/>
 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
 	
 	<f:facet name="header">
             Partida
     </f:facet>
+	
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	 <p:outputLabel  value="Partida:"/>
  	 <h:selectOneMenu id="partida" converter ="ConverterUsuario"  value="#{partidaFutebolMB.partidasfutebol}"  style="width:205px">
@@ -37,11 +39,11 @@
 	 
 	 <p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	<p:column  headerText="Gol Mandante" style="text-align: center" >
-	    <p:commandButton value="Gol Mandante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('golmandanteDialog').show()" closable="true" title="View">
+	<p:column  headerText="Gol mandante" style="text-align: center" >
+	    <p:commandButton value="Gol mandante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('golmandanteDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas5}" target="#{partidaFutebolMB.gol}" />
         </p:commandButton>            
-    	<p:dialog header="Gol Mandante" widgetVar="golmandanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Gol mandante" widgetVar="golmandanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="golmandante" style=" width:400px" columnClasses="label,value" >
  
         <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
@@ -57,7 +59,7 @@
 	
 	<h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
         <h:outputText value="Pênalti" />
-        <p:selectBooleanButton id="value3" value="#{partidaFutebolMB.gol.penalti}" onLabel="Yes" offLabel="No" style="width:60px" />
+        <p:selectBooleanButton id="value3" value="#{partidaFutebolMB.gol.penalti}" onLabel="Sim" offLabel="Não" style="width:60px" />
     </h:panelGrid>
     
     </p:panelGrid>
@@ -83,7 +85,7 @@
 	>
 	
 	<f:facet name="header">
-            Gol(s) Mandante
+            Gol (s) mandante
     </f:facet>
 				    
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{gols.inscrito.usuario}">
@@ -111,11 +113,11 @@
 	<!-- Adicionar Gols Visitante -->
 	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	<p:column  headerText="Gol Visitante" style="text-align: center" >
-	    <p:commandButton value="Gol Visitante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('golvisitanteDialog').show()" closable="true" title="View">
+	<p:column  headerText="Gol visitante" style="text-align: center" >
+	    <p:commandButton value="Gol visitante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('golvisitanteDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas6}" target="#{partidaFutebolMB.gol}" />
         </p:commandButton>            
-    	<p:dialog header="Gol Visitante" widgetVar="golvisitanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Gol visitante" widgetVar="golvisitanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="golvisitante" style=" width:400px" columnClasses="label,value" >
  
         <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
@@ -131,7 +133,7 @@
 	
 	<h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
         <h:outputText value="Pênalti" />
-        <p:selectBooleanButton id="value4" value="#{partidaFutebolMB.gol.penalti}" onLabel="Yes" offLabel="No" style="width:60px" />
+        <p:selectBooleanButton id="value4" value="#{partidaFutebolMB.gol.penalti}" onLabel="Sim" offLabel="Não" style="width:60px" />
     </h:panelGrid>
     
     </p:panelGrid>
@@ -157,7 +159,7 @@
 	>
 	
 	<f:facet name="header">
-            Gol(s) Visitante
+            Gol (s) visitante
     </f:facet>
 			 
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{goll.inscrito.usuario}">
@@ -186,11 +188,11 @@
 	
 	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	<p:column  headerText="Cartão Mandante" style="text-align: center" >
-	    <p:commandButton value="Cartão Mandante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('cartaomandanteDialog').show()" closable="true" title="View">
+	<p:column  headerText="Cartão mandante" style="text-align: center" >
+	    <p:commandButton value="Cartão mandante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('cartaomandanteDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas7}" target="#{partidaFutebolMB.cartao}" />
         </p:commandButton>            
-    	<p:dialog header="Cartão Mandante" widgetVar="cartaomandanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Cartão mandante" widgetVar="cartaomandanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="cartaomandante" style=" width:400px" columnClasses="label,value" >
  
         <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
@@ -231,7 +233,7 @@
 	>
 	
 	<f:facet name="header">
-            Cartao(oes) Mandante
+            Cartão (ões) mandante
     </f:facet>
 			 
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{cartoes.inscrito.usuario}">
@@ -261,11 +263,11 @@
 	
 		<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
 	 
-	<p:column  headerText="Cartão Visitante" style="text-align: center" >
-	    <p:commandButton value="Cartão Visitante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('cartaovisitanteDialog').show()" closable="true" title="View">
+	<p:column  headerText="Cartão visitante" style="text-align: center" >
+	    <p:commandButton value="Cartão visitante" icon ="ui-icon-plus" update=":formPartida" oncomplete="PF('cartaovisitanteDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{fas8}" target="#{partidaFutebolMB.cartao}" />
         </p:commandButton>            
-    	<p:dialog header="Cartão Visitante" widgetVar="cartaovisitanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+    	<p:dialog header="Cartão visitante" widgetVar="cartaovisitanteDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
         <p:outputPanel id="cartaovisitante" style=" width:400px" columnClasses="label,value" >
  
         <p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
@@ -306,7 +308,7 @@
 	>
 	
 	<f:facet name="header">
-            Cartao(oes) Visitante
+            Cartão (ões) visitante
     </f:facet>
 			 
 	     <p:column headerText="Jogador" style="text-align: center" sortBy="#{cartao.inscrito.usuario}">
@@ -330,7 +332,7 @@
 	
 	</p:panel>
 
-
+	</p:panel>
 </h:form>
 </ui:define>
 </ui:composition>

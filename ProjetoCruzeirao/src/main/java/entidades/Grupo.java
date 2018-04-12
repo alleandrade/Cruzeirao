@@ -3,13 +3,31 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 //Fim Import's
 //Atributos
+@Entity
 public class Grupo implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String nome;
+	
+	@ManyToOne
 	private Fase fase;
+	
+	@OneToMany
 	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
-	private int numero;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idGrupo;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -22,12 +40,12 @@ public class Grupo implements Serializable{
 		super();
 	}
 
-	public Grupo(String nome, Fase fase, ArrayList<Rodada> rodadas, int numero) {
+	public Grupo(String nome, Fase fase, ArrayList<Rodada> rodadas, int idGrupo) {
 		super();
 		this.nome = nome;
 		this.fase = fase;
 		this.rodadas = rodadas;
-		this.numero = numero;
+		this.idGrupo = idGrupo;
 	}
 	
 	public String getNome() {
@@ -54,12 +72,16 @@ public class Grupo implements Serializable{
 		this.rodadas = rodadas;
 	}
 	
-	public int getNumero() {
-		return numero;
+	public int getIdGrupo() {
+		return idGrupo;
 	}
-	
-	public void setNumero(int numero) {
-		this.numero = numero;
+
+	public void setIdGrupo(int idGrupo) {
+		this.idGrupo = idGrupo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

@@ -3,18 +3,50 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 //Fim Import's
 //Atributos
-public class Campeonato implements Serializable{
 
+@Entity
+public class Campeonato implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idCampeonato;
+	
 	private String nome;
+	
+	@OneToMany
 	private ArrayList<Local> locais = new ArrayList<Local>();
+	
+	@OneToMany
 	private ArrayList<Juiz> juizes = new ArrayList<Juiz>();
+	
+	@OneToMany
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
-	private Date dataInicioInscricao,
-		 		 dataFimInscricao,
-		 		 dataInicioCampeonato,
-		 		 dataFimCampeonato;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataInicioInscricao;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataFimInscricao;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataInicioCampeonato;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataFimCampeonato;
+	
 	private double valorTaxa;
 //Fim Atributos	
 	/*	Métodos:
@@ -114,6 +146,18 @@ public class Campeonato implements Serializable{
 	
 	public void setValorTaxa(double valorTaxa) {
 		this.valorTaxa = valorTaxa;
+	}	
+
+	public int getIdCampeonato() {
+		return idCampeonato;
+	}
+
+	public void setIdCampeonato(int idCampeonato) {
+		this.idCampeonato = idCampeonato;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

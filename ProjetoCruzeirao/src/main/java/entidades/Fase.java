@@ -4,16 +4,40 @@ package entidades;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import enums.TipoFase;
 //Fim Import's
 //Atributos
+@Entity
 public class Fase implements Serializable{
-	private Date dataInicio,
-		 		 dataFim;
+	
+	private static final long serialVersionUID = 1L;
+		
+	@Temporal(TemporalType.DATE)
+	private Date dataInicio;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataFim;
+	
 	private TipoFase formato;
+	
+	@ManyToOne
 	private Categoria categoria;
+	
+	@OneToMany
 	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
-	private int numero;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idFase;
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -27,14 +51,14 @@ public class Fase implements Serializable{
 		super();
 	}
 
-	public Fase(Date dataInicio, Date dataFim, TipoFase formato, Categoria categoria, ArrayList<Grupo> grupos, int numero) {
+	public Fase(Date dataInicio, Date dataFim, TipoFase formato, Categoria categoria, ArrayList<Grupo> grupos, int idFase) {
 		super();
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.formato = formato;
 		this.categoria = categoria;
 		this.grupos = grupos;
-		this.numero = numero;
+		this.idFase = idFase;
 	}
 
 	public Date getDataInicio() {
@@ -76,18 +100,22 @@ public class Fase implements Serializable{
 	public void setGrupos(ArrayList<Grupo> grupos) {
 		this.grupos = grupos;
 	}
-	
-	public int getNumero() {
-		return numero;
+
+	public int getIdFase() {
+		return idFase;
 	}
-	
-	public void setNumero(int numero) {
-		this.numero = numero;
+
+	public void setIdFase(int idFase) {
+		this.idFase = idFase;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return Integer.toString((int)numero);
+		return Integer.toString((int)idFase);
 	}
 //Fim Métodos
 }

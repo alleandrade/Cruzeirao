@@ -25,10 +25,10 @@ public class ConverterInscricao implements Converter {
 		if(value instanceof Inscricao) {			
 			Inscricao inscricao = (Inscricao) value;
 			
-			if(inscricao != null && inscricao instanceof Inscricao && Integer.toString((int) inscricao.getNumero()) != null) {
+			if(inscricao != null && inscricao instanceof Inscricao && Integer.toString((int) inscricao.getIdInscricao()) != null) {
 				
-				uiComponent.getAttributes().put(Integer.toString((int) inscricao.getNumero()), inscricao);
-				return Integer.toString((int) inscricao.getNumero());
+				uiComponent.getAttributes().put(Integer.toString((int) inscricao.getIdInscricao()), inscricao);
+				return Integer.toString((int) inscricao.getIdInscricao());
 			}	
 			
 		}

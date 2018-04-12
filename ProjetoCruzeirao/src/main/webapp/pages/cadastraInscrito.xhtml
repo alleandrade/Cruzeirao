@@ -12,14 +12,13 @@
 
 <h:form id="formInscrito">
 <p:growl id="mensagem"/>
-	 
-	 
-	
 	 	 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	
 	 <f:facet name="header">
-           Cadastra Inscrito
+           Inscrito
     </f:facet>
+    
 	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
  	<p:outputLabel for="usuario" value="Usuário:"/>
@@ -41,7 +40,7 @@
     
       	
 	 <p:outputLabel  value="Inscrição:"/>
- 	 <h:selectOneMenu id="inscricao" converter ="ConverterInscricao" value="#{inscritoMB.auxInscricao}"  style="width:205px">
+ 	 <h:selectOneMenu id="inscricao" converter ="ConverterInscricao" required="true" value="#{inscritoMB.inscrito.inscricao}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a inscrição" noSelectionOption="true"/>
      		<f:selectItems value="#{inscricaoMB.inscricoes}" />
      </h:selectOneMenu>
@@ -50,24 +49,24 @@
 	 
 	 <p:panelGrid style="margin-bottom:0px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="3">
      <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
-        <h:outputText value="Usuário Aceito" />
-        <p:selectBooleanButton id="value4" value="#{inscritoMB.inscrito.aceiteUsuario}" onLabel="Yes" offLabel="No" style="width:60px" />
+        <h:outputText value="Usuário aceito" />
+        <p:selectBooleanButton id="value4" value="#{inscritoMB.inscrito.aceiteUsuario}" onLabel="Sim" offLabel="Não" style="width:60px" />
     </h:panelGrid>
    
      <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
-        <h:outputText value="Jogo Suspenso" />
-        <p:selectBooleanButton id="value5" value="#{inscritoMB.inscrito.suspensoJogos}" onLabel="Yes" offLabel="No" style="width:60px" />
+        <h:outputText value="Jogo suspenso" />
+        <p:selectBooleanButton id="value5" value="#{inscritoMB.inscrito.suspensoJogos}" onLabel="Sim" offLabel="Não" style="width:60px" />
     </h:panelGrid>
    
      
      <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
-        <h:outputText value="Inscrição Validada" />
-        <p:selectBooleanButton id="value6" value="#{inscritoMB.inscrito.inscricaoValidada}" onLabel="Yes" offLabel="No" style="width:60px" />
+        <h:outputText value="Inscrição validada" />
+        <p:selectBooleanButton id="value6" value="#{inscritoMB.inscrito.inscricaoValidada}" onLabel="Sim" offLabel="Não" style="width:60px" />
     </h:panelGrid>
 	 </p:panelGrid>
 	 
 	 <p:commandButton value="Cadastrar"
-					 style="margin-bottom:0px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{inscritoMB.salvar}"
 	                 update=":formInscrito"  	            
 	/>

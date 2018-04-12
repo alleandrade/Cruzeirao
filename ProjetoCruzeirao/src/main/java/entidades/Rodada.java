@@ -2,11 +2,28 @@
 package entidades;
 
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 //Fim Import's
 //Atributos
+@Entity
 public class Rodada {
-	private int numero;
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idRodada;
+	
+	@ManyToOne
 	private Grupo grupo;
+	
+	@OneToMany
 	private ArrayList<Partida> partidas = new ArrayList<Partida>();
 //Fim Atributos
 	/*	Métodos:
@@ -20,21 +37,21 @@ public class Rodada {
 	super();
 	}
 
-	public Rodada(int numero, Grupo grupo, ArrayList<Partida> partidas) {
+	public Rodada(int idRodada, Grupo grupo, ArrayList<Partida> partidas) {
 	super();
-	this.numero = numero;
+	this.idRodada = idRodada;
 	this.grupo = grupo;
 	this.partidas = partidas;
 	}
+	
+	public int getIdRodada() {
+		return idRodada;
+	}
 
-	public int getNumero() {
-		return numero;
+	public void setIdRodada(int idRodada) {
+		this.idRodada = idRodada;
 	}
-	
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-	
+
 	public Grupo getGrupo() {
 		return grupo;
 	}
@@ -51,9 +68,13 @@ public class Rodada {
 		this.partidas = partidas;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return Integer.toString(numero);
+		return Integer.toString(idRodada);
 	}
 	
 	

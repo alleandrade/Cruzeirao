@@ -13,11 +13,11 @@
 <h:form id="formUsuario">
 <p:growl id="mensagem"/>
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
 	 <f:facet name="header">
-           Cadastra Usuário
+           Usuário
     </f:facet>
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="2">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 		 	 
 	 <p:outputLabel for="email" value="E-mail: "/>
 	 <p:inputText id="email" value = "#{usuarioMB.usuario.email}" required="true"/>
@@ -27,7 +27,7 @@
 	 
 	 </p:panelGrid>
 	 
-	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="8">
 	
 	<f:facet name="header">
             Dados pessoais
@@ -86,44 +86,18 @@
 						mask="(99) 99999-9999" required="true">
 	 </p:inputMask>
 	 
+	 </p:panelGrid>
+	
+	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="2">
+	 
 	 <p:outputLabel value="Foto: "/>
-	 <p:inputText id="foto" placeholder = "Insira a URL da foto" value = "#{usuarioMB.usuario.foto}" />
+	 <p:fileUpload value="#{usuarioMB.usuario.foto}" uploadLabel="Upload" mode="simple" skinSimple="false" />
 	 
 	
 	</p:panelGrid>	
 	
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
-	 <p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}" update="photo" />
-        <p:commandButton style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 0px"
-        type="button" value="Capture" onclick="PF('pc').capture()"/>
-        <p:outputPanel id="photo">
-            <p:graphicImage name="demo/images/photocam/imagens.jpeg" rendered="#{imagens}"/>
-            </p:outputPanel>
-	</p:panel>
-	
-	
-	
-	<!-- Esse código não funciona se colocar no chrome
-	<p:panel>
-	<p:column  headerText="Web Cam" style="text-align: center" >
-	    <p:commandButton value="Web_Cam" icon ="ui-icon-person" update=":formUsuario" oncomplete="PF('webcamDialog').show()" closable="true" title="View">
-                <f:setPropertyActionListener value="#{fas}" target="#{usuarioMB.usuarios}" />
-        </p:commandButton>            
-    	<p:dialog header="Web Cam" widgetVar="webcamDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
-        <p:outputPanel id="web_cam" style=" width:600px" columnClasses="label,value" >
-  
-  		
-       
-        </p:outputPanel>
-   		
-        </p:outputPanel>
-        
-        </p:dialog>  
-        </p:column>
-	</p:panel>
-	-->
  	<p:commandButton value="Cadastrar"
-					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 0px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{usuarioMB.salvar}"
 	                 update=":formUsuario"  	            
 	/>

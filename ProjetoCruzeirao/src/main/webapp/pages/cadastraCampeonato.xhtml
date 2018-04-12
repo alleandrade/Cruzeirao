@@ -11,15 +11,14 @@
 <h:form id="formCampeonato">
 <p:growl id="mensagem"/>
 
-
-
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
 	
 	<f:facet name="header">
             Campeonato
     </f:facet>
 	 	 	
-		 
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6"> 
+	
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{campeonatoMB.campeonato.nome}" required="true"/>
 	 
@@ -48,7 +47,7 @@
 	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
 	 
 	 <p:outputLabel  value="Local"/>
- 	 <h:selectOneMenu id="local" converter ="ConverterLocal"  value="#{campeonatoMB.auxLocal}" required="true" style="width:205px">
+ 	 <h:selectOneMenu id="local" converter ="ConverterLocal"  value="#{campeonatoMB.auxLocal}" style="width:205px">
      		<f:selectItem itemLabel= "Selecione o local" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{localMB.locais}" />
      </h:selectOneMenu>
@@ -101,7 +100,7 @@
 	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
 	 
 	 <p:outputLabel  value="Juiz"/>
- 	 <h:selectOneMenu id="juiz" converter ="ConverterJuiz"  value="#{campeonatoMB.auxJuiz}" required="true" style="width:205px">
+ 	 <h:selectOneMenu id="juiz" converter ="ConverterJuiz"  value="#{campeonatoMB.auxJuiz}" style="width:205px">
      		<f:selectItem itemLabel= "Selecione o juiz" itemValue="" noSelectionOption="true"/>
      		<f:selectItems value="#{juizMB.juizes}" />
      </h:selectOneMenu>
@@ -137,7 +136,7 @@
 			
 		
 		<p:column headerText="Tipo" style="text-align: center">
-                  <p:outputLabel value="#{juiz.tipo}"/>
+                  <p:outputLabel value="#{juiz.tipo.juiz}"/>
 	    </p:column>
 	    
 	    
@@ -150,14 +149,14 @@
 	</p:dataTable>
 
 	<p:commandButton value="Cadastrar"
-					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{campeonatoMB.salvar}"
 	                 update=":formCampeonato"  
 	            
 	/>
 	
 	
-
+	</p:panel>
 
 
 </h:form>

@@ -4,10 +4,14 @@ import java.util.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import entidades.Categoria;
 import entidades.Inscricao;
 import entidades.Inscrito;
 import entidades.PartidasFutebol;
+import entidades.Usuario;
 import services.InscricaoService;
+import services.InscritoService;
 
 @SessionScoped
 @ManagedBean
@@ -18,8 +22,40 @@ public class InscricaoMB {
 	private Inscrito auxInscrito;
 	
 	public void salvar() {
+		
+		for (Usuario auxA : inscricao.getEquipe().getJogadores()) {
+			Inscrito inscrito = new Inscrito();
+			InscritoService auxInscrito = new InscritoService();
+			inscrito.setTipo(auxA.getTipo());
+			inscrito.setAceiteUsuario(true);
+			inscrito.setInscricaoValidada(true);
+			inscrito.setSuspensoJogos(false);
+			inscrito.setInscricao(inscricao);
+			inscrito.setUsuario(auxA);
+			auxA.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
+			auxA.getInscricoes().add(inscrito);
+			auxInscrito.salvar(inscrito);
+			inscricao.getInscritos().add(inscrito);			
+		}
+		
+		for (Usuario auxA : inscricao.getEquipe().getComissaoTecnica()) {
+			Inscrito inscrito = new Inscrito();
+			InscritoService auxInscrito = new InscritoService();
+			inscrito.setTipo(auxA.getTipo());
+			inscrito.setAceiteUsuario(true);
+			inscrito.setInscricaoValidada(true);
+			inscrito.setSuspensoJogos(false);
+			inscrito.setInscricao(inscricao);
+			inscrito.setUsuario(auxA);
+			auxA.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
+			auxA.getInscricoes().add(inscrito);
+			auxInscrito.salvar(inscrito);
+			inscricao.getInscritos().add(inscrito);			
+		}
+		
 		inscricaoservice.salvar(inscricao);
 		inscricao.getCategoria().getInscricoes().add(inscricao);
+		
 		inscricao = new Inscricao();
 	}
 	
