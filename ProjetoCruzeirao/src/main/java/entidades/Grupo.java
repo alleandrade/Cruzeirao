@@ -1,8 +1,10 @@
 //Import's
 package entidades;
 
+import java.beans.Transient;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +28,8 @@ public class Grupo implements Serializable{
 	
 	@OneToMany(mappedBy="grupo")
 	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
+	
+	private List<Inscricao> equipes = new ArrayList<Inscricao>();
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -87,6 +91,14 @@ public class Grupo implements Serializable{
 		return serialVersionUID;
 	}
 
+	public List<Inscricao> getEquipes() {
+		return equipes;
+	}
+
+	public void setEquipes(List<Inscricao> equipes) {
+		this.equipes = equipes;
+	}
+
 	@Override
 	public String toString() {
 		return nome;
@@ -95,3 +107,4 @@ public class Grupo implements Serializable{
 	
 //Fim Métodos
 }
+
