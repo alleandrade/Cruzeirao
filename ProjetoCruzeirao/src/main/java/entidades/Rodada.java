@@ -19,7 +19,8 @@ public class Rodada {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idRodada;
-	
+
+	private static int count = 1; 
 	@ManyToOne
 	private Grupo grupo;
 	
@@ -49,7 +50,8 @@ public class Rodada {
 	}
 
 	public void setIdRodada(int idRodada) {
-		this.idRodada = idRodada;
+		this.idRodada = count;
+		count++;
 	}
 
 	public Grupo getGrupo() {

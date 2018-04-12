@@ -14,13 +14,11 @@
 <p:growl id="mensagem"/>
 
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	<f:facet name="header">
             Equipe
     </f:facet>
-	 	 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
 		 
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{equipeMB.equipe.nome}" required="true"/>
@@ -35,8 +33,10 @@
 
 	<!-- Diretor -->
  	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
+	 
 	 
 	 
 	 <p:outputLabel  value="Diretor"/>
@@ -47,8 +47,7 @@
 	
 
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
 					 action="#{equipeMB.adicionarDiretor}"
 	                 update=":formEquipe"  
 	/>
@@ -87,13 +86,16 @@
 			
 			
 	</p:dataTable>
+	</p:panel>
+	
+	
 	
 	<!-- Jogadores -->
 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
-	 
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
+	
 	 <p:outputLabel  value="Jogador"/>
  	 <h:selectOneMenu id="jogador" converter ="ConverterUsuario"  value="#{equipeMB.auxJogador}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
@@ -102,8 +104,7 @@
 	
 
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
 					 action="#{equipeMB.adicionarJogador}"
 	                 update=":formEquipe"  
 	/>
@@ -141,12 +142,13 @@
 			
 			
 	</p:dataTable>	
+	</p:panel>
 	
 	<!--  Comissão -->	 
 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
-		  	
-	 
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
+ 	
+	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
 	 
 	 <p:outputLabel  value="Comissão"/>
  	 <h:selectOneMenu id="comissao" converter ="ConverterUsuario"  value="#{equipeMB.auxComissao}"  style="width:205px">
@@ -156,8 +158,7 @@
 	
 
 	
-	<p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+	<p:commandButton icon ="ui-icon-check"
 					 action="#{equipeMB.adicionarMembroComissao}"
 	                 update=":formEquipe"  
 	/>
@@ -195,6 +196,7 @@
 			
 			
 	</p:dataTable>	
+	</p:panel>
 				 
 
 	<p:commandButton value="Cadastrar"
@@ -205,15 +207,7 @@
 	/>
 	
 
-	</p:panel>
-
-
-
 </h:form>
-
-
-
 
 	</ui:define>
 </ui:composition>
-

@@ -28,7 +28,8 @@ public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idUsuario;
-	
+
+	private static int count = 1; 
 	private String email,
 		   		   nome,
 		   		   telefoneFixo,
@@ -42,7 +43,7 @@ public class Usuario implements Serializable{
 	@Lob
 	private byte [] foto;
 
-	@OneToMany
+	@OneToMany(mappedBy="usuario")
 	private ArrayList<Inscrito> inscricoes = new ArrayList<Inscrito>();
 	
 	@OneToMany
@@ -51,8 +52,10 @@ public class Usuario implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
+	//Falta mappedBy
 	@OneToMany
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
+	
 	private TipoUsuario tipo;
 	private Sexo sexo;
 	
@@ -222,7 +225,8 @@ public class Usuario implements Serializable{
 	}
 
 	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+		this.idUsuario = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

@@ -25,6 +25,7 @@ public class Cartao {
 	
 	private TipoCartao tipo;
 	private int tempo;
+	private static int count = 1; 
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -73,7 +74,8 @@ public class Cartao {
 	}
 
 	public void setIdCartao(int idCartao) {
-		this.idCartao = idCartao;
+		this.idCartao = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

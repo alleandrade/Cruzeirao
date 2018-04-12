@@ -21,7 +21,8 @@ public class Juiz implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idJuiz;
-	
+
+	private static int count = 1; 
 	private TipoJuiz tipo;
 	
 	@ManyToOne
@@ -66,7 +67,8 @@ public class Juiz implements Serializable{
 	}
 
 	public void setIdJuiz(int idJuiz) {
-		this.idJuiz = idJuiz;
+		this.idJuiz = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

@@ -29,15 +29,16 @@ public class Categoria implements Serializable{
 	private int nascidosAPartirDe,
 		minJogadores,
 		maxJogadores;
+
+	private static int count = 1; 
 	
-	@OneToMany
-	@JoinColumn(name = "idInscricao")
+	@OneToMany(mappedBy="categoria")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
 	
 	@ManyToOne
 	private Campeonato campeonato;	
 	
-	@OneToMany
+	@OneToMany(mappedBy="categoria")
 	private ArrayList<Fase> fases = new ArrayList<Fase>();
 	
 	private Sexo sexo;
@@ -138,7 +139,8 @@ public class Categoria implements Serializable{
 	}
 
 	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
+		this.idCategoria = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

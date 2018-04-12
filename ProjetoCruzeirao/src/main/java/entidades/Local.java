@@ -18,7 +18,8 @@ public class Local implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idLocal;
-	
+
+	private static int count = 1; 
 	private String endereco;
 	private String nome;
 //Fim Atributos
@@ -59,7 +60,8 @@ public class Local implements Serializable{
 	}
 
 	public void setIdLocal(int idLocal) {
-		this.idLocal = idLocal;
+		this.idLocal = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

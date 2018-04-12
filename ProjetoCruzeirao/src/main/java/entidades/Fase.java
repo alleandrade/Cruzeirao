@@ -26,13 +26,15 @@ public class Fase implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataFim;
+
+	private static int count = 1; 
 	
 	private TipoFase formato;
 	
 	@ManyToOne
 	private Categoria categoria;
 	
-	@OneToMany
+	@OneToMany(mappedBy="fase")
 	private ArrayList<Grupo> grupos = new ArrayList<Grupo>();
 	
 	@Id
@@ -106,7 +108,8 @@ public class Fase implements Serializable{
 	}
 
 	public void setIdFase(int idFase) {
-		this.idFase = idFase;
+		this.idFase = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

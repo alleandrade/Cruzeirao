@@ -19,10 +19,12 @@ public class Grupo implements Serializable{
 	
 	private String nome;
 	
+	private static int count = 1; 
+	
 	@ManyToOne
 	private Fase fase;
 	
-	@OneToMany
+	@OneToMany(mappedBy="grupo")
 	private ArrayList<Rodada> rodadas = new ArrayList<Rodada>();
 	
 	@Id
@@ -77,7 +79,8 @@ public class Grupo implements Serializable{
 	}
 
 	public void setIdGrupo(int idGrupo) {
-		this.idGrupo = idGrupo;
+		this.idGrupo = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

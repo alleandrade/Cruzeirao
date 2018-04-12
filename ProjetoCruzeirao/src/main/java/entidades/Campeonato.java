@@ -2,7 +2,8 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ public class Campeonato implements Serializable{
 	private int idCampeonato;
 	
 	private String nome;
+	private static int count = 1; 
 	
 	@OneToMany
 	private ArrayList<Local> locais = new ArrayList<Local>();
@@ -32,7 +34,7 @@ public class Campeonato implements Serializable{
 	@OneToMany
 	private ArrayList<Juiz> juizes = new ArrayList<Juiz>();
 	
-	@OneToMany
+	@OneToMany(mappedBy="campeonato")
 	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 	
 	@Temporal(TemporalType.DATE)
@@ -153,7 +155,8 @@ public class Campeonato implements Serializable{
 	}
 
 	public void setIdCampeonato(int idCampeonato) {
-		this.idCampeonato = idCampeonato;
+		this.idCampeonato = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {
