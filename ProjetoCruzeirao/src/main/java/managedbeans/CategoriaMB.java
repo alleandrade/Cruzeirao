@@ -21,6 +21,7 @@ public class CategoriaMB {
 	
 
 	public void salvar() {
+		categoria.setIdCategoria(0);
 		categoriaservice.salvar(categoria);
 		categoria.getCampeonato().getCategorias().add(categoria);
 		

@@ -23,6 +23,8 @@ public class InscricaoMB {
 	
 	public void salvar() {
 		
+		inscricao.setIdInscricao(0);
+		
 		for (Usuario auxA : inscricao.getEquipe().getJogadores()) {
 			Inscrito inscrito = new Inscrito();
 			InscritoService auxInscrito = new InscritoService();

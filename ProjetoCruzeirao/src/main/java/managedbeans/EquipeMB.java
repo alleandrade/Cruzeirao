@@ -53,6 +53,7 @@ public class EquipeMB {
 	}
 
 	public void salvar() {
+		equipe.setIdEquipe(0);
 		equipeservice.salvar(equipe);
 		equipe = new Equipe();
 	}

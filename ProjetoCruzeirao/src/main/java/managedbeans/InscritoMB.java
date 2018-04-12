@@ -14,6 +14,7 @@ public class InscritoMB {
 	private InscritoService inscritoservice = new InscritoService();
 	
 	public void salvar() {
+		inscrito.setIdInscrito(0);
 		inscritoservice.salvar(inscrito);
 		inscrito.getInscricao().getInscritos().add(inscrito);
 		inscrito.getUsuario().getInscricoes().add(inscrito);

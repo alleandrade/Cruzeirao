@@ -125,7 +125,7 @@ public class Inscricao implements Serializable{
 
 	@Override
 	public String toString() {
-		return Integer.toString((int)idInscricao);
+		return equipe.getNome();
 	}
 //Fim Métodos
 }

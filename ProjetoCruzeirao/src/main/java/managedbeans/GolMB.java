@@ -14,6 +14,7 @@ public class GolMB {
 	private GolService golservice = new GolService();
 	
 	public void salvar() {
+		gol.setIdGol(0);
 		golservice.salvar(gol);
 		gol = new Gol();
 	}

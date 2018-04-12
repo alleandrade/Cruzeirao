@@ -17,6 +17,7 @@ public class RodadaMB {
 	private PartidasFutebol auxPartidaFutebol;
 	
 	public void salvar() {
+		rodada.setIdRodada(0);
 		rodadaservice.salvar(rodada);
 		rodada.getGrupo().getRodadas().add(rodada);
 		rodada = new Rodada();

@@ -14,6 +14,7 @@ public class CartaoMB {
 	private CartaoService cartaoservice = new CartaoService();
 	
 	public void salvar() {
+		cartao.setIdCartao(0);
 		cartaoservice.salvar(cartao);
 		cartao = new Cartao();
 	}

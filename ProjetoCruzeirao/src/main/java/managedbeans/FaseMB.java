@@ -42,6 +42,7 @@ public class FaseMB {
 	private Juiz auxJuiz = new Juiz();
 	
 	public void salvar() {
+		fase.setIdFase(0);
 		faseservice.salvar(fase);
 		fase.getCategoria().getFases().add(fase);
 		fase = new Fase();
@@ -77,6 +78,7 @@ public class FaseMB {
 		rodada.getPartidas().add(partida);
 		partida.getEquipeMandante().getPartidas().add(partida);
 		partida.getEquipeVisitante().getPartidas().add(partida);
+		partida.setIdPartida(0);
 		partidaservice.salvar(partida);
 		partida = new Partida();
 	}
@@ -127,7 +129,7 @@ public class FaseMB {
 				equipes.remove(0);
 			}
 		}
-		
+		fase.setIdFase(0);
 		faseservice.salvar(fase);
 	}
 	

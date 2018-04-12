@@ -14,6 +14,7 @@ public class JuizMB {
 	private JuizService juizservice = new JuizService();
 	
 	public void salvar() {
+		juiz.setIdJuiz(0);
 		juizservice.salvar(juiz);
 		juiz = new Juiz();
 	}

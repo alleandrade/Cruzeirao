@@ -20,6 +20,7 @@ public class CampeonatoMB {
 	private Categoria auxCategoria;
 	
 	public void salvar() {
+		campeonato.setIdCampeonato(0);
 		campeonatoservice.salvar(campeonato);
 		campeonato = new Campeonato();
 	}
@@ -30,6 +31,7 @@ public class CampeonatoMB {
 	
 	public void adicionarJuiz() {
 		campeonato.getJuizes().add(auxJuiz);
+		auxJuiz.getUsuario().getCampeonatos().add(campeonato);
 	}
 	
 	public void adicionarLocal() {
@@ -46,6 +48,7 @@ public class CampeonatoMB {
 	
 	public void removerJuiz(Juiz juiz) {
 		campeonato.getJuizes().remove(juiz);
+		auxJuiz.getUsuario().getCampeonatos().remove(campeonato);
 	}
 	
 	public void remover(Campeonato campeonato) {

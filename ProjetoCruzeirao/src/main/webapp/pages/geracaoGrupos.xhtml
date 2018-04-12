@@ -36,7 +36,7 @@
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="3">
 	
 	<f:facet name="header">
-            Cabeças de Chave
+            Cabeças de chave
     </f:facet>
 	
 	<p:outputLabel  value="Inscricao"/>
@@ -67,14 +67,14 @@
 	
 	<p:outputLabel value="Fase: "/>
 	<h:selectOneMenu value="#{faseMB.fase.formato}" style="width:205px">
-            <f:selectItem itemLabel="Primeira Fase" itemValue="PRIMEIRA_FASE" />
-            <f:selectItem itemLabel="Segunda Fase" itemValue="SEGUNDA_FASE" />
+            <f:selectItem itemLabel="Primeira fase" itemValue="PRIMEIRA_FASE" />
+            <f:selectItem itemLabel="Segunda fase" itemValue="SEGUNDA_FASE" />
     </h:selectOneMenu>
     
-    <p:outputLabel for="numero" value="Numero: "/>
+    <p:outputLabel for="numero" value="idFase: "/>
 	<p:inputText id="numero" value = "#{faseMB.fase.idFase}" required="true"/>
 	
-	<p:commandButton value="Gerar Grupos"
+	<p:commandButton value="Gerar grupos"
 					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
 					 action="#{faseMB.gerarGrupos()}"
 	                 update="formFase"  

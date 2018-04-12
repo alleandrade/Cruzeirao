@@ -27,6 +27,7 @@ public class PartidaFutebolMB {
 	private CartaoService cartaoservice = new CartaoService();
 	
 	public void salvar() {
+		partidafutebol.setIdPartida(0);
 		partidasfutebolservice.salvar(partidafutebol);
 		partidafutebol = new PartidasFutebol();
 	}

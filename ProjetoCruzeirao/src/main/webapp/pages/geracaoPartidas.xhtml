@@ -16,7 +16,7 @@
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="2">
 	
 	<f:facet name="header">
-            Seleção de Campeonato
+            Seleção de campeonato
     </f:facet>
 	
 	<p:outputLabel  value="Campeonato"/>
@@ -53,12 +53,12 @@
                   <p:outputLabel value="#{grupos.nome}"/>  
 	    </p:column>
 		
-		<p:column headerText="Numero" style="text-align: center" sortBy="#{grupos.numero}">
-                  <p:outputLabel value="#{grupos.numero}"/>
+		<p:column headerText="idGrupo" style="text-align: center" sortBy="#{grupos.idGrupo}">
+                  <p:outputLabel value="#{grupos.idGrupo}"/>
 	    </p:column>
 	    
-	    <p:column headerText="Fase" style="text-align: center" sortBy="#{grupos.fase}">
-                  <p:outputLabel value="#{grupos.fase}"/>
+	    <p:column headerText="Fase" style="text-align: center" sortBy="#{grupos.fase.tipo}">
+                  <p:outputLabel value="#{grupos.fase.tipo}"/>
 	    </p:column>
 	    
 	    <!--  <p:column  headerText="Equipes" style="text-align: center">
@@ -114,17 +114,14 @@
     	<f:selectItem itemLabel= "Selecione a rodada" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxGrupo.rodadas}" />
     </h:selectOneMenu>
-    
-    <p:outputLabel for="numero" value="Numero: "/>
-	<p:inputText id="numero" value = "#{faseMB.partida.idPartida}" required="true"/>
 	
-	<p:outputLabel  value="Equipe Mandante"/>
+	<p:outputLabel  value="Equipe mandante"/>
  	<h:selectOneMenu id="equipem" converter ="ConverterEquipe"  required="true" value="#{faseMB.partida.equipeMandante}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxGrupo.equipes}" />
     </h:selectOneMenu>
 	
-	<p:outputLabel  value="Equipe Visitante"/>
+	<p:outputLabel  value="Equipe visitante"/>
  	<h:selectOneMenu id="equipev" converter ="ConverterEquipe"  required="true" value="#{faseMB.partida.equipeVisitante}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxGrupo.equipes}" />
@@ -173,7 +170,7 @@
  	>
  
  	<f:facet name="header">
-            Juiz (es) da Partida
+            Juiz (es) da partida
     </f:facet>
    
      
@@ -184,7 +181,7 @@
    
   
   	 <p:column headerText="Tipo" style="text-align: center">
-                  <p:outputLabel value="#{juiz.tipo}"/>
+                  <p:outputLabel value="#{juiz.tipo.tipo}"/>
      </p:column>
      
      

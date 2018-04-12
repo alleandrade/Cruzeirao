@@ -14,6 +14,7 @@ public class LocalMB {
 	private LocalService localservice = new LocalService();
 	
 	public void salvar() {
+		local.setIdLocal(0);
 		localservice.salvar(local);
 		local = new Local();
 	}

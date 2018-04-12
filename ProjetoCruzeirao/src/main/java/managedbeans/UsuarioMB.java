@@ -59,7 +59,7 @@ public class UsuarioMB {
 	}
 	
 	public void salvar() {
-		
+		usuario.setIdUsuario(0);
 		usuarioservice.salvar(usuario);
 		usuario = new Usuario();
 	}
