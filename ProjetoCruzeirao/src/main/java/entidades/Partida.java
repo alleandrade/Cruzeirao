@@ -22,7 +22,8 @@ public class Partida {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPartida;
-	
+
+	private static int count = 1; 
 	@ManyToOne
 	private Inscricao equipeMandante;
 	
@@ -74,7 +75,8 @@ public class Partida {
 	}
 
 	public void setIdPartida(int idPartida) {
-		this.idPartida = idPartida;
+		this.idPartida = count;
+		count++;
 	}
 
 	public Inscricao getEquipeMandante() {

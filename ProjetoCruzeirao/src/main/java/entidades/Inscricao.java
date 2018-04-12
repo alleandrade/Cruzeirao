@@ -21,11 +21,12 @@ public class Inscricao implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInscricao;	
-	
+
+	private static int count = 1; 
 	private boolean pagamento;
 	private boolean validada;
 	
-	@OneToMany
+	@OneToMany(mappedBy="inscricao")
 	private ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
 	
 	@OneToMany
@@ -66,7 +67,8 @@ public class Inscricao implements Serializable{
 	}
 
 	public void setIdInscricao(long idInscricao) {
-		this.idInscricao = idInscricao;
+		this.idInscricao = count;
+		count++;
 	}
 	
 	public boolean isPagamento() {

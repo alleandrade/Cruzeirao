@@ -13,15 +13,17 @@
 <h:form id="formCategoria">
 <p:growl id="mensagem"/>
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	<f:facet name="header">
             Categoria
     </f:facet>
 	 	 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	
 		 
-	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:outputLabel for="nome" value="Nome:"/>
 	 <p:inputText id="nome" value = "#{categoriaMB.categoria.nome}" required="true"/>
 	 
 	 <p:outputLabel value="Sexo: "/>
@@ -30,41 +32,42 @@
             <f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
      </h:selectOneMenu>
 	  
-	 <p:outputLabel for="nascidos" value="Nascidos a partir de: "/>
+	 <p:outputLabel for="nascidos" value="Nascidos a partir de:"/>
 	 <p:inputText id="nascidos" value = "#{categoriaMB.categoria.nascidosAPartirDe}" required="true">
 	 	<f:validateDoubleRange minimum="1930"/>
 	 	<p:message for="nascidos" style = "margin: 4px 0px; padding: 0px 0px"/>
 	 </p:inputText>	
 	 
-	 <p:outputLabel for="campeonato" value="Campeonato: "/>
-	 <h:selectOneMenu id="campeonato" converter ="ConverterCampeonato"  required="true" value="#{categoriaMB.categoria.campeonato}"  style="width:205px">
+	 <p:outputLabel for="campeonato" value="Campeonato:"/>
+	 <h:selectOneMenu id="campeonato" converter ="ConverterCampeonato"  value="#{categoriaMB.categoria.campeonato}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a categoria" noSelectionOption="true"/>
      		<f:selectItems value="#{campeonatoMB.campeonatos}" />
      </h:selectOneMenu>	 
 	 
-	 <p:outputLabel for="minimo" value="Número mínimo de jogadores: "/>
+	 <p:outputLabel for="minimo" value="Número mínimo de jogadores:"/>
 	 <p:inputText id="minimo" value = "#{categoriaMB.categoria.minJogadores}" required="true"> 
 	 	<f:validateDoubleRange minimum="24"/>
 	 	<p:message for="minimo" style = "margin: 4px 0px; padding: 0px 0px"/>
 	 </p:inputText>
 	 
-	 <p:outputLabel for="maximo" value="Número máximo de jogadores: "/>
+	 <p:outputLabel for="maximo" value="Número máximo de jogadores:"/>
 	 <p:inputText id="maximo" value = "#{categoriaMB.categoria.maxJogadores}" required="true"> 
 	 	<f:validateDoubleRange minimum="36"/>
 	 	<p:message for="maximo" style = "margin: 4px 0px; padding: 0px 0px"/>
 	 </p:inputText>
 	 
-	 </p:panelGrid>	 
-	
+	 </p:panelGrid>
+	 
+	 
 	 
 	<p:commandButton value="Cadastrar"
-					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px"
 					 action="#{categoriaMB.salvar}"
 	                 update=":formCategoria"  
 	            
 	/>
 
-	</p:panel>
+
 
 
 </h:form>

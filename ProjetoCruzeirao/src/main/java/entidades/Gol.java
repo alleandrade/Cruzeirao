@@ -17,7 +17,9 @@ public class Gol {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idGol;
-	
+
+	private static int count = 1; 
+
 	@ManyToOne
 	private Inscrito inscrito;
 	
@@ -72,7 +74,8 @@ public class Gol {
 	}
 
 	public void setIdGol(int idGol) {
-		this.idGol = idGol;
+		this.idGol = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

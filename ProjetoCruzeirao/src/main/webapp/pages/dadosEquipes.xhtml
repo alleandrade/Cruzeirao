@@ -126,6 +126,10 @@
 						<p:outputLabel value="#{func.rg}" />
 					</p:column>	
 					
+					<p:column headerText="Tipo">
+      					<p:outputLabel value="#{func.tipo.tipo}" />
+     				</p:column>
+					
 					<p:column style = "text-align: center">
 	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerMembroComissao(func)}" update="formEquipe"></p:commandLink> 	     	
 					</p:column>

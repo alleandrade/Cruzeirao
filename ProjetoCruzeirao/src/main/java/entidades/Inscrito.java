@@ -23,7 +23,8 @@ public class Inscrito implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idInscrito;
-	
+
+	private static int count = 1; 
 	@ManyToOne
 	private Usuario usuario;
 	
@@ -113,7 +114,8 @@ public class Inscrito implements Serializable {
 	}
 
 	public void setIdInscrito(int idInscrito) {
-		this.idInscrito = idInscrito;
+		this.idInscrito = count;
+		count++;
 	}
 
 

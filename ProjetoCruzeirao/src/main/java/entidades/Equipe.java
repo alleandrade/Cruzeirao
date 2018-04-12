@@ -26,6 +26,7 @@ public class Equipe implements Serializable {
 	
 	private String nome,
 		   		   cidade;
+	private static int count = 1; 
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataFundacao;
@@ -113,7 +114,8 @@ public class Equipe implements Serializable {
 	}
 
 	public void setIdEquipe(int idEquipe) {
-		this.idEquipe = idEquipe;
+		this.idEquipe = count;
+		count++;
 	}
 
 	public static long getSerialversionuid() {

@@ -16,6 +16,7 @@ public class GrupoMB {
 	private Rodada auxRodada;
 	
 	public void salvar() {
+		grupo.setIdGrupo(0);
 		gruposervice.salvar(grupo);
 		grupo.getFase().getGrupos().add(grupo);
 		grupo = new Grupo();
