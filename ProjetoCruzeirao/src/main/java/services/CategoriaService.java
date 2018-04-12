@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.Categoria;
 
 public class CategoriaService {
-	private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+	private ArrayList<Categoria> categorias = Dados.categorias;
 	
 	public CategoriaService() {
 		
@@ -12,6 +14,10 @@ public class CategoriaService {
 	
 	public void salvar(Categoria categoria) {
 		categorias.add(categoria);
+	}
+	
+	public void remover(Categoria categoria) {
+		categorias.remove(categoria);
 	}
 
 	public ArrayList<Categoria> getCategorias() {

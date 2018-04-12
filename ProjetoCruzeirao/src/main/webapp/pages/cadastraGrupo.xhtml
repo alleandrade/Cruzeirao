@@ -1,0 +1,56 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formGrupo">
+<p:growl id="mensagem"/>
+
+
+
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	
+	<f:facet name="header">
+            Grupo
+    </f:facet>
+	 	 
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+		 
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{grupoMB.grupo.nome}" required="true"/>
+     
+     <p:outputLabel for="fase" value="Fase: "/>
+	 <h:selectOneMenu id="fase" converter ="ConverterFase"  value="#{grupoMB.grupo.fase}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a fase" noSelectionOption="false"/>
+     		<f:selectItems value="#{faseMB.fases}" />
+     </h:selectOneMenu>
+     
+	 
+	</p:panelGrid>
+ 
+
+	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{grupoMB.salvar}"
+	                 update=":formGrupo"  
+	            
+	/>
+	
+	</p:panel>
+
+
+
+</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>

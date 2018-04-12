@@ -1,24 +1,65 @@
-//Obs: Mudei o tipo da lista de equipes para ArrayList pois o List não estava funcionando.
 //Import's
 package entidades;
 
-import java.util.*;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 //Fim Import's
 //Atributos
-public class Usuario {
-	String email,
-		   nome,
-		   telefoneFixo,
-		   telefoneMovel,
-		   endereco,
-		   rg,
-		   cpf,
-		   cref,
-		   foto;
-	Date dataNascimento;
-	ArrayList<Equipe> equipes = new ArrayList<Equipe>();
-	Enum tipo,
-		 sexo;		//Obs: Procurar o porque de usar um tipo Enum nesta variavel
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import enums.Sexo;
+import enums.TipoUsuario;
+
+@Entity
+public class Usuario implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idUsuario;
+
+	private static int count = 1; 
+	private String email,
+		   		   nome,
+		   		   telefoneFixo,
+		   		   telefoneMovel,
+		   		   endereco,
+		   		   rg,
+		   		   cpf,
+		   		   cref,
+		   		   senha;
+    
+	@Lob
+	private byte [] foto;
+
+	@OneToMany(mappedBy="usuario")
+	private ArrayList<Inscrito> inscricoes = new ArrayList<Inscrito>();
+	
+	@OneToMany
+	private ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>();
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataNascimento;
+	
+	//Falta mappedBy
+	@OneToMany
+	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
+	
+	private TipoUsuario tipo;
+	private Sexo sexo;
+	
+
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -28,13 +69,20 @@ public class Usuario {
 	*/
 	
 	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
 	public Usuario() {
 		super();
 	}
-
+	
 	public Usuario(String email, String nome, String telefoneFixo, String telefoneMovel, String endereco, String rg,
-			String cpf, String cref, String foto, Date dataNascimento, ArrayList<Equipe> equipes, Enum tipo,
-			Enum sexo) {
+		String cpf, String cref, byte [] foto, Date dataNascimento, ArrayList<Equipe> equipes, TipoUsuario tipo, Sexo sexo) {
 		super();
 		this.email = email;
 		this.nome = nome;
@@ -50,6 +98,7 @@ public class Usuario {
 		this.tipo = tipo;
 		this.sexo = sexo;
 	}
+	
 
 	public String getEmail() {
 		return email;
@@ -58,7 +107,23 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoUsuario tipo) {
+		this.tipo = tipo;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -115,14 +180,6 @@ public class Usuario {
 		this.cref = cref;
 	}
 	
-	public String getFoto() {
-		return foto;
-	}
-	
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-	
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -139,28 +196,46 @@ public class Usuario {
 		this.equipes = equipes;
 	}
 	
-	public Enum getTipo() {
-		return tipo;
+	public ArrayList<Inscrito> getInscricoes() {
+		return inscricoes;
 	}
-	
-	public void setTipo(Enum tipo) {
-		this.tipo = tipo;
+
+	public void setInscricoes(ArrayList<Inscrito> inscricoes) {
+		this.inscricoes = inscricoes;
 	}
-	
-	public Enum getSexo() {
-		return sexo;
+
+	public ArrayList<Campeonato> getCampeonatos() {
+		return campeonatos;
 	}
+
+	public void setCampeonatos(ArrayList<Campeonato> campeonatos) {
+		this.campeonatos = campeonatos;
+	}	
 	
-	public void setSexo(Enum sexo) {
-		this.sexo = sexo;
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = count;
+		count++;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", nome=" + nome + ", telefoneFixo=" + telefoneFixo + ", telefoneMovel="
-				+ telefoneMovel + ", endereco=" + endereco + ", rg=" + rg + ", cpf=" + cpf + ", cref=" + cref
-				+ ", foto=" + foto + ", dataNascimento=" + dataNascimento + ", equipes=" + equipes + ", tipo=" + tipo
-				+ ", sexo=" + sexo + "]";
+		return nome;
 	}
 //Fim Métodos	
 }

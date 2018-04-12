@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.Gol;
 
 public class GolService {
-	private ArrayList<Gol> gols = new ArrayList<Gol>();
+	private ArrayList<Gol> gols = Dados.gols;
 	
 	public GolService() {
 		

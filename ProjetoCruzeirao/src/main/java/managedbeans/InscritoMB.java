@@ -15,7 +15,13 @@ public class InscritoMB {
 	
 	public void salvar() {
 		inscritoservice.salvar(inscrito);
+		inscrito.getInscricao().getInscritos().add(inscrito);
+		inscrito.getUsuario().getInscricoes().add(inscrito);
 		inscrito = new Inscrito();
+	}
+	
+	public void remover(Inscrito inscrito) {
+		inscritoservice.remover(inscrito);
 	}
 
 	public Inscrito getInscrito() {
@@ -29,4 +35,5 @@ public class InscritoMB {
 	public ArrayList<Inscrito> getInscritos() {
 		return inscritoservice.getInscritos();
 	}
+	
 }

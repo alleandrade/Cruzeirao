@@ -1,9 +1,27 @@
 //Import's
 package entidades;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 //Fim Import's
 //Atributos
-public class Local {
-	String endereco;
+@Entity
+public class Local implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idLocal;
+
+	private static int count = 1; 
+	private String endereco;
+	private String nome;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -12,6 +30,14 @@ public class Local {
 	 *  - Construtores		[X]
 	*/
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public Local() {
 		super();
 	}
@@ -29,9 +55,22 @@ public class Local {
 		this.endereco = endereco;
 	}
 
+	public int getIdLocal() {
+		return idLocal;
+	}
+
+	public void setIdLocal(int idLocal) {
+		this.idLocal = count;
+		count++;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "Local [endereco=" + endereco + "]";
+		return nome;
 	}
 //Fim Métodos
 }

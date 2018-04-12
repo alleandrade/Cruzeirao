@@ -1,10 +1,12 @@
 package services;
 
 import java.util.*;
+
+import dados.Dados;
 import entidades.PartidasFutebol;
 
 public class PartidaFutebolService {
-	private ArrayList<PartidasFutebol> partidasfutebol = new ArrayList<PartidasFutebol>();
+	private ArrayList<PartidasFutebol> partidasfutebol = Dados.partidasfutebol;
 	
 	public PartidaFutebolService() {
 		

@@ -1,18 +1,42 @@
 //Import's
 package entidades;
 
+import java.io.Serializable;
 import java.util.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 //Fim Import's
 
 //Atributos
-public class Inscricao {
-	long numero;
-	boolean pagamento,
-			validada;
-	ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
-	ArrayList<Partida> partidas = new ArrayList<Partida>();
-	Categoria categoria;
-	Equipe equipe;
+@Entity
+public class Inscricao implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long idInscricao;	
+
+	private static int count = 1; 
+	private boolean pagamento;
+	private boolean validada;
+	
+	@OneToMany(mappedBy="inscricao")
+	private ArrayList<Inscrito> inscritos = new ArrayList<Inscrito>();
+	
+	@OneToMany
+	private ArrayList<Partida> partidas = new ArrayList<Partida>();
+	
+	@ManyToOne
+	private Categoria categoria;
+	
+	@ManyToOne
+	private Equipe equipe;
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -26,10 +50,10 @@ public class Inscricao {
 		super();
 	}
 
-	public Inscricao(long numero, boolean pagamento, boolean validada, ArrayList<Inscrito> inscritos,
+	public Inscricao(long idInscricao, boolean pagamento, boolean validada, ArrayList<Inscrito> inscritos,
 			ArrayList<Partida> partidas, Categoria categoria, Equipe equipe) {
 		super();
-		this.numero = numero;
+		this.idInscricao = idInscricao;
 		this.pagamento = pagamento;
 		this.validada = validada;
 		this.inscritos = inscritos;
@@ -38,12 +62,13 @@ public class Inscricao {
 		this.equipe = equipe;
 	}
 
-	public long getNumero() {
-		return numero;
+	public long getIdInscricao() {
+		return idInscricao;
 	}
-	
-	public void setNumero(long numero) {
-		this.numero = numero;
+
+	public void setIdInscricao(long idInscricao) {
+		this.idInscricao = count;
+		count++;
 	}
 	
 	public boolean isPagamento() {
@@ -94,10 +119,13 @@ public class Inscricao {
 		this.equipe = equipe;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "Inscricao [numero=" + numero + ", pagamento=" + pagamento + ", validada=" + validada + ", inscritos="
-				+ inscritos + ", categoria=" + categoria + ", equipe=" + equipe + "]";
+		return Integer.toString((int)idInscricao);
 	}
 //Fim Métodos
 }

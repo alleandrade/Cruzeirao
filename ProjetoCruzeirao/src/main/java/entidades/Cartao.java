@@ -1,11 +1,31 @@
 //Import's
 package entidades;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import enums.TipoCartao;
+
 //Fim Import's
 //Atributos
+@Entity
 public class Cartao {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idCartao;
+	
+	@ManyToOne
 	private Inscrito inscrito;
-	private Enum tipo;
+	
+	private TipoCartao tipo;
 	private int tempo;
+	private static int count = 1; 
 //Fim Atributos
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -18,13 +38,13 @@ public class Cartao {
 		super();
 	}
 	
-	public Cartao(Inscrito inscrito, Enum tipo, int tempo) {
+	public Cartao(Inscrito inscrito, TipoCartao tipo, int tempo) {
 		super();
 		this.inscrito = inscrito;
 		this.tipo = tipo;
 		this.tempo = tempo;
 	}
-	
+
 	public Inscrito getInscrito() {
 		return inscrito;
 	}
@@ -33,14 +53,14 @@ public class Cartao {
 		this.inscrito = inscrito;
 	}
 	
-	public Enum getTipo() {
+	public TipoCartao getTipo() {
 		return tipo;
 	}
-	
-	public void setTipo(Enum tipo) {
+
+	public void setTipo(TipoCartao tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public int getTempo() {
 		return tempo;
 	}
@@ -48,5 +68,20 @@ public class Cartao {
 	public void setTempo(int tempo) {
 		this.tempo = tempo;
 	}
+
+	public int getIdCartao() {
+		return idCartao;
+	}
+
+	public void setIdCartao(int idCartao) {
+		this.idCartao = count;
+		count++;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 //Fim Métodos
 }

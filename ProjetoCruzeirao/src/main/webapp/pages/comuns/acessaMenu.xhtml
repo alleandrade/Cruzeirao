@@ -1,0 +1,90 @@
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	style="background-color: #F5F5F5"
+	>
+	
+<h:form>  
+   
+    
+    <p:panelMenu   style = "color:DimGray; font-family:Arial  ">
+        
+        <p:submenu label="Usuários" style = "background-color:Silver; font-family:Arial  ">
+            <p:menuitem value="Cadastrar" outcome="cadastraUsuario.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados usuários" outcome="dadosUsuarios.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>
+ 
+        <p:submenu label="Equipes" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraEquipe.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados equipes" outcome="dadosEquipes.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>  
+        
+        <p:submenu label="Inscrições" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraInscricao.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados inscrições" outcome="dadosInscricoes.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>  
+        
+        <p:submenu label="Inscrito" style = "background-color:Silver">
+            <p:menuitem value="Dados inscritos" outcome="dadosInscritos.xhtml" style = "background-color:AliceBlue "/>
+        </p:submenu>
+        
+        <p:submenu label="Partidas" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar dados" outcome="cadastraDadosPartida.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados inscrições" outcome="dadosInscricoes.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>   
+        
+        <p:submenu label="Geração" style = "background-color:Silver">
+            <p:menuitem value="Grupos" outcome="geracaoGrupos.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Partidas" outcome="geracaoPartidas.xhtml" style = "background-color:AliceBlue; font-family:Arial "/>
+        </p:submenu> 
+        
+        
+        <p:submenu label="Campeonatos" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraCampeonato.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados campeonatos" outcome="dadosCampeonatos.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>           
+        
+        <p:submenu label="Categorias" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraCategoria.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados categorias" outcome="dadosCategorias.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>
+        
+        <p:submenu label="Locais" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraLocal.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados locais" outcome="dadosLocais.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>
+        
+        <p:submenu label="Juízes" style = "background-color:Silver">
+            <p:menuitem value="Cadastrar" outcome="cadastraJuiz.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:separator />
+            <p:menuitem value="Dados juízes" outcome="dadosJuizes.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>
+        
+         <p:submenu label="Fases" style = "background-color:Silver">
+            <p:menuitem value="Dados fases" outcome="dadosFases.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>
+		    
+		<p:submenu label="Grupos" style = "background-color:Silver">
+            <p:menuitem value="Dados grupos" outcome="dadosGrupos.xhtml" style = "background-color:AliceBlue; font-family:Arial "/>
+        </p:submenu> 
+        
+        <p:submenu label="Rodadas" style = "background-color:Silver">
+            <p:menuitem value="Dados rodadas" outcome="dadosRodadas.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        </p:submenu>       
+		    
+		    
+    </p:panelMenu>
+ 
+</h:form>
+	
+</ui:composition>

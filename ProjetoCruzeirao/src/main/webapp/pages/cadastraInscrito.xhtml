@@ -1,0 +1,80 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formInscrito">
+<p:growl id="mensagem"/>
+	 	 
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	
+	 <f:facet name="header">
+           Inscrito
+    </f:facet>
+    
+	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
+	
+ 	<p:outputLabel for="usuario" value="Usuário:"/>
+	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario"  value="#{inscritoMB.inscrito.usuario}"  style="width:205px" required="true">
+     		<f:selectItem itemLabel= "Selecione o usuário" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.usuarios}" />
+     </h:selectOneMenu>
+	 
+	 <p:outputLabel value="Tipo:"/>
+	 <h:selectOneMenu value="#{usuarioMB.usuario.tipo}" style="width:205px">
+            <f:selectItem itemLabel="Organizador" itemValue="ORGANIZADOR" />
+            <f:selectItem itemLabel="Jogador" itemValue="JOGADOR" />
+            <f:selectItem itemLabel="Diretor" itemValue="DIRETOR" />
+            <f:selectItem itemLabel="Juiz" itemValue="JUIZ" />
+            <f:selectItem itemLabel="Preparador físico" itemValue="PREPARADOR_FISICO" />
+            <f:selectItem itemLabel="Massagista" itemValue="MASSAGISTA" />
+            <f:selectItem itemLabel="Técnico" itemValue="TECNICO" />
+     </h:selectOneMenu>
+    
+      	
+	 <p:outputLabel  value="Inscrição:"/>
+ 	 <h:selectOneMenu id="inscricao" converter ="ConverterInscricao" required="true" value="#{inscritoMB.inscrito.inscricao}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione a inscrição" noSelectionOption="true"/>
+     		<f:selectItems value="#{inscricaoMB.inscricoes}" />
+     </h:selectOneMenu>
+   
+	 </p:panelGrid>
+	 
+	 <p:panelGrid style="margin-bottom:0px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="3">
+     <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+        <h:outputText value="Usuário aceito" />
+        <p:selectBooleanButton id="value4" value="#{inscritoMB.inscrito.aceiteUsuario}" onLabel="Sim" offLabel="Não" style="width:60px" />
+    </h:panelGrid>
+   
+     <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+        <h:outputText value="Jogo suspenso" />
+        <p:selectBooleanButton id="value5" value="#{inscritoMB.inscrito.suspensoJogos}" onLabel="Sim" offLabel="Não" style="width:60px" />
+    </h:panelGrid>
+   
+     
+     <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+        <h:outputText value="Inscrição validada" />
+        <p:selectBooleanButton id="value6" value="#{inscritoMB.inscrito.inscricaoValidada}" onLabel="Sim" offLabel="Não" style="width:60px" />
+    </h:panelGrid>
+	 </p:panelGrid>
+	 
+	 <p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{inscritoMB.salvar}"
+	                 update=":formInscrito"  	            
+	/>
+ 	</p:panel>
+ 	
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>
