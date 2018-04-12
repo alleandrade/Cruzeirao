@@ -75,6 +75,8 @@ public class FaseMB {
 		partida.getGrupo().getEquipes().remove(partida.getEquipeMandante());
 		partida.getGrupo().getEquipes().remove(partida.getEquipeVisitante());
 		rodada.getPartidas().add(partida);
+		partida.getEquipeMandante().getPartidas().add(partida);
+		partida.getEquipeVisitante().getPartidas().add(partida);
 		partidaservice.salvar(partida);
 		partida = new Partida();
 	}

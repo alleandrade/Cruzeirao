@@ -116,7 +116,7 @@
     </h:selectOneMenu>
     
     <p:outputLabel for="numero" value="Numero: "/>
-	<p:inputText id="numero" value = "#{faseMB.partida.numero}" required="true"/>
+	<p:inputText id="numero" value = "#{faseMB.partida.idPartida}" required="true"/>
 	
 	<p:outputLabel  value="Equipe Mandante"/>
  	<h:selectOneMenu id="equipem" converter ="ConverterEquipe"  required="true" value="#{faseMB.partida.equipeMandante}"  style="width:205px">

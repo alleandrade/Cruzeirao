@@ -65,6 +65,31 @@ public class PartidaFutebolMB {
 		cartaoservice.salvar(cartao);
 	}
 	
+	public void finalizarPartida() {
+		  
+		if(partidafutebolaux.getGolsMandantes().size() > partidafutebolaux.getGolsVisitantes().size()) {
+		   partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeMandante());   
+		  }
+		  
+		  else if(partidafutebolaux.getGolsMandantes().size() < partidafutebolaux.getGolsVisitantes().size()) {
+		   partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeVisitante());
+		  }
+		  
+		  else {
+		   if (partidafutebolaux.getGolsPenaltisMandantes().size() > partidafutebolaux.getGolsPenaltisVisitantes().size()) {
+		    partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeMandante());
+		   }
+		   
+		   else if(partidafutebolaux.getGolsPenaltisMandantes().size() < partidafutebolaux.getGolsPenaltisVisitantes().size()) {
+		    partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeVisitante());
+		   }
+		   
+		  }
+		
+		partidasfutebolservice.salvar(partidafutebolaux);
+		partidafutebolaux = new PartidasFutebol();
+	}
+	
 	public PartidasFutebol getPartidasfutebol() {
 		return partidafutebol;
 	}
