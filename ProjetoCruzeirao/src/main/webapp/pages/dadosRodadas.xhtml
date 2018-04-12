@@ -27,10 +27,7 @@
 	
 		
 	    <p:column headerText="idRodada" style="text-align: center" sortBy="#{rod.idRodada}">
-        	<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{rod.idRodada}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{rod.idRodada}" style="width:96%"/></f:facet>
-           	</p:cellEditor>	             		   		
+			<p:outputLabel value="#{rod.idRodada}"/>
 	    </p:column>
 	    
 	    <p:column headerText="Grupo" style="text-align: center">

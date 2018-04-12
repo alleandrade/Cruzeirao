@@ -27,10 +27,7 @@
 	
 		
 	    <p:column headerText="idFase" style="text-align: center" sortBy="#{fas.idFase}">
-	    	<p:cellEditor>
-				<f:facet name="output"><p:outputLabel value="#{fas.idFase}"/></f:facet>
-        		<f:facet name="input"><p:inputText    value="#{fas.idFase}" style="width:96%"/></f:facet>  
-        	</p:cellEditor>	         		
+			<p:outputLabel value="#{fas.idFase}"/>        		
 	    </p:column>
 	    
 	    <p:column headerText="Data inicial" style="text-align: center" sortBy="#{fas.dataInicio}">
@@ -85,10 +82,7 @@
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{grupo.nome}"/>
 	   	    		</p:column>	
-	   	    		
-	   	    		<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{faseMB.removerGrupo(grupo)}" update="formFase"></p:commandLink> 	     	
-					</p:column>		
+	
  			</p:dataTable>            
         </p:outputPanel>
         </p:dialog>  

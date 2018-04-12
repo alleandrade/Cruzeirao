@@ -26,12 +26,7 @@
     </f:facet>
     
     	<p:column headerText="idInscrição" style="text-align: center" sortBy="#{ins.idInscricao}">
-		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{ins.idInscricao}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{ins.idInscricao}" style="width:96%"/></f:facet>
-           		</p:cellEditor>	   
-           		
+			<p:outputLabel value="#{ins.idInscricao}"/>
 	    </p:column>
 	
 		

@@ -50,10 +50,7 @@
  					<p:column headerText="Endereço">
 	   					<p:outputLabel value="#{local.endereco}"/>
 	   	    		</p:column>	
-	   	    		
-	   	    		<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerLocal(local)}" update="formCampeonato"></p:commandLink> 	     	
-					</p:column>		
+	   	    	
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      
@@ -78,10 +75,7 @@
 	   	    		<p:column headerText="RG">
 	   					<p:outputLabel value="#{juiz.usuario.rg}"/>
 	   	    		</p:column>
-	   	    		
-	   	    		<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerJuiz(juiz)}" update="formCampeonato"></p:commandLink> 	     	
-					</p:column>								
+	   	    									
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      
@@ -114,10 +108,7 @@
 	   	    		<p:column headerText="Sexo">
 	   					<p:outputLabel value="#{categoria.sexo.sexo}"/>
 	   	    		</p:column>	
-	   	    		
-	   	    		<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.removerCategoria(categoria)}" update="formCampeonato"></p:commandLink> 	     	
-					</p:column>				
+	   	    				
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      

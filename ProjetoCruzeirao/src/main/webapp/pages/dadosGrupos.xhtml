@@ -27,10 +27,7 @@
 	
 	
 		<p:column headerText="idGrupo" style="text-align: center" sortBy="#{gru.idGrupo}">
-	    	<p:cellEditor>
-				<f:facet name="output"><p:outputLabel value="#{gru.idGrupo}"/></f:facet>
-        		<f:facet name="input"><p:inputText    value="#{gru.idGrupo}" style="width:96%"/></f:facet>  
-        	</p:cellEditor>	         		
+			<p:outputLabel value="#{gru.idGrupo}"/>
 	    </p:column>
 		
 	    <p:column headerText="Nome" style="text-align: center" sortBy="#{gru.nome}">
@@ -60,10 +57,7 @@
 	   	    		<p:column headerText="Grupo">
 	   					<p:outputLabel value="#{rodada.grupo}"/>
 	   	    		</p:column>
-	   	    		
-	   	    		<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{grupoMB.removerRodada(rodada)}" update="formGrupo"></p:commandLink> 	     	
-					</p:column>		
+	   	    			
  			</p:dataTable>            
         </p:outputPanel>
         </p:dialog>  

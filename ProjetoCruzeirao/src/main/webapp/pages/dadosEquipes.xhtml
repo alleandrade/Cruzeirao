@@ -73,10 +73,7 @@
 	   	    		<p:column headerText="RG">
 						<p:outputLabel value="#{jogador.rg}" />
 					</p:column>	
-					
-					<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jogador)}" update="formEquipe"></p:commandLink> 	     	
-					</p:column>							
+										
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      
@@ -99,12 +96,7 @@
 	   	    		<p:column headerText="RG">
 						<p:outputLabel value="#{diretor.rg}" />
 					</p:column>	
-					
-					<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerDiretor(diretor)}" update="formEquipe"></p:commandLink> 	     	
-					</p:column>
-				
-							
+								
  			</p:dataTable>            
        </p:outputPanel>
        </p:dialog>      
@@ -126,10 +118,9 @@
 						<p:outputLabel value="#{func.rg}" />
 					</p:column>	
 					
-					<p:column style = "text-align: center">
-	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerMembroComissao(func)}" update="formEquipe"></p:commandLink> 	     	
-					</p:column>
-				
+					<p:column headerText="Tipo">
+						<p:outputLabel value="#{func.tipo.tipo}" />
+					</p:column>	
 							
  			</p:dataTable>            
        </p:outputPanel>
