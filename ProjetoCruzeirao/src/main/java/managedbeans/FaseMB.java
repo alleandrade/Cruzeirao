@@ -129,6 +129,7 @@ public class FaseMB {
 				equipes.remove(0);
 			}
 		}
+		auxCat.getFases().add(fase);
 		fase.setIdFase(0);
 		faseservice.salvar(fase);
 	}

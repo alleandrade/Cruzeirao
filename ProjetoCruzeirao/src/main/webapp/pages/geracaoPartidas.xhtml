@@ -20,7 +20,7 @@
     </f:facet>
 	
 	<p:outputLabel  value="Campeonato"/>
- 	<h:selectOneMenu id="campeonato" converter ="ConverterCategoria"  required="true" value="#{faseMB.auxCat}"  style="width:205px">
+ 	<h:selectOneMenu id="campeonato" converter ="ConverterCategoria"  value="#{faseMB.auxCat}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione o campeonato" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.campeonatos}" />
     </h:selectOneMenu>
@@ -82,7 +82,7 @@
     </f:facet>
     
     <p:outputLabel  value="Grupo"/>
- 	<h:selectOneMenu id="grupo" converter ="ConverterGrupo"  required="true" value="#{faseMB.rodada.grupo}"  style="width:205px">
+ 	<h:selectOneMenu id="grupo" converter ="ConverterGrupo"  value="#{faseMB.rodada.grupo}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione o grupo" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.grupos}" />
     </h:selectOneMenu>
@@ -104,25 +104,25 @@
     </f:facet>
     
     <p:outputLabel  value="Grupo"/>
- 	<h:selectOneMenu id="grupo2" converter ="ConverterCategoria"  required="true" value="#{faseMB.auxGrupo}"  style="width:205px">
+ 	<h:selectOneMenu id="grupo2" converter ="ConverterCategoria"  value="#{faseMB.auxGrupo}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione o grupo" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.grupos}" />
     </h:selectOneMenu>
     
     <p:outputLabel  value="Rodada"/>
- 	<h:selectOneMenu id="rodada" converter ="ConverterRodada"  required="true" value="#{faseMB.rodada}"  style="width:205px">
+ 	<h:selectOneMenu id="rodada" converter ="ConverterRodada"  value="#{faseMB.rodada}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione a rodada" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxGrupo.rodadas}" />
     </h:selectOneMenu>
 	
 	<p:outputLabel  value="Equipe mandante"/>
- 	<h:selectOneMenu id="equipem" converter ="ConverterEquipe"  required="true" value="#{faseMB.partida.equipeMandante}"  style="width:205px">
+ 	<h:selectOneMenu id="equipem" converter ="ConverterEquipe"  value="#{faseMB.partida.equipeMandante}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxGrupo.equipes}" />
     </h:selectOneMenu>
 	
 	<p:outputLabel  value="Equipe visitante"/>
- 	<h:selectOneMenu id="equipev" converter ="ConverterEquipe"  required="true" value="#{faseMB.partida.equipeVisitante}"  style="width:205px">
+ 	<h:selectOneMenu id="equipev" converter ="ConverterEquipe"   value="#{faseMB.partida.equipeVisitante}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxGrupo.equipes}" />
     </h:selectOneMenu>
@@ -131,7 +131,7 @@
 	<p:calendar id="mask" value="#{faseMB.partida.data}" pattern="dd/MM/yyyy" mask="true" />
 	
 	<p:outputLabel  value="Local: "/>
- 	<h:selectOneMenu id="local" converter ="ConverterLocal"  required="true" value="#{faseMB.partida.local}"  style="width:205px">
+ 	<h:selectOneMenu id="local" converter ="ConverterLocal"  value="#{faseMB.partida.local}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione o local" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxCat.campeonato.locais}" />
     </h:selectOneMenu>
