@@ -80,123 +80,14 @@
 	    
 	    
 	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.removerDiretor(dir)}" update=":formEquipe"></p:commandLink>	     	
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerDiretor(dir)}" update=":formEquipe"></p:commandLink>	     	
 		</p:column>
  
 			
 			
 	</p:dataTable>
 	</p:panel>
-	
-	
-	
-	<!-- Jogadores -->
-	
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
-	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
-	
-	 <p:outputLabel  value="Jogador"/>
- 	 <h:selectOneMenu id="jogador" converter ="ConverterUsuario"  value="#{equipeMB.auxJogador}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
-     		<f:selectItems value="#{usuarioMB.jogadores}" />
-     </h:selectOneMenu>
-	
 
-	
-	<p:commandButton icon ="ui-icon-check"
-					 action="#{equipeMB.adicionarJogador}"
-	                 update=":formEquipe"  
-	/>
-	
-	
-	</p:panelGrid>
-	 	
- 	
- 	<p:dataTable
-			var = "jog"
-			value = "#{equipeMB.equipe.jogadores}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Jogador (es) da equipe
-    </f:facet>
-			
-	    
-	     <p:column headerText="Nome" style="text-align: center" sortBy="#{jog.nome}">
-                  <p:outputLabel value="#{jog.nome}"/>  
-	    </p:column>
-	    
-			
-		
-		<p:column headerText="RG" style="text-align: center" sortBy="#{jog.rg}">
-                  <p:outputLabel value="#{jog.rg}"/>
-	    </p:column>
-	    
-	    
-	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jog)}" update=":formEquipe"></p:commandLink>	     	
-		</p:column>
- 
-			
-			
-	</p:dataTable>	
-	</p:panel>
-	
-	<!--  Comissão -->	 
-	
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 0px 0px; margin: 6px 6px">
- 	
-	<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 
-	 
-	 <p:outputLabel  value="Comissão"/>
- 	 <h:selectOneMenu id="comissao" converter ="ConverterUsuario"  value="#{equipeMB.auxComissao}"  style="width:205px">
-     		<f:selectItem itemLabel= "Selecione o funcionário" itemValue="" noSelectionOption="true"/>
-     		<f:selectItems value="#{usuarioMB.comissaoTecnica}" />
-     </h:selectOneMenu>
-	
-
-	
-	<p:commandButton icon ="ui-icon-check"
-					 action="#{equipeMB.adicionarMembroComissao}"
-	                 update=":formEquipe"  
-	/>
-	
-	
-	</p:panelGrid>
-	 	
- 	
- 	<p:dataTable
-			var = "com"
-			value = "#{equipeMB.equipe.comissaoTecnica}"
-			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
-	>
-	
-	<f:facet name="header">
-            Funcionário (os) da comissão da equipe
-    </f:facet>
-			
-	    
-	     <p:column headerText="Nome" style="text-align: center" sortBy="#{com.nome}">
-                  <p:outputLabel value="#{com.nome}"/>  
-	    </p:column>
-	    
-			
-		
-		<p:column headerText="RG" style="text-align: center" sortBy="#{com.rg}">
-                  <p:outputLabel value="#{com.rg}"/>
-	    </p:column>
-	    
-	    
-	    <p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerMembroComissao(com)}" update=":formEquipe"></p:commandLink>	     	
-		</p:column>
- 
-			
-			
-	</p:dataTable>	
-	</p:panel>
 				 
 
 	<p:commandButton value="Cadastrar"
