@@ -58,14 +58,14 @@
            </p:cellEditor>	         
 	    </p:column>
 	    
-	    <p:column  headerText="Jogadores" style="text-align: center">
+	    <p:column  headerText="Jogadores (Adicionar/Remover)" style="text-align: center">
 	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Jogadores da equipe" widgetVar="jogadoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="jogadoresEquipe" style=" width:600px" columnClasses="label,value">
+        <p:outputPanel id="jogadoresEquipe" style=" width:1100px" columnClasses="label,value">
             
-            <p:dataTable var="jogador" value="#{equipeMB.equipe.jogadores}">
+            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="jogador" value="#{equipeMB.equipe.jogadores}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{jogador.nome}"/>
 	   	    		</p:column>
@@ -73,8 +73,31 @@
 	   	    		<p:column headerText="RG">
 						<p:outputLabel value="#{jogador.rg}" />
 					</p:column>	
+					
+					<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerJogador(jogador)}" update="formEquipe"></p:commandLink> 	     	
+					</p:column>
 										
- 			</p:dataTable>            
+ 			</p:dataTable> 
+ 			
+ 			<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 	 
+	 
+	 		<p:outputLabel  value="Adicionar jogador"/>
+ 			<h:selectOneMenu id="addJogador" converter ="ConverterUsuario"  value="#{equipeMB.auxJogador}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o jogador" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.jogadores}" />
+    		</h:selectOneMenu>
+	
+
+	
+			<p:commandButton icon ="ui-icon-check"
+					 action="#{equipeMB.adicionarJogador}"
+	                 update=":formEquipe"  
+			/>
+	
+	
+		    </p:panelGrid>  
+		         
        </p:outputPanel>
        </p:dialog>      
        </p:column>
@@ -86,9 +109,9 @@
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Diretor (es) da equipe" widgetVar="diretoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="diretoresEquipe" style=" width:600px" columnClasses="label,value">
+        <p:outputPanel id="diretoresEquipe" style=" width:800px" columnClasses="label,value">
             
-            <p:dataTable var="diretor" value="#{equipeMB.equipe.diretores}">
+            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="diretor" value="#{equipeMB.equipe.diretores}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{diretor.nome}"/>
 	   	    		</p:column>
@@ -97,19 +120,20 @@
 						<p:outputLabel value="#{diretor.rg}" />
 					</p:column>	
 								
- 			</p:dataTable>            
+ 			</p:dataTable>   
+ 			      
        </p:outputPanel>
        </p:dialog>      
        </p:column>
        
-        <p:column  headerText="Comissão técnica" style="text-align: center">
+        <p:column  headerText="Comissão técnica (Adicionar/Remover)" style="text-align: center">
 	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('comissaoDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Funcionários da comissão técnica da equipe" widgetVar="comissaoDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="funcionariosEquipe" style=" width:600px" columnClasses="label,value">
+        <p:outputPanel id="funcionariosEquipe" style=" width:1100px" columnClasses="label,value">
             
-            <p:dataTable var="func" value="#{equipeMB.equipe.comissaoTecnica}">
+            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="func" value="#{equipeMB.equipe.comissaoTecnica}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{func.nome}"/>
 	   	    		</p:column>
@@ -121,8 +145,30 @@
 					<p:column headerText="Tipo">
 						<p:outputLabel value="#{func.tipo.tipo}" />
 					</p:column>	
+					
+					<p:column style = "text-align: center">
+	     				<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.removerMembroComissao(func)}" update="formEquipe"></p:commandLink> 	     	
+					</p:column>
 							
- 			</p:dataTable>            
+ 			</p:dataTable> 
+ 			
+ 			<p:panelGrid columns="3" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px"> 	  
+ 			
+ 			<p:outputLabel  value="Adicionar membro da comissão"/>
+ 			<h:selectOneMenu id="addComissao" converter ="ConverterUsuario"  value="#{equipeMB.auxComissao}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o membro da comissão" itemValue="" noSelectionOption="true"/>
+     		<f:selectItems value="#{usuarioMB.comissaoTecnica}" />
+    		</h:selectOneMenu>
+	
+
+	
+			<p:commandButton icon ="ui-icon-check"
+					 action="#{equipeMB.adicionarMembroComissao}"
+	                 update=":formEquipe"  
+			/>   
+			
+			</p:panelGrid>
+			         
        </p:outputPanel>
        </p:dialog>      
        </p:column>
