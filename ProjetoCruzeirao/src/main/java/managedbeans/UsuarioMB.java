@@ -1,16 +1,19 @@
 package managedbeans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import dados.Dados;
+import org.primefaces.event.RowEditEvent;
 
-import java.util.*;
-import services.UsuarioService;
+import dados.Dados;
 import entidades.Campeonato;
 import entidades.Equipe;
 import entidades.Inscrito;
 import entidades.Usuario;
+import services.UsuarioService;
 
 @SessionScoped
 @ManagedBean
@@ -22,6 +25,12 @@ public class UsuarioMB {
 	private ArrayList<Usuario> comissaoTecnica = Dados.usuarioComissao;
 	private ArrayList<Usuario> juizes = Dados.usuarioJuizes;
 	private Equipe auxEquipe;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Usuario u = ((Usuario) event.getObject());
+		usuarioservice.alterar(u);
+	}
 	
 	
 	public void adicionaEquipe() {		
@@ -76,7 +85,7 @@ public class UsuarioMB {
 		this.usuario = usuario;
 	}
 	
-	public ArrayList<Usuario> getUsuarios() {
+	public List<Usuario> getUsuarios() {
 		return usuarioservice.getUsuarios();
 	}
 	

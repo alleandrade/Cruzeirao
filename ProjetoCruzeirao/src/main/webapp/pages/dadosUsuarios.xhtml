@@ -15,12 +15,15 @@
 	<p:dataTable
 			var = "usu"
 			value = "#{usuarioMB.usuarios}"
-			editable = "true" editMode = "cell"
+			editable = "true"
+			id="tabelaUsuario"
 			
 			
 			
 			                        
 	>
+	
+	 <p:ajax event="rowEdit" listener="#{usuarioMB.onRowEdit}" update="tabelaUsuario" />
 	
 	<f:facet name="header">
             Usuários
@@ -237,7 +240,8 @@
 
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.remover(usu)}" update="formUsuario"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.remover(usu)}" update="tabelaUsuario"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		
