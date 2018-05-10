@@ -30,6 +30,7 @@ public class UsuarioMB {
 
 		Usuario u = ((Usuario) event.getObject());
 		usuarioservice.alterar(u);
+		System.out.println("Usuário alterado com sucesso!");
 	}
 	
 	
@@ -68,7 +69,7 @@ public class UsuarioMB {
 	}
 	
 	public void salvar() {
-		usuario.setIdUsuario(0);
+		usuario.setIdUsuario(0);		
 		usuarioservice.salvar(usuario);
 		usuario = new Usuario();
 	}
@@ -128,8 +129,14 @@ public class UsuarioMB {
 	public void setJuizes(ArrayList<Usuario> juizes) {
 		this.juizes = juizes;
 	}
-	
-	
+
+	public UsuarioService getUsuarioservice() {
+		return usuarioservice;
+	}
+
+	public void setUsuarioservice(UsuarioService usuarioservice) {
+		this.usuarioservice = usuarioservice;
+	}
 	
 	
 }

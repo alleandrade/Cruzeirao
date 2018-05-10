@@ -5,6 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 >
 
 <ui:define name="principal">
@@ -22,13 +23,13 @@
 			
 			                        
 	>
-	
-	 <p:ajax event="rowEdit" listener="#{usuarioMB.onRowEdit}" update="tabelaUsuario" />
+
 	
 	<f:facet name="header">
             Usuários
     </f:facet>
 	
+	<p:ajax event="rowEdit" listener="#{usuarioMB.onRowEdit}" update="tabelaUsuario" />
 		
 		<p:column headerText="Nome" style="text-align: center" sortBy="#{usu.nome}">	
 			
@@ -241,7 +242,7 @@
 
 		<p:column style = "text-align: center">
 			<p:rowEditor />
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{usuarioMB.remover(usu)}" update="tabelaUsuario"></p:commandLink> 	     	
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" actionListener="#{usuarioMB.remover(usu)}" update="tabelaUsuario"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		

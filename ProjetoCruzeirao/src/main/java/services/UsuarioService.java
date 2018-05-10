@@ -3,12 +3,8 @@ package services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-
 import dados.Dados;
+import dao.UsuarioDAO;
 import entidades.Usuario;
 
 
@@ -18,7 +14,7 @@ public class UsuarioService {
 	private ArrayList<Usuario> jogadores = Dados.usuarioJogadores;
 	private ArrayList<Usuario> comissaoTecnica = Dados.usuarioComissao;
 	private ArrayList<Usuario> juizes = Dados.usuarioJuizes;
-	private static EntityManagerFactory emf;
+ 	UsuarioDAO usuarioDAO = new UsuarioDAO();
 	
 	public ArrayList<Usuario> getDiretores() {
 		return diretores;
@@ -27,12 +23,8 @@ public class UsuarioService {
 	public void setDiretores(ArrayList<Usuario> diretores) {
 		this.diretores = diretores;
 	}
-
-	public UsuarioService() {
-		 emf = Persistence.createEntityManagerFactory("ProjetoCruzeirao");
-	}
 	
-	public void salvar(Usuario usuario) {
+	public Usuario salvar(Usuario usuario) {
 		
 		if(usuario.getTipo().getTipo().equals("Diretor"))
 			diretores.add(usuario);
@@ -48,47 +40,32 @@ public class UsuarioService {
 
 		usuarios.add(usuario);
 		
-
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();	
-			em.persist(usuario);
-		em.getTransaction().commit();	
-	    em.close();
+		usuario = usuarioDAO.save(usuario);
+		usuarioDAO.closeEntityManager();
+		return usuario;
 		
 	}
 	
 	public void alterar(Usuario usuario) {
 
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();	
-			em.merge(usuario);
-		em.getTransaction().commit();	
-	    em.close();		
+		usuarioDAO.save(usuario);
+		usuarioDAO.closeEntityManager();
 		
 	}
 	
 	public void remover(Usuario usuario) {
-		usuarios.remove(usuario);
+		usuarios.remove(usuario);		
 		
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();	
-			usuario = em.find(Usuario.class,usuario.getIdUsuario());
-			em.remove(usuario);
-		em.getTransaction().commit();	
-	    em.close();
+		usuario = usuarioDAO.getById(Usuario.class, usuario.getIdUsuario());
+		usuarioDAO.remove(usuario);
+		usuarioDAO.closeEntityManager();
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Usuario> getUsuarios() {
 		
-		List<Usuario> users;
-		
-		EntityManager em = emf.createEntityManager();
-		Query q = em.createQuery("Select u From Usuario u");
-		users = q.getResultList();
-		em.close();
-		
-		return users;
+		List <Usuario> list = usuarioDAO.getAll(Usuario.class);
+		usuarioDAO.closeEntityManager();
+		return list;
 	}
 	
 	
