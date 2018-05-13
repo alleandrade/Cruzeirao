@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+</h:head>
+<h:body>
+
+          <f:metadata>
+			<f:event listener="#{loginBean.preRender}"
+				type="preRenderView" />
+		  </f:metadata>
+		
+          <div align="center">
+            <p:outputLabel  value="Sistema Teste"/>  
+            
+            <p:growl id="messages" sticky="false" life="3000"
+						for="mensagemGrowl" autoUpdate="true" />
+						
+ 			<h:form id="login" prependId="false">
+						<p:focus />
+						<h:panelGrid id="panel" style="margin:3%; text-align: center">
+
+							<p:inputText type="text" id="username" autocomplete="off" size="30"
+								maxlength="80" label="Usuário">
+								<p:watermark for="username" value="Usuário" />
+							</p:inputText>
+
+							<p:password  size="30" id="password" value="Senha:" maxlength="20">
+								<p:watermark for="password" value="Senha" />
+							</p:password>
+
+							<p:commandButton value="Login"  ajax="false"  style="width: 50%; max-width: 200px;" />
+						</h:panelGrid>
+					</h:form>
+              </div>
+
+</h:body>
+</html>

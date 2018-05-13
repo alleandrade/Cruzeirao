@@ -11,19 +11,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-//Fim Import's
-//Atributos
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import enums.Sexo;
 import enums.TipoUsuario;
-
+//Fim Import's
+//Atributos
 @Entity
+@NamedQuery(name = "Usuario.pesquisarPorUserName", query = "select u from Usuario u where u.userName = :userName")
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	public static final String PESQUISAR_POR_USERNAME = "Usuario.pesquisarPorUserName";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,7 +40,9 @@ public class Usuario implements Serializable{
 		   		   rg,
 		   		   cpf,
 		   		   cref,
-		   		   senha;
+		   		   senha,
+		   		   userName,
+		   		   password;
     
 	@Lob
 	private byte [] foto;
@@ -238,4 +242,20 @@ public class Usuario implements Serializable{
 		return nome;
 	}
 //Fim Métodos	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }
