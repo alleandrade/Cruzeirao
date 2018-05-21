@@ -45,16 +45,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 
     	
     	//Login
-    	http.formLogin().loginPage("/login.xhtml").permitAll()
-		.defaultSuccessUrl("/pages/templateMenu.xhtml", true)
-		.failureUrl("/login.xhtml?error=true")
+    	http.formLogin().loginPage("/pages/login.xhtml").permitAll()
+		.defaultSuccessUrl("/pages/inicio.xhtml", true)
+		.failureUrl("/pages/login.xhtml?error=true")
 		.usernameParameter("username")
 		.passwordParameter("password");
     	
     	
     	//Logout
         http.logout().logoutUrl("/logout")
-                     .logoutSuccessUrl("/login.xhtml");
+                     .logoutSuccessUrl("/pages/login.xhtml");
 
         // Todas as requisições para partes internas da aplicação devem ser autenticadas
 		http.authorizeRequests().anyRequest().authenticated();
