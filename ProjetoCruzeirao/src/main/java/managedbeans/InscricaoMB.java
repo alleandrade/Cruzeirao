@@ -5,7 +5,10 @@ import java.util.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.event.RowEditEvent;
+
 import entidades.Categoria;
+import entidades.Grupo;
 import entidades.Inscricao;
 import entidades.Inscrito;
 import entidades.PartidasFutebol;
@@ -20,6 +23,12 @@ public class InscricaoMB {
 	private InscricaoService inscricaoservice = new InscricaoService();
 	private PartidasFutebol auxPartidaFutebol;
 	private Inscrito auxInscrito;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Inscricao u = ((Inscricao) event.getObject());
+		inscricaoservice.alterar(u);
+	}
 	
 	public void salvar() {
 		
@@ -105,7 +114,7 @@ public class InscricaoMB {
 		this.auxInscrito = auxInscrito;
 	}
 
-	public ArrayList<Inscricao> getInscricoes() {
+	public List<Inscricao> getInscricoes() {
 		return inscricaoservice.getInscricoes();
 	}
 }

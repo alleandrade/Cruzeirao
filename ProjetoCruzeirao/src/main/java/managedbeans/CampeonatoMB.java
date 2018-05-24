@@ -4,8 +4,12 @@ import java.util.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
 import entidades.Campeonato;
 import entidades.Categoria;
+import entidades.Fase;
 import entidades.Juiz;
 import entidades.Local;
 import services.CampeonatoService;
@@ -18,6 +22,12 @@ public class CampeonatoMB {
 	private Local auxLocal;
 	private Juiz auxJuiz;
 	private Categoria auxCategoria;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Campeonato u = ((Campeonato) event.getObject());
+		campeonatoservice.alterar(u);
+	}
 	
 	public void salvar() {
 		campeonato.setIdCampeonato(0);
@@ -90,7 +100,7 @@ public class CampeonatoMB {
 		this.campeonato = campeonato;
 	}
 	
-	public ArrayList<Campeonato> getCampeonatos() {
+	public List<Campeonato> getCampeonatos() {
 		return campeonatoservice.getCampeonatos();
 	}
 }

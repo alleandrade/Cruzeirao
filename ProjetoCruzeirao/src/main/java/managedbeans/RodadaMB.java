@@ -1,9 +1,11 @@
 package managedbeans;
 
-import java.util.*;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
 
 import entidades.PartidasFutebol;
 import entidades.Rodada;
@@ -15,6 +17,12 @@ public class RodadaMB {
 	private Rodada rodada = new Rodada();
 	private RodadaService rodadaservice = new RodadaService();
 	private PartidasFutebol auxPartidaFutebol;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Rodada u = ((Rodada) event.getObject());
+		rodadaservice.alterar(u);
+	}
 	
 	public void salvar() {
 		rodada.setIdRodada(0);
@@ -51,7 +59,7 @@ public class RodadaMB {
 		this.auxPartidaFutebol = auxPartidaFutebol;
 	}
 
-	public ArrayList<Rodada> getRodadas() {
+	public List<Rodada> getRodadas() {
 		return rodadaservice.getRodadas();
 	}
 }
