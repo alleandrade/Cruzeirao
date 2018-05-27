@@ -63,7 +63,7 @@ public class UsuarioService {
 
 	public List<Usuario> getUsuarios() {
 		
-		List <Usuario> list = usuarioDAO.getAll(Usuario.class);
+		List<Usuario> list = usuarioDAO.getAll(Usuario.class);
 		usuarioDAO.closeEntityManager();
 		return list;
 	}

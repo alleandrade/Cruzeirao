@@ -15,7 +15,12 @@
 	<p:dataTable
 			var = "cat"
 			value = "#{categoriaMB.categorias}"
-			editable = "true" editMode = "cell"
+			editable = "true"
+			id="tabelaCategoria"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
 			
 			
 			                        
@@ -24,6 +29,8 @@
 	<f:facet name="header">
             Categorias
     </f:facet>
+	
+	 <p:ajax event="rowEdit" listener="#{categoriaMB.onRowEdit}" update="tabelaCategoria" />
 	
 		
 		<p:column headerText="Nome" style="text-align: center" sortBy="#{cat.nome}">
@@ -136,7 +143,8 @@
 				
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{categoriaMB.remover(cat)}" update="formCategoria"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{categoriaMB.remover(cat)}" update="tabelaCategoria"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		
