@@ -4,6 +4,10 @@ import java.util.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
+import entidades.Cartao;
 import entidades.Categoria;
 import entidades.Fase;
 import entidades.Inscricao;
@@ -18,7 +22,11 @@ public class CategoriaMB {
 	private Inscricao auxInscricao;
 	private Fase auxFase;
 	
-	
+	public void onRowEdit(RowEditEvent event) {
+
+		Categoria u = ((Categoria) event.getObject());
+		categoriaservice.alterar(u);
+	}
 
 	public void salvar() {
 		categoria.setIdCategoria(0);
@@ -77,7 +85,7 @@ public class CategoriaMB {
 		this.categoria = categoria;
 	}
 	
-	public ArrayList<Categoria> getCategorias() {
+	public List<Categoria> getCategorias() {
 		return categoriaservice.getCategorias();
 	}
 }

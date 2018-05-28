@@ -1,9 +1,12 @@
 package managedbeans;
 
-import java.util.*;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
 import entidades.Inscrito;
 import services.InscritoService;
 
@@ -12,6 +15,12 @@ import services.InscritoService;
 public class InscritoMB {
 	private Inscrito inscrito = new Inscrito();
 	private InscritoService inscritoservice = new InscritoService();
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Inscrito u = ((Inscrito) event.getObject());
+		inscritoservice.alterar(u);
+	}
 	
 	public void salvar() {
 		inscrito.setIdInscrito(0);
@@ -33,7 +42,7 @@ public class InscritoMB {
 		this.inscrito = inscrito;
 	}
 	
-	public ArrayList<Inscrito> getInscritos() {
+	public List<Inscrito> getInscritos() {
 		return inscritoservice.getInscritos();
 	}
 	

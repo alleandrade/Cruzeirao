@@ -5,6 +5,8 @@ import java.util.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.event.RowEditEvent;
+
 import dados.Dados;
 import entidades.Categoria;
 import entidades.Equipe;
@@ -14,6 +16,7 @@ import entidades.Inscricao;
 import entidades.Juiz;
 import entidades.Partida;
 import entidades.Rodada;
+import entidades.Usuario;
 import services.FaseService;
 import services.GrupoService;
 import services.PartidaService;
@@ -40,6 +43,13 @@ public class FaseMB {
 	private Rodada rodada = new Rodada();
 	private RodadaService rodadaservice = new RodadaService();
 	private Juiz auxJuiz = new Juiz();
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Fase u = ((Fase) event.getObject());
+		faseservice.alterar(u);
+		System.out.println("Fase alterada com sucesso!");
+	}
 	
 	public void salvar() {
 		fase.setIdFase(0);
@@ -162,7 +172,7 @@ public class FaseMB {
 		this.fase = fase;
 	}
 	
-	public ArrayList<Fase> getFases() {
+	public List<Fase> getFases() {
 		return faseservice.getFases();
 	}
 

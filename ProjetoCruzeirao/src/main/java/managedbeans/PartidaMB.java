@@ -1,9 +1,12 @@
 package managedbeans;
 
-import java.util.*;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
 import entidades.Partida;
 import services.PartidaService;
 
@@ -17,6 +20,12 @@ public class PartidaMB {
 		partidaservice.salvar(partida);
 		partida = new Partida();
 	}
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Partida u = ((Partida) event.getObject());
+		partidaservice.alterar(u);
+	}
 
 	public Partida getPartida() {
 		return partida;
@@ -26,7 +35,7 @@ public class PartidaMB {
 		this.partida = partida;
 	}
 	
-	public ArrayList<Partida> getPartidas() {
+	public List<Partida> getPartidas() {
 		return partidaservice.getPartidas();
 	}
 }

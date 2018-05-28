@@ -6,7 +6,9 @@ import java.util.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.event.RowEditEvent;
 
+import entidades.Categoria;
 import entidades.Equipe;
 import entidades.Usuario;
 import services.EquipeService;
@@ -20,7 +22,11 @@ public class EquipeMB {
 	private Usuario auxJogador;
 	private Usuario auxComissao;
 	
+	public void onRowEdit(RowEditEvent event) {
 
+		Equipe u = ((Equipe) event.getObject());
+		equipeservice.alterar(u);
+	}
 
 	public void removerDiretor(Usuario diretor) {
 		equipe.getDiretores().remove(diretor);
@@ -70,7 +76,7 @@ public class EquipeMB {
 		this.equipe = equipe;
 	}
 	
-	public ArrayList<Equipe> getEquipes() {
+	public List<Equipe> getEquipes() {
 		return equipeservice.getEquipes();
 	}
 	
