@@ -5,6 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 >
 
 <ui:define name="principal">
@@ -15,7 +16,12 @@
 	<p:dataTable
 			var = "loc"
 			value = "#{localMB.locais}"
-			editable = "true" editMode = "cell"
+			editable = "true"
+			id="tabelaLocal"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
 			
 			
 			                        
@@ -25,11 +31,13 @@
             Locais
     </f:facet>
     
+    <p:ajax event="rowEdit" listener="#{localMB.onRowEdit}" update="tabelaLocal" />
+    
     	<p:column headerText="Nome" style="text-align: center" sortBy="#{loc.nome}">
 		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{loc.nome}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{loc.nome}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{loc.nome}" style="width:100%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>
@@ -39,7 +47,7 @@
 		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{loc.endereco}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{loc.endereco}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{loc.endereco}" style="width:100%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>
@@ -48,12 +56,12 @@
 	    
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{localMB.remover(loc)}" update="formLocal"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{localMB.remover(loc)}" update="tabelaLocal"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		
 	
-	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
 
 </h:form>
 

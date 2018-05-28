@@ -16,6 +16,11 @@
 			var = "fas"
 			value = "#{faseMB.fases}"
 			editable = "true" editMode = "cell"
+			id="tabelaFase"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
 			
 			
 			                        
@@ -25,6 +30,7 @@
             Fases
     </f:facet>
 	
+	<p:ajax event="rowEdit" listener="#{faseMB.onRowEdit}" update="tabelaFase" />
 		
 	    <p:column headerText="idFase" style="text-align: center" sortBy="#{fas.idFase}">
 			<p:outputLabel value="#{fas.idFase}"/>        		
@@ -92,12 +98,12 @@
 
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{faseMB.remover(fas)}" update="formFase"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{faseMB.remover(fas)}" update="tabelaFase"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		
-	
-	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
+
 
 </h:form>
 

@@ -1,9 +1,12 @@
 package managedbeans;
 
-import java.util.*;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
 import entidades.Local;
 import services.LocalService;
 
@@ -12,6 +15,14 @@ import services.LocalService;
 public class LocalMB {
 	private Local local = new Local();
 	private LocalService localservice = new LocalService();
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Local l = ((Local) event.getObject());
+		localservice.alterar(l);
+		System.out.println("Local alterado com sucesso!");
+	}
+	
 	
 	public void salvar() {
 		local.setIdLocal(0);
@@ -31,7 +42,17 @@ public class LocalMB {
 		this.local = local;
 	}
 	
-	public ArrayList<Local> getLocais() {
+	public List<Local> getLocais() {
 		return localservice.getLocais();
 	}
+
+	public LocalService getLocalservice() {
+		return localservice;
+	}
+
+	public void setLocalservice(LocalService localservice) {
+		this.localservice = localservice;
+	}
+	
+	
 }

@@ -68,8 +68,7 @@ public class UsuarioMB {
 		usuario.getCampeonatos().remove(campeonato);
 	}
 	
-	public void salvar() {
-		usuario.setIdUsuario(0);		
+	public void salvar() {		
 		usuarioservice.salvar(usuario);
 		usuario = new Usuario();
 	}
