@@ -1,9 +1,12 @@
 package managedbeans;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
 
 import entidades.Cartao;
 import entidades.Gol;
@@ -25,6 +28,12 @@ public class PartidaFutebolMB {
 	private ArrayList<Inscrito> jogadoresVisitantes = new ArrayList<Inscrito>();
 	private GolService golservice = new GolService();
 	private CartaoService cartaoservice = new CartaoService();
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		PartidasFutebol u = ((PartidasFutebol) event.getObject());
+		partidasfutebolservice.alterar(u);
+	}
 	
 	public void salvar() {
 		partidafutebol.setIdPartida(0);
@@ -99,7 +108,7 @@ public class PartidaFutebolMB {
 		this.partidafutebol = partidafutebol;
 	}
 	
-	public ArrayList<PartidasFutebol> getPartidasFutebol() {
+	public List<PartidasFutebol> getPartidasFutebol() {
 		return partidasfutebolservice.getPartidasfutebol();
 	}
 

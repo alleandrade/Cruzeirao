@@ -4,6 +4,10 @@ import java.util.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
+import entidades.Fase;
 import entidades.Gol;
 import services.GolService;
 
@@ -12,6 +16,12 @@ import services.GolService;
 public class GolMB {
 	private Gol gol = new Gol();
 	private GolService golservice = new GolService();
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Gol u = ((Gol) event.getObject());
+		golservice.alterar(u);
+	}
 	
 	public void salvar() {
 		gol.setIdGol(0);
@@ -27,7 +37,7 @@ public class GolMB {
 		this.gol = gol;
 	}
 	
-	public ArrayList<Gol> getGols() {
+	public List<Gol> getGols() {
 		return golservice.getGols();
 	}
 }

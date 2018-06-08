@@ -4,6 +4,10 @@ import java.util.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
+import entidades.Campeonato;
 import entidades.Cartao;
 import services.CartaoService;
 
@@ -12,6 +16,12 @@ import services.CartaoService;
 public class CartaoMB {
 	private Cartao cartao = new Cartao();
 	private CartaoService cartaoservice = new CartaoService();
+
+	public void onRowEdit(RowEditEvent event) {
+
+		Cartao u = ((Cartao) event.getObject());
+		cartaoservice.alterar(u);
+	}
 	
 	public void salvar() {
 		cartao.setIdCartao(0);
@@ -27,7 +37,7 @@ public class CartaoMB {
 		this.cartao = cartao;
 	}
 	
-	public ArrayList<Cartao> getCartoes() {
+	public List<Cartao> getCartoes() {
 		return cartaoservice.getCartoes();
 	}
 }

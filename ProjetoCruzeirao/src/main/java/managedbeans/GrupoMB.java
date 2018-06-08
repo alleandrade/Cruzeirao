@@ -1,9 +1,12 @@
 package managedbeans;
 
-import java.util.*;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
 import entidades.Grupo;
 import entidades.Rodada;
 import services.GrupoService;
@@ -14,6 +17,12 @@ public class GrupoMB {
 	private Grupo grupo = new Grupo();
 	private GrupoService gruposervice = new GrupoService();
 	private Rodada auxRodada;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Grupo u = ((Grupo) event.getObject());
+		gruposervice.alterar(u);
+	}
 	
 	public void salvar() {
 		grupo.setIdGrupo(0);
@@ -50,7 +59,7 @@ public class GrupoMB {
 		this.grupo = grupo;
 	}
 	
-	public ArrayList<Grupo> getGrupos() {
+	public List<Grupo> getGrupos() {
 		return gruposervice.getGrupos();
 	}
 }

@@ -18,11 +18,9 @@ public class LocalMB {
 	
 	public void onRowEdit(RowEditEvent event) {
 
-		Local l = ((Local) event.getObject());
-		localservice.alterar(l);
-		System.out.println("Local alterado com sucesso!");
+		Local u = ((Local) event.getObject());
+		localservice.alterar(u);
 	}
-	
 	
 	public void salvar() {
 		local.setIdLocal(0);
@@ -45,14 +43,4 @@ public class LocalMB {
 	public List<Local> getLocais() {
 		return localservice.getLocais();
 	}
-
-	public LocalService getLocalservice() {
-		return localservice;
-	}
-
-	public void setLocalservice(LocalService localservice) {
-		this.localservice = localservice;
-	}
-	
-	
 }

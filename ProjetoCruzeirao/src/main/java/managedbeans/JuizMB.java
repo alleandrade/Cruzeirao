@@ -1,9 +1,12 @@
 package managedbeans;
 
-import java.util.*;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.RowEditEvent;
+
 import entidades.Juiz;
 import services.JuizService;
 
@@ -12,6 +15,12 @@ import services.JuizService;
 public class JuizMB {
 	private Juiz juiz = new Juiz();
 	private JuizService juizservice = new JuizService();
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Juiz u = ((Juiz) event.getObject());
+		juizservice.alterar(u);
+	}
 	
 	public void salvar() {
 		juiz.setIdJuiz(0);
@@ -31,7 +40,7 @@ public class JuizMB {
 		this.juiz = juiz;
 	}
 	
-	public ArrayList<Juiz> getJuizes() {
+	public List<Juiz> getJuizes() {
 		return juizservice.getJuizes();
 	}
 }
