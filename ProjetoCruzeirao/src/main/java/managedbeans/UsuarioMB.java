@@ -25,6 +25,7 @@ public class UsuarioMB {
 	private ArrayList<Usuario> comissaoTecnica = Dados.usuarioComissao;
 	private ArrayList<Usuario> juizes = Dados.usuarioJuizes;
 	private Equipe auxEquipe;
+	private List<Usuario> usuarios;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -40,17 +41,17 @@ public class UsuarioMB {
 	
 	public void removerEquipe(Equipe equipe) {
 		
-		if(usuario.getTipo().getTipo() == "Jogador") {
+		if (usuario.getTipo().getTipo() == "Jogador") {
 			equipe.getJogadores().remove(usuario);
 			usuario.getEquipes().remove(equipe);
 		}			
 		
-		else if(usuario.getTipo().getTipo() == "Diretor") {
+		else if (usuario.getTipo().getTipo() == "Diretor") {
 			equipe.getDiretores().remove(usuario);
 			usuario.getEquipes().remove(equipe);
 		}	
 		
-		else if(usuario.getTipo().getTipo() == "Massagista" || usuario.getTipo().getTipo() == "Preparador físico" || usuario.getTipo().getTipo() == "Técnico") {
+		else if (usuario.getTipo().getTipo() == "Massagista" || usuario.getTipo().getTipo() == "Preparador físico" || usuario.getTipo().getTipo() == "Técnico") {
 			equipe.getComissaoTecnica().remove(usuario);
 			usuario.getEquipes().remove(equipe);
 		}
@@ -86,7 +87,10 @@ public class UsuarioMB {
 	}
 	
 	public List<Usuario> getUsuarios() {
-		return usuarioservice.getUsuarios();
+		if (usuarios == null)
+			usuarios = usuarioservice.getUsuarios();
+	
+		return usuarios;
 	}
 	
 	public ArrayList<Usuario> getJogadores() {

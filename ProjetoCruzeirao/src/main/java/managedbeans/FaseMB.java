@@ -43,6 +43,7 @@ public class FaseMB {
 	private Rodada rodada = new Rodada();
 	private RodadaService rodadaservice = new RodadaService();
 	private Juiz auxJuiz = new Juiz();
+	private List<Fase> fases;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -173,7 +174,10 @@ public class FaseMB {
 	}
 	
 	public List<Fase> getFases() {
-		return faseservice.getFases();
+		if (fases == null)
+			fases = faseservice.getFases();
+	
+		return fases;
 	}
 
 	public List<Inscricao> getEquipes() {

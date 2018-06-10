@@ -21,6 +21,7 @@ public class CategoriaMB {
 	private CategoriaService categoriaservice = new CategoriaService();
 	private Inscricao auxInscricao;
 	private Fase auxFase;
+	private List<Categoria> categorias;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -86,6 +87,9 @@ public class CategoriaMB {
 	}
 	
 	public List<Categoria> getCategorias() {
-		return categoriaservice.getCategorias();
+		if (categorias == null)
+			categorias = categoriaservice.getCategorias();
+		
+		return categorias;
 	}
 }

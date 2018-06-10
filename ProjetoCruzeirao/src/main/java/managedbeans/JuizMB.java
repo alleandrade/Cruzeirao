@@ -15,6 +15,7 @@ import services.JuizService;
 public class JuizMB {
 	private Juiz juiz = new Juiz();
 	private JuizService juizservice = new JuizService();
+	private List<Juiz> juizes;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -41,6 +42,9 @@ public class JuizMB {
 	}
 	
 	public List<Juiz> getJuizes() {
-		return juizservice.getJuizes();
+		if (juizes== null)
+			juizes = juizservice.getJuizes();
+		
+		return juizes;
 	}
 }

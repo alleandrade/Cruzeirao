@@ -22,6 +22,7 @@ public class CampeonatoMB {
 	private Local auxLocal;
 	private Juiz auxJuiz;
 	private Categoria auxCategoria;
+	private List<Campeonato> campeonatos;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -101,6 +102,9 @@ public class CampeonatoMB {
 	}
 	
 	public List<Campeonato> getCampeonatos() {
-		return campeonatoservice.getCampeonatos();
+		if (campeonatos == null)
+			campeonatos = campeonatoservice.getCampeonatos();
+		
+		return campeonatos;
 	}
 }

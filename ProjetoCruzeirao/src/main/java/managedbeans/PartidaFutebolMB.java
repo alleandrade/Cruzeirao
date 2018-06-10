@@ -28,6 +28,7 @@ public class PartidaFutebolMB {
 	private ArrayList<Inscrito> jogadoresVisitantes = new ArrayList<Inscrito>();
 	private GolService golservice = new GolService();
 	private CartaoService cartaoservice = new CartaoService();
+	private List<PartidasFutebol> partidasfutebol;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -109,7 +110,10 @@ public class PartidaFutebolMB {
 	}
 	
 	public List<PartidasFutebol> getPartidasFutebol() {
-		return partidasfutebolservice.getPartidasfutebol();
+		if (partidasfutebol == null)
+			partidasfutebol = partidasfutebolservice.getPartidasfutebol();
+		
+		return partidasfutebol;
 	}
 
 	public PartidasFutebol getPartidafutebolaux() {

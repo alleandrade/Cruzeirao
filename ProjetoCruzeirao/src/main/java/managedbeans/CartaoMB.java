@@ -16,6 +16,7 @@ import services.CartaoService;
 public class CartaoMB {
 	private Cartao cartao = new Cartao();
 	private CartaoService cartaoservice = new CartaoService();
+	private List<Cartao> cartoes;
 
 	public void onRowEdit(RowEditEvent event) {
 
@@ -38,6 +39,9 @@ public class CartaoMB {
 	}
 	
 	public List<Cartao> getCartoes() {
-		return cartaoservice.getCartoes();
+		if (cartoes == null)
+			cartoes = cartaoservice.getCartoes();
+		
+		return cartoes;
 	}
 }

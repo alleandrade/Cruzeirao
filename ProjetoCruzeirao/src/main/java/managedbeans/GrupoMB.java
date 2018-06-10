@@ -17,6 +17,7 @@ public class GrupoMB {
 	private Grupo grupo = new Grupo();
 	private GrupoService gruposervice = new GrupoService();
 	private Rodada auxRodada;
+	private List<Grupo> grupos;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -60,6 +61,9 @@ public class GrupoMB {
 	}
 	
 	public List<Grupo> getGrupos() {
-		return gruposervice.getGrupos();
+		if (grupos == null)
+			grupos = gruposervice.getGrupos();
+		
+		return grupos;
 	}
 }

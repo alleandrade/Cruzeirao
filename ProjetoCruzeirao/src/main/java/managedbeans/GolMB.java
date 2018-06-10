@@ -16,6 +16,7 @@ import services.GolService;
 public class GolMB {
 	private Gol gol = new Gol();
 	private GolService golservice = new GolService();
+	private List<Gol> gols;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -37,7 +38,10 @@ public class GolMB {
 		this.gol = gol;
 	}
 	
-	public List<Gol> getGols() {
-		return golservice.getGols();
+	public List<Gol> getGols() {		
+		if (gols == null)
+			gols = golservice.getGols();
+		
+		return gols;
 	}
 }

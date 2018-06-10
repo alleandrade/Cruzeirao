@@ -15,6 +15,7 @@ import services.PartidaService;
 public class PartidaMB {
 	private Partida partida = new Partida();
 	private PartidaService partidaservice = new PartidaService();
+	private List<Partida> partidas;
 	
 	public void salvar() {
 		partidaservice.salvar(partida);
@@ -36,6 +37,9 @@ public class PartidaMB {
 	}
 	
 	public List<Partida> getPartidas() {
-		return partidaservice.getPartidas();
+		if (partidas == null)
+			partidas = partidaservice.getPartidas();
+	
+		return partidas;
 	}
 }

@@ -23,6 +23,7 @@ public class InscricaoMB {
 	private InscricaoService inscricaoservice = new InscricaoService();
 	private PartidasFutebol auxPartidaFutebol;
 	private Inscrito auxInscrito;
+	private List<Inscricao> inscricoes;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -115,6 +116,9 @@ public class InscricaoMB {
 	}
 
 	public List<Inscricao> getInscricoes() {
-		return inscricaoservice.getInscricoes();
+		if (inscricoes == null)
+			inscricoes = inscricaoservice.getInscricoes();
+	
+		return inscricoes;
 	}
 }

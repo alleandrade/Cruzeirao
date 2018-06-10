@@ -17,6 +17,7 @@ public class RodadaMB {
 	private Rodada rodada = new Rodada();
 	private RodadaService rodadaservice = new RodadaService();
 	private PartidasFutebol auxPartidaFutebol;
+	private List<Rodada> rodadas;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -60,6 +61,9 @@ public class RodadaMB {
 	}
 
 	public List<Rodada> getRodadas() {
-		return rodadaservice.getRodadas();
+		if (rodadas == null)
+			rodadas = rodadaservice.getRodadas();
+		
+		return rodadas;
 	}
 }

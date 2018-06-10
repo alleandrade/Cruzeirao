@@ -15,11 +15,13 @@ import services.LocalService;
 public class LocalMB {
 	private Local local = new Local();
 	private LocalService localservice = new LocalService();
+	private List<Local> locais;
 	
 	public void onRowEdit(RowEditEvent event) {
 
 		Local u = ((Local) event.getObject());
 		localservice.alterar(u);
+		System.out.println(u.getNome());
 	}
 	
 	public void salvar() {
@@ -41,6 +43,9 @@ public class LocalMB {
 	}
 	
 	public List<Local> getLocais() {
-		return localservice.getLocais();
-	}
+		if (locais == null)
+			locais = localservice.getLocais();
+		
+		return locais;
+	}	
 }

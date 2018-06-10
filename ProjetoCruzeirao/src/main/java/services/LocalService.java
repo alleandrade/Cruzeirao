@@ -28,7 +28,7 @@ public class LocalService {
 		locais.remove(local);
 		
 		local = localDAO.getById(Local.class, local.getIdLocal());
-		localDAO.remove(local );
+		localDAO.remove(local);
 		localDAO.closeEntityManager();
 	}
 	

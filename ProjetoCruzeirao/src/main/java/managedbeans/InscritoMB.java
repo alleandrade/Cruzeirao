@@ -15,6 +15,7 @@ import services.InscritoService;
 public class InscritoMB {
 	private Inscrito inscrito = new Inscrito();
 	private InscritoService inscritoservice = new InscritoService();
+	private List<Inscrito> inscritos;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -43,7 +44,10 @@ public class InscritoMB {
 	}
 	
 	public List<Inscrito> getInscritos() {
-		return inscritoservice.getInscritos();
+		if (inscritos == null)
+			inscritos = inscritoservice.getInscritos();
+	
+		return inscritos;
 	}
 	
 }

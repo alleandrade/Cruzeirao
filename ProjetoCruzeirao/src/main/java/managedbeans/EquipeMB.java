@@ -21,6 +21,7 @@ public class EquipeMB {
 	private Usuario auxDiretor;
 	private Usuario auxJogador;
 	private Usuario auxComissao;
+	private List<Equipe> equipes;
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -77,7 +78,10 @@ public class EquipeMB {
 	}
 	
 	public List<Equipe> getEquipes() {
-		return equipeservice.getEquipes();
+		if (equipes == null)
+			equipes = equipeservice.getEquipes();
+	
+		return equipes;
 	}
 	
 	public Usuario getAuxJogador() {
