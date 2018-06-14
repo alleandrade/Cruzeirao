@@ -13,6 +13,7 @@ import entidades.Fase;
 import entidades.Inscricao;
 import entidades.Inscrito;
 import services.CategoriaService;
+import services.InscricaoService;
 
 @SessionScoped
 @ManagedBean
@@ -22,6 +23,9 @@ public class CategoriaMB {
 	private Inscricao auxInscricao;
 	private Fase auxFase;
 	private List<Categoria> categorias;
+	private Categoria auxCat;
+	private List<Inscricao> inscricoes = new ArrayList<Inscricao>();
+	private InscricaoService inscricaoservice = new InscricaoService();
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -39,6 +43,36 @@ public class CategoriaMB {
 				aux2.getUsuario().getCampeonatos().add(categoria.getCampeonato());
 
 		categoria = new Categoria();
+	}
+	
+	public void atualizarInscricoes() {
+		for (Inscricao i : auxCat.getInscricoes()) {
+			if (!i.isValidada())
+				inscricoes.add(i);
+		}
+	}
+	
+	public void validarInscricao() {
+		int count = 0;
+		if ((auxInscricao.getInscritos().size() >= auxInscricao.getCategoria().getMinJogadores()) && (auxInscricao.getInscritos().size() <= auxInscricao.getCategoria().getMaxJogadores())) {			// Quantidade minima e maxima de jogadores
+			for (Inscrito inscritosatual : auxInscricao.getInscritos()) {
+				/*if (inscritosatual.getUsuario().getDataNascimento().getYear() < auxCat.getNascidosAPartirDe())
+					count++;
+				*/
+				for (Inscricao i : auxCat.getInscricoes()) {
+					for (Inscrito inscritos : i.getInscritos()) {
+						if (inscritosatual.getUsuario() == inscritos.getUsuario())
+							count++;
+					}
+				}
+			}
+			
+			if (count == 0) {
+				auxInscricao.setValidada(true);
+				inscricoes.remove(auxInscricao);
+				inscricaoservice.alterar(auxInscricao);
+			}
+		}
 	}
 	
 	public void adicionarInscricao() {
@@ -91,5 +125,21 @@ public class CategoriaMB {
 			categorias = categoriaservice.getCategorias();
 		
 		return categorias;
+	}
+
+	public Categoria getAuxCat() {
+		return auxCat;
+	}
+
+	public void setAuxCat(Categoria auxCat) {
+		this.auxCat = auxCat;
+	}
+
+	public List<Inscricao> getInscricoes() {
+		return inscricoes;
+	}
+
+	public void setInscricoes(List<Inscricao> inscricoes) {
+		this.inscricoes = inscricoes;
 	}
 }

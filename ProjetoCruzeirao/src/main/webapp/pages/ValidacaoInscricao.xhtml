@@ -1,0 +1,58 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formInscricao">
+<p:growl id="mensagem"/>
+
+	<p:panel columns="2" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	<f:facet name="header">
+            Validação de Inscrições
+    </f:facet>
+    
+    
+    
+    <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+    	<p:outputLabel  value="Categoria"/>
+ 		<h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{categoriaMB.auxCat}"  style="width:205px">
+    		<f:selectItem itemLabel= "Selecione o campeonato" itemValue="" noSelectionOption="false"/>
+    		<f:selectItems value="#{categoriaMB.categorias}" />
+    	</h:selectOneMenu>
+     
+    	<p:commandButton value="Atualizar"
+					 	style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 	action="#{categoriaMB.atualizarInscricoes()}"
+	                 	update=":formInscricao"  
+		/>
+    </h:panelGrid>
+    </p:panel>
+    
+    <p:panel columns="2" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+    <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
+    
+    	<p:outputLabel  value="Inscricao"/>
+ 		<h:selectOneMenu id="inscricao" converter ="ConverterInscricao"  value="#{categoriaMB.auxInscricao}"  style="width:205px">
+    		<f:selectItem itemLabel= "Selecione a Inscricao" itemValue="" noSelectionOption="false"/>
+    		<f:selectItems value="#{categoriaMB.inscricoes}" />
+   		</h:selectOneMenu>
+     
+    	<p:commandButton value="Validar"
+					 	style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 	action="#{categoriaMB.validarInscricao()}"
+	                 	update=":formInscricao"  
+		/>
+    
+    </h:panelGrid>
+    </p:panel>
+    
+    </h:form>
+</ui:define>
+</ui:composition>

@@ -40,7 +40,7 @@ public class InscricaoMB {
 			InscritoService auxInscrito = new InscritoService();
 			inscrito.setTipo(auxA.getTipo());
 			inscrito.setAceiteUsuario(true);
-			inscrito.setInscricaoValidada(true);
+			inscrito.setInscricaoValidada(false);
 			inscrito.setSuspensoJogos(false);
 			inscrito.setInscricao(inscricao);
 			inscrito.setUsuario(auxA);
@@ -55,7 +55,7 @@ public class InscricaoMB {
 			InscritoService auxInscrito = new InscritoService();
 			inscrito.setTipo(auxA.getTipo());
 			inscrito.setAceiteUsuario(true);
-			inscrito.setInscricaoValidada(true);
+			inscrito.setInscricaoValidada(false);
 			inscrito.setSuspensoJogos(false);
 			inscrito.setInscricao(inscricao);
 			inscrito.setUsuario(auxA);
