@@ -40,7 +40,25 @@ public class UsuarioMB {
 	public void adicionaEquipe() {		
 		usuario.getEquipes().add(auxEquipe);
 	}
-	
+	/*
+	public void atualizaUsuario() {
+		usuarios = usuarioservice.getUsuarios();
+		
+		for (Usuario u : usuarios) {
+			if (u.getTipo().getTipo() == "Jogador") {
+				jogadores.add(u);
+			}
+			
+			else if (u.getTipo().getTipo() == "Diretor") {
+				diretores.add(u);
+			}
+			
+			else if (u.getTipo().getTipo() == "Massagista" || u.getTipo().getTipo() == "Preparador físico" || u.getTipo().getTipo() == "Técnico") {
+				comissaoTecnica.add(u);
+			}
+		}
+	}
+	*/
 	public void removerEquipe(Equipe equipe) {
 		
 		/*if (usuario.getTipo().getTipo().equals("Jogador")) {

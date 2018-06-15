@@ -17,6 +17,7 @@ import entidades.Juiz;
 import entidades.Partida;
 import entidades.Rodada;
 import entidades.Usuario;
+import services.CategoriaService;
 import services.FaseService;
 import services.GrupoService;
 import services.PartidaService;
@@ -34,7 +35,6 @@ public class FaseMB {
 	private Inscricao cabecaChaveAux = new Inscricao();
 	private Grupo grupoAux = new Grupo();
 	private GrupoService gruposervice = new GrupoService();
-	private List<Categoria> campeonatos = Dados.categorias;
 	String[] auxString = {"A","B","C","D","E","F","G","H"};
 	Inscricao[] cabecasChaveAux;
 	private List<Grupo> grupos = new ArrayList<Grupo>();
@@ -44,6 +44,8 @@ public class FaseMB {
 	private RodadaService rodadaservice = new RodadaService();
 	private Juiz auxJuiz = new Juiz();
 	private List<Fase> fases;
+	private CategoriaService categoriaservice = new CategoriaService();
+	private List<Categoria> campeonatos = categoriaservice.getCategorias();
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -105,15 +107,18 @@ public class FaseMB {
 	
 	public void atualizarCamp() {
 		for (Inscricao equipe : getAuxCat().getInscricoes()) {
-			equipes.add(equipe);
+			if (!equipes.contains(equipe))					//verificacao adicionada
+				equipes.add(equipe);
 		}
 	}
 	
 	public void addCabecaChave() {
 		if (cabecasChave.size() < 8) {
-			cabecasChave.add(getCabecaChaveAux());
-			equipes.remove(getCabecaChaveAux());
-			setCabecaChaveAux(new Inscricao());
+			if (getCabecaChaveAux().isValidada() ) {		//verificacao adicionada
+				cabecasChave.add(getCabecaChaveAux());
+				equipes.remove(getCabecaChaveAux());
+				setCabecaChaveAux(new Inscricao());
+			}
 		}
 	}
 	
@@ -136,10 +141,13 @@ public class FaseMB {
 		while (equipes.size() > 0) {
 			i = 0;
 			for (Grupo grupo : fase.getGrupos()) {
-				grupo.getEquipes().add(equipes.get(i));
-				equipes.remove(0);
+				if (equipes.get(i).isValidada()) {
+					grupo.getEquipes().add(equipes.get(i));
+					equipes.remove(0);
+				}
 			}
 		}
+		
 		auxCat.getFases().add(fase);
 		fase.setIdFase(0);
 		faseservice.salvar(fase);
