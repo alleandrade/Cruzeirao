@@ -36,7 +36,7 @@ public class UsuarioService {
 			juizes.add(usuario);	
 			
 		if(usuario.getTipo().getTipo().equals("Preparador físico") || usuario.getTipo().getTipo().equals("Massagista") || usuario.getTipo().getTipo().equals("Técnico"))
-			comissaoTecnica.add(usuario);			
+			comissaoTecnica.add(usuario);
 
 		usuarios.add(usuario);
 		

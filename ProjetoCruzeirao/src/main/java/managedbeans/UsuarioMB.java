@@ -2,9 +2,12 @@ package managedbeans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -31,7 +34,6 @@ public class UsuarioMB {
 
 		Usuario u = ((Usuario) event.getObject());
 		usuarioservice.alterar(u);
-		System.out.println("Usuário alterado com sucesso!");
 	}
 	
 	
@@ -41,23 +43,26 @@ public class UsuarioMB {
 	
 	public void removerEquipe(Equipe equipe) {
 		
-		if (usuario.getTipo().getTipo() == "Jogador") {
+		/*if (usuario.getTipo().getTipo().equals("Jogador")) {
 			equipe.getJogadores().remove(usuario);
 			usuario.getEquipes().remove(equipe);
 		}			
 		
-		else if (usuario.getTipo().getTipo() == "Diretor") {
+		else if (usuario.getTipo().getTipo().equals("Diretor")) {
 			equipe.getDiretores().remove(usuario);
 			usuario.getEquipes().remove(equipe);
 		}	
 		
-		else if (usuario.getTipo().getTipo() == "Massagista" || usuario.getTipo().getTipo() == "Preparador físico" || usuario.getTipo().getTipo() == "Técnico") {
+		else if (usuario.getTipo().getTipo().equals("Massagista") || usuario.getTipo().getTipo().equals("Preparador físico") || usuario.getTipo().getTipo().equals("Técnico")) {
 			equipe.getComissaoTecnica().remove(usuario);
 			usuario.getEquipes().remove(equipe);
 		}
 		
 		else
-			usuario.getEquipes().remove(equipe);
+			usuario.getEquipes().remove(equipe);*/
+		
+		usuario.getEquipes().remove(equipe);
+		
 		
 	}
 	
@@ -70,12 +75,31 @@ public class UsuarioMB {
 	}
 	
 	public void salvar() {		
-		usuarioservice.salvar(usuario);
+				
+		if (usuario.getTipo().getTipo().equals("Preparador físico") && usuario.getCref() == "") 
+		{
+			FacesMessage mensagem = new FacesMessage("Preparador físico precisa ter CREF!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);				
+		}
+		
+		
+		else
+		{			
+			usuarioservice.salvar(usuario);
+			FacesMessage mensagem = new FacesMessage("Usuário " + usuario.getNome() + " cadastrado com sucesso!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);	
+			usuario = new Usuario();
+		}
+		
 		usuario = new Usuario();
+		
+	
 	}
 	
 	public void remover(Usuario usuario) {
 		usuarioservice.remover(usuario);
+		FacesMessage mensagem = new FacesMessage("Usuário " + usuario.getNome() + " removido com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);		
 	}
 	
 	public Usuario getUsuario() {
@@ -93,7 +117,8 @@ public class UsuarioMB {
 		return usuarios;
 	}
 	
-	public ArrayList<Usuario> getJogadores() {
+	public ArrayList<Usuario> getJogadores()
+	{
 		return jogadores;
 	}
 
@@ -140,6 +165,8 @@ public class UsuarioMB {
 	public void setUsuarioservice(UsuarioService usuarioservice) {
 		this.usuarioservice = usuarioservice;
 	}
+	
+	
 	
 	
 }

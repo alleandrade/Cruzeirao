@@ -32,10 +32,6 @@
     
     <p:ajax event="rowEdit" listener="#{grupoMB.onRowEdit}" update="tabelaGrupo" />
 	
-	
-		<p:column headerText="idGrupo" style="text-align: center" sortBy="#{gru.idGrupo}">
-			<p:outputLabel value="#{gru.idGrupo}"/>
-	    </p:column>
 		
 	    <p:column headerText="Nome" style="text-align: center" sortBy="#{gru.nome}">
 	    	<p:cellEditor>

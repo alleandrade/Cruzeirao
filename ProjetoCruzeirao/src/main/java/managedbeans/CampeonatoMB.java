@@ -2,8 +2,10 @@ package managedbeans;
 
 import java.util.*;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -31,8 +33,10 @@ public class CampeonatoMB {
 	}
 	
 	public void salvar() {
-		campeonato.setIdCampeonato(0);
+		//campeonato.setIdCampeonato(0);
 		campeonatoservice.salvar(campeonato);
+		FacesMessage mensagem = new FacesMessage("Campeonato " + campeonato.getNome() + " cadastrado com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);		
 		campeonato = new Campeonato();
 	}
 	
@@ -64,9 +68,13 @@ public class CampeonatoMB {
 	
 	public void remover(Campeonato campeonato) {
 		campeonatoservice.remover(campeonato);
-		for (Categoria aux : campeonato.getCategorias()) {
+		
+		for (Categoria aux : campeonato.getCategorias())
 			aux.setCampeonato(null);
-		}
+		
+		FacesMessage mensagem = new FacesMessage("Campeonato " + campeonato.getNome() + " removido com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);		
+		
 	}	
 
 	public Local getAuxLocal() {

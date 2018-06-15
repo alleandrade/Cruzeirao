@@ -31,10 +31,6 @@
     </f:facet>
 	
 	<p:ajax event="rowEdit" listener="#{faseMB.onRowEdit}" update="tabelaFase" />
-		
-	    <p:column headerText="idFase" style="text-align: center" sortBy="#{fas.idFase}">
-			<p:outputLabel value="#{fas.idFase}"/>        		
-	    </p:column>
 	    
 	    <p:column headerText="Data inicial" style="text-align: center" sortBy="#{fas.dataInicio}">
 		   <p:cellEditor>            

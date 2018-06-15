@@ -44,7 +44,7 @@ public class Usuario implements Serializable{
 	private byte [] foto;
 
 	@OneToMany(mappedBy="usuario")
-	private ArrayList<Inscrito> inscricoes = new ArrayList<Inscrito>();
+	private ArrayList<Inscrito> inscricoes = new ArrayList<	Inscrito>();
 	
 	@OneToMany
 	private ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>();

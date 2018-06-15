@@ -2,6 +2,7 @@
 //Import's
 package entidades;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,14 +32,14 @@ public class Equipe implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataFundacao;
 	
-	@ManyToMany
-	private ArrayList<Usuario> jogadores = new ArrayList<Usuario>();
+	/*private ArrayList<Usuario> jogadores = new ArrayList<Usuario>();
 	
-	@ManyToMany
 	private ArrayList<Usuario> comissaoTecnica = new ArrayList<Usuario>();
 	
-	@ManyToMany
-	private ArrayList<Usuario> diretores = new ArrayList<Usuario>();
+	private ArrayList<Usuario> diretores = new ArrayList<Usuario>();*/
+	
+	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();	
+		
 //Fim Atributos	
 	/*	Métodos:
 	 *  - Getter's 			[X]
@@ -47,20 +48,29 @@ public class Equipe implements Serializable {
 	 *  - Construtores		[X]
 	*/
 
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(ArrayList<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 	public Equipe() {
 		super();
 	}
 
-	public Equipe(String nome, String cidade, Date dataFundacao, ArrayList<Usuario> diretores) {
+	public Equipe(String nome, String cidade, Date dataFundacao, ArrayList<Usuario> usuarios) {
 		super();
 		this.nome = nome;
 		this.cidade = cidade;
 		this.dataFundacao = dataFundacao;
-		this.diretores = diretores;
+		this.usuarios = usuarios;
+		//this.diretores = diretores;
 	}
 	
 	
-
+/*
 	public ArrayList<Usuario> getJogadores() {
 		return jogadores;
 	}
@@ -75,7 +85,7 @@ public class Equipe implements Serializable {
 
 	public void setComissaoTecnica(ArrayList<Usuario> comissaoTecnica) {
 		this.comissaoTecnica = comissaoTecnica;
-	}
+	}*/
 
 	public String getNome() {
 		return nome;
@@ -101,13 +111,14 @@ public class Equipe implements Serializable {
 		this.dataFundacao = dataFundacao;
 	}
 	
+	/*
 	public ArrayList<Usuario> getDiretores() {
 		return diretores;
 	}
 	
 	public void setDiretores(ArrayList<Usuario> diretores) {
 		this.diretores = diretores;
-	}
+	}*/
 	
 	public int getIdEquipe() {
 		return idEquipe;

@@ -2,8 +2,10 @@ package managedbeans;
 
 import java.util.*;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -30,13 +32,25 @@ public class CategoriaMB {
 	}
 
 	public void salvar() {
-		categoria.setIdCategoria(0);
-		categoriaservice.salvar(categoria);
-		categoria.getCampeonato().getCategorias().add(categoria);
+		//categoria.setIdCategoria(0);
+			
+		if (categoria.getMinJogadores() >= categoria.getMaxJogadores()) 
+		{
+			FacesMessage mensagem = new FacesMessage("O número mínimo de jogadores não pode ser maior ou igual ao número máximo!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);	
+		}
 		
-		for (Inscricao aux : categoria.getInscricoes())		
-			for(Inscrito aux2 : aux.getInscritos())
-				aux2.getUsuario().getCampeonatos().add(categoria.getCampeonato());
+		else
+		{
+			categoriaservice.salvar(categoria);
+			categoria.getCampeonato().getCategorias().add(categoria);
+			FacesMessage mensagem = new FacesMessage("Categoria " + categoria.getNome() + " cadastrada com sucesso!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);	
+			for (Inscricao aux : categoria.getInscricoes())		
+				for(Inscrito aux2 : aux.getInscritos())
+					aux2.getUsuario().getCampeonatos().add(categoria.getCampeonato());
+			
+		}
 
 		categoria = new Categoria();
 	}
@@ -76,6 +90,8 @@ public class CategoriaMB {
 	public void remover(Categoria categoria) {
 		categoriaservice.remover(categoria);
 		categoria.getCampeonato().getCategorias().remove(categoria);
+		FacesMessage mensagem = new FacesMessage("Categoria " + categoria.getNome() + " removida com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);
 	}
 
 	public Categoria getCategoria() {

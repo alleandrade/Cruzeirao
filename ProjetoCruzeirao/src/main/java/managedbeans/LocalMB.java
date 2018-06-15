@@ -2,8 +2,10 @@ package managedbeans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -20,18 +22,21 @@ public class LocalMB {
 	public void onRowEdit(RowEditEvent event) {
 
 		Local u = ((Local) event.getObject());
-		localservice.alterar(u);
-		System.out.println(u.getNome());
+		localservice.alterar(u);		
 	}
 	
 	public void salvar() {
-		local.setIdLocal(0);
+		//local.setIdLocal(0);
 		localservice.salvar(local);
+		FacesMessage mensagem = new FacesMessage("Local " + local.getNome() + " cadastrado com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);	
 		local = new Local();
 	}
 	
 	public void remover(Local local) {
 		localservice.remover(local);
+		FacesMessage mensagem = new FacesMessage("Local " + local.getNome() + " removido com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);	
 	}
 
 	public Local getLocal() {

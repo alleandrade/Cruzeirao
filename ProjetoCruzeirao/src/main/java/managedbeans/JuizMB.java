@@ -2,8 +2,10 @@ package managedbeans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -24,13 +26,17 @@ public class JuizMB {
 	}
 	
 	public void salvar() {
-		juiz.setIdJuiz(0);
+		//juiz.setIdJuiz(0);
 		juizservice.salvar(juiz);
+		FacesMessage mensagem = new FacesMessage("Juiz " + juiz.getUsuario().getNome() + " cadastrado com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);		
 		juiz = new Juiz();
 	}
 	
 	public void remover(Juiz juiz) {
 		juizservice.remove(juiz);
+		FacesMessage mensagem = new FacesMessage("Juiz " + juiz.getUsuario().getNome() + " removido com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);	
 	}
 
 	public Juiz getJuiz() {

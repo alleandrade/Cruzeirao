@@ -2,8 +2,10 @@ package managedbeans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -24,15 +26,19 @@ public class InscritoMB {
 	}
 	
 	public void salvar() {
-		inscrito.setIdInscrito(0);
+		//inscrito.setIdInscrito(0);
 		inscritoservice.salvar(inscrito);
 		inscrito.getInscricao().getInscritos().add(inscrito);
 		inscrito.getUsuario().getInscricoes().add(inscrito);
+		FacesMessage mensagem = new FacesMessage("Inscrito " + inscrito.getUsuario().getNome() + " cadastrado com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);		
 		inscrito = new Inscrito();
 	}
 	
 	public void remover(Inscrito inscrito) {
 		inscritoservice.remover(inscrito);
+		FacesMessage mensagem = new FacesMessage("Inscrito " + inscrito.getUsuario().getNome() + " removido com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);		
 	}
 
 	public Inscrito getInscrito() {

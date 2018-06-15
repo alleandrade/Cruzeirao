@@ -1,9 +1,13 @@
 package managedbeans;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -33,40 +37,46 @@ public class InscricaoMB {
 	
 	public void salvar() {
 		
-		inscricao.setIdInscricao(0);
+		Date date = new Date();
+		//inscricao.setIdInscricao(0);
 		
-		for (Usuario auxA : inscricao.getEquipe().getJogadores()) {
-			Inscrito inscrito = new Inscrito();
-			InscritoService auxInscrito = new InscritoService();
-			inscrito.setTipo(auxA.getTipo());
-			inscrito.setAceiteUsuario(true);
-			inscrito.setInscricaoValidada(true);
-			inscrito.setSuspensoJogos(false);
-			inscrito.setInscricao(inscricao);
-			inscrito.setUsuario(auxA);
-			auxA.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
-			auxA.getInscricoes().add(inscrito);
-			auxInscrito.salvar(inscrito);
-			inscricao.getInscritos().add(inscrito);			
+		if (inscricao.getCategoria().getCampeonato().getDataInicioInscricao().after(date)  || inscricao.getCategoria().getCampeonato().getDataFimInscricao().before(date)) 
+		{
+			FacesMessage mensagem = new FacesMessage("Não é possível realizar a inscrição fora do prazo de inscrição!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);			
 		}
 		
-		for (Usuario auxA : inscricao.getEquipe().getComissaoTecnica()) {
-			Inscrito inscrito = new Inscrito();
-			InscritoService auxInscrito = new InscritoService();
-			inscrito.setTipo(auxA.getTipo());
-			inscrito.setAceiteUsuario(true);
-			inscrito.setInscricaoValidada(true);
-			inscrito.setSuspensoJogos(false);
-			inscrito.setInscricao(inscricao);
-			inscrito.setUsuario(auxA);
-			auxA.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
-			auxA.getInscricoes().add(inscrito);
-			auxInscrito.salvar(inscrito);
-			inscricao.getInscritos().add(inscrito);			
-		}
 		
-		inscricaoservice.salvar(inscricao);
-		inscricao.getCategoria().getInscricoes().add(inscricao);
+		else 
+		{
+			for (Usuario auxA : inscricao.getEquipe().getUsuarios()) {
+				
+				if (!auxA.getTipo().getTipo().equals("Diretor")) {
+					
+					Inscrito inscrito = new Inscrito();
+					InscritoService auxInscrito = new InscritoService();
+					inscrito.setTipo(auxA.getTipo());
+					inscrito.setAceiteUsuario(true);
+					inscrito.setInscricaoValidada(true);
+					inscrito.setSuspensoJogos(false);
+					inscrito.setInscricao(inscricao);
+					inscrito.setUsuario(auxA);
+					auxA.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
+					auxA.getInscricoes().add(inscrito);
+					auxInscrito.salvar(inscrito);
+					inscricao.getInscritos().add(inscrito);		
+					
+				}	
+					
+			}
+			
+			inscricaoservice.salvar(inscricao);
+			inscricao.getCategoria().getInscricoes().add(inscricao);
+			FacesMessage mensagem = new FacesMessage("Inscrição realizada com sucesso!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);				
+			
+		}	
+		
 		
 		inscricao = new Inscricao();
 	}
@@ -81,6 +91,8 @@ public class InscricaoMB {
 
 	public void remover(Inscricao inscricao) {
 		inscricaoservice.remover(inscricao);
+		FacesMessage mensagem = new FacesMessage("Inscrição removida com sucesso!");
+		FacesContext.getCurrentInstance().addMessage(null, mensagem);		
 	}
 	
 	public void removerPartidaFutebol(PartidasFutebol partida) {

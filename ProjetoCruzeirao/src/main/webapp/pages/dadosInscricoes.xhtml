@@ -31,11 +31,6 @@
     </f:facet>
     
     <p:ajax event="rowEdit" listener="#{inscricaoMB.onRowEdit}" update="tabelaInscricao" />
-    
-    	<p:column headerText="idInscrição" style="text-align: center" sortBy="#{ins.idInscricao}">
-			<p:outputLabel value="#{ins.idInscricao}"/>
-	    </p:column>
-	
 		
 		<p:column headerText="Pagamento" style="text-align: center" sortBy="#{ins.pagamento}">
 				<p:outputLabel value="#{ins.pagamento}" />  
