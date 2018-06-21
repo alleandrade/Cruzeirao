@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	style="background-color: #F5F5F5">
+	style="background-color: #ADD8E6">
 	
 <h:head>
 	<meta charset="UTF-8" />
@@ -38,22 +38,22 @@
 						<p:watermark for="password" value="Senha" />
 					</p:password>
 
-					<p:commandButton value="Login"  ajax="false" action="#{loginBean.login}" style="width: 50%; max-width: 200px;" />
+					<p:commandButton value="Login"  ajax="false" style="width: 50%; max-width: 200px;" />
 				</h:panelGrid>
 		
 			</h:form>
-					
+			
 			<h:form>
-				 	
-				<p:outputLabel value="Não possui cadastro ?"/>
-				<br/><!--	
-				<p:commandButton value="Cadastre-se já" ajax= "false" outcome=""
-				style="width: 50%; max-width: 200px;" size="30"/>
-				-->
-				<p:commandLink outcome="cadastraUsuario.xhtml" value="Cadastre-se"/>
-							
+						
+							<p:outputLabel  value="Não possui cadastro?"/>  
+							<br/>
+							<br/>
+							<p:commandLink value="Cadastre-se!" ajax = "false"  action="#{loginBean.cadastro}"
+							    style="width: 50%; max-width: 200px;" size="30" /> 
+					
 			</h:form>
 		</div>
-
+ 				
+			
 </h:body>
 </html>

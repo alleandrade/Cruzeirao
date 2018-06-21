@@ -12,60 +12,60 @@
     <p:panelMenu   style = "color:DimGray; font-family:Arial  ">
     
       	<p:submenu label="Início" style = "background-color:Silver">
-            <p:menuitem value="Início" outcome="inicio.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Início" outcome="/pages/inicio.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
         </p:submenu>  
                 
          <p:submenu label="Cadastrar" style = "background-color:Silver; font-family:Arial  ">
-            <p:menuitem value="Campeonato" outcome="cadastraCampeonato.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Campeonato" outcome="/pages/adm/cadastraCampeonato.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Categoria" outcome="cadastraCategoria.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Categoria" outcome="/pages/adm/cadastraCategoria.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Dados da partida" outcome="cadastraDadosPartida.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Dados da partida" outcome="/pages/adm/cadastraDadosPartida.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Equipe" outcome="cadastraEquipe.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Equipe" outcome="/pages/adm/cadastraEquipe.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Inscrição" outcome="cadastraInscricao.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Inscrição" outcome="/pages/adm/cadastraInscricao.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Juiz" outcome="cadastraJuiz.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Juiz" outcome="/pages/adm/cadastraJuiz.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Local" outcome="cadastraLocal.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Local" outcome="/pages/adm/cadastraLocal.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Usuário" outcome="cadastraUsuario.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Usuário" outcome="/pages/cadastraUsuario.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
         </p:submenu>
         
-        <p:submenu label="Gerar" style = "background-color:Silver">
-            <p:menuitem value="Grupos" outcome="geracaoGrupos.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        <p:submenu label="Gerar" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:Silver">
+            <p:menuitem value="Grupos" outcome="/pages/adm/geracaoGrupos.xhtml"  style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Partidas" outcome="geracaoPartidas.xhtml" style = "background-color:AliceBlue; font-family:Arial "/>
+            <p:menuitem value="Partidas" outcome="/pages/adm/geracaoPartidas.xhtml" style = "background-color:AliceBlue; font-family:Arial "/>
         </p:submenu>       
         
-        <p:submenu label="Dados" style = "background-color:Silver">
-			<p:menuitem value="Campeonatos" outcome="dadosCampeonatos.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+        <p:submenu label="Dados" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:Silver">
+			<p:menuitem value="Campeonatos" outcome="/pages/adm/dadosCampeonatos.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
 			<p:separator />
-			<p:menuitem value="Categorias" outcome="dadosCategorias.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+			<p:menuitem value="Categorias" outcome="/pages/adm/dadosCategorias.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Equipes" outcome="dadosEquipes.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Equipes" outcome="/pages/adm/dadosEquipes.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Fases" outcome="dadosFases.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Fases" outcome="/pages/adm/dadosFases.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Grupos" outcome="dadosGrupos.xhtml" style = "background-color:AliceBlue; font-family:Arial "/>
+            <p:menuitem value="Grupos" outcome="/pages/adm/dadosGrupos.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial "/>
             <p:separator />
-            <p:menuitem value="Inscrições" outcome="dadosInscricoes.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Inscrições" outcome="/pages/adm/dadosInscricoes.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Inscritos" outcome="dadosInscritos.xhtml" style = "background-color:AliceBlue "/>
+            <p:menuitem value="Inscritos" outcome="/pages/adm/dadosInscritos.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue "/>
             <p:separator />
-            <p:menuitem value="Juízes" outcome="dadosJuizes.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Juízes" outcome="/pages/adm/dadosJuizes.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Locais" outcome="dadosLocais.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Locais" outcome="/pages/adm/dadosLocais.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Rodadas" outcome="dadosRodadas.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Rodadas" outcome="/pages/adm/dadosRodadas.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
             <p:separator />
-            <p:menuitem value="Usuários" outcome="dadosUsuarios.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Usuários" outcome="/pages/adm/dadosUsuarios.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
         </p:submenu>  
     
         <p:submenu label="Convidar" style = "background-color:Silver">
-            <p:menuitem value="Convite" outcome="convites.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Convite" outcome="/pages/convites.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
         </p:submenu>         
 		    
 		    

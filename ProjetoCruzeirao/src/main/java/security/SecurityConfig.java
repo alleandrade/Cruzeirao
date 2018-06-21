@@ -23,7 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 	   auth.userDetailsService(usuarioService);
 	   
-        
+	   auth.inMemoryAuthentication().withUser("normal").password("123456").roles("JOGADOR");
+       auth.inMemoryAuthentication().withUser("adm").password("123456").roles("ORGANIZADOR");
+       auth.inMemoryAuthentication().withUser("superadm").password("123456").roles("ORGANIZADOR");
         
     }
 
@@ -37,24 +39,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedPage("/acessonegado.xhtml");
         
         //Libera todos os recursos do JSF
-        http.authorizeRequests().antMatchers("/javax.faces.resource/**", "/pages/**").permitAll();
+        http.authorizeRequests().antMatchers("/javax.faces.resource/**").permitAll();
         
         
         //Controla o acesso a página protegida  do adm        
-        http.authorizeRequests().antMatchers("/pages/**").hasRole("ORGANIZADOR");
+        http.authorizeRequests().antMatchers("/pages/adm/**").hasRole("ORGANIZADOR");
                 
     	
     	//Login
-    	http.formLogin().loginPage("/pages/login.xhtml").permitAll()
+    	http.formLogin().loginPage("/login.xhtml").permitAll()
 		.defaultSuccessUrl("/pages/inicio.xhtml", true)
-		.failureUrl("/pages/login.xhtml?error=true")
+		.failureUrl("/login.xhtml?error=true")
 		.usernameParameter("username")
 		.passwordParameter("password");
     	
     	
     	//Logout
         http.logout().logoutUrl("/logout")
-                     .logoutSuccessUrl("/pages/login.xhtml");
+                     .logoutSuccessUrl("/login.xhtml");
 
         // Todas as requisições para partes internas da aplicação devem ser autenticadas
 		http.authorizeRequests().anyRequest().authenticated();

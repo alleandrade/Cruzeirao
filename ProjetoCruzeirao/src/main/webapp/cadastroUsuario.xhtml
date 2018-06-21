@@ -1,0 +1,116 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formUsuario">
+<p:growl id="mensagem"/>
+
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	 <f:facet name="header">
+           Usuário
+    </f:facet>
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+		 	 
+	 <p:outputLabel for="email" value="E-mail: "/>
+	 <p:inputText id="email" value = "#{usuarioMB.usuario.email}" required="true"/>
+	 
+	 <p:outputLabel for="email" value="Username: "/>
+	 <p:inputText id="email" value = "#{usuarioMB.usuario.userName}" required="true"/>
+	 
+	 <h:outputLabel for="senha" value="Senha: " />
+	 <p:password id="senha" value="#{usuarioMB.usuario.password}" />
+	 
+	 </p:panelGrid>
+	 
+	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	
+	<f:facet name="header">
+            Dados pessoais
+    </f:facet>
+	 	 
+	  
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{usuarioMB.usuario.nome}" required="true"/>
+	  
+	 <p:outputLabel value="Sexo: "/>
+	 <h:selectOneMenu value="#{usuarioMB.usuario.sexo}" style="width:205px">
+            <f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />
+            <f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
+     </h:selectOneMenu>
+	 
+	 <p:outputLabel value="Tipo: "/>
+	 <h:selectOneMenu value="#{usuarioMB.usuario.tipo}" style="width:205px">
+            <f:selectItem itemLabel="Organizador" itemValue="ORGANIZADOR" />
+            <f:selectItem itemLabel="Jogador" itemValue="JOGADOR" />
+            <f:selectItem itemLabel="Diretor" itemValue="DIRETOR" />
+            <f:selectItem itemLabel="Juiz" itemValue="JUIZ" />
+            <f:selectItem itemLabel="Preparador físico" itemValue="PREPARADOR_FISICO" />
+            <f:selectItem itemLabel="Massagista" itemValue="MASSAGISTA" />
+            <f:selectItem itemLabel="Técnico" itemValue="TECNICO" />
+     </h:selectOneMenu>
+	
+	
+	 
+	 
+	 <p:outputLabel value="Data de nascimento: "/>
+	 <p:calendar id="mask" value="#{usuarioMB.usuario.dataNascimento}" required = "true" pattern="dd/MM/yyyy" mask="true" />
+	 	 
+	 <p:outputLabel for="rg" value="RG: "/>
+	 <p:inputMask id="rg" value="#{usuarioMB.usuario.rg}"
+						mask="99.999.999-9" required="true">
+	 </p:inputMask>
+	 
+	 <p:outputLabel for="cpf" value="CPF: "/>
+	 <p:inputMask id="cpf" value="#{usuarioMB.usuario.cpf}"
+						mask="999.999.999-99" required="true">
+	 </p:inputMask>
+	 
+	 <p:outputLabel value="CREF: "/>
+	 <p:inputText id="cref" placeholder = "Preencha caso seja um preparador físico" value = "#{usuarioMB.usuario.cref}"/>
+	 
+	 <p:outputLabel for="endereco" value="Endereço: "/>
+	 <p:inputText id="endereco" value = "#{usuarioMB.usuario.endereco}" required="true"/>
+	 
+	 <p:outputLabel for="telefoneFixo" value="Telefone fixo: "/>
+	 <p:inputMask id="telefoneFixo" value="#{usuarioMB.usuario.telefoneFixo}"
+						mask="(99) 9999-9999" required="true">
+	 </p:inputMask>
+	 
+	 <p:outputLabel for="telefoneMovel" value="Telefone móvel: "/>
+	 <p:inputMask id="telefoneMovel" value="#{usuarioMB.usuario.telefoneMovel}"
+						mask="(99) 99999-9999" required="true">
+	 </p:inputMask>
+	 
+	 </p:panelGrid>
+	
+	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="2">
+	 
+	 <p:outputLabel value="Foto: "/>
+	 <p:fileUpload value="#{usuarioMB.usuario.foto}" uploadLabel="Upload" mode="simple" skinSimple="false" />
+	 
+	
+	</p:panelGrid>	
+	
+ 	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{usuarioMB.salvar}"
+	                 update=":formUsuario"  	            
+	/>
+
+	</p:panel>
+
+
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>
