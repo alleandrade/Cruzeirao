@@ -1,0 +1,34 @@
+package sistema.managedbeans;
+
+import java.util.*;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import sistema.entidades.Gol;
+import sistema.services.GolService;
+
+@SessionScoped
+@ManagedBean
+public class GolMB {
+	private Gol gol = new Gol();
+	private GolService golservice = new GolService();
+	
+	public void salvar() {
+		gol.setIdGol(0);
+		golservice.salvar(gol);
+		gol = new Gol();
+	}
+
+	public Gol getGol() {
+		return gol;
+	}
+
+	public void setGol(Gol gol) {
+		this.gol = gol;
+	}
+	
+	public ArrayList<Gol> getGols() {
+		return golservice.getGols();
+	}
+}

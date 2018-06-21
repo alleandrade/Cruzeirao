@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="ProjetoCruzeirao" transaction-type="RESOURCE_LOCAL">
-		<class>entidades.Campeonato</class>
-		<class>entidades.Cartao</class>
-		<class>entidades.Categoria</class>
-		<class>entidades.Equipe</class>
-		<class>entidades.Fase</class>
-		<class>entidades.Gol</class>
-		<class>entidades.Grupo</class>
-		<class>entidades.Inscricao</class>
-		<class>entidades.Inscrito</class>
-		<class>entidades.Juiz</class>
-		<class>entidades.Local</class>
-		<class>entidades.Partida</class>
-		<class>entidades.PartidasFutebol</class>
-		<class>entidades.Rodada</class>
-		<class>entidades.Usuario</class>
+		<class>sistema.entidades.Campeonato</class>
+		<class>sistema.entidades.Cartao</class>
+		<class>sistema.entidades.Categoria</class>
+		<class>sistema.entidades.Equipe</class>
+		<class>sistema.entidades.Fase</class>
+		<class>sistema.entidades.Gol</class>
+		<class>sistema.entidades.Grupo</class>
+		<class>sistema.entidades.Inscricao</class>
+		<class>sistema.entidades.Inscrito</class>
+		<class>sistema.entidades.Juiz</class>
+		<class>sistema.entidades.Local</class>
+		<class>sistema.entidades.Partida</class>
+		<class>sistema.entidades.PartidasFutebol</class>
+		<class>sistema.entidades.Rodada</class>
+		<class>sistema.entidades.Usuario</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/DBCruzeirao;create=true"/>
