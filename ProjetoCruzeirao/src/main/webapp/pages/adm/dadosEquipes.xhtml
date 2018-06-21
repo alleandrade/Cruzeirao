@@ -10,20 +10,26 @@
 <ui:define name="principal">
 
 <h:form id="formEquipe">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "equi"
 			value = "#{equipeMB.equipes}"
-			editable = "true" editMode = "cell"
-			
+			editable = "true" 
+			id="tabelaEquipe"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"		
 			                        
 	>
 	
 	<f:facet name="header">
             Equipes
     </f:facet>
-	
+    
+     <p:ajax event="rowEdit" listener="#{equipeMB.onRowEdit}" update="tabelaEquipe" />	
+	 <p:growl id="growl"  showDetail="true" />
 		
 		<p:column headerText="Nome" style="text-align: center" sortBy="#{equi.nome}">
 		
@@ -59,13 +65,13 @@
 	    </p:column>
 	    
 	    <p:column  headerText="Jogadores (Adicionar/Remover)" style="text-align: center">
-	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.tiposUsuarios()}" actionListener="#{usuarioMB.tiposUsuarios()}" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Jogadores da equipe" widgetVar="jogadoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="jogadoresEquipe" style=" width:1100px" columnClasses="label,value">
             
-            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="jogador" value="#{equipeMB.equipe.jogadores}">
+            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="jogador" value="#{equipeMB.jogadores}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{jogador.nome}"/>
 	   	    		</p:column>
@@ -105,13 +111,13 @@
 	    	    
 	   
 	    <p:column  headerText="Diretores" style="text-align: center">
-	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('diretoresDialog').show()" closable="true" title="View">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.tiposUsuarios()}"  actionListener="#{usuarioMB.tiposUsuarios()}" oncomplete="PF('diretoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Diretor (es) da equipe" widgetVar="diretoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="diretoresEquipe" style=" width:800px" columnClasses="label,value">
             
-            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="diretor" value="#{equipeMB.equipe.diretores}">
+            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="diretor" value="#{equipeMB.diretores}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{diretor.nome}"/>
 	   	    		</p:column>
@@ -127,13 +133,13 @@
        </p:column>
        
         <p:column  headerText="Comissão técnica (Adicionar/Remover)" style="text-align: center">
-	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" oncomplete="PF('comissaoDialog').show()" closable="true" title="View">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.tiposUsuarios()}"  actionListener="#{usuarioMB.tiposUsuarios()}" oncomplete="PF('comissaoDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Funcionários da comissão técnica da equipe" widgetVar="comissaoDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="funcionariosEquipe" style=" width:1100px" columnClasses="label,value">
             
-            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="func" value="#{equipeMB.equipe.comissaoTecnica}">
+            <p:dataTable style="margin-bottom:5px; padding: 8px 12px" var="func" value="#{equipeMB.comissao}">
  					<p:column headerText="Nome">
 	   					<p:outputLabel value="#{func.nome}"/>
 	   	    		</p:column>
@@ -176,12 +182,12 @@
 
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.remover(equi)}" update="formEquipe"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{equipeMB.remover(equi)}" update="tabelaEquipe"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		
 	
-	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
 
 </h:form>
 

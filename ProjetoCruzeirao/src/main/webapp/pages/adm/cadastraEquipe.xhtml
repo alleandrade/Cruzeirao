@@ -11,13 +11,19 @@
 <ui:define name="principal">
 
 <h:form id="formEquipe">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 
+
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
+ 	
+ 	<f:facet name="header">
+            Equipe
+    </f:facet>
 
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	<f:facet name="header">
-            Equipe
+            Dados
     </f:facet>
 		 
 	 <p:outputLabel for="nome" value="Nome: "/>
@@ -42,7 +48,7 @@
 	 <p:outputLabel  value="Diretor"/>
  	 <h:selectOneMenu id="diretor" converter ="ConverterUsuario"  value="#{equipeMB.auxDiretor}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o diretor" itemValue="" noSelectionOption="true"/>
-     		<f:selectItems value="#{usuarioMB.diretores}" />
+     		<f:selectItems value="#{equipeMB.usuariosDiretores}" />
      </h:selectOneMenu>
 	
 
@@ -58,7 +64,7 @@
  	
  	<p:dataTable
 			var = "dir"
-			value = "#{equipeMB.equipe.diretores}"
+			value = "#{equipeMB.auxDiretores}"
 			style = "margin: 8px 2px; padding: 0px 4px; font-size: 16px"
 		
 	>
@@ -97,7 +103,7 @@
 	            
 	/>
 	
-
+</p:panel>
 </h:form>
 
 	</ui:define>

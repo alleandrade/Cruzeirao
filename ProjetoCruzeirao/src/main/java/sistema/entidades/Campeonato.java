@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -13,8 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-//Fim Import's
-//Atributos
 
 @Entity
 public class Campeonato implements Serializable{
@@ -26,7 +23,6 @@ public class Campeonato implements Serializable{
 	private int idCampeonato;
 	
 	private String nome;
-	private static int count = 1; 
 	
 	@OneToMany
 	private ArrayList<Local> locais = new ArrayList<Local>();
@@ -50,13 +46,6 @@ public class Campeonato implements Serializable{
 	private Date dataFimCampeonato;
 	
 	private double valorTaxa;
-//Fim Atributos	
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
 
 	
 	public Campeonato() {
@@ -155,8 +144,7 @@ public class Campeonato implements Serializable{
 	}
 
 	public void setIdCampeonato(int idCampeonato) {
-		this.idCampeonato = count;
-		count++;
+		this.idCampeonato = idCampeonato;
 	}
 
 	public static long getSerialversionuid() {
@@ -167,5 +155,5 @@ public class Campeonato implements Serializable{
 	public String toString() {
 		return nome;
 	}
-//Fim Métodos	
+	
 }

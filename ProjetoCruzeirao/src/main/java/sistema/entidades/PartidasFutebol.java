@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -6,8 +5,7 @@ import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-//Fim Import's
-//Atributos
+
 @Entity
 public class PartidasFutebol extends Partida implements Serializable{
 	
@@ -30,14 +28,7 @@ public class PartidasFutebol extends Partida implements Serializable{
 	
 	@OneToMany
 	private ArrayList<Cartao> cartoesVisitantes = new ArrayList<Cartao>();
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
-	
+
 	public PartidasFutebol() {
 		super();
 	}
@@ -112,7 +103,4 @@ public class PartidasFutebol extends Partida implements Serializable{
 		return serialVersionUID;
 	}
 	
-	
-	
-	//Fim Métodos	
 }

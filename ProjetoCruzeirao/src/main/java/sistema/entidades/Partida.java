@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.util.ArrayList;
@@ -12,8 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//Fim Import's
-//Atributos
+
 @Entity
 public class Partida {
 	
@@ -23,7 +21,6 @@ public class Partida {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPartida;
 
-	private static int count = 1; 
 	@ManyToOne
 	private Inscricao equipeMandante;
 	
@@ -42,13 +39,6 @@ public class Partida {
 	@ManyToOne
 	private Grupo grupo;
 	private String relatoJuiz;
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
 	
 	public Partida(int idPartida, Inscricao equipeMandante, Inscricao equipeVisitante, Date data, Local local,
 			Partida proxPartida, ArrayList<Juiz> juizes, Grupo grupo, String relatoJuiz) {
@@ -75,8 +65,7 @@ public class Partida {
 	}
 
 	public void setIdPartida(int idPartida) {
-		this.idPartida = count;
-		count++;
+		this.idPartida = idPartida;
 	}
 
 	public Inscricao getEquipeMandante() {
@@ -149,8 +138,7 @@ public class Partida {
 	@Override
 	public String toString() {
 		return Integer.toString(idPartida);
-	}
-	
+	}	
 	
 	
 }

@@ -1,22 +1,38 @@
 package sistema.services;
 
-import java.util.*;
+import java.util.List;
 
-import sistema.dados.Dados;
+import sistema.dao.PartidaDAO;
 import sistema.entidades.Partida;
 
 public class PartidaService {
-	private ArrayList<Partida> partidas = Dados.partidas;
+
+ 	PartidaDAO partidaDAO = new PartidaDAO();
 	
-	public PartidaService() {
+	public Partida salvar(Partida partida) {
 		
-	}
-	
-	public void salvar(Partida partida) {
-		partidas.add(partida);
+		partida = partidaDAO.save(partida);
+		partidaDAO.closeEntityManager();
+		return partida;
 	}
 
-	public ArrayList<Partida> getPartidas() {
-		return partidas;
+	public void alterar(Partida partida) {
+
+		partidaDAO.save(partida);
+		partidaDAO.closeEntityManager();
+	}
+	
+	public void remover(Partida partida) {
+		
+		partida = partidaDAO.getById(Partida.class, partida.getIdPartida());
+		partidaDAO.remove(partida);
+		partidaDAO.closeEntityManager();
+	}
+	
+	public List<Partida> getPartidas() {
+		
+		List <Partida> list = partidaDAO.getAll(Partida.class);
+		partidaDAO.closeEntityManager();
+		return list;
 	}
 }

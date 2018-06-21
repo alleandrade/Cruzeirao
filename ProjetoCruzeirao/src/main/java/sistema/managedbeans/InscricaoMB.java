@@ -1,62 +1,99 @@
 package sistema.managedbeans;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
-import sistema.entidades.Categoria;
+import org.primefaces.event.RowEditEvent;
+
 import sistema.entidades.Inscricao;
 import sistema.entidades.Inscrito;
 import sistema.entidades.PartidasFutebol;
 import sistema.entidades.Usuario;
+import sistema.services.CategoriaService;
 import sistema.services.InscricaoService;
 import sistema.services.InscritoService;
+import sistema.services.UsuarioService;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class InscricaoMB {
+public class InscricaoMB implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Inscricao inscricao = new Inscricao();
 	private InscricaoService inscricaoservice = new InscricaoService();
 	private PartidasFutebol auxPartidaFutebol;
 	private Inscrito auxInscrito;
+	private List<Inscricao> inscricoes;
+	private CategoriaService categoriaservice = new CategoriaService();
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Inscricao i = ((Inscricao) event.getObject());
+		inscricaoservice.alterar(i);
+	}
 	
 	public void salvar() {
 		
-		inscricao.setIdInscricao(0);
+		Date date = new Date();
 		
-		for (Usuario auxA : inscricao.getEquipe().getJogadores()) {
-			Inscrito inscrito = new Inscrito();
-			InscritoService auxInscrito = new InscritoService();
-			inscrito.setTipo(auxA.getTipo());
-			inscrito.setAceiteUsuario(true);
-			inscrito.setInscricaoValidada(true);
-			inscrito.setSuspensoJogos(false);
-			inscrito.setInscricao(inscricao);
-			inscrito.setUsuario(auxA);
-			auxA.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
-			auxA.getInscricoes().add(inscrito);
-			auxInscrito.salvar(inscrito);
-			inscricao.getInscritos().add(inscrito);			
+		if (inscricao.getCategoria().getCampeonato().getDataInicioInscricao().after(date)  || inscricao.getCategoria().getCampeonato().getDataFimInscricao().before(date)) 
+		{
+			FacesMessage mensagem = new FacesMessage("Não é possível realizar a inscrição fora do prazo de inscrição!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);			
 		}
 		
-		for (Usuario auxA : inscricao.getEquipe().getComissaoTecnica()) {
-			Inscrito inscrito = new Inscrito();
-			InscritoService auxInscrito = new InscritoService();
-			inscrito.setTipo(auxA.getTipo());
-			inscrito.setAceiteUsuario(true);
-			inscrito.setInscricaoValidada(true);
-			inscrito.setSuspensoJogos(false);
-			inscrito.setInscricao(inscricao);
-			inscrito.setUsuario(auxA);
-			auxA.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
-			auxA.getInscricoes().add(inscrito);
-			auxInscrito.salvar(inscrito);
-			inscricao.getInscritos().add(inscrito);			
-		}
 		
-		inscricaoservice.salvar(inscricao);
-		inscricao.getCategoria().getInscricoes().add(inscricao);
+		else 
+		{
+			for (Usuario u : inscricao.getEquipe().getUsuarios()) {
+				
+				if (!u.getTipo().getTipo().equals("Diretor")) {
+					
+					Inscrito inscrito = new Inscrito();
+					UsuarioService usuarioservice = new UsuarioService();
+					InscritoService inscritoservice = new InscritoService();
+					inscrito.setTipo(u.getTipo());
+					inscrito.setAceiteUsuario(true);
+					inscrito.setInscricaoValidada(true);
+					inscrito.setSuspensoJogos(false);
+					inscrito.setInscricao(inscricao);
+					inscrito.setUsuario(u);
+					u.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
+					u.getInscricoes().add(inscrito);
+					usuarioservice.alterar(u);
+					inscritoservice.salvar(inscrito);
+					inscricao.getInscritos().add(inscrito);		
+					
+				}	
+					
+			}
+			
+			inscricao = inscricaoservice.salvar(inscricao);
+			
+			if (inscricoes != null) {
+				inscricoes.add(inscricao);
+				
+				//if (inscricao.getCategoria() != null) {
+					//inscricao.getCategoria().getInscricoes().add(inscricao);
+					//categoriaservice.alterar(inscricao.getCategoria());
+				//}
+				
+
+				FacesMessage mensagem = new FacesMessage("Inscrição realizada com sucesso!");
+				FacesContext.getCurrentInstance().addMessage(null, mensagem);	
+			}
+			
+			
+		}			
 		
 		inscricao = new Inscricao();
 	}
@@ -70,7 +107,23 @@ public class InscricaoMB {
 	}
 
 	public void remover(Inscricao inscricao) {
-		inscricaoservice.remover(inscricao);
+		
+		if (inscricao.getEquipe() != null || inscricaoservice.pesquisarInscritosInscricao(inscricao).size() > 0 || inscricaoservice.pesquisarPartidasInscricao(inscricao).size() > 0) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Não é possível remover a inscrição, pois há equipe, ou inscrito (os) ou partida (as) amarradas a ele.", null));
+		}
+		
+		else {			
+			inscricaoservice.remover(inscricao);
+			inscricoes.remove(inscricao);
+			
+			if (inscricao.getCategoria() != null)
+				inscricao.getCategoria().getInscricoes().remove(inscricao);
+			
+			FacesMessage mensagem = new FacesMessage("Inscrição removida com sucesso!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);	
+		}		
+			
 	}
 	
 	public void removerPartidaFutebol(PartidasFutebol partida) {
@@ -105,7 +158,10 @@ public class InscricaoMB {
 		this.auxInscrito = auxInscrito;
 	}
 
-	public ArrayList<Inscricao> getInscricoes() {
-		return inscricaoservice.getInscricoes();
+	public List<Inscricao> getInscricoes() {
+		if (inscricoes == null)
+			inscricoes = inscricaoservice.getInscricoes();
+	
+		return inscricoes;
 	}
 }

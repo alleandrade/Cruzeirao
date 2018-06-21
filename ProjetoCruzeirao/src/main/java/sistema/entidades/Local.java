@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -8,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-//Fim Import's
-//Atributos
 @Entity
 public class Local implements Serializable{
 	
@@ -19,16 +16,8 @@ public class Local implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idLocal;
 
-	private static int count = 1; 
 	private String endereco;
 	private String nome;
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
 	
 	public String getNome() {
 		return nome;
@@ -60,8 +49,7 @@ public class Local implements Serializable{
 	}
 
 	public void setIdLocal(int idLocal) {
-		this.idLocal = count;
-		count++;
+		this.idLocal = idLocal;
 	}
 
 	public static long getSerialversionuid() {
@@ -72,5 +60,5 @@ public class Local implements Serializable{
 	public String toString() {
 		return nome;
 	}
-//Fim Métodos
+
 }

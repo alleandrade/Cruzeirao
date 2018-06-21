@@ -11,12 +11,17 @@
 <ui:define name="principal">
 
 <h:form id="formCampeonato">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "camp"
 			value = "#{campeonatoMB.campeonatos}"
-			editable = "true" editMode = "cell"
+			editable = "true"
+			id="tabelaCampeonato"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
 			
 			                        
 	>
@@ -24,6 +29,8 @@
 	<f:facet name="header">
             Campeonatos
     </f:facet>
+    
+    <p:ajax event="rowEdit" listener="#{campeonatoMB.onRowEdit}" update="tabelaCampeonato" />
 	
 		
 		<p:column headerText="Nome" style="text-align: center" sortBy="#{camp.nome}">
@@ -185,7 +192,8 @@
 				
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.remover(camp)}" update="formCampeonato"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{campeonatoMB.remover(camp)}" update="tabelaCampeonato"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		

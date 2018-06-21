@@ -1,26 +1,58 @@
 package sistema.services;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import sistema.dados.Dados;
+import sistema.dao.LocalDAO;
+import sistema.entidades.Campeonato;
 import sistema.entidades.Local;
 
 public class LocalService {
-	private ArrayList<Local> locais = Dados.locais;
+
+	LocalDAO localDAO = new LocalDAO();
 	
-	public LocalService() {
+	public Local salvar(Local local) {
+		
+		local = localDAO.save(local);
+		localDAO.closeEntityManager();
+		return local;
 		
 	}
 	
-	public void salvar(Local local) {
-		locais.add(local);
+	public void remover(Local local) {
+		
+		local = localDAO.getById(Local.class, local.getIdLocal());
+		localDAO.remove(local);
+		localDAO.closeEntityManager();
 	}
 	
-	public void remover(Local local) {
-		locais.remove(local);
+	public void alterar(Local local) {
+
+		localDAO.save(local);
+		localDAO.closeEntityManager();
+		
+	}
+	
+	public List<Campeonato> pesquisarCampeonatosLocal(Local local) {
+
+		List<Campeonato> campeonatos = new ArrayList<Campeonato>();
+		List<Campeonato> percorreCampeonatos;
+		CampeonatoService campeonato = new CampeonatoService();
+		
+		percorreCampeonatos = campeonato.getCampeonatos();
+		
+		for (Campeonato c : percorreCampeonatos) 
+			for (Local l : c.getLocais())
+				if (l.getIdLocal() == local.getIdLocal())
+					campeonatos.add(c);
+		
+		return campeonatos;
 	}
 
-	public ArrayList<Local> getLocais() {
-		return locais;
+	public List<Local> getLocais() {
+		
+		List<Local> list = localDAO.getAll(Local.class);
+		localDAO.closeEntityManager();
+		return list;
 	}
 }

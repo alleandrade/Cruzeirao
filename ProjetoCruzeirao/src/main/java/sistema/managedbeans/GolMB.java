@@ -1,22 +1,40 @@
 package sistema.managedbeans;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.event.RowEditEvent;
 
 import sistema.entidades.Gol;
 import sistema.services.GolService;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class GolMB {
+public class GolMB implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Gol gol = new Gol();
 	private GolService golservice = new GolService();
+	private List<Gol> gols;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Gol g = ((Gol) event.getObject());
+		golservice.alterar(g);
+	}
 	
 	public void salvar() {
-		gol.setIdGol(0);
-		golservice.salvar(gol);
+		gol = golservice.salvar(gol);
+		
+		if (gols != null)
+			gols.add(gol);
+		
 		gol = new Gol();
 	}
 
@@ -28,7 +46,10 @@ public class GolMB {
 		this.gol = gol;
 	}
 	
-	public ArrayList<Gol> getGols() {
-		return golservice.getGols();
+	public List<Gol> getGols() {		
+		if (gols == null)
+			gols = golservice.getGols();
+		
+		return gols;
 	}
 }

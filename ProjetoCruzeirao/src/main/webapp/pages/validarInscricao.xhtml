@@ -1,0 +1,62 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formInscricao">
+<p:growl id="growl"  showDetail="true" />
+
+	<p:panel columns="2" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
+	<f:facet name="header">
+            Validação de inscrições
+    </f:facet>
+    
+    
+    
+    <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+    	<p:outputLabel  value="Categoria"/>
+ 		<h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{categoriaMB.auxCat}"  style="width:205px">
+    		<f:selectItem itemLabel= "Selecione o campeonato" itemValue="" noSelectionOption="false"/>
+    		<f:selectItems value="#{categoriaMB.categorias}" />
+    	</h:selectOneMenu>
+     
+    	
+    </p:panelGrid>
+    
+    <p:commandButton value="Atualizar"
+					 	style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 	action="#{categoriaMB.atualizarInscricoes()}"
+	                 	update=":formInscricao"  
+		/>
+				
+    </p:panel>
+    
+    <p:panel columns="2" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+    <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+    
+    	<p:outputLabel  value="Inscrição"/>
+ 		<h:selectOneMenu id="inscricao" converter ="ConverterInscricao"  value="#{categoriaMB.auxInscricao}"  style="width:205px">
+    		<f:selectItem itemLabel= "Selecione a inscrição" itemValue="" noSelectionOption="false"/>
+    		<f:selectItems value="#{categoriaMB.inscricoes}" />
+   		</h:selectOneMenu>    
+    
+    </p:panelGrid>
+    
+    <p:commandButton value="Validar"
+					 	style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 	action="#{categoriaMB.validarInscricao()}"
+	                 	update=":formInscricao"  
+		/>
+		
+    </p:panel>
+    
+    </h:form>
+</ui:define>
+</ui:composition>

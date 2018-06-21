@@ -1,22 +1,40 @@
 package sistema.services;
 
-import java.util.*;
 
-import sistema.dados.Dados;
+import java.util.List;
+
+import sistema.dao.CartaoDAO;
 import sistema.entidades.Cartao;
 
+
 public class CartaoService {
-	private ArrayList<Cartao> cartoes = Dados.cartoes;
+
+ 	CartaoDAO cartaoDAO = new CartaoDAO();
+
+	public Cartao salvar(Cartao cartao) {
 	
-	public CartaoService() {
-		
+		cartao = cartaoDAO.save(cartao);
+		cartaoDAO.closeEntityManager();
+		return cartao;
 	}
 	
-	public void salvar(Cartao cartao) {
-		cartoes.add(cartao);
+	public void alterar(Cartao cartao) {
+
+		cartaoDAO.save(cartao);
+		cartaoDAO.closeEntityManager();
+	}
+	
+	public void remover(Cartao cartao) {
+		
+		cartao = cartaoDAO.getById(Cartao.class, cartao.getIdCartao());
+		cartaoDAO.remove(cartao);
+		cartaoDAO.closeEntityManager();
 	}
 
-	public ArrayList<Cartao> getCartoes() {
-		return cartoes;
+	public List<Cartao> getCartoes() {
+		
+		List <Cartao> list = cartaoDAO.getAll(Cartao.class);
+		cartaoDAO.closeEntityManager();
+		return list;	
 	}
 }

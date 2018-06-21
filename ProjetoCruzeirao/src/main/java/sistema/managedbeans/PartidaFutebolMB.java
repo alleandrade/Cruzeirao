@@ -1,9 +1,13 @@
 package sistema.managedbeans;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.event.RowEditEvent;
 
 import sistema.entidades.Cartao;
 import sistema.entidades.Gol;
@@ -13,102 +17,123 @@ import sistema.services.CartaoService;
 import sistema.services.GolService;
 import sistema.services.PartidaFutebolService;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class PartidaFutebolMB {
-	private PartidasFutebol partidafutebol = new PartidasFutebol();
+public class PartidaFutebolMB implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private PartidasFutebol partidaFutebol = new PartidasFutebol();
 	private PartidaFutebolService partidasfutebolservice = new PartidaFutebolService();
-	private PartidasFutebol partidafutebolaux = new PartidasFutebol();
+	private PartidasFutebol partidaFutebolAux = new PartidasFutebol();
 	private Gol gol = new Gol();
 	private Cartao cartao = new Cartao();
 	private ArrayList<Inscrito> jogadoresMandantes = new ArrayList<Inscrito>();
 	private ArrayList<Inscrito> jogadoresVisitantes = new ArrayList<Inscrito>();
 	private GolService golservice = new GolService();
 	private CartaoService cartaoservice = new CartaoService();
+	private List<PartidasFutebol> partidasfutebol;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		PartidasFutebol p = ((PartidasFutebol) event.getObject());
+		partidasfutebolservice.alterar(p);
+	}
 	
 	public void salvar() {
-		partidafutebol.setIdPartida(0);
-		partidasfutebolservice.salvar(partidafutebol);
-		partidafutebol = new PartidasFutebol();
+
+		partidaFutebol = partidasfutebolservice.salvar(partidaFutebol);
+		
+		if (partidasfutebol != null)
+			partidasfutebol.add(partidaFutebol);
+		
+		partidaFutebol = new PartidasFutebol();
 	}
 
 	public void atualizar() {
-		for (Inscrito jog : partidafutebolaux.getEquipeMandante().getInscritos()) {
+		for (Inscrito jog : partidaFutebolAux.getEquipeMandante().getInscritos()) {
 			if (jog.getTipo().getTipo().equals("Jogador"))
 				jogadoresMandantes.add(jog);	
 		}
 		
-		for (Inscrito jog : partidafutebolaux.getEquipeVisitante().getInscritos()) {
+		for (Inscrito jog : partidaFutebolAux.getEquipeVisitante().getInscritos()) {
 			if (jog.getTipo().getTipo().equals("Jogador"))
 				jogadoresVisitantes.add(jog);
 		}	
 	}
 	
 	public void addGol() {
-		if(partidafutebolaux.getEquipeMandante().getInscritos().contains(gol.getInscrito())) {
-			partidafutebolaux.getGolsMandantes().add(gol);
+		if(partidaFutebolAux.getEquipeMandante().getInscritos().contains(gol.getInscrito())) {
+			partidaFutebolAux.getGolsMandantes().add(gol);
 		}
 		
-		if(partidafutebolaux.getEquipeVisitante().getInscritos().contains(gol.getInscrito())) {
-			partidafutebolaux.getGolsVisitantes().add(gol);
+		if(partidaFutebolAux.getEquipeVisitante().getInscritos().contains(gol.getInscrito())) {
+			partidaFutebolAux.getGolsVisitantes().add(gol);
 		}
+		
 		golservice.salvar(gol);
 	}
 	
 	public void addCartao() {
-		if(partidafutebolaux.getEquipeMandante().getInscritos().contains(gol.getInscrito())) {
-			partidafutebolaux.getCartoesMandantes().add(cartao);
+		if(partidaFutebolAux.getEquipeMandante().getInscritos().contains(gol.getInscrito())) {
+			partidaFutebolAux.getCartoesMandantes().add(cartao);
 		}
 		
-		if(partidafutebolaux.getEquipeVisitante().getInscritos().contains(gol.getInscrito())) {
-			partidafutebolaux.getCartoesVisitantes().add(cartao);
+		if(partidaFutebolAux.getEquipeVisitante().getInscritos().contains(gol.getInscrito())) {
+			partidaFutebolAux.getCartoesVisitantes().add(cartao);
 		}
+		
 		cartaoservice.salvar(cartao);
 	}
 	
 	public void finalizarPartida() {
 		  
-		if(partidafutebolaux.getGolsMandantes().size() > partidafutebolaux.getGolsVisitantes().size()) {
-		   partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeMandante());   
+		if(partidaFutebolAux.getGolsMandantes().size() > partidaFutebolAux.getGolsVisitantes().size()) {
+		   partidaFutebolAux.getGrupo().getEquipes().add(partidaFutebolAux.getEquipeMandante());   
 		  }
 		  
-		  else if(partidafutebolaux.getGolsMandantes().size() < partidafutebolaux.getGolsVisitantes().size()) {
-		   partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeVisitante());
+		  else if(partidaFutebolAux.getGolsMandantes().size() < partidaFutebolAux.getGolsVisitantes().size()) {
+		   partidaFutebolAux.getGrupo().getEquipes().add(partidaFutebolAux.getEquipeVisitante());
 		  }
 		  
 		  else {
-		   if (partidafutebolaux.getGolsPenaltisMandantes().size() > partidafutebolaux.getGolsPenaltisVisitantes().size()) {
-		    partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeMandante());
+		   if (partidaFutebolAux.getGolsPenaltisMandantes().size() > partidaFutebolAux.getGolsPenaltisVisitantes().size()) {
+		    partidaFutebolAux.getGrupo().getEquipes().add(partidaFutebolAux.getEquipeMandante());
 		   }
 		   
-		   else if(partidafutebolaux.getGolsPenaltisMandantes().size() < partidafutebolaux.getGolsPenaltisVisitantes().size()) {
-		    partidafutebolaux.getGrupo().getEquipes().add(partidafutebolaux.getEquipeVisitante());
+		   else if(partidaFutebolAux.getGolsPenaltisMandantes().size() < partidaFutebolAux.getGolsPenaltisVisitantes().size()) {
+		    partidaFutebolAux.getGrupo().getEquipes().add(partidaFutebolAux.getEquipeVisitante());
 		   }
 		   
 		  }
 		
-		partidasfutebolservice.salvar(partidafutebolaux);
-		partidafutebolaux = new PartidasFutebol();
+		partidasfutebolservice.salvar(partidaFutebolAux);
+		partidaFutebolAux = new PartidasFutebol();
 	}
 	
-	public PartidasFutebol getPartidasfutebol() {
-		return partidafutebol;
+	public PartidasFutebol getPartidaFutebol() {
+		return partidaFutebol;
 	}
 
-	public void setPartidasfutebol(PartidasFutebol partidafutebol) {
-		this.partidafutebol = partidafutebol;
+	public void setPartidasFutebol(PartidasFutebol partidafutebol) {
+		this.partidaFutebol = partidafutebol;
 	}
 	
-	public ArrayList<PartidasFutebol> getPartidasFutebol() {
-		return partidasfutebolservice.getPartidasfutebol();
+	public List<PartidasFutebol> getPartidasFutebol() {
+		if (partidasfutebol == null)
+			partidasfutebol = partidasfutebolservice.getPartidasfutebol();
+		
+		return partidasfutebol;
 	}
 
-	public PartidasFutebol getPartidafutebolaux() {
-		return partidafutebolaux;
+	public PartidasFutebol getpartidaFutebolAux() {
+		return partidaFutebolAux;
 	}
 
-	public void setPartidafutebolaux(PartidasFutebol partidafutebolaux) {
-		this.partidafutebolaux = partidafutebolaux;
+	public void setpartidaFutebolAux(PartidasFutebol partidaFutebolAux) {
+		this.partidaFutebolAux = partidaFutebolAux;
 	}
 
 	public Gol getGol() {
@@ -143,6 +168,8 @@ public class PartidaFutebolMB {
 		this.jogadoresVisitantes = jogadoresVisitantes;
 	}
 
+	public void setPartidaFutebol(PartidasFutebol partidaFutebol) {
+		this.partidaFutebol = partidaFutebol;
+	}
 	
 }
-

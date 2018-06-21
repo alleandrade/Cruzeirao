@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -11,8 +10,7 @@ import javax.persistence.ManyToOne;
 
 import sistema.enums.TipoJuiz;
 
-//Fim Import's
-//Atributos
+
 @Entity
 public class Juiz implements Serializable{
 
@@ -22,19 +20,10 @@ public class Juiz implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idJuiz;
 
-	private static int count = 1; 
 	private TipoJuiz tipo;
 	
 	@ManyToOne
 	private Usuario usuario;
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
-
 	
 	public Juiz() {
 		super();
@@ -67,8 +56,7 @@ public class Juiz implements Serializable{
 	}
 
 	public void setIdJuiz(int idJuiz) {
-		this.idJuiz = count;
-		count++;
+		this.idJuiz = idJuiz;
 	}
 
 	public static long getSerialversionuid() {
@@ -79,5 +67,5 @@ public class Juiz implements Serializable{
 	public String toString() {
 		return usuario.getNome();
 	}
-//Fim Métodos
+	
 }

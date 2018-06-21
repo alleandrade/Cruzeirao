@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -11,8 +10,6 @@ import javax.persistence.ManyToOne;
 
 import sistema.enums.TipoUsuario;
 
-//Fim Import's
-//Atributos
 @Entity
 public class Inscrito implements Serializable {
 	
@@ -24,7 +21,6 @@ public class Inscrito implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idInscrito;
 
-	private static int count = 1; 
 	@ManyToOne
 	private Usuario usuario;
 	
@@ -33,14 +29,6 @@ public class Inscrito implements Serializable {
 	private boolean aceiteUsuario,
 					suspensoJogos,
 					inscricaoValidada;
-//Fim Atributos	
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
-
 	
 	public Inscrito() {
 		super();
@@ -114,21 +102,17 @@ public class Inscrito implements Serializable {
 	}
 
 	public void setIdInscrito(int idInscrito) {
-		this.idInscrito = count;
-		count++;
+		this.idInscrito = idInscrito;
 	}
-
-
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 
-
 	@Override
 	public String toString() {
 		return usuario.getNome();
 	}
-//Fim Métodos
+
 }

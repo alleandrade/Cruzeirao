@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import javax.persistence.Entity;
@@ -9,8 +8,6 @@ import javax.persistence.ManyToOne;
 
 import sistema.enums.TipoCartao;
 
-//Fim Import's
-//Atributos
 @Entity
 public class Cartao {
 	
@@ -25,14 +22,6 @@ public class Cartao {
 	
 	private TipoCartao tipo;
 	private int tempo;
-	private static int count = 1; 
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
 	
 	public Cartao() {
 		super();
@@ -74,14 +63,11 @@ public class Cartao {
 	}
 
 	public void setIdCartao(int idCartao) {
-		this.idCartao = count;
-		count++;
+		this.idCartao = idCartao;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	
-	
-//Fim Métodos
 }

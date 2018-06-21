@@ -78,15 +78,14 @@ public abstract class DAOImpl <T, I extends Serializable> {
 		em = null;
 	}
 	
-	
-	@SuppressWarnings({"unchecked", "rawtypes"})
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected T pesquisarUm(String namedQuery, Map parametros) {
 		T resultado = null;
-		
+
 		try {
 			Query query = em.createNamedQuery(namedQuery);
-			if(parametros != null && !parametros.isEmpty()) {
-				popularParametrosQuery(query,parametros);
+			if (parametros != null && !parametros.isEmpty()) {
+				popularParametrosQuery(query, parametros);
 			}
 			resultado = (T) query.setMaxResults(1).getSingleResult();
 		} catch (NoResultException e) {
@@ -94,18 +93,15 @@ public abstract class DAOImpl <T, I extends Serializable> {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 		return resultado;
 	}
 	
-	protected void popularParametrosQuery(Query query, Map<String,Object> parametros) {
+	
+	protected void popularParametrosQuery(Query query,	Map<String, Object> parametros) {
 		for (Map.Entry<String, Object> parametro : parametros.entrySet()) {
 			query.setParameter(parametro.getKey(), parametro.getValue());
 		}
-	}
+	}	
 	
-	
-	
-	
-
 }

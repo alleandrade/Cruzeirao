@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import javax.persistence.Entity;
@@ -7,8 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-//Fim Import's
-//Atributos
 @Entity
 public class Gol {
 	
@@ -18,20 +15,11 @@ public class Gol {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idGol;
 
-	private static int count = 1; 
-
 	@ManyToOne
 	private Inscrito inscrito;
 	
 	private int tempo;
 	private boolean penalti;
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
 	
 	public Gol() {
 		super();
@@ -74,14 +62,11 @@ public class Gol {
 	}
 
 	public void setIdGol(int idGol) {
-		this.idGol = count;
-		count++;
+		this.idGol = idGol;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	
-	
-//Fim Métodos
 }

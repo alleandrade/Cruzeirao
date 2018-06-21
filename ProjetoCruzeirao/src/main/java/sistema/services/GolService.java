@@ -1,22 +1,38 @@
 package sistema.services;
 
-import java.util.*;
+import java.util.List;
 
-import sistema.dados.Dados;
+import sistema.dao.GolDAO;
 import sistema.entidades.Gol;
 
 public class GolService {
-	private ArrayList<Gol> gols = Dados.gols;
+
+ 	GolDAO golDAO = new GolDAO();
 	
-	public GolService() {
+	public Gol salvar(Gol gol) {
 		
+		gol = golDAO.save(gol);
+		golDAO.closeEntityManager();
+		return gol;
 	}
 	
-	public void salvar(Gol gol) {
-		gols.add(gol);
+	public void alterar(Gol gol) {
+
+		golDAO.save(gol);
+		golDAO.closeEntityManager();
+	}
+	
+	public void remover(Gol gol) {	
+		
+		gol = golDAO.getById(Gol.class, gol.getIdGol());
+		golDAO.remove(gol);
+		golDAO.closeEntityManager();
 	}
 
-	public ArrayList<Gol> getGols() {
-		return gols;
+	public List<Gol> getGols() {
+		
+		List <Gol> list = golDAO.getAll(Gol.class);
+		golDAO.closeEntityManager();
+		return list;
 	}
 }

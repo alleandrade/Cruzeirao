@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -8,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -27,8 +25,6 @@ public class Categoria implements Serializable{
 	private int nascidosAPartirDe,
 		minJogadores,
 		maxJogadores;
-
-	private static int count = 1; 
 	
 	@OneToMany(mappedBy="categoria")
 	private ArrayList<Inscricao> inscricoes = new ArrayList<Inscricao>();
@@ -40,14 +36,6 @@ public class Categoria implements Serializable{
 	private ArrayList<Fase> fases = new ArrayList<Fase>();
 	
 	private Sexo sexo;
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
-
 	
 	public Categoria() {
 		super();
@@ -137,8 +125,7 @@ public class Categoria implements Serializable{
 	}
 
 	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = count;
-		count++;
+		this.idCategoria = idCategoria;
 	}
 
 	public static long getSerialversionuid() {
@@ -149,5 +136,5 @@ public class Categoria implements Serializable{
 	public String toString() {
 		return nome;
 	}	
-//Fim Métodos
+	
 }

@@ -10,12 +10,17 @@
 <ui:define name="principal">
 
 <h:form id="formInscricao">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "ins"
 			value = "#{inscricaoMB.inscricoes}"
-			editable = "true" editMode = "cell"
+			editable = "true"
+			id="tabelaInscricao"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
 			
 			
 			                        
@@ -25,10 +30,7 @@
             Inscrições
     </f:facet>
     
-    	<p:column headerText="idInscrição" style="text-align: center" sortBy="#{ins.idInscricao}">
-			<p:outputLabel value="#{ins.idInscricao}"/>
-	    </p:column>
-	
+    <p:ajax event="rowEdit" listener="#{inscricaoMB.onRowEdit}" update="tabelaInscricao" />
 		
 		<p:column headerText="Pagamento" style="text-align: center" sortBy="#{ins.pagamento}">
 				<p:outputLabel value="#{ins.pagamento}" />  
@@ -99,12 +101,12 @@
 	    
 
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.remover(ins)}" update="formInscricao"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.remover(ins)}" update="tabelaInscricao"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		
 	
-	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
 
 </h:form>
 

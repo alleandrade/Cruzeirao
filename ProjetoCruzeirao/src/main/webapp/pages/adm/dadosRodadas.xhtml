@@ -10,12 +10,17 @@
 <ui:define name="principal">
 
 <h:form id="formRodada">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "rod"
 			value = "#{rodadaMB.rodadas}"
-			editable = "true" editMode = "cell"
+			editable = "true"
+			id="tabelaRodada"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
 			
 			
 			                        
@@ -25,6 +30,7 @@
             Rodadas
     </f:facet>
 	
+	<p:ajax event="rowEdit" listener="#{rodadaMB.onRowEdit}" update="tabelaRodada" />
 		
 	    <p:column headerText="idRodada" style="text-align: center" sortBy="#{rod.idRodada}">
 			<p:outputLabel value="#{rod.idRodada}"/>
@@ -60,12 +66,12 @@
        </p:column>
 	    
 		<p:column style = "text-align: center">
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{rodadaMB.remover(rod)}" update="formRodada"></p:commandLink> 	     	
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{rodadaMB.remover(rod)}" update="tabelaRodada"></p:commandLink> 	     	
 		</p:column>
 			
 	</p:dataTable>		
 	
-	<p:commandButton value="Voltar" style = "margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 0px" onclick="window.history.back();" />
 
 </h:form>
 

@@ -1,21 +1,41 @@
 package sistema.managedbeans;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.event.RowEditEvent;
 
 import sistema.entidades.Partida;
 import sistema.services.PartidaService;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class PartidaMB {
+public class PartidaMB implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Partida partida = new Partida();
 	private PartidaService partidaservice = new PartidaService();
+	private List<Partida> partidas;
+
+	public void onRowEdit(RowEditEvent event) {
+
+		Partida p = ((Partida) event.getObject());
+		partidaservice.alterar(p);
+	}
 	
 	public void salvar() {
-		partidaservice.salvar(partida);
+		
+		partida = partidaservice.salvar(partida);
+		
+		if (partidas != null)
+			partidas.add(partida);
+		
 		partida = new Partida();
 	}
 
@@ -27,7 +47,10 @@ public class PartidaMB {
 		this.partida = partida;
 	}
 	
-	public ArrayList<Partida> getPartidas() {
-		return partidaservice.getPartidas();
+	public List<Partida> getPartidas() {
+		if (partidas == null)
+			partidas = partidaservice.getPartidas();
+	
+		return partidas;
 	}
 }

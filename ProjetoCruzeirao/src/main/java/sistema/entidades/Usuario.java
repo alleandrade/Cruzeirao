@@ -1,6 +1,4 @@
-//Import's
 package sistema.entidades;
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -18,59 +17,48 @@ import javax.persistence.TemporalType;
 
 import sistema.enums.Sexo;
 import sistema.enums.TipoUsuario;
-//Fim Import's
-//Atributos
+
 @Entity
 @NamedQuery(name = "Usuario.pesquisarPorUserName", query = "select u from Usuario u where u.userName = :userName")
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+
 	public static final String PESQUISAR_POR_USERNAME = "Usuario.pesquisarPorUserName";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idUsuario;
 
-	private static int count = 1; 
 	private String email,
-		   		   nome,
-		   		   telefoneFixo,
-		   		   telefoneMovel,
-		   		   endereco,
-		   		   rg,
-		   		   cpf,
-		   		   cref,
-		   		   senha,
-		   		   userName,
-		   		   password;
-    
+	  			   nome,
+	  			   telefoneFixo,
+	  			   telefoneMovel,
+	  			   endereco,
+	  			   rg,
+	  			   cpf,
+	  			   cref,
+	  			   senha,
+	  			   userName,
+	  			   password;
+    	
 	@Lob
 	private byte [] foto;
 
 	@OneToMany(mappedBy="usuario")
-	private ArrayList<Inscrito> inscricoes = new ArrayList<Inscrito>();
+	private ArrayList<Inscrito> inscricoes = new ArrayList<	Inscrito>();
 	
 	@OneToMany
 	private ArrayList<Campeonato> campeonatos = new ArrayList<Campeonato>();
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
-	
-	//Falta mappedBy
-	@OneToMany
+
+	@ManyToMany
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	
 	private TipoUsuario tipo;
 	private Sexo sexo;
-	
-
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
 	
 	
 	public String getSenha() {
@@ -229,8 +217,7 @@ public class Usuario implements Serializable{
 	}
 
 	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = count;
-		count++;
+		this.idUsuario = idUsuario;
 	}
 
 	public static long getSerialversionuid() {
@@ -241,8 +228,7 @@ public class Usuario implements Serializable{
 	public String toString() {
 		return nome;
 	}
-//Fim Métodos	
-
+	
 	public String getPassword() {
 		return password;
 	}
@@ -258,4 +244,5 @@ public class Usuario implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+}
 }

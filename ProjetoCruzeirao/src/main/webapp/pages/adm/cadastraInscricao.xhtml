@@ -11,16 +11,20 @@
 <ui:define name="principal">
 
 <h:form id="formInscricao">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />>
 
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
  	
  	<f:facet name="header">
             Inscrição
     </f:facet>
     
  	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+ 	
+ 	 <f:facet name="header">
+           Dados
+    </f:facet>
 
      <p:outputLabel for="categoria" value="Categoria: "/>
      <h:selectOneMenu id="categoria" converter ="ConverterCategoria" required="true" value="#{inscricaoMB.inscricao.categoria}"  style="width:205px">
@@ -43,10 +47,6 @@
         <p:selectBooleanButton id="value1" value="#{inscricaoMB.inscricao.pagamento}" onLabel="Sim" offLabel="Não" style="width:60px" />
      </h:panelGrid>
      
-     <h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
-        <h:outputText value="Validada" />
-        <p:selectBooleanButton id="value2" value="#{inscricaoMB.inscricao.validada}" onLabel="Sim" offLabel="Não" style="width:60px" />
-     </h:panelGrid>
      
      </p:panelGrid>    
      

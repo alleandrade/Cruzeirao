@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.util.*;
@@ -9,8 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-//Fim Import's
-//Atributos
+
 @Entity
 public class Rodada {
 	
@@ -20,20 +18,12 @@ public class Rodada {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idRodada;
 
-	private static int count = 1; 
 	@ManyToOne
 	private Grupo grupo;
 	
 	@OneToMany
 	private ArrayList<Partida> partidas = new ArrayList<Partida>();
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
-	
+
 	public Rodada() {
 	super();
 	}
@@ -50,8 +40,7 @@ public class Rodada {
 	}
 
 	public void setIdRodada(int idRodada) {
-		this.idRodada = count;
-		count++;
+		this.idRodada = idRodada;
 	}
 
 	public Grupo getGrupo() {
@@ -79,6 +68,4 @@ public class Rodada {
 		return Integer.toString(idRodada);
 	}
 	
-	
-//Fim Métodos
 }

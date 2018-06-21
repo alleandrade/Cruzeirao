@@ -1,27 +1,37 @@
 package sistema.managedbeans;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
-import sistema.dados.Dados;
+import org.primefaces.event.RowEditEvent;
+
 import sistema.entidades.Categoria;
-import sistema.entidades.Equipe;
 import sistema.entidades.Fase;
 import sistema.entidades.Grupo;
 import sistema.entidades.Inscricao;
 import sistema.entidades.Juiz;
 import sistema.entidades.Partida;
 import sistema.entidades.Rodada;
+import sistema.services.CategoriaService;
 import sistema.services.FaseService;
 import sistema.services.GrupoService;
 import sistema.services.PartidaService;
 import sistema.services.RodadaService;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class FaseMB {
+public class FaseMB implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Fase fase = new Fase();
 	private FaseService faseservice = new FaseService();
 	private Grupo auxGrupo;
@@ -31,7 +41,6 @@ public class FaseMB {
 	private Inscricao cabecaChaveAux = new Inscricao();
 	private Grupo grupoAux = new Grupo();
 	private GrupoService gruposervice = new GrupoService();
-	private List<Categoria> campeonatos = Dados.categorias;
 	String[] auxString = {"A","B","C","D","E","F","G","H"};
 	Inscricao[] cabecasChaveAux;
 	private List<Grupo> grupos = new ArrayList<Grupo>();
@@ -40,11 +49,25 @@ public class FaseMB {
 	private Rodada rodada = new Rodada();
 	private RodadaService rodadaservice = new RodadaService();
 	private Juiz auxJuiz = new Juiz();
+	private List<Fase> fases;
+	private CategoriaService categoriaservice = new CategoriaService();
+	private List<Categoria> campeonatos = categoriaservice.getCategorias();
+	
+	public void onRowEdit(RowEditEvent event) {
+		
+		Fase f = ((Fase) event.getObject());
+		faseservice.alterar(f);
+	}
 	
 	public void salvar() {
-		fase.setIdFase(0);
-		faseservice.salvar(fase);
-		fase.getCategoria().getFases().add(fase);
+		//fase.setIdFase(0);
+		fase = faseservice.salvar(fase);
+		
+		if (fases != null) {
+			fases.add(fase);			
+			fase.getCategoria().getFases().add(fase);			
+		}
+
 		fase = new Fase();
 	}
 	
@@ -94,15 +117,18 @@ public class FaseMB {
 	
 	public void atualizarCamp() {
 		for (Inscricao equipe : getAuxCat().getInscricoes()) {
-			equipes.add(equipe);
+			if (!equipes.contains(equipe))					//Verificação adicionada
+				equipes.add(equipe);
 		}
 	}
 	
 	public void addCabecaChave() {
 		if (cabecasChave.size() < 8) {
-			cabecasChave.add(getCabecaChaveAux());
-			equipes.remove(getCabecaChaveAux());
-			setCabecaChaveAux(new Inscricao());
+			if (getCabecaChaveAux().isValidada() ) {		//Verificação adicionada
+				cabecasChave.add(getCabecaChaveAux());
+				equipes.remove(getCabecaChaveAux());
+				setCabecaChaveAux(new Inscricao());
+			}
 		}
 	}
 	
@@ -125,17 +151,30 @@ public class FaseMB {
 		while (equipes.size() > 0) {
 			i = 0;
 			for (Grupo grupo : fase.getGrupos()) {
-				grupo.getEquipes().add(equipes.get(i));
-				equipes.remove(0);
+				if (equipes.get(i).isValidada()) {
+					grupo.getEquipes().add(equipes.get(i));
+					equipes.remove(0);
+				}
 			}
 		}
+		
 		auxCat.getFases().add(fase);
 		fase.setIdFase(0);
 		faseservice.salvar(fase);
 	}
 	
 	public void remover(Fase fase) {
-		faseservice.remover(fase);
+		
+		if (fase.getCategoria() != null || faseservice.pesquisarGruposFase(fase).size() > 0) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Não é possível remover a fase, pois há categoria ou grupo (os) amarrados a ele.", null));
+		}
+		
+		else {
+			faseservice.remover(fase);
+			fases.remove(fase);
+		}
+		
 	}
 	
 	public void adicionarGrupo() {
@@ -162,8 +201,11 @@ public class FaseMB {
 		this.fase = fase;
 	}
 	
-	public ArrayList<Fase> getFases() {
-		return faseservice.getFases();
+	public List<Fase> getFases() {
+		if (fases == null)
+			fases = faseservice.getFases();
+	
+		return fases;
 	}
 
 	public List<Inscricao> getEquipes() {

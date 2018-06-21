@@ -11,18 +11,23 @@
 <ui:define name="principal">
 
 <h:form id="formUsuario">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "usu"
 			value = "#{usuarioMB.usuarios}"
 			editable = "true"
 			id="tabelaUsuario"
-			
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
 			
 			
 			                        
 	>
+
+<p:growl id="mensagem"/>
 
 	
 	<f:facet name="header">
@@ -35,7 +40,7 @@
 			
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.nome}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.nome}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.nome}" style="width:100%"/></f:facet>
            		</p:cellEditor>	   
            		           		
 	    </p:column>
@@ -45,7 +50,7 @@
 		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.senha}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.senha}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.senha}" style="width:100%"/></f:facet>
            		</p:cellEditor>	      
            		        		
 	    </p:column>
@@ -67,7 +72,7 @@
                   </p:outputLabel>
                   </f:facet>
                   
-                  <f:facet name = "input"><p:inputText    value="#{usu.dataNascimento}" style="width:96%">
+                  <f:facet name = "input"><p:inputText    value="#{usu.dataNascimento}" style="width:100%">
                   <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
                   </p:inputText>
                   </f:facet>          
@@ -79,7 +84,7 @@
 		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.email}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.email}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.email}" style="width:100%"/></f:facet>
            		
            		</p:cellEditor>	              		
 	    </p:column>
@@ -92,7 +97,7 @@
 		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.rg}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.rg}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.rg}" style="width:100%"/></f:facet>
            		
            		</p:cellEditor>	              		
 	    </p:column>
@@ -101,7 +106,7 @@
 		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.cpf}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.cpf}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.cpf}" style="width:100%"/></f:facet>
            		
            		</p:cellEditor>	  
 	    </p:column>
@@ -110,7 +115,7 @@
 		   		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.cref}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.cref}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.cref}" style="width:100%"/></f:facet>
            		
            		</p:cellEditor>	  
 	    </p:column>
@@ -121,7 +126,7 @@
 		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.endereco}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.endereco}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.endereco}" style="width:100%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>
@@ -130,7 +135,7 @@
 		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.telefoneFixo}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.telefoneFixo}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.telefoneFixo}" style="width:100%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>
@@ -139,7 +144,7 @@
 		
 		   		<p:cellEditor>
                   		<f:facet name="output"><p:outputLabel value="#{usu.telefoneMovel}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.telefoneMovel}" style="width:96%"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{usu.telefoneMovel}" style="width:100%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>
@@ -240,9 +245,10 @@
 	    
 
 
-		<p:column style = "text-align: center">
+		<p:column style = "text-align: center; width:70px">
 			<p:rowEditor />
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" actionListener="#{usuarioMB.remover(usu)}" update="tabelaUsuario"></p:commandLink> 	     	
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" actionListener="#{usuarioMB.remover(usu)}" update="tabelaUsuario"></p:commandLink> 
+	     		     	
 		</p:column>
 			
 	</p:dataTable>		

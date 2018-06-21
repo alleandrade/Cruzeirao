@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -10,9 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-//Fim Import's
 
-//Atributos
 @Entity
 public class Inscricao implements Serializable{
 	
@@ -22,7 +19,6 @@ public class Inscricao implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInscricao;	
 
-	private static int count = 1; 
 	private boolean pagamento;
 	private boolean validada;
 	
@@ -37,14 +33,6 @@ public class Inscricao implements Serializable{
 	
 	@ManyToOne
 	private Equipe equipe;
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
-
 	
 	public Inscricao() {
 		super();
@@ -67,8 +55,7 @@ public class Inscricao implements Serializable{
 	}
 
 	public void setIdInscricao(long idInscricao) {
-		this.idInscricao = count;
-		count++;
+		this.idInscricao = idInscricao;
 	}
 	
 	public boolean isPagamento() {
@@ -127,5 +114,5 @@ public class Inscricao implements Serializable{
 	public String toString() {
 		return equipe.getNome();
 	}
-//Fim Métodos
+
 }

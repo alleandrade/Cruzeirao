@@ -1,7 +1,6 @@
-//Import's
 package sistema.entidades;
 
-import java.beans.Transient;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-//Fim Import's
-//Atributos
+
 @Entity
 public class Grupo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String nome;
-	
-	private static int count = 1; 
 	
 	@ManyToOne
 	private Fase fase;
@@ -34,13 +30,6 @@ public class Grupo implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idGrupo;
-//Fim Atributos
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
 
 	public Grupo() {
 		super();
@@ -83,8 +72,7 @@ public class Grupo implements Serializable{
 	}
 
 	public void setIdGrupo(int idGrupo) {
-		this.idGrupo = count;
-		count++;
+		this.idGrupo = idGrupo;
 	}
 
 	public static long getSerialversionuid() {
@@ -104,7 +92,4 @@ public class Grupo implements Serializable{
 		return nome;
 	}
 	
-	
-//Fim Métodos
 }
-

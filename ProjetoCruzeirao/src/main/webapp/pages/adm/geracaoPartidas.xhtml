@@ -11,7 +11,15 @@
 <ui:define name="principal">
 
 <h:form id="formFase">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
+
+
+	
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
+ 	
+ 	<f:facet name="header">
+            Geração de partidas
+    </f:facet>
 
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="2">
 	
@@ -26,13 +34,13 @@
     </h:selectOneMenu>
      
     <p:commandButton value="Atualizar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{faseMB.atualizarGrupos}"
 	                 update=":formFase"  
 	/>
 
 	<p:commandButton value="Limpar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{faseMB.limpar}"
 	                 update=":formFase"  
 	/>
@@ -47,14 +55,14 @@
 	
 	<f:facet name="header">
             Grupos
-    </f:facet>
-			 
-	     <p:column headerText="Grupo" style="text-align: center" sortBy="#{grupos.nome}">
-                  <p:outputLabel value="#{grupos.nome}"/>  
-	    </p:column>
-		
+    </f:facet>	 
+	    
 		<p:column headerText="idGrupo" style="text-align: center" sortBy="#{grupos.idGrupo}">
                   <p:outputLabel value="#{grupos.idGrupo}"/>
+	    </p:column>
+	    
+	     <p:column headerText="Grupo" style="text-align: center" sortBy="#{grupos.nome}">
+                  <p:outputLabel value="#{grupos.nome}"/>  
 	    </p:column>
 	    
 	    <p:column headerText="Fase" style="text-align: center" sortBy="#{grupos.fase.tipo}">
@@ -88,7 +96,7 @@
     </h:selectOneMenu>
     
 	<p:commandButton value="Salvar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{faseMB.salvarRodada}"
 	                 update="formFase"  
 	/>
@@ -127,10 +135,10 @@
     	<f:selectItems value="#{faseMB.auxGrupo.equipes}" />
     </h:selectOneMenu>
     
-    <p:outputLabel value="Data: "/>
+    <p:outputLabel value="Data"/>
 	<p:calendar id="mask" value="#{faseMB.partida.data}" pattern="dd/MM/yyyy" mask="true" />
 	
-	<p:outputLabel  value="Local: "/>
+	<p:outputLabel  value="Local"/>
  	<h:selectOneMenu id="local" converter ="ConverterLocal"  value="#{faseMB.partida.local}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione o local" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.auxCat.campeonato.locais}" />
@@ -138,7 +146,7 @@
 	
     
 	<p:commandButton value="Salvar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{faseMB.salvarPartida}"
 	                 update="formFase"  
 	/>
@@ -194,6 +202,7 @@
 
 	</p:panel>
 
+</p:panel>
 </h:form>
 </ui:define>
 </ui:composition>

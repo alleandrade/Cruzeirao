@@ -1,25 +1,44 @@
 package sistema.managedbeans;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.event.RowEditEvent;
 
 import sistema.entidades.PartidasFutebol;
 import sistema.entidades.Rodada;
 import sistema.services.RodadaService;
 
-@SessionScoped
+@ViewScoped
 @ManagedBean
-public class RodadaMB {
+public class RodadaMB implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Rodada rodada = new Rodada();
 	private RodadaService rodadaservice = new RodadaService();
 	private PartidasFutebol auxPartidaFutebol;
+	private List<Rodada> rodadas;
+	
+	public void onRowEdit(RowEditEvent event) {
+
+		Rodada r = ((Rodada) event.getObject());
+		rodadaservice.alterar(r);
+	}
 	
 	public void salvar() {
-		rodada.setIdRodada(0);
-		rodadaservice.salvar(rodada);
+		
 		rodada.getGrupo().getRodadas().add(rodada);
+		rodada = rodadaservice.salvar(rodada);
+		
+		if (rodadas != null)		
+			rodadas.add(rodada);
+		
 		rodada = new Rodada();
 	}
 	
@@ -33,6 +52,7 @@ public class RodadaMB {
 
 	public void remover(Rodada rodada) {
 		rodadaservice.remover(rodada);
+		rodadas.remove(rodada);
 	}
 	
 	public Rodada getRodada() {
@@ -51,7 +71,10 @@ public class RodadaMB {
 		this.auxPartidaFutebol = auxPartidaFutebol;
 	}
 
-	public ArrayList<Rodada> getRodadas() {
-		return rodadaservice.getRodadas();
+	public List<Rodada> getRodadas() {
+		if (rodadas == null)
+			rodadas = rodadaservice.getRodadas();
+		
+		return rodadas;
 	}
 }

@@ -1,26 +1,39 @@
 package sistema.services;
 
-import java.util.*;
+import java.util.List;
 
-import sistema.dados.Dados;
+import sistema.dao.RodadaDAO;
 import sistema.entidades.Rodada;
 
+
 public class RodadaService {
-	private ArrayList<Rodada> rodadas = Dados.rodadas;
+
+ 	RodadaDAO rodadaDAO = new RodadaDAO();
 	
-	public RodadaService() {
-		
+	public Rodada salvar(Rodada rodada) {
+	
+		rodada = rodadaDAO.save(rodada);
+		rodadaDAO.closeEntityManager();
+		return rodada;
 	}
 	
-	public void salvar(Rodada rodada) {
-		rodadas.add(rodada);
+	public void alterar(Rodada rodada) {
+
+		rodadaDAO.save(rodada);
+		rodadaDAO.closeEntityManager();
 	}
 	
 	public void remover(Rodada rodada) {
-		rodadas.remove(rodada);
+		
+		rodada = rodadaDAO.getById(Rodada.class, rodada.getIdRodada());
+		rodadaDAO.remove(rodada);
+		rodadaDAO.closeEntityManager();
 	}
-
-	public ArrayList<Rodada> getRodadas() {
-		return rodadas;
+	
+	public List<Rodada> getRodadas() {
+		
+		List<Rodada> list = rodadaDAO.getAll(Rodada.class);
+		rodadaDAO.closeEntityManager();
+		return list;
 	}
 }

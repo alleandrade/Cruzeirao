@@ -1,4 +1,3 @@
-//Import's
 package sistema.entidades;
 
 import java.io.Serializable;
@@ -14,8 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import sistema.enums.TipoFase;
-//Fim Import's
-//Atributos
+
 @Entity
 public class Fase implements Serializable{
 	
@@ -26,8 +24,6 @@ public class Fase implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataFim;
-
-	private static int count = 1; 
 	
 	private TipoFase formato;
 	
@@ -40,14 +36,6 @@ public class Fase implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idFase;
-//Fim Atributos	
-	/*	Métodos:
-	 *  - Getter's 			[X]
-	 *  - Setter's 			[X]
-	 *  - ToString 			[X]
-	 *  - Construtores		[X]
-	*/
-
 	
 	public Fase() {
 		super();
@@ -108,8 +96,7 @@ public class Fase implements Serializable{
 	}
 
 	public void setIdFase(int idFase) {
-		this.idFase = count;
-		count++;
+		this.idFase = idFase;
 	}
 
 	public static long getSerialversionuid() {
@@ -120,5 +107,5 @@ public class Fase implements Serializable{
 	public String toString() {
 		return Integer.toString((int)idFase);
 	}
-//Fim Métodos
+
 }
