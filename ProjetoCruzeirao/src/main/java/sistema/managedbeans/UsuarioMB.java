@@ -108,12 +108,23 @@ public class UsuarioMB implements Serializable{
 	}
 	
 	public void salvar() {		
+		
+		int count = 0;
+		
+		for (Usuario u : this.getUsuarios())
+			if (u.getNome().equals(usuario.getNome()) && u.getRg() == usuario.getRg())
+				count++;
 				
 		if (usuario.getTipo().getTipo().equals("Preparador físico") && usuario.getCref() == "") 
 		{
 			FacesMessage mensagem = new FacesMessage("Preparador físico precisa ter CREF!");
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);				
 		}
+		
+		else if (count > 0) {
+			FacesMessage mensagem = new FacesMessage("Já existe um usuário com esse nome e RG!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);				
+		}		
 		
 		
 		else
@@ -138,6 +149,7 @@ public class UsuarioMB implements Serializable{
 		if (usuarioservice.pesquisarEquipesUsuario(usuario).size() > 0 || usuarioservice.pesquisarCampeonatosUsuario(usuario).size() > 0 || usuarioservice.pesquisarInscricoesUsuario(usuario).size() > 0) {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Não é possível remover o usuário, pois há equipe (es), ou campeonato (os) ou inscrição (ões) amarradas a ele.", null));
+			System.out.println(usuario.getCampeonatos());
 		}
 		
 		else if (usuarioservice.pesquisarJuizUsuario(usuario).size() > 0) {

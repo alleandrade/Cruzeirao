@@ -14,6 +14,7 @@ import sistema.entidades.Campeonato;
 import sistema.entidades.Categoria;
 import sistema.entidades.Juiz;
 import sistema.entidades.Local;
+import sistema.entidades.Usuario;
 import sistema.services.CampeonatoService;
 import sistema.services.UsuarioService;
 
@@ -31,6 +32,9 @@ public class CampeonatoMB implements Serializable{
 	private Juiz auxJuiz;
 	private Categoria auxCategoria;
 	private List<Campeonato> campeonatos;
+	private List<Usuario> juizes;
+	private Usuario usuario = new Usuario();
+	private UsuarioService usuarioservice = new UsuarioService();
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -88,7 +92,12 @@ public class CampeonatoMB implements Serializable{
 		
 		if (count == 0) {
 			campeonato.getJuizes().add(auxJuiz);
-			auxJuiz.getUsuario().getCampeonatos().add(campeonato);		
+			auxJuiz.getUsuario().getCampeonatos().add(campeonato);			
+			
+			//usuario = auxJuiz.getUsuario(); 
+			//usuario.getCampeonatos().add(campeonato);
+			usuarioservice.alterar(auxJuiz.getUsuario());			
+			
 		}
 
 		
@@ -132,6 +141,8 @@ public class CampeonatoMB implements Serializable{
 	
 	public void remover(Campeonato campeonato) {
 		
+		for (Categoria c : campeonato.getCategorias())
+			System.out.println(c.getNome());
 		
 		if (campeonatoservice.pesquisarLocaisCampeonato(campeonato).size() > 0 || campeonatoservice.pesquisarJuizesCampeonato(campeonato).size() > 0 || campeonatoservice.pesquisarCategoriasCampeonato(campeonato).size() > 0) {
 			FacesContext context = FacesContext.getCurrentInstance();

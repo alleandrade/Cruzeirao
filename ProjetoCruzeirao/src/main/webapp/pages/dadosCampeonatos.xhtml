@@ -182,8 +182,8 @@
 	  	<p:column headerText="Valor taxa" style="text-align: center" sortBy="#{camp.valorTaxa}">
 		
 		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="R$ #{camp.valorTaxa}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="R$ #{camp.valorTaxa}" style="width:96%"/></f:facet>
+                  		<f:facet name="output"><p:outputLabel value="#{camp.valorTaxa}"/></f:facet>
+                  		<f:facet name="input"><p:inputText    value="#{camp.valorTaxa}" style="width:96%"/></f:facet>
            		</p:cellEditor>	   
            		
 	    </p:column>

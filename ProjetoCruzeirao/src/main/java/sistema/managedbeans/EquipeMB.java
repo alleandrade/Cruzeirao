@@ -54,13 +54,15 @@ public class EquipeMB implements Serializable{
 		equipe.getUsuarios().remove(diretor);
 		diretor.getEquipes().remove(equipe);
 		auxDiretores.remove(diretor);
+		//equipeservice.alterar(equipe);
+		//usuarioservice.alterar(auxDiretor);
 	}
 	
 	public void removerJogador(Usuario jogador) {
 		equipe.getUsuarios().remove(jogador);
 		jogador.getEquipes().remove(equipe);
-		equipeservice.alterar(equipe);
-		usuarioservice.alterar(jogador);
+		//equipeservice.alterar(equipe);
+		//usuarioservice.alterar(jogador);
 	}
 	
 	public void removerMembroComissao(Usuario membroComissao) {
@@ -130,6 +132,11 @@ public class EquipeMB implements Serializable{
 				equipes.add(equipe);
 				FacesMessage mensagem = new FacesMessage("Equipe " + equipe.getNome() + " cadastrada com sucesso!");	
 				FacesContext.getCurrentInstance().addMessage(null, mensagem);	
+				
+				//if (auxDiretores != null)
+				//	for (Usuario u : auxDiretores)
+					//	usuarioservice.alterar(u);
+					
 			}
 			
 		}

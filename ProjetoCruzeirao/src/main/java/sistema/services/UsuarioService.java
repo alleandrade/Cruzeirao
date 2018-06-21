@@ -38,7 +38,7 @@ public class UsuarioService {
 	}
 	
 	public void alterar(Usuario usuario) {
-
+		
 		usuarioDAO.save(usuario);
 		usuarioDAO.closeEntityManager();
 		

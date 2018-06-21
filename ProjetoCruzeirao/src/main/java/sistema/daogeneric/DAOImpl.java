@@ -13,7 +13,7 @@ import javax.persistence.Query;
 public abstract class DAOImpl <T, I extends Serializable> {
 
     private static EntityManagerFactory emf;
-    private EntityManager em;
+    public EntityManager em;
     
      public DAOImpl() {
     	
@@ -32,7 +32,7 @@ public abstract class DAOImpl <T, I extends Serializable> {
 
 		return saved;
 	}
-
+	
 
 	public void remove(T entity) {
 		getEntityManager().getTransaction().begin();

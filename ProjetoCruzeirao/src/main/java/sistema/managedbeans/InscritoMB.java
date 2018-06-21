@@ -33,8 +33,23 @@ public class InscritoMB implements Serializable{
 	
 	public void salvar() {
 		
-		inscrito.getInscricao().getInscritos().add(inscrito);
-		inscrito.getUsuario().getInscricoes().add(inscrito);		
+		//inscrito.getInscricao().getInscritos().add(inscrito);
+		//inscrito.getUsuario().getInscricoes().add(inscrito);		
+		inscrito = inscritoservice.salvar(inscrito);
+		
+		if (inscritos != null) {
+			inscritos.add(inscrito);	
+			FacesMessage mensagem = new FacesMessage("Inscrito " + inscrito.getUsuario().getNome() + " cadastrado com sucesso!");
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);			
+		}
+		
+		inscrito = new Inscrito();
+	}
+	
+	public void salvar(Inscrito inscrito) {
+		
+		//inscrito.getInscricao().getInscritos().add(inscrito);
+		//inscrito.getUsuario().getInscricoes().add(inscrito);		
 		inscrito = inscritoservice.salvar(inscrito);
 		
 		if (inscritos != null) {
