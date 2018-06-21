@@ -1,0 +1,164 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+>
+
+<ui:define name="principal">
+
+<h:form id="formUsuario">
+<p:growl id="growl"  showDetail="true" />
+	
+	<p:dataTable
+			var = "usu"
+			value = "#{usuarioMB.usuarios}"
+			editable = "true"
+			id="tabelaUsuario"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
+			
+			
+			                        
+	>
+
+<p:growl id="mensagem"/>
+
+	
+	<f:facet name="header">
+            Usuários
+    </f:facet>
+			
+		<p:column headerText="Nome" style="text-align: center" sortBy="#{usu.nome}">
+			<p:outputLabel value="#{usu.nome}" />         		
+	    </p:column>
+	    
+	    
+	    <p:column headerText="Tipo" style="text-align: center" sortBy="#{usu.tipo.tipo}">
+			<p:outputLabel value="#{usu.tipo.tipo}" />         		
+	    </p:column>
+	    
+	    <p:column headerText="Sexo" style="text-align: center" sortBy="#{usu.sexo.sexo}">
+			<p:outputLabel value="#{usu.sexo.sexo}" />   		
+	    </p:column>
+	   
+	    
+	    <p:column headerText="Data nascimento" style="text-align: center" sortBy="#{usu.dataNascimento}">
+		   
+		   <p:cellEditor>            
+                  <f:facet name = "output"><p:outputLabel value="#{usu.dataNascimento}">                
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:outputLabel>
+                  </f:facet>
+                  
+                  <f:facet name = "input"><p:inputText    value="#{usu.dataNascimento}" style="width:100%">
+                  <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+                  </p:inputText>
+                  </f:facet>          
+           
+           </p:cellEditor>	         
+	    </p:column>
+	       
+	    <p:column headerText="Foto" style="text-align: center">
+			<p:outputLabel value="#{usu.foto}" /> 		  		
+	    </p:column>
+
+	    <p:column  headerText="Inscrições" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('inscritosDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
+        </p:commandButton>            
+    	<p:dialog header="Inscrição (ões) do usuário" widgetVar="inscritosDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="inscritosUsuario" style=" width:800px" columnClasses="label,value" >
+            
+            <p:dataTable var="inscrito" value="#{usuarioMB.usuario.inscricoes}">
+
+	   	    		<p:column headerText="Campeonato">
+	   					<p:outputLabel value="#{inscrito.inscricao.categoria.campeonato}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Equipe">
+	   					<p:outputLabel value="#{inscrito.inscricao.equipe}"/>  					
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Validada">
+	   					<p:outputLabel value="#{inscrito.inscricao.validada}"/>
+	   	    		</p:column>
+
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>	    
+	    
+	    
+	    <p:column  headerText="Equipes" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('equipesDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
+        </p:commandButton>            
+    	<p:dialog header="Equipe (es) do usuário" widgetVar="equipesDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="equipesUsuario" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="equipe" value="#{usuarioMB.usuario.equipes}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{equipe.nome}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Cidade">
+	   					<p:outputLabel value="#{equipe.cidade}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Data de fundação">
+	   					<p:outputLabel value="#{equipe.dataFundacao}">
+	   					 <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+	   					</p:outputLabel>	   					
+	   	    		</p:column>	
+	   	    		
+	   	    			
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+        
+        
+        <p:column  headerText="Campeonatos" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('campeonatosDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
+        </p:commandButton>            
+    	<p:dialog header="Campeonatos (os) do usuário" widgetVar="campeonatosDialog" showEffect="fade" closeOnEscape="true"  hideEffect="fade" resizable="false">
+        <p:outputPanel id="campeonatosUsuario" style=" width:600px" columnClasses="label,value" >
+            
+            <p:dataTable var="campeonato" value="#{usuarioMB.usuario.campeonatos}">
+ 					<p:column headerText="Nome">
+	   					<p:outputLabel value="#{campeonato.nome}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Data início">
+	   					<p:outputLabel value="#{campeonato.dataInicioCampeonato}">
+	   					 <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+	   					</p:outputLabel>	   					
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Data fim">
+	   					<p:outputLabel value="#{campeonato.dataFimCampeonato}">
+	   					 <f:convertDateTime type="date" pattern="dd/MM/yyyy"/> 
+	   					</p:outputLabel>	   					
+	   	    		</p:column>	
+	   	    		
+	   	    				
+ 			</p:dataTable>            
+        </p:outputPanel>
+        </p:dialog>  
+        </p:column>
+	    
+	</p:dataTable>		
+	
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>
