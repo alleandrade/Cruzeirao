@@ -105,9 +105,11 @@ public class JuizMB implements Serializable{
 	}
 
 	public List<Usuario> getUsuariosJuizes() {
-		usuariosJuizes = usuarioservice.getUsuarios().stream().filter(p -> p.getTipo().getTipo().equals("Juiz")).collect(Collectors.toCollection(ArrayList::new));
+		
+		if (usuariosJuizes == null)
+			usuariosJuizes = usuarioservice.getUsuarios().stream().filter(p -> p.getTipo().getTipo().equals("Juiz")).collect(Collectors.toList());
 			
 		return usuariosJuizes;
-	}	
-	
+	}
+
 }

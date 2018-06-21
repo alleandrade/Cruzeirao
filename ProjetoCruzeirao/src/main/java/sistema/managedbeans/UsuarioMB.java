@@ -187,6 +187,10 @@ public class UsuarioMB implements Serializable{
 	}
 
 	public List<Usuario> getDiretores() {
+		
+		if (diretores == null)
+			diretores = usuarioservice.getUsuarios().stream().filter(p -> p.getTipo().getTipo().equals("Diretor")).collect(Collectors.toList());
+		
 		return diretores;
 	}
 

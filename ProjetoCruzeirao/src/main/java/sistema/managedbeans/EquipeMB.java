@@ -32,6 +32,7 @@ public class EquipeMB implements Serializable{
 	private Usuario auxComissao;
 	private UsuarioService usuarioservice = new UsuarioService();
 	private List<Equipe> equipes;
+	private List<Usuario> usuariosDiretores;
 	private List<Usuario> auxDiretores = new ArrayList<Usuario>();
 	private ArrayList<Usuario> jogadores = equipe.getUsuarios().stream().filter(p -> p.getTipo().getTipo().equals("Jogador")).collect(Collectors.toCollection(ArrayList::new));
 	private ArrayList<Usuario> comissao = equipe.getUsuarios().stream().filter(p -> p.getTipo().getTipo().equals("Preparador físico") || p.getTipo().getTipo().equals("Massagista") || p.getTipo().getTipo().equals("Técnico")).collect(Collectors.toCollection(ArrayList::new));
@@ -221,5 +222,13 @@ public class EquipeMB implements Serializable{
 
 	public void setAuxDiretor(Usuario auxDiretor) {
 		this.auxDiretor = auxDiretor;
+	}
+	
+	public List<Usuario> getUsuariosDiretores() {
+		
+		if (usuariosDiretores == null)
+			usuariosDiretores = usuarioservice.getUsuarios().stream().filter(p -> p.getTipo().getTipo().equals("Diretor")).collect(Collectors.toList());
+		
+		return usuariosDiretores;
 	}
 }
