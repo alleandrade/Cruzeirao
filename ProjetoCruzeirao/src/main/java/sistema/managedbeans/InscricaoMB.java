@@ -61,6 +61,8 @@ public class InscricaoMB implements Serializable{
 					Inscrito inscrito = new Inscrito();
 					UsuarioService usuarioservice = new UsuarioService();
 					InscritoService inscritoservice = new InscritoService();
+					InscritoMB inscritoMB = new InscritoMB();
+					
 					inscrito.setTipo(u.getTipo());
 					inscrito.setAceiteUsuario(true);
 					inscrito.setInscricaoValidada(true);
@@ -69,25 +71,24 @@ public class InscricaoMB implements Serializable{
 					inscrito.setUsuario(u);
 					u.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
 					u.getInscricoes().add(inscrito);
-					usuarioservice.alterar(u);
-					inscritoservice.salvar(inscrito);
+					inscritoMB.salvar(inscrito);
+					//usuarioservice.alterar(u);
+					//inscritoservice.salvar(inscrito);
 					inscricao.getInscritos().add(inscrito);		
 					
 				}	
 					
 			}
 			
+			if (inscricao.getCategoria() != null) {
+				inscricao.getCategoria().getInscricoes().add(inscricao);
+				//categoriaservice.alterar(inscricao.getCategoria());
+			}
+						
 			inscricao = inscricaoservice.salvar(inscricao);
 			
 			if (inscricoes != null) {
 				inscricoes.add(inscricao);
-				
-				//if (inscricao.getCategoria() != null) {
-					//inscricao.getCategoria().getInscricoes().add(inscricao);
-					//categoriaservice.alterar(inscricao.getCategoria());
-				//}
-				
-
 				FacesMessage mensagem = new FacesMessage("Inscrição realizada com sucesso!");
 				FacesContext.getCurrentInstance().addMessage(null, mensagem);	
 			}
