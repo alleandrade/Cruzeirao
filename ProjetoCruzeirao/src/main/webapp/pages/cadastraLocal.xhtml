@@ -11,15 +11,19 @@
 <ui:define name="principal">
 
 <h:form id="formLocal">
-<p:growl id="mensagem"/>
+<p:growl id="growl" showDetail="true" />
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
 	
 	 <f:facet name="header">
            Local
     </f:facet>
 
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	
+	 <f:facet name="header">
+           Dados
+    </f:facet>
 	
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{localMB.local.nome}" required="true"/>

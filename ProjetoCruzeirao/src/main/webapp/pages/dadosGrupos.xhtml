@@ -10,13 +10,13 @@
 <ui:define name="principal">
 
 <h:form id="formGrupo">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "gru"
 			value = "#{grupoMB.grupos}"
 			editable = "true"
-			id="tabelaGrupol"
+			id="tabelaGrupo"
 			paginator="true"
             rows="5"
             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -32,6 +32,11 @@
     
     <p:ajax event="rowEdit" listener="#{grupoMB.onRowEdit}" update="tabelaGrupo" />
 	
+		 
+		<p:column headerText="idGrupo" style="text-align: center" sortBy="#{gru.idGrupo}">
+			<p:outputLabel value="#{gru.idGrupo}"/>
+	    </p:column>
+		
 		
 	    <p:column headerText="Nome" style="text-align: center" sortBy="#{gru.nome}">
 	    	<p:cellEditor>

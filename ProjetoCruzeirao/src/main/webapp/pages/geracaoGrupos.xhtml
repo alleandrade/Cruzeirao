@@ -11,7 +11,14 @@
 <ui:define name="principal">
 
 <h:form id="formFase">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
+
+	
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
+ 	
+ 	<f:facet name="header">
+            Geração de grupos
+    </f:facet>
 
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="3">
 	
@@ -26,7 +33,7 @@
     </h:selectOneMenu>
      
     <p:commandButton value="Atualizar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{faseMB.atualizarCamp}"
 	                 update=":formFase"  
 	/>
@@ -39,14 +46,14 @@
             Cabeças de chave
     </f:facet>
 	
-	<p:outputLabel  value="Inscricao"/>
+	<p:outputLabel  value="Inscrição"/>
  	<h:selectOneMenu id="inscricao" converter ="ConverterInscricao"  value="#{faseMB.cabecaChaveAux}"  style="width:205px">
     	<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="false"/>
     	<f:selectItems value="#{faseMB.equipes}" />
     </h:selectOneMenu>
      
     <p:commandButton value="Adicionar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{faseMB.addCabecaChave}"
 	                 update=":formFase"  
 	/>
@@ -73,13 +80,14 @@
    
 	
 	<p:commandButton value="Gerar grupos"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{faseMB.gerarGrupos()}"
 	                 update="formFase"  
 	/>
 	
 	</p:panelGrid>
 
+</p:panel>
 </h:form>
 </ui:define>
 </ui:composition>

@@ -11,17 +11,21 @@
 <ui:define name="principal">
 
 <h:form id="formJuiz">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 
 
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
 	
 	<f:facet name="header">
             Juiz
     </f:facet>
 	 	 
-	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="5">
+	
+	 <f:facet name="header">
+           Dados
+    </f:facet>
 		 
 	 <p:outputLabel value="Tipo: "/>
 	 <h:selectOneMenu value="#{juizMB.juiz.tipo}" style="width:205px" required="true">
@@ -32,13 +36,11 @@
      </h:selectOneMenu>
 	  
 	 <p:outputLabel for="usuario" value="Usuário: "/>
-	 <h:selectOneMenu id="usuario" converter ="ConverterUsuario" required="true" value="#{juizMB.juiz.usuario}"  style="width:205px">
+	 <h:selectOneMenu id="usuario"  converter ="ConverterUsuario" required="true" value="#{juizMB.juiz.usuario}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione o usuário" noSelectionOption="true"/>
-     		<f:selectItems value="#{usuarioMB.juizes}" />
-     </h:selectOneMenu>
-     
-
-	 
+     		<f:selectItems value="#{juizMB.usuariosJuizes}" />
+     </h:selectOneMenu>     
+ 
 	 
 	</p:panelGrid>
 	<p:commandButton value="Cadastrar"

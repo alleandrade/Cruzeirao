@@ -10,7 +10,7 @@
 <ui:define name="principal">
 
 <h:form id="formCategoria">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "cat"
@@ -134,13 +134,7 @@
  			</p:dataTable>            
         </p:outputPanel>
         </p:dialog>  
-        </p:column>
-	    
-	    <p:column headerText="Fases" style="text-align: center">
-			<f:facet name="output"><p:outputLabel value="#{cat.fases}"/></f:facet>
-        	<f:facet name="input"><p:inputText    value="#{cat.fases}" style="width:96%"/></f:facet>           		
-	    </p:column>
-				
+        </p:column>	  			
 
 		<p:column style = "text-align: center">
 			<p:rowEditor />

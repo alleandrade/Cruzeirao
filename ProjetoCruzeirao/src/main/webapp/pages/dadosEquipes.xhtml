@@ -10,7 +10,7 @@
 <ui:define name="principal">
 
 <h:form id="formEquipe">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 	
 	<p:dataTable
 			var = "equi"
@@ -29,7 +29,7 @@
     </f:facet>
     
      <p:ajax event="rowEdit" listener="#{equipeMB.onRowEdit}" update="tabelaEquipe" />	
-	
+	 <p:growl id="growl"  showDetail="true" />
 		
 		<p:column headerText="Nome" style="text-align: center" sortBy="#{equi.nome}">
 		
@@ -65,7 +65,7 @@
 	    </p:column>
 	    
 	    <p:column  headerText="Jogadores (Adicionar/Remover)" style="text-align: center">
-	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.Metodo()}" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.tiposUsuarios()}" actionListener="#{usuarioMB.tiposUsuarios()}" oncomplete="PF('jogadoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Jogadores da equipe" widgetVar="jogadoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
@@ -111,7 +111,7 @@
 	    	    
 	   
 	    <p:column  headerText="Diretores" style="text-align: center">
-	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.Metodo()}" oncomplete="PF('diretoresDialog').show()" closable="true" title="View">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.tiposUsuarios()}"  actionListener="#{usuarioMB.tiposUsuarios()}" oncomplete="PF('diretoresDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Diretor (es) da equipe" widgetVar="diretoresDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
@@ -133,7 +133,7 @@
        </p:column>
        
         <p:column  headerText="Comissão técnica (Adicionar/Remover)" style="text-align: center">
-	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.Metodo()}" oncomplete="PF('comissaoDialog').show()" closable="true" title="View">
+	    <p:commandButton icon ="ui-icon-search" update=":formEquipe" action="#{equipeMB.tiposUsuarios()}"  actionListener="#{usuarioMB.tiposUsuarios()}" oncomplete="PF('comissaoDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{equi}" target="#{equipeMB.equipe}" />
         </p:commandButton>            
     	<p:dialog header="Funcionários da comissão técnica da equipe" widgetVar="comissaoDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">

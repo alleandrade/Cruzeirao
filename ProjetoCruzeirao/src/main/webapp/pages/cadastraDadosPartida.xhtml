@@ -11,9 +11,9 @@
 <ui:define name="principal">
 
 <h:form id="formPartida">
-<p:growl id="mensagem"/>
+<p:growl id="growl"  showDetail="true" />
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
 	
 	<f:facet name="header">
             Partida
@@ -22,13 +22,13 @@
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 6px 6px" columns="6">
 	
 	 <p:outputLabel  value="Partida:"/>
- 	 <h:selectOneMenu id="partida" converter ="ConverterUsuario"  value="#{partidaFutebolMB.partidasfutebol}"  style="width:205px">
+ 	 <h:selectOneMenu id="partida" converter ="ConverterUsuario"  value="#{partidaFutebolMB.partidaFutebol}"  style="width:205px">
      		<f:selectItem itemLabel= "Selecione a partida" itemValue="" noSelectionOption="false"/>
      		<f:selectItems value="#{partidaFutebolMB.partidasFutebol}" />
      </h:selectOneMenu>
      
      <p:commandButton value="Atualizar"
-					 style = "margin: 4px 0px; padding: 2px 2px; font-size: 16px"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 					 action="#{partidaFutebolMB.atualizar()}"
 	                 update=":formPartida"  
 	/>
@@ -59,7 +59,7 @@
 	
 	<h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
         <h:outputText value="Pênalti" />
-        <p:selectBooleanButton id="value3" value="#{partidaFutebolMB.gol.penalti}" onLabel="Sim" offLabel="Não" style="width:60px" />
+        <p:selectBooleanButton id="value3" value="#{partidaFutebolMB.gol.penalti}" onLabel="Sim" offLabel="Não" style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px" />
     </h:panelGrid>
     
     </p:panelGrid>
@@ -80,7 +80,7 @@
         
 	<p:dataTable
 			var = "gols"
-			value = "#{partidaFutebolMB.partidafutebolaux.golsMandantes}"
+			value = "#{partidaFutebolMB.partidaFutebolAux.golsMandantes}"
 			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
@@ -133,7 +133,7 @@
 	
 	<h:panelGrid columns="2" style="margin-bottom:0px" cellpadding="5">
         <h:outputText value="Pênalti" />
-        <p:selectBooleanButton id="value4" value="#{partidaFutebolMB.gol.penalti}" onLabel="Sim" offLabel="Não" style="width:60px" />
+        <p:selectBooleanButton id="value4" value="#{partidaFutebolMB.gol.penalti}" onLabel="Sim" offLabel="Não" style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px" />
     </h:panelGrid>
     
     </p:panelGrid>
@@ -154,7 +154,7 @@
         
 	<p:dataTable
 			var = "goll"
-			value = "#{partidaFutebolMB.partidafutebolaux.golsVisitantes}"
+			value = "#{partidaFutebolMB.partidaFutebolAux.golsVisitantes}"
 			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
@@ -228,7 +228,7 @@
         
 	<p:dataTable
 			var = "cartoes"
-			value = "#{partidaFutebolMB.partidafutebolaux.cartoesMandantes}"
+			value = "#{partidaFutebolMB.partidaFutebolAux.cartoesMandantes}"
 			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
@@ -303,7 +303,7 @@
         
 	<p:dataTable
 			var = "cartao"
-			value = "#{partidaFutebolMB.partidafutebolaux.cartoesVisitantes}"
+			value = "#{partidaFutebolMB.partidaFutebolAux.cartoesVisitantes}"
 			style = "margin: 8px 0px; padding: 0px 0px; font-size: 16px"
 	>
 	
