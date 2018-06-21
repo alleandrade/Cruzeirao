@@ -64,12 +64,17 @@
             <p:menuitem value="Usuários" outcome="/pages/adm/dadosUsuarios.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
         </p:submenu>  
     
-        <p:submenu label="Convidar" style = "background-color:Silver">
-            <p:menuitem value="Convite" outcome="/pages/convites.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+    	<p:submenu label="Dados Publico" style = "background-color:Silver">
+            <p:menuitem value="Campeonatos" outcome="/pages/dadosCampeonatosPublico.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+            <p:menuitem value="Usuarios" outcome="/pages/dadosJogadoresPublico.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>        	
+        </p:submenu>
+    
+        <p:submenu label="Convidar" rendered="#{request.isUserInRole('DIRETOR')}" style = "background-color:Silver">
+            <p:menuitem value="Convite" outcome="/pages/diretor/convites.xhtml" rendered="#{request.isUserInRole('DIRETOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
         </p:submenu>         
 		
-		<p:submenu label="Validação" style = "background-color:Silver">
-            <p:menuitem value="Validar inscrição" outcome="validarInscricao.xhtml" style = "background-color:AliceBlue; font-family:Arial  "/>
+		<p:submenu label="Validação" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:Silver">
+            <p:menuitem value="Validar inscrição" outcome="/pages/adm/validarInscricao.xhtml" rendered="#{request.isUserInRole('ORGANIZADOR')}" style = "background-color:AliceBlue; font-family:Arial  "/>
         </p:submenu>   
 		    
     </p:panelMenu>

@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	   
 	   auth.inMemoryAuthentication().withUser("normal").password("123456").roles("JOGADOR");
        auth.inMemoryAuthentication().withUser("adm").password("123456").roles("ORGANIZADOR");
-       auth.inMemoryAuthentication().withUser("superadm").password("123456").roles("ORGANIZADOR");
+       auth.inMemoryAuthentication().withUser("diretor").password("123456").roles("DIRETOR");
         
     }
 
@@ -45,7 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Controla o acesso a página protegida  do adm        
         http.authorizeRequests().antMatchers("/pages/adm/**").hasRole("ORGANIZADOR");
                 
-    	
+        http.authorizeRequests().antMatchers("/pages/diretor/**").hasRole("DIRETOR");
+        
     	//Login
     	http.formLogin().loginPage("/login.xhtml").permitAll()
 		.defaultSuccessUrl("/pages/inicio.xhtml", true)
@@ -60,10 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Todas as requisições para partes internas da aplicação devem ser autenticadas
 		http.authorizeRequests().anyRequest().authenticated();
-    	
-    	
-    	
-        
+    	      
     }
 
     @Override

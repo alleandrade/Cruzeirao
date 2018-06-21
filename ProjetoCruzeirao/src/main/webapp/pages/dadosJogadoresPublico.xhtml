@@ -33,36 +33,10 @@
 	<f:facet name="header">
             Usuários
     </f:facet>
-	
-	<p:ajax event="rowEdit" listener="#{usuarioMB.onRowEdit}" update="tabelaUsuario" />
-		
-		<p:column headerText="Nome" style="text-align: center" sortBy="#{usu.nome}">	
 			
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.nome}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.nome}" style="width:100%"/></f:facet>
-           		</p:cellEditor>	   
-           		           		
+		<p:column headerText="Nome" style="text-align: center" sortBy="#{usu.nome}">
+			<p:outputLabel value="#{usu.nome}" />         		
 	    </p:column>
-	    
-	    <p:column headerText="Username" style="text-align: center" sortBy="#{usu.username}">		
-		   		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.username}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.username}" style="width:100%"/></f:facet>
-           		</p:cellEditor>	      
-           		        		
-	    </p:column>
-	    
-		<p:column headerText="Senha" style="text-align: center" sortBy="#{usu.password}">		
-		   		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.password}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.password}" style="width:100%"/></f:facet>
-           		</p:cellEditor>	      
-           		        		
-	    </p:column>
-	    
 	    
 	    
 	    <p:column headerText="Tipo" style="text-align: center" sortBy="#{usu.tipo.tipo}">
@@ -89,76 +63,11 @@
            
            </p:cellEditor>	         
 	    </p:column>
-	    
-	 	<p:column headerText="E-mail" style="text-align: center" sortBy="#{usu.email}">		
-		   		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.email}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.email}" style="width:100%"/></f:facet>
-           		
-           		</p:cellEditor>	              		
-	    </p:column>
-	    
+	       
 	    <p:column headerText="Foto" style="text-align: center">
 			<p:outputLabel value="#{usu.foto}" /> 		  		
 	    </p:column>
-	    
-	    <p:column headerText="RG" style="text-align: center" sortBy="#{usu.rg}">		
-		   		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.rg}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.rg}" style="width:100%"/></f:facet>
-           		
-           		</p:cellEditor>	              		
-	    </p:column>
-	    
-	    <p:column headerText="CPF" style="text-align: center" sortBy="#{usu.cpf}">		
-		   		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.cpf}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.cpf}" style="width:100%"/></f:facet>
-           		
-           		</p:cellEditor>	  
-	    </p:column>
-	    
-	     <p:column headerText="CREF" style="text-align: center" sortBy="#{usu.cref}">		
-		   		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.cref}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.cref}" style="width:100%"/></f:facet>
-           		
-           		</p:cellEditor>	  
-	    </p:column>
-	    
-	    
-	    
-	    <p:column headerText="Endereço" style="text-align: center" sortBy="#{usu.endereco}">
-		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.endereco}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.endereco}" style="width:100%"/></f:facet>
-           		</p:cellEditor>	   
-           		
-	    </p:column>
-	    
-	     <p:column headerText="Telefone fixo" style="text-align: center" sortBy="#{usu.telefoneFixo}">
-		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.telefoneFixo}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.telefoneFixo}" style="width:100%"/></f:facet>
-           		</p:cellEditor>	   
-           		
-	    </p:column>
-	    
-	     <p:column headerText="Telefone móvel" style="text-align: center" sortBy="#{usu.telefoneMovel}">
-		
-		   		<p:cellEditor>
-                  		<f:facet name="output"><p:outputLabel value="#{usu.telefoneMovel}"/></f:facet>
-                  		<f:facet name="input"><p:inputText    value="#{usu.telefoneMovel}" style="width:100%"/></f:facet>
-           		</p:cellEditor>	   
-           		
-	    </p:column>
-	    
+
 	    <p:column  headerText="Inscrições" style="text-align: center">
 	    <p:commandButton icon ="ui-icon-search" update=":formUsuario" oncomplete="PF('inscritosDialog').show()" closable="true" title="View">
                 <f:setPropertyActionListener value="#{usu}" target="#{usuarioMB.usuario}" />
@@ -167,10 +76,7 @@
         <p:outputPanel id="inscritosUsuario" style=" width:800px" columnClasses="label,value" >
             
             <p:dataTable var="inscrito" value="#{usuarioMB.usuario.inscricoes}">
- 					<p:column headerText="idInscrição">
-	   					<p:outputLabel value="#{inscrito.inscricao.idInscricao}"/>
-	   	    		</p:column>	
-	   	    		
+
 	   	    		<p:column headerText="Campeonato">
 	   					<p:outputLabel value="#{inscrito.inscricao.categoria.campeonato}"/>
 	   	    		</p:column>	
@@ -182,11 +88,7 @@
 	   	    		<p:column headerText="Validada">
 	   					<p:outputLabel value="#{inscrito.inscricao.validada}"/>
 	   	    		</p:column>
-	   	    		
-	   	    		<p:column headerText="Pagamento">
-	   					<p:outputLabel value="#{inscrito.inscricao.pagamento}"/>
-	   	    		</p:column>
-	   	    				
+
  			</p:dataTable>            
         </p:outputPanel>
         </p:dialog>  
@@ -252,15 +154,6 @@
         </p:dialog>  
         </p:column>
 	    
-	    
-
-
-		<p:column style = "text-align: center; width:70px">
-			<p:rowEditor />
-	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" actionListener="#{usuarioMB.remover(usu)}" update="tabelaUsuario"></p:commandLink> 
-	     		     	
-		</p:column>
-			
 	</p:dataTable>		
 	
 

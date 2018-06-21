@@ -26,8 +26,11 @@
 	 <p:outputLabel for="email" value="E-mail: "/>
 	 <p:inputText id="email" value = "#{usuarioMB.usuario.email}" required="true"/>
 	 
-	 <h:outputLabel for="senha" value="Senha: " />
-	 <p:password id="senha" value="#{usuarioMB.usuario.senha}" />	 	 
+	 <p:outputLabel for="username" value="Username: "/>
+	 <p:inputText id="username" value = "#{usuarioMB.usuario.username}" required="true"/>
+	 
+	 <h:outputLabel for="password" value="Senha: " />
+	 <p:password id="password" value="#{usuarioMB.usuario.password}" />	 	 
 	  
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{usuarioMB.usuario.nome}" required="true"/>

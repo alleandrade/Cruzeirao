@@ -11,7 +11,8 @@
 		<jstlel.version>1.2.1</jstlel.version>
 		<commons-logging.version>1.2</commons-logging.version>
 	</properties>
-
+	
+	
   <build>
 		<plugins>
 			<plugin>
@@ -53,12 +54,6 @@
 			<version>10.2.2.0</version>
 		</dependency>
 
-		<dependency>
-    		<groupId>javax.enterprise</groupId>
-   			<artifactId>cdi-api</artifactId>
-    		<version>1.2</version>
-		</dependency>
-
 	<!-- JPA EclipseLink -->
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
@@ -97,5 +92,14 @@
 			<scope>test</scope>
 		</dependency>
 
+<!-- Commons Logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>${commons-logging.version}</version>
+		</dependency>
+
   </dependencies>
+  
+  
 </project>

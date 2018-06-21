@@ -19,7 +19,7 @@ import sistema.enums.Sexo;
 import sistema.enums.TipoUsuario;
 
 @Entity
-@NamedQuery(name = "Usuario.pesquisarPorUserName", query = "select u from Usuario u where u.userName = :userName")
+@NamedQuery(name = "Usuario.pesquisarPorUserName", query = "select u from Usuario u where u.username = :username")
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class Usuario implements Serializable{
 	  			   cpf,
 	  			   cref,
 	  			   senha,
-	  			   userName,
+	  			   username,
 	  			   password;
     	
 	@Lob
@@ -229,6 +229,34 @@ public class Usuario implements Serializable{
 		return nome;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idUsuario ^ (idUsuario >>> 32));
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (idUsuario != other.idUsuario)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -237,12 +265,11 @@ public class Usuario implements Serializable{
 		this.password = password;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-}
 }

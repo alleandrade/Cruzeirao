@@ -3,38 +3,56 @@ package sistema.services;
 
 import java.util.List;
 
-import sistema.dao.CartaoDAO;
-import sistema.entidades.Cartao;
+import sistema.dao.CategoriaDAO;
+import sistema.entidades.Categoria;
+import sistema.entidades.Fase;
+import sistema.entidades.Inscricao;
 
+public class CategoriaService {
 
-public class CartaoService {
-
- 	CartaoDAO cartaoDAO = new CartaoDAO();
-
-	public Cartao salvar(Cartao cartao) {
+ 	CategoriaDAO categoriaDAO = new CategoriaDAO();
 	
-		cartao = cartaoDAO.save(cartao);
-		cartaoDAO.closeEntityManager();
-		return cartao;
-	}
-	
-	public void alterar(Cartao cartao) {
-
-		cartaoDAO.save(cartao);
-		cartaoDAO.closeEntityManager();
-	}
-	
-	public void remover(Cartao cartao) {
+	public Categoria salvar(Categoria categoria) {
 		
-		cartao = cartaoDAO.getById(Cartao.class, cartao.getIdCartao());
-		cartaoDAO.remove(cartao);
-		cartaoDAO.closeEntityManager();
+		categoria = categoriaDAO.save(categoria);
+		categoriaDAO.closeEntityManager();
+		return categoria;
+	}
+	
+	public void alterar(Categoria categoria) {
+
+		categoriaDAO.save(categoria);
+		categoriaDAO.closeEntityManager();
+		
+	}
+		
+	public void remover(Categoria categoria) {
+		
+		categoria = categoriaDAO.getById(Categoria.class, categoria.getIdCategoria());
+		categoriaDAO.remove(categoria);
+		categoriaDAO.closeEntityManager();
+	}
+	
+	public List<Fase> pesquisarFasesCategoria(Categoria categoria) {
+
+		List<Fase> fases;
+		categoria = categoriaDAO.getById(Categoria.class, categoria.getIdCategoria());
+		fases = categoria.getFases();
+		return fases;
+	}
+	
+	public List<Inscricao> pesquisarInscricoesCategoria(Categoria categoria) {
+
+		List<Inscricao> inscricoes;
+		categoria = categoriaDAO.getById(Categoria.class, categoria.getIdCategoria());
+		inscricoes = categoria.getInscricoes();
+		return inscricoes;
 	}
 
-	public List<Cartao> getCartoes() {
+	public List<Categoria> getCategorias() {
 		
-		List <Cartao> list = cartaoDAO.getAll(Cartao.class);
-		cartaoDAO.closeEntityManager();
-		return list;	
+		List <Categoria> list = categoriaDAO.getAll(Categoria.class);
+		categoriaDAO.closeEntityManager();
+		return list;
 	}
 }

@@ -36,6 +36,8 @@ public class UsuarioMB implements Serializable{
 	private Equipe auxEquipe;
 	private List<Usuario> usuarios;
 	private EquipeService equipeservice = new EquipeService();
+	private String auxEmail;
+	private Usuario usuarioaux = new Usuario();
 	
 	public void onRowEdit(RowEditEvent event) {
 
@@ -43,6 +45,13 @@ public class UsuarioMB implements Serializable{
 		usuarioservice.alterar(u);
 	}
 	
+	public void buscarUsuario() {
+		for (Usuario usuario : usuarios) {
+			if (usuario.getEmail().equals(auxEmail)) {
+				usuarioaux = usuario;
+			}
+		}
+	}
 	
 	public void adicionaEquipe() {		
 		usuario.getEquipes().add(auxEquipe);
@@ -220,6 +229,24 @@ public class UsuarioMB implements Serializable{
 
 	public void setUsuarioservice(UsuarioService usuarioservice) {
 		this.usuarioservice = usuarioservice;
+	}
+
+
+	public String getAuxEmail() {
+		return auxEmail;
+	}
+
+
+	public void setAuxCpf(String auxEmail) {
+		this.auxEmail = auxEmail;
+	}
+
+	public Usuario getUsuarioaux() {
+		return usuarioaux;
+	}
+
+	public void setUsuarioaux(Usuario usuarioaux) {
+		this.usuarioaux = usuarioaux;
 	}
 	
 	

@@ -1,4 +1,4 @@
-<ui:composition template="templateMenu.xhtml"
+<ui:composition template="/pages/templateMenu.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -22,7 +22,7 @@
 	 	 
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="2">
 
-	 <p:outputLabel value="Você gostaria de participar do campeonato pela equipe: "/>
+	 <p:outputLabel value="Equipe: "/>
      <h:selectOneMenu id="equipe" converter ="ConverterEquipe"  required="true" value="#{inscricaoMB.inscricao.equipe}"  style="width:205px">
      <f:selectItem itemLabel= "Selecione a equipe" noSelectionOption="false"/>
      <f:selectItems value="#{equipeMB.equipes}" />
@@ -48,6 +48,7 @@
 	
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 	<p:commandButton value="Enviar"
+					 action="#{usuarioMB.buscarUsuario}"
 					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
 	                 update=":formConvite"  
 	/>
