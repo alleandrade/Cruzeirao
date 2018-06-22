@@ -11,26 +11,31 @@
 <ui:define name="principal">
 
 <h:form id="formUsuario">
-<p:growl id="growl"  showDetail="true" />
+<p:growl id="mensagem"/>
 
-	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
 	 <f:facet name="header">
            Usuário
     </f:facet>
 	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
 		 	 
-	<f:facet name="header">
-            Dados
-    </f:facet>	 	 
-		 	 
 	 <p:outputLabel for="email" value="E-mail: "/>
 	 <p:inputText id="email" value = "#{usuarioMB.usuario.email}" required="true"/>
 	 
-	 <p:outputLabel for="username" value="Username: "/>
-	 <p:inputText id="username" value = "#{usuarioMB.usuario.username}" required="true"/>
+	 <p:outputLabel for="email" value="Username: "/>
+	 <p:inputText id="email" value = "#{usuarioMB.usuario.userName}" required="true"/>
 	 
-	 <h:outputLabel for="password" value="Senha: " />
-	 <p:password id="password" value="#{usuarioMB.usuario.password}" />	 	 
+	 <h:outputLabel for="senha" value="Senha: " />
+	 <p:password id="senha" value="#{usuarioMB.usuario.password}" />
+	 
+	 </p:panelGrid>
+	 
+	 <p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	
+	<f:facet name="header">
+            Dados pessoais
+    </f:facet>
+	 	 
 	  
 	 <p:outputLabel for="nome" value="Nome: "/>
 	 <p:inputText id="nome" value = "#{usuarioMB.usuario.nome}" required="true"/>

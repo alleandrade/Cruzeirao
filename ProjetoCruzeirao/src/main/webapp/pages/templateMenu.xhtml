@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<h:html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -7,7 +6,7 @@
 	lang="#{localeBean.language}"
 	style="background-color: #F5F5F5"
 	
-	>
+>
 	
 
 <f:view locale="#{localeBean.locale}">
@@ -30,19 +29,19 @@
 
 
 			<p:layoutUnit position="north" size="180">
-				<ui:include src="comuns/cabecalho.xhtml" />
+				<ui:include src="/pages/comuns/cabecalho.xhtml" />
 			</p:layoutUnit>
 
 
 			<p:layoutUnit position="south">
-				<ui:include src="comuns/rodape.xhtml" />
+				<ui:include src="/pages/comuns/rodape.xhtml" />
 			</p:layoutUnit>
 
 			<!-- Menu lateral -->
 			<p:layoutUnit position="west"
 				header="Menu"
 				collapsible="true" size="220">
-				<ui:include src="comuns/acessaMenu.xhtml" />
+				<ui:include src="/pages/comuns/acessaMenu.xhtml" />
 			</p:layoutUnit>
 
 			
@@ -54,7 +53,7 @@
 
 	</h:body>
 </f:view>
-</h:html>
+</ui:composition>
 
 
 

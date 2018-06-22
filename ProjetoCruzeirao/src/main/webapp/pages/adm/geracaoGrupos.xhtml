@@ -1,0 +1,93 @@
+<ui:composition template="/pages/templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formFase">
+<p:growl id="growl"  showDetail="true" />
+
+	
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
+ 	
+ 	<f:facet name="header">
+            Geração de grupos
+    </f:facet>
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="3">
+	
+	<f:facet name="header">
+            Seleção de campeonato
+    </f:facet>
+	
+	<p:outputLabel  value="Categoria"/>
+ 	<h:selectOneMenu id="categoria" converter ="ConverterCategoria"  value="#{faseMB.auxCat}"  style="width:205px">
+    	<f:selectItem itemLabel= "Selecione o campeonato" itemValue="" noSelectionOption="false"/>
+    	<f:selectItems value="#{faseMB.campeonatos}" />
+    </h:selectOneMenu>
+     
+    <p:commandButton value="Atualizar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{faseMB.atualizarCamp}"
+	                 update=":formFase"  
+	/>
+	
+	</p:panelGrid>
+	 
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="3">
+	
+	<f:facet name="header">
+            Cabeças de chave
+    </f:facet>
+	
+	<p:outputLabel  value="Inscrição"/>
+ 	<h:selectOneMenu id="inscricao" converter ="ConverterInscricao"  value="#{faseMB.cabecaChaveAux}"  style="width:205px">
+    	<f:selectItem itemLabel= "Selecione a equipe" itemValue="" noSelectionOption="false"/>
+    	<f:selectItems value="#{faseMB.equipes}" />
+    </h:selectOneMenu>
+     
+    <p:commandButton value="Adicionar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{faseMB.addCabecaChave}"
+	                 update=":formFase"  
+	/>
+	
+	</p:panelGrid>
+	
+	<p:panelGrid columns="2" style="margin-bottom:5px; font-size: 16px; padding: 8px 12px; margin: 8px 6px">
+	
+	<f:facet name="header">
+            Fase
+    </f:facet>
+    
+    <p:outputLabel value="Data de inicio: "/>
+	<p:calendar id="mask" value="#{faseMB.fase.dataInicio}" pattern="dd/MM/yyyy" mask="true" />
+    
+    <p:outputLabel value="Data de término: "/>
+	<p:calendar id="mask1" value="#{faseMB.fase.dataFim}" pattern="dd/MM/yyyy" mask="true" />
+	
+	<p:outputLabel value="Fase: "/>
+	<h:selectOneMenu value="#{faseMB.fase.formato}" style="width:205px">
+            <f:selectItem itemLabel="Primeira fase" itemValue="PRIMEIRA_FASE" />
+            <f:selectItem itemLabel="Segunda fase" itemValue="SEGUNDA_FASE" />
+    </h:selectOneMenu>
+   
+	
+	<p:commandButton value="Gerar grupos"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{faseMB.gerarGrupos()}"
+	                 update="formFase"  
+	/>
+	
+	</p:panelGrid>
+
+</p:panel>
+</h:form>
+</ui:define>
+</ui:composition>

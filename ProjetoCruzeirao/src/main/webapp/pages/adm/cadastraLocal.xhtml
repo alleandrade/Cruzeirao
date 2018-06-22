@@ -1,0 +1,50 @@
+<ui:composition template="/pages/templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formLocal">
+<p:growl id="growl" showDetail="true" />
+
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 3px 3px; margin: 6px 6px">
+	
+	 <f:facet name="header">
+           Local
+    </f:facet>
+
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="4">
+	
+	 <f:facet name="header">
+           Dados
+    </f:facet>
+	
+	 <p:outputLabel for="nome" value="Nome: "/>
+	 <p:inputText id="nome" value = "#{localMB.local.nome}" required="true"/>
+				 
+	 <p:outputLabel for="endereco" value="Endereço: "/>
+	 <p:inputText id="endereco" value = "#{localMB.local.endereco}" required="true"/>
+
+	 
+	 
+	</p:panelGrid>
+	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{localMB.salvar}"
+	                 update=":formLocal"  
+	            
+	/>
+	
+	</p:panel>
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>

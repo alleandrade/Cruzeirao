@@ -1,0 +1,52 @@
+<ui:composition template="/pages/templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+	
+	
+<ui:define name="principal">
+
+<h:form id="formRodada">
+<p:growl id="growl"  showDetail="true" />
+
+	<p:panel columns="5" style="margin-bottom:0px; font-size: 16px; padding: 1px 1px; margin: 6px 6px">
+	
+	<f:facet name="header">
+            Rodada
+    </f:facet>
+	 	 
+	<p:panelGrid style="margin-bottom:5px; font-size: 16px; padding: 4px 12px; margin: 4px 6px" columns="6">
+	
+     <p:outputLabel for="grupo" value="Grupo: "/>
+	 <h:selectOneMenu id="grupo" converter ="ConverterGrupo"  required="true" value="#{rodadaMB.rodada.grupo}"  style="width:205px">
+     		<f:selectItem itemLabel= "Selecione o grupo" noSelectionOption="false"/>
+     		<f:selectItems value="#{grupoMB.grupos}" />
+     </h:selectOneMenu>
+     
+	 
+	</p:panelGrid>
+ 	
+		  	
+
+	<p:commandButton value="Cadastrar"
+					 style="margin-bottom:5px; font-size: 16px; padding: 0px 0px; margin: 4px 6px"
+					 action="#{rodadaMB.salvar}"
+	                 update=":formRodada"  
+	            
+	/>
+	
+	
+	</p:panel>
+
+
+</h:form>
+
+
+
+
+	</ui:define>
+</ui:composition>

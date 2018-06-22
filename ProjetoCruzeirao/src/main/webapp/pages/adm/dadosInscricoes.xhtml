@@ -1,0 +1,115 @@
+<ui:composition template="/pages/templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+>
+
+<ui:define name="principal">
+
+<h:form id="formInscricao">
+<p:growl id="growl"  showDetail="true" />
+	
+	<p:dataTable
+			var = "ins"
+			value = "#{inscricaoMB.inscricoes}"
+			editable = "true"
+			id="tabelaInscricao"
+			paginator="true"
+            rows="5"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15"
+			
+			
+			                        
+	>
+	
+	<f:facet name="header">
+            Inscrições
+    </f:facet>
+    
+    <p:ajax event="rowEdit" listener="#{inscricaoMB.onRowEdit}" update="tabelaInscricao" />
+		
+		<p:column headerText="Pagamento" style="text-align: center" sortBy="#{ins.pagamento}">
+				<p:outputLabel value="#{ins.pagamento}" />  
+	    </p:column>
+	    
+	    <p:column headerText="Validada" style="text-align: center" sortBy="#{ins.validada}">
+				<p:outputLabel value="#{ins.validada}" />    		
+	    </p:column>
+	    
+	    <p:column headerText="Categoria" style="text-align: center">
+				<p:outputLabel value="#{ins.categoria}" />    		
+	    </p:column>
+	    
+	    <p:column headerText="Equipe" style="text-align: center">
+				<p:outputLabel value="#{ins.equipe}" />    		
+	    </p:column>
+	    
+	    <p:column  headerText="Inscritos" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formInscricao" oncomplete="PF('inscritosDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{ins}" target="#{inscricaoMB.inscricao}" />
+        </p:commandButton>            
+    	<p:dialog header="Inscritos da inscrição" widgetVar="inscritosDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="inscritosInscrição" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="insc" value="#{inscricaoMB.inscricao.inscritos}">
+ 					<p:column headerText="Usuário">
+	   					<p:outputLabel value="#{insc.usuario}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Tipo">
+						<p:outputLabel value="#{insc.tipo.tipo}" />
+					</p:column>	
+								
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+       
+       <p:column  headerText="Partidas" style="text-align: center">
+	    <p:commandButton icon ="ui-icon-search" update=":formInscricao" oncomplete="PF('partidasDialog').show()" closable="true" title="View">
+                <f:setPropertyActionListener value="#{ins}" target="#{inscricaoMB.inscricao}" />
+        </p:commandButton>            
+    	<p:dialog header="Partidas da inscrição" widgetVar="partidasDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="partidasInscrição" style=" width:600px" columnClasses="label,value">
+            
+            <p:dataTable var="part" value="#{inscricaoMB.inscricao.partidas}">
+ 					<p:column headerText="idPartida" sortBy="#{part.idPartida}">
+	   					<p:outputLabel value="#{part.idPartida}"/>
+	   	    		</p:column>	
+	   	    		
+	   	    		<p:column headerText="Data" sortBy="#{part.data}">
+	   					<p:outputLabel value="#{part.data}"/>
+	   	    		</p:column>
+	   	    		
+	   	    		<p:column headerText="Local">
+	   					<p:outputLabel value="#{part.local}"/>
+	   	    		</p:column>
+					
+									
+ 			</p:dataTable>            
+       </p:outputPanel>
+       </p:dialog>      
+       </p:column>
+	  
+	    
+	
+
+	    
+
+		<p:column style = "text-align: center">
+			<p:rowEditor />
+	     	<p:commandLink style = "color:DodgerBlue; text-decoration: none" value="Remover" action="#{inscricaoMB.remover(ins)}" update="tabelaInscricao"></p:commandLink> 	     	
+		</p:column>
+			
+	</p:dataTable>		
+	
+
+</h:form>
+
+
+	</ui:define>
+</ui:composition>
