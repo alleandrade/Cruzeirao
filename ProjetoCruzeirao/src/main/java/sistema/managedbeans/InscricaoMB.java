@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
+import sistema.entidades.Campeonato;
 import sistema.entidades.Inscricao;
 import sistema.entidades.Inscrito;
 import sistema.entidades.PartidasFutebol;
@@ -44,6 +45,12 @@ public class InscricaoMB implements Serializable{
 	public void salvar() {
 		
 		Date date = new Date();
+		int count = 0;
+		
+		if (this.getInscricoes() != null)
+			for (Inscricao i: this.getInscricoes())
+				if (i.getEquipe().getNome().equals(inscricao.getEquipe().getNome()))
+					count++;
 		
 		if (inscricao.getCategoria().getCampeonato().getDataInicioInscricao().after(date)  || inscricao.getCategoria().getCampeonato().getDataFimInscricao().before(date)) 
 		{
@@ -51,6 +58,11 @@ public class InscricaoMB implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);			
 		}
 		
+		else if (count > 0) {
+				FacesMessage mensagem = new FacesMessage("Só é possível realizar uma inscrição para uma equipe por campeonato!");
+				FacesContext.getCurrentInstance().addMessage(null, mensagem);	
+			
+		}
 		
 		else 
 		{
@@ -61,7 +73,6 @@ public class InscricaoMB implements Serializable{
 					Inscrito inscrito = new Inscrito();
 					UsuarioService usuarioservice = new UsuarioService();
 					InscritoService inscritoservice = new InscritoService();
-					InscritoMB inscritoMB = new InscritoMB();
 					
 					inscrito.setTipo(u.getTipo());
 					inscrito.setAceiteUsuario(true);
@@ -71,9 +82,9 @@ public class InscricaoMB implements Serializable{
 					inscrito.setUsuario(u);
 					u.getCampeonatos().add(inscricao.getCategoria().getCampeonato());
 					u.getInscricoes().add(inscrito);
-					inscritoMB.salvar(inscrito);
+					//inscritoMB.salvar(inscrito);
 					//usuarioservice.alterar(u);
-					//inscritoservice.salvar(inscrito);
+					inscritoservice.salvar(inscrito);
 					inscricao.getInscritos().add(inscrito);		
 					
 				}	
@@ -85,7 +96,7 @@ public class InscricaoMB implements Serializable{
 				//categoriaservice.alterar(inscricao.getCategoria());
 			}
 						
-			inscricao = inscricaoservice.salvar(inscricao);
+			inscricao = inscricaoservice.salvar(inscricao);			
 			
 			if (inscricoes != null) {
 				inscricoes.add(inscricao);
